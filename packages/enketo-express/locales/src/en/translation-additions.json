@@ -181,5 +181,13 @@
     },
     "submission": {
         "http500": "There was a problem with your submission. Please try again or contact __supportEmail__ if this persists."
+    },
+    "formfooter": {
+        "exit": {
+            "btn": "Finish Later"
+        },
+        "done": {
+            "btn": "I'm Done"
+        }
     }
 }
