@@ -188,6 +188,14 @@
         },
         "done": {
             "btn": "I'm Done"
+        },
+    },
+    "repeat": {
+        "addanother": {
+            "btn": "Add Another"
+        },
+        "remove": {
+            "btn": "Remove"
         }
     }
 }
