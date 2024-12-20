@@ -43,6 +43,9 @@
             "year_plural": "__count__ Jahre"
         }
     },
+    "enketo": {
+        "power": "Angetrieben von"
+    },
     "fieldsubmission": {
         "alert": {
             "close": {
@@ -123,6 +126,14 @@
             "placeholder2": "Grund für die Änderung dieses Werts eingeben",
             "applytoall": "Für alle anwenden",
             "questionmsg": "Geben Sie einen Grund für die Änderung unten auf der Seite ein."
+        }
+    },
+    "formfooter": {
+        "exit": {
+            "btn": "Später beenden"
+        },
+        "done": {
+            "btn": "Ich bin fertig"
         }
     },
     "confirm": {
