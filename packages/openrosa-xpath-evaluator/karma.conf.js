@@ -7,11 +7,10 @@ module.exports = function (config) {
     config.set({
         frameworks: ['mocha'],
         // Use a custom Chrome launcher with no-sandbox to avoid sandbox issues in CI/Docker.
-        browsers: ['ChromeHeadlessNoSandbox', 'FirefoxHeadless'],
         customLaunchers: {
             ChromeHeadlessNoSandbox: {
                 base: 'ChromeHeadless',
-                flags: ['--no-sandbox'],
+                flags: ['--no-sandbox', '--disable-setuid-sandbox'],
             },
         },
         files: [{ pattern: 'test/integration/index.js', watched: false }],
@@ -22,5 +21,14 @@ module.exports = function (config) {
             mode: 'development',
             devtool: false,
         },
+        customLaunchers: {
+            ChromeHeadlessNoSandbox: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox', '--disable-setuid-sandbox'],
+            },
+        },
+        browsers: process.env.GITHUB_ACTIONS
+            ? ['ChromeHeadlessNoSandbox', 'FirefoxHeadless']
+            : ['ChromeHeadless', 'FirefoxHeadless'],
     });
 };
