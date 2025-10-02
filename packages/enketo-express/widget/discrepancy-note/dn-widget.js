@@ -2,12 +2,12 @@
 import Widget from 'enketo-core/src/js/widget';
 import { getSiblingElements } from 'enketo-core/src/js/dom-utils';
 import $ from 'jquery';
+import reasons from 'enketo-core/src/js/reasons';
 import { t } from '../../public/js/src/module/translator';
 import settings from '../../public/js/src/module/settings';
 import events from '../../public/js/src/module/event';
 import fileManager from '../../public/js/src/module/file-manager';
 import { Form } from '../../public/js/src/module/form-oc';
-import reasons from 'enketo-core/src/js/reasons';
 
 let currentUser;
 let users;
@@ -337,7 +337,7 @@ class Comment extends Widget {
                     // This will not be triggered if a form is loaded with a value for an irrelevant question and an open query.
                     this._addQuery(
                         t('widget.dn.autoclosed'),
-                        'closed',
+                        'closed-modified',
                         '',
                         false,
                         SYSTEM_USER,
