@@ -2,12 +2,12 @@
 import Widget from 'enketo-core/src/js/widget';
 import { getSiblingElements } from 'enketo-core/src/js/dom-utils';
 import $ from 'jquery';
-import reasons from 'enketo-core/src/js/reasons';
 import { t } from '../../public/js/src/module/translator';
 import settings from '../../public/js/src/module/settings';
 import events from '../../public/js/src/module/event';
 import fileManager from '../../public/js/src/module/file-manager';
 import { Form } from '../../public/js/src/module/form-oc';
+import reasons from 'enketo-core/src/js/reasons';
 
 let currentUser;
 let users;
