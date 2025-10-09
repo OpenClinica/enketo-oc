@@ -337,7 +337,7 @@ class Comment extends Widget {
                     // This will not be triggered if a form is loaded with a value for an irrelevant question and an open query.
                     this._addQuery(
                         t('widget.dn.autoclosed'),
-                        'closed',
+                        'closed-modified',
                         '',
                         false,
                         SYSTEM_USER,
