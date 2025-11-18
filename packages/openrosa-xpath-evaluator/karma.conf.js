@@ -7,6 +7,13 @@ module.exports = function (config) {
     config.set({
         frameworks: ['mocha'],
         browsers: ['ChromeHeadless', 'FirefoxHeadless'],
+        // Add --no-sandbox flag to ChromeHeadless to support running in restricted/container environments.
+        customLaunchers: {
+            ChromeHeadless: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox'],
+            },
+        },
         files: [{ pattern: 'test/integration/index.js', watched: false }],
         preprocessors: {
             'test/integration/index.js': ['webpack'],
