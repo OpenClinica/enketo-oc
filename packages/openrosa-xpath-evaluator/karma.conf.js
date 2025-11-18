@@ -6,10 +6,10 @@ module.exports = function (config) {
     process.env.TZ = 'America/Phoenix';
     config.set({
         frameworks: ['mocha'],
-        browsers: ['ChromeHeadless', 'FirefoxHeadless'],
-        // Add --no-sandbox flag to ChromeHeadless to support running in restricted/container environments.
+        // Use a custom Chrome launcher with no-sandbox to avoid sandbox issues in CI/Docker.
+        browsers: ['ChromeHeadlessNoSandbox', 'FirefoxHeadless'],
         customLaunchers: {
-            ChromeHeadless: {
+            ChromeHeadlessNoSandbox: {
                 base: 'ChromeHeadless',
                 flags: ['--no-sandbox'],
             },
