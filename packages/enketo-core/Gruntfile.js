@@ -256,8 +256,8 @@ module.exports = (grunt) => {
     grunt.registerTask('test:browsers', [
         'transforms',
         'compile',
-        'karma:browsers',
         'css',
+        'karma:browsers',
     ]);
     grunt.registerTask('test:watch', ['transforms', 'concurrent:test']);
     grunt.registerTask('css', ['sass']);
