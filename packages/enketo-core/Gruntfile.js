@@ -252,6 +252,13 @@ module.exports = (grunt) => {
         'karma:headless',
         'css',
     ]);
+    // Full browser test task ensuring fresh transforms and compiled bundle before running non-headless karma target.
+    grunt.registerTask('test:browsers', [
+        'transforms',
+        'compile',
+        'css',
+        'karma:browsers',
+    ]);
     grunt.registerTask('test:watch', ['transforms', 'concurrent:test']);
     grunt.registerTask('css', ['sass']);
     grunt.registerTask('server', ['connect:server:keepalive']);
