@@ -6,7 +6,7 @@
 
 import config from 'enketo/config';
 import events from './event';
-import { closestAncestorUntil, getChild, getChildren } from './dom-utils';
+import { closestAncestorUntil, getChild, getChildren, elementDataStore as domData } from './dom-utils';
 
 /**
  * @typedef {import('./form').Form} Form
@@ -527,6 +527,13 @@ export default {
             // Update calculated items, both individual question or descendants of group
             this.form.calc.update({
                 relevantPath: path,
+            });
+            // Clear itemset cache for templates under this branch so that itemset.update
+            // rebuilds with the fully-computed label values from calc.update above.
+            // Without this, a DataUpdate fired mid-calc causes itemset to rebuild early
+            // with partial label values, which then get cached and skipped on the real call.
+            branchNode.querySelectorAll('.itemset-template').forEach((template) => {
+                domData.put(template, 'items', {});
             });
             this.form.itemset.update({
                 relevantPath: path,
