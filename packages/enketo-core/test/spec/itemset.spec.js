@@ -993,9 +993,7 @@ describe('Itemset functionality', () => {
             showInput.value = '1';
             showInput.dispatchEvent(events.Change());
 
-            const options = [
-                ...form.view.html.querySelectorAll(optionSel),
-            ];
+            const options = [...form.view.html.querySelectorAll(optionSel)];
             expect(options.length).to.equal(3);
             expect(options.map((o) => o.value)).to.deep.equal(['a', 'b', 'c']);
         });
