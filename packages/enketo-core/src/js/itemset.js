@@ -465,6 +465,22 @@ export default {
     },
 
     /**
+     * Clears the itemset change-detection cache for all `.itemset-template`
+     * elements that are descendants of `rootNode` (or all templates in the
+     * form when `rootNode` is omitted). Call this before `update()` whenever
+     * you know the cached labels may be stale — e.g. after `calc.update()`
+     * has recomputed values that feed into item labels.
+     *
+     * @param {Element} [rootNode] - subtree to invalidate; defaults to the whole form
+     */
+    invalidateCache(rootNode) {
+        const scope = rootNode ?? this.form.view.html;
+        scope.querySelectorAll('.itemset-template').forEach((template) => {
+            data.put(template, 'items', {});
+        });
+    },
+
+    /**
      * Minimal XPath evaluation helper that queries from a single item context.
      *
      * @param {string} expr - The XPath expression
