@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!--
+  Regression form for: itemset labels stale when a group becomes relevant and
+  calc.update() fires DataUpdate mid-loop, causing itemset to cache partial
+  label values and skip the final authoritative rebuild.
+
+  Root cause: relevant.enable() removes the 'disabled' class before calling
+  calc.update(). Each setVal() inside calc.update fires a synchronous
+  DataUpdate event, which runs the evaluation cascade (including
+  itemset.update). If itemset runs and caches the item hash at that point,
+  the subsequent explicit itemset.update() call in enable() is skipped because
+  the cached hash matches, leaving labels stale.
+
+  Fix: relevant.enable() calls form.itemset.invalidateCache(branchNode) after
+  calc.update() returns and before the explicit itemset.update(), ensuring the
+  rebuild always uses fully-computed label values.
+
+  Form structure:
+  - /data/show        : triggers relevance of /data/grp (relevant= /data/show = '1')
+  - /data/grp/lbl_a/b/c : hidden calculated nodes INSIDE the group, so they are
+                          recomputed by calc.update({ relevantPath: '/data/grp' }).
+                          Each fires a DataUpdate which triggers itemset.update
+                          mid-loop via the evaluation cascade.
+  - secondary instance 'choices': three items with static labels (Alpha-001 etc.).
+    The static labels ensure newItems.text is stable, meaning the mid-calc
+    rebuild caches the same hash as the final state and the rebuild is skipped
+    unless invalidateCache() clears it.
+  - /data/grp/pick    : select1 using the secondary instance itemset.
+-->
+<h:html
+    xmlns="http://www.w3.org/2002/xforms"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:jr="http://openrosa.org/javarosa"
+    xmlns:odk="http://www.opendatakit.org/xforms"
+    xmlns:orx="http://openrosa.org/xforms"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <h:head>
+        <h:title>itemset-relevant-calc-labels</h:title>
+        <model odk:xforms-version="1.0.0">
+            <instance>
+                <data id="itemset-relevant-calc-labels">
+                    <show/>
+                    <grp>
+                        <!-- Three hidden calc nodes INSIDE the group so that
+                             calc.update({ relevantPath: '/data/grp' }) recomputes
+                             them, firing DataUpdate events mid-loop. -->
+                        <lbl_a/>
+                        <lbl_b/>
+                        <lbl_c/>
+                        <pick/>
+                    </grp>
+                    <meta>
+                        <instanceID/>
+                    </meta>
+                </data>
+            </instance>
+            <!-- Static secondary instance: newItems.text is stable across the
+                 calc.update loop, so a mid-calc itemset rebuild that caches the
+                 hash will cause the final rebuild to be skipped if the cache is
+                 not cleared by invalidateCache(). -->
+            <instance id="choices">
+                <root>
+                    <item>
+                        <label>Alpha-001</label>
+                        <name>a</name>
+                    </item>
+                    <item>
+                        <label>Beta-002</label>
+                        <name>b</name>
+                    </item>
+                    <item>
+                        <label>Gamma-003</label>
+                        <name>c</name>
+                    </item>
+                </root>
+            </instance>
+            <bind nodeset="/data/show" type="string"/>
+            <!-- Calc nodes inside the group: each fires a DataUpdate when
+                 calc.update({ relevantPath: '/data/grp' }) evaluates them. -->
+            <bind nodeset="/data/grp/lbl_a" calculate="concat('Alpha-', '001')" type="string"/>
+            <bind nodeset="/data/grp/lbl_b" calculate="concat('Beta-', '002')" type="string"/>
+            <bind nodeset="/data/grp/lbl_c" calculate="concat('Gamma-', '003')" type="string"/>
+            <bind nodeset="/data/grp" relevant="/data/show = '1'"/>
+            <bind nodeset="/data/grp/pick" type="string"/>
+            <bind nodeset="/data/meta/instanceID" calculate="concat('uuid:', uuid())" readonly="true()" type="string"/>
+        </model>
+    </h:head>
+    <h:body>
+        <input ref="/data/show">
+            <label>Enter 1 to show group</label>
+        </input>
+        <group ref="/data/grp">
+            <label>Group</label>
+            <select1 ref="/data/grp/pick">
+                <label>Pick one</label>
+                <itemset nodeset="instance('choices')/root/item">
+                    <value ref="name"/>
+                    <label ref="label"/>
+                </itemset>
+            </select1>
+        </group>
+    </h:body>
+</h:html>

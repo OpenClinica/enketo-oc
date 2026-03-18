@@ -528,6 +528,9 @@ export default {
             this.form.calc.update({
                 relevantPath: path,
             });
+            // Without this, a DataUpdate fired mid-calc causes itemset to rebuild early
+            // with partial label values, which are then cached and skipped on the real call.
+            this.form.itemset.invalidateCache(branchNode);
             this.form.itemset.update({
                 relevantPath: path,
             });

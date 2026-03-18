@@ -31,11 +31,19 @@ describe('Format', () => {
             am: 'ص',
             pm: 'م',
         },
+
+        /**
+         * Note (2026-03-17) — Firefox 148+ returns English-language AM/PM
+         * ('AM', 'PM') instead of Korean notation ('오전', '오후') for the
+         * `ko-KR` locale due to missing ICU day-period data. The AM/PM
+         * extraction test is skipped in Firefox.
+         */
         {
             locale: 'ko-KR',
             hour12: true,
             am: '오전',
             pm: '오후',
+            skipMeridianNotationInFirefox: true,
         },
         {
             locale: 'nl',
@@ -55,7 +63,7 @@ describe('Format', () => {
             am: null,
             pm: null,
         },
-    ].forEach(({ locale, hour12, am, pm }) => {
+    ].forEach(({ locale, hour12, am, pm, skipMeridianNotationInFirefox }) => {
         describe(`time determination for ${locale}`, () => {
             /** @type {Function} */
             let teardownTimeLocalization;
@@ -77,10 +85,17 @@ describe('Format', () => {
                 expect(time.hour12).to.equal(hour12, locale);
             });
 
-            it(`extracts the AM and PM notation for as: ${am}, ${pm}`, () => {
-                expect(time.amNotation).to.equal(am, locale);
-                expect(time.pmNotation).to.equal(pm);
-            });
+            const isFirefox = /Firefox/.test(navigator.userAgent);
+            const itMeridian =
+                skipMeridianNotationInFirefox && isFirefox ? it.skip : it;
+
+            itMeridian(
+                `extracts the AM and PM notation for as: ${am}, ${pm}`,
+                () => {
+                    expect(time.amNotation).to.equal(am, locale);
+                    expect(time.pmNotation).to.equal(pm);
+                }
+            );
 
             it('determines whether a localized time string has a meridian', () => {
                 const date = new Date(2022, 8, 27, 1, 2, 3, 4);

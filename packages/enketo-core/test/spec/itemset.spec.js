@@ -958,4 +958,44 @@ describe('Itemset functionality', () => {
             ]);
         });
     });
+
+    describe('in a group with a relevant condition and an itemset using a secondary instance', () => {
+        // Regression: when the group becomes relevant, calc.update() fires DataUpdate events
+        // mid-loop that can cause itemset.update() to run early and cache stale item data.
+        // relevant.enable() calls itemset.invalidateCache() to clear that cache before the
+        // explicit itemset.update(), ensuring the select is always populated correctly.
+        beforeEach(() => {
+            form = loadForm('itemset-relevant-calc-labels.xml');
+            form.init();
+        });
+
+        const showInputSel = 'input[name="/data/show"]';
+        const optionSel =
+            'label:not(.itemset-template) > input[data-name="/data/grp/pick"]';
+
+        it('calls itemset.invalidateCache with the branch node when the group becomes relevant', () => {
+            sandbox.spy(form.itemset, 'invalidateCache');
+
+            const showInput = form.view.html.querySelector(showInputSel);
+            showInput.value = '1';
+            showInput.dispatchEvent(events.Change());
+
+            expect(form.itemset.invalidateCache).to.have.been.called;
+            expect(
+                form.itemset.invalidateCache.firstCall.args[0].classList.contains(
+                    'or-branch'
+                )
+            ).to.equal(true);
+        });
+
+        it('renders the correct itemset options after the group becomes relevant', () => {
+            const showInput = form.view.html.querySelector(showInputSel);
+            showInput.value = '1';
+            showInput.dispatchEvent(events.Change());
+
+            const options = [...form.view.html.querySelectorAll(optionSel)];
+            expect(options.length).to.equal(3);
+            expect(options.map((o) => o.value)).to.deep.equal(['a', 'b', 'c']);
+        });
+    });
 });
