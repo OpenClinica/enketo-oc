@@ -708,4 +708,45 @@ describe('calculate functionality', () => {
             expect(form.calc._isRelevant(props)).to.equal(true);
         });
     });
+
+    describe('inside a jr:count-controlled repeat with indexed-repeat() outside', () => {
+        /**
+         * Regression test for the bug where calculations that depend on
+         * repeat instances created by jr:count were not evaluated before
+         * output.init() / itemset.init() ran.
+         *
+         * The form has:
+         *   - A secondary instance with 4 specimen IDs ('sp1'..'sp4')
+         *   - spec_count = count of items in secondary instance (= 4)
+         *   - spec_repeat: jr:count-controlled repeat (creates 4 instances)
+         *   - specimen_id_calc[i] inside the repeat: looks up the Nth item via position(..)
+         *   - spec_id1..spec_id4 = indexed-repeat(specimen_id_calc, spec_repeat, N), relevant spec_count >= N
+         *   - A select_one whose itext option labels use or-output referencing spec_id1..spec_id4
+         *
+         * Before the fix, specimen_id_calc[1..3] (instances 2-4) had not been evaluated
+         * by the time output.init() / itemset.init() built option labels, causing
+         * spec_id2..spec_id4 to be empty and those option labels to render as blank.
+         */
+        it('resolves all indexed-repeat() calculations before itemset labels are built', () => {
+            const form = loadForm('repeat-count-indexed-repeat-calc.xml');
+            form.init();
+
+            // Model values must be correct for all four indexed-repeat() calculations
+            expect(form.model.node('/data/spec_id1').getVal()).to.equal('sp1');
+            expect(form.model.node('/data/spec_id2').getVal()).to.equal('sp2');
+            expect(form.model.node('/data/spec_id3').getVal()).to.equal('sp3');
+            expect(form.model.node('/data/spec_id4').getVal()).to.equal('sp4');
+
+            // All four option labels (driven by spec_id1..spec_id4 via or-output)
+            // must be non-empty and show the correct values on initial load.
+            const optionLabels = form.view.html.querySelectorAll(
+                '[name="/data/specimen_select"]+.option-label.active'
+            );
+            expect(optionLabels.length).to.equal(4);
+            expect(optionLabels[0].textContent.trim()).to.equal('sp1');
+            expect(optionLabels[1].textContent.trim()).to.equal('sp2');
+            expect(optionLabels[2].textContent.trim()).to.equal('sp3');
+            expect(optionLabels[3].textContent.trim()).to.equal('sp4');
+        });
+    });
 });
