@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
     Regression test fixture for:
-    https://github.com/OpenClinica/enketo-express-oc/issues/NNN
+    https://jira.openclinica.com/browse/OC-27231
 
     A jr:count-controlled repeat creates N instances on form load.
     A calculation inside the repeat uses position(..) to look up a value
