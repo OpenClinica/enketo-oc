@@ -462,6 +462,14 @@ Form.prototype.init = function () {
             this.all = {};
         }
 
+        // Re-evaluate calculations after repeats.init() so that any repeat instances
+        // created by jr:count have their internal calculations resolved (e.g. position(..),
+        // external-data lookups) before outputs and itemsets consume those values for labels.
+        // Without this, calculations that depend on newly created repeat instances (beyond
+        // the first default instance) are still empty when output.init() / itemset.init()
+        // build option labels, causing selects with dynamic labels to show blank options.
+        this.calc.update();
+
         // after repeats.init, but before itemset.init
         this.output.init();
 
