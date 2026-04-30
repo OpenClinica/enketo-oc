@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    Regression test fixture for:
+    https://jira.openclinica.com/browse/OC-27231
+
+    A jr:count-controlled repeat creates N instances on form load.
+    A calculation inside the repeat uses position(..) to look up a value
+    from a secondary instance (simulating an external data source).
+    Four out-of-repeat calculations (spec_id1..spec_id4) use indexed-repeat()
+    to pull the per-instance values, each with a relevant condition.
+    An itemset uses itext labels whose outputs reference spec_id1..spec_id4.
+
+    Before the fix, all but spec_id1 were empty on first load because the
+    2nd-4th repeat instances' internal calculations had not yet been evaluated
+    when output.init() / itemset.init() ran.
+-->
+<h:html
+    xmlns="http://www.w3.org/2002/xforms"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:jr="http://openrosa.org/javarosa"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <h:head>
+        <h:title>Repeat Count Indexed-Repeat Calc Init</h:title>
+        <model>
+            <itext>
+                <translation default="true()" lang="default">
+                    <text id="specimens-0">
+                        <value><output value=" /data/spec_id1 "/></value>
+                    </text>
+                    <text id="specimens-1">
+                        <value><output value=" /data/spec_id2 "/></value>
+                    </text>
+                    <text id="specimens-2">
+                        <value><output value=" /data/spec_id3 "/></value>
+                    </text>
+                    <text id="specimens-3">
+                        <value><output value=" /data/spec_id4 "/></value>
+                    </text>
+                </translation>
+            </itext>
+            <instance>
+                <data id="repeat-count-indexed-repeat-calc">
+                    <spec_repeat jr:template="">
+                        <specimen_id_calc/>
+                    </spec_repeat>
+                    <spec_count/>
+                    <spec_id1/>
+                    <spec_id2/>
+                    <spec_id3/>
+                    <spec_id4/>
+                    <specimen_select/>
+                    <meta>
+                        <instanceID/>
+                    </meta>
+                </data>
+            </instance>
+            <!-- Secondary instance simulating external clinical data -->
+            <instance id="clinicaldata">
+                <root>
+                    <item>
+                        <id>sp1</id>
+                    </item>
+                    <item>
+                        <id>sp2</id>
+                    </item>
+                    <item>
+                        <id>sp3</id>
+                    </item>
+                    <item>
+                        <id>sp4</id>
+                    </item>
+                </root>
+            </instance>
+            <!-- itemset choices — one entry per specimen slot -->
+            <instance id="specimens">
+                <root>
+                    <item>
+                        <itextId>specimens-0</itextId>
+                        <filter>1</filter>
+                        <name>specimen1</name>
+                    </item>
+                    <item>
+                        <itextId>specimens-1</itextId>
+                        <filter>2</filter>
+                        <name>specimen2</name>
+                    </item>
+                    <item>
+                        <itextId>specimens-2</itextId>
+                        <filter>3</filter>
+                        <name>specimen3</name>
+                    </item>
+                    <item>
+                        <itextId>specimens-3</itextId>
+                        <filter>4</filter>
+                        <name>specimen4</name>
+                    </item>
+                </root>
+            </instance>
+            <!-- Number of available specimens drives the repeat count -->
+            <bind calculate="count(instance('clinicaldata')/root/item)" nodeset="/data/spec_count" type="string"/>
+            <!-- Inside the repeat: look up the Nth specimen by repeat position.
+                 position(current()/..) = position of spec_repeat among its siblings.
+                 current() escapes the predicate context so .. refers to spec_repeat
+                 (the outer context node's parent), not the item being filtered. -->
+            <bind calculate="instance('clinicaldata')/root/item[position() = position(current()/..)]/id" nodeset="/data/spec_repeat/specimen_id_calc" type="string"/>
+            <!-- Outside calcs aggregate the per-instance values via indexed-repeat() -->
+            <bind calculate="indexed-repeat( /data/spec_repeat/specimen_id_calc ,  /data/spec_repeat , 1)" nodeset="/data/spec_id1" relevant=" /data/spec_count  >= 1" type="string"/>
+            <bind calculate="indexed-repeat( /data/spec_repeat/specimen_id_calc ,  /data/spec_repeat , 2)" nodeset="/data/spec_id2" relevant=" /data/spec_count  >= 2" type="string"/>
+            <bind calculate="indexed-repeat( /data/spec_repeat/specimen_id_calc ,  /data/spec_repeat , 3)" nodeset="/data/spec_id3" relevant=" /data/spec_count  >= 3" type="string"/>
+            <bind calculate="indexed-repeat( /data/spec_repeat/specimen_id_calc ,  /data/spec_repeat , 4)" nodeset="/data/spec_id4" relevant=" /data/spec_count  >= 4" type="string"/>
+            <bind nodeset="/data/specimen_select" type="string"/>
+            <bind calculate="concat('uuid:', uuid())" nodeset="/data/meta/instanceID" readonly="true()" type="string"/>
+        </model>
+    </h:head>
+    <h:body>
+        <!-- Repeat controlled by spec_count (4 on load from clinicaldata) -->
+        <group ref="/data/spec_repeat">
+            <label/>
+            <repeat jr:count=" /data/spec_count " nodeset="/data/spec_repeat">
+                <input ref="/data/spec_repeat/specimen_id_calc">
+                    <label>Specimen ID</label>
+                </input>
+            </repeat>
+        </group>
+        <!-- select_one whose labels are driven by the indexed-repeat calcs via itext outputs -->
+        <select1 ref="/data/specimen_select">
+            <label>Select a specimen</label>
+            <itemset nodeset="instance('specimens')/root/item[ /data/spec_count  >= filter]">
+                <value ref="name"/>
+                <label ref="jr:itext(itextId)"/>
+            </itemset>
+        </select1>
+    </h:body>
+</h:html>

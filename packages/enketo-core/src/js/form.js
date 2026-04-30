@@ -460,6 +460,18 @@ Form.prototype.init = function () {
             this.repeats.init();
 
             this.all = {};
+
+            // jr:count repeats may add instances during repeats.init() whose internal
+            // calculations have not run yet. Without this, indexed-repeat() values used
+            // in itemset option labels will still be empty when output.init() runs.
+            // Skipped for plain (user-added) repeats — they don't add instances on init.
+            if (
+                this.view.html.querySelector(
+                    '.or-repeat-info[data-repeat-count]'
+                )
+            ) {
+                this.calc.update();
+            }
         }
 
         // after repeats.init, but before itemset.init
