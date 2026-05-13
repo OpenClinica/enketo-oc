@@ -496,7 +496,8 @@ function _resetForm(survey, options = {}) {
  * @return {Promise} [description]
  */
 function _close(options = { autoQueries: false, reasons: false }) {
-    // If the form is untouched, and has not loaded a record, allow closing it without any checks.
+    // If the form is untouched, and has not loaded a record, validate before closing
+    // to catch required fields that were never interacted with.
     // TODO: can we ignore calculations?
     if (
         settings.type !== 'edit' &&
@@ -504,7 +505,24 @@ function _close(options = { autoQueries: false, reasons: false }) {
             !fieldSubmissionQueue.enabled) &&
         fieldSubmissionQueue.submittedCounter === 0
     ) {
-        return Promise.resolve().then(() => {
+        return form.validate().then((valid) => {
+            if (!valid) {
+                const requiredViolations =
+                    form.view.html.querySelector('.invalid-required');
+                if (settings.participant && requiredViolations) {
+                    throw new Error(
+                        t('fieldsubmission.alert.participanterror.msg')
+                    );
+                }
+                const strictViolations = form.view.html.querySelector(
+                    settings.strictViolationSelector
+                );
+                if (settings.participant && strictViolations) {
+                    throw new Error(
+                        t('fieldsubmission.alert.participanterror.msg')
+                    );
+                }
+            }
             gui.alert(
                 t('alert.submissionsuccess.redirectmsg'),
                 null,
@@ -574,6 +592,15 @@ function _close(options = { autoQueries: false, reasons: false }) {
             );
 
             if (settings.participant && strictViolations) {
+                throw new Error(
+                    t('fieldsubmission.alert.participanterror.msg')
+                );
+            }
+
+            // Also block close for participant views when standard required fields are unfilled.
+            const requiredViolations =
+                form.view.html.querySelector('.invalid-required');
+            if (settings.participant && requiredViolations) {
                 throw new Error(
                     t('fieldsubmission.alert.participanterror.msg')
                 );
