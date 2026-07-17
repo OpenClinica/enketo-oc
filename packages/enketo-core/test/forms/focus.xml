@@ -33,6 +33,9 @@
                         <repeat-field />
                         <repeat-field2 />
                     </repeat-page>
+                    <select-radio-page>
+                        <select-radio-field />
+                    </select-radio-page>
                     <meta>
                         <instanceID/>
                     </meta>
@@ -42,6 +45,7 @@
             <bind nodeset="/data/field-page" />
             <bind nodeset="/data/relevant-page" relevant="/data/field-page = '1'" />
             <bind nodeset="/data/select-page" />
+            <bind nodeset="/data/select-radio-page/select-radio-field" />
 
             <bind nodeset="/data/group-page/group-readonly-empty-field" readonly="true()" />
             <bind nodeset="/data/group-page/group-readonly-calc-field" readonly="true()" calculate="'calculated'" />
@@ -162,6 +166,24 @@
                     </item>
                 </select>
             </repeat>
+        </group>
+
+        <group ref="/data/select-radio-page" appearance="field-list">
+            <label>Select radio page</label>
+
+            <!-- No "minimal" appearance: renders as plain native radio inputs
+                 (not the select-desktop widget), matching the OC-27867 iOS bug. -->
+            <select ref="/data/select-radio-page/select-radio-field">
+                <label>Select radio field</label>
+                <item>
+                    <value>1</value>
+                    <label>One</label>
+                </item>
+                <item>
+                    <value>2</value>
+                    <label>Two</label>
+                </item>
+            </select>
         </group>
     </h:body>
 </h:html>
