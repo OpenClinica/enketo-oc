@@ -173,7 +173,7 @@
 
             <!-- No "minimal" appearance: renders as plain native radio inputs
                  (not the select-desktop widget), matching the OC-27867 iOS bug. -->
-            <select ref="/data/select-radio-page/select-radio-field">
+            <select1 ref="/data/select-radio-page/select-radio-field">
                 <label>Select radio field</label>
                 <item>
                     <value>1</value>
@@ -183,7 +183,7 @@
                     <value>2</value>
                     <label>Two</label>
                 </item>
-            </select>
+            </select1>
         </group>
     </h:body>
 </h:html>
