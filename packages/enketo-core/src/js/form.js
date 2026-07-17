@@ -1533,7 +1533,24 @@ Form.prototype.goToTarget = function (target, options = {}) {
         );
 
         if (input != null) {
-            input.focus();
+            const isRadioOrCheckbox =
+                input.type === 'radio' || input.type === 'checkbox';
+            const isFieldListPage = target.classList.contains(
+                'or-appearance-field-list'
+            );
+
+            // OC-27867: on iOS Safari, calling focus() on a radio/checkbox right
+            // when a field-list page appears (before the user has tapped anything)
+            // breaks the user's next tap on that same button: it highlights but
+            // never actually gets selected. So on page flip, skip focus() for
+            // this one case. We still fire "applyfocus" below, since other
+            // widgets (date, time, geo, etc.) rely on that event to work correctly.
+            const skipFocus =
+                options.isPageFlip && isFieldListPage && isRadioOrCheckbox;
+
+            if (!skipFocus) {
+                input.focus();
+            }
             input.dispatchEvent(events.ApplyFocus());
         }
 

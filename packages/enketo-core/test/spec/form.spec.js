@@ -2179,6 +2179,46 @@ describe('Focus', () => {
             });
         });
     });
+
+    describe('OC-27867: does not focus() a radio/checkbox on a field-list page flip', () => {
+        /** @type {HTMLElement} */
+        let fieldListGroup;
+
+        /** @type {HTMLInputElement} */
+        let radioInput;
+
+        beforeEach(() => {
+            fieldListGroup = formElement.querySelector(
+                '*[name="/data/select-radio-page"]'
+            );
+            radioInput = formElement.querySelector(
+                'input[name="/data/select-radio-page/select-radio-field"]'
+            );
+        });
+
+        it('does not focus the radio when flipping to its field-list page', () => {
+            form.goToTarget(fieldListGroup, { isPageFlip: true });
+
+            expect(document.activeElement).to.not.equal(radioInput);
+        });
+
+        it('still dispatches applyfocus, so other widgets keep working', () => {
+            let applyfocusFired = false;
+            radioInput.addEventListener('applyfocus', () => {
+                applyfocusFired = true;
+            });
+
+            form.goToTarget(fieldListGroup, { isPageFlip: true });
+
+            expect(applyfocusFired).to.equal(true);
+        });
+
+        it('still focuses the radio when it is not a page flip (e.g. jumping to a validation error)', () => {
+            form.goToTarget(fieldListGroup);
+
+            expect(document.activeElement).to.equal(radioInput);
+        });
+    });
 });
 
 function mockChoiceNameForm() {
