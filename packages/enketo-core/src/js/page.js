@@ -467,7 +467,15 @@ export default {
             this._toggleButtons(newIndex);
             pageEl.dispatchEvent(events.PageFlip());
             this.form.goToTarget(pageEl, { isPageFlip: true });
-            pageEl.setAttribute('tabindex', 1);
+
+            // OC-27867: don't make field-list group containers focusable. On iOS
+            // Safari a tap inside the group can focus the container (as the
+            // nearest focusable ancestor), which renders extra blank space and
+            // shifts the layout mid-tap, swallowing the first tap. See the
+            // matching skip in _focusOnFirstQuestion (#258).
+            if (!pageEl.classList.contains('or-appearance-field-list')) {
+                pageEl.setAttribute('tabindex', 1);
+            }
         }
     },
     /**

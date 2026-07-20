@@ -120,6 +120,32 @@ describe('Pages mode', () => {
         });
     });
 
+    describe('OC-27867: _flipTo tabindex on initial page', () => {
+        it('does not make a field-list group the first page tap-focusable', () => {
+            const form = loadForm('field-list-first-page.xml');
+            form.init();
+
+            const firstPage = form.pages.current;
+
+            expect(
+                firstPage.classList.contains('or-appearance-field-list')
+            ).to.equal(true);
+            expect(firstPage.hasAttribute('tabindex')).to.equal(false);
+        });
+
+        it('still makes a non-field-list first page tap-focusable', () => {
+            const form = loadForm('groups-pages.xml');
+            form.init();
+
+            const firstPage = form.pages.current;
+
+            expect(
+                firstPage.classList.contains('or-appearance-field-list')
+            ).to.equal(false);
+            expect(firstPage.getAttribute('tabindex')).to.equal('1');
+        });
+    });
+
     // TODO: this should be in toc.spec.js, but the functionality is not
     // implemented there either, and it may be confusing to test functionality
     // of one module in the test module for another.
