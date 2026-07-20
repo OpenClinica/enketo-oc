@@ -42,3 +42,52 @@ describe('Extended Form Class', () => {
         expect(Form.prototype.constraintClassesInvalid.length).to.be.above(1);
     });
 });
+
+describe('OC-27867: goToTarget on field-list radio/checkbox page flip', () => {
+    let form;
+    let fieldListGroup;
+    let radioInput;
+
+    beforeEach(() => {
+        form = loadForm('field_list_radio.xml');
+        form.init();
+
+        // .focus() is a no-op on elements not attached to the document, so the
+        // form must be in the live DOM for these assertions to be meaningful.
+        document.body.appendChild(form.view.html);
+
+        fieldListGroup = form.view.html.querySelector(
+            '*[name="/field_list_radio/group1"]'
+        );
+        radioInput = form.view.html.querySelector(
+            'input[name="/field_list_radio/group1/radio_field"]'
+        );
+    });
+
+    afterEach(() => {
+        form.view.html.remove();
+    });
+
+    it('does not focus the radio when flipping to its field-list page', () => {
+        form.goToTarget(fieldListGroup, { isPageFlip: true });
+
+        expect(document.activeElement).to.not.equal(radioInput);
+    });
+
+    it('still dispatches applyfocus, so other widgets keep working', () => {
+        let applyfocusFired = false;
+        radioInput.addEventListener('applyfocus', () => {
+            applyfocusFired = true;
+        });
+
+        form.goToTarget(fieldListGroup, { isPageFlip: true });
+
+        expect(applyfocusFired).to.equal(true);
+    });
+
+    it('still focuses the radio when it is not a page flip (e.g. jumping to a validation error)', () => {
+        form.goToTarget(fieldListGroup);
+
+        expect(document.activeElement).to.equal(radioInput);
+    });
+});

@@ -453,7 +453,25 @@ Form.prototype.goToTarget = function (target, options = {}) {
         const input = target.querySelector(selector);
 
         if (input != null) {
-            input.focus();
+            const isRadioOrCheckbox =
+                input.type === 'radio' || input.type === 'checkbox';
+            const isFieldListPage = target.classList.contains(
+                'or-appearance-field-list'
+            );
+
+            // OC-27867: on iOS Safari, calling focus() on a radio/checkbox right
+            // when a field-list page appears (before the user has tapped anything)
+            // breaks the user's next tap on that page: the tap only applies hover
+            // styles and the selection never registers. So on page flip, skip
+            // focus() for this one case. We still fire "applyfocus" below, since
+            // other widgets (date, time, geo, etc.) rely on that event.
+            // Keep in sync with the identical guard in enketo-core form.js (#259).
+            const skipFocus =
+                options.isPageFlip && isFieldListPage && isRadioOrCheckbox;
+
+            if (!skipFocus) {
+                input.focus();
+            }
             input.dispatchEvent(events.ApplyFocus());
         }
 
