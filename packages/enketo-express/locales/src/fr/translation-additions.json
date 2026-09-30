@@ -152,7 +152,7 @@
     }
   },
   "constraint": {
-    "relevant": "Une réponse a été modifiée vers une autre question qui exige que cette question soit masquée, mais nous ne pouvons pas la masquer tant qu'elle contient des données. Veuillez supprimer les données ou modifier les réponses dépendantes."
+    "relevant": "La réponse à un autre champ exige que ce champ soit masqué, mais nous ne pouvons pas le masquer tant qu'il contient des données. Veuillez supprimer les données ou modifier les réponses dépendantes."
   },
   "home": {
     "msg": "__appTitle__ est en cours d'exécution ! Accédez aux formulaires OpenClinica depuis votre installation __serverName__."

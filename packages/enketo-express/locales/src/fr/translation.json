@@ -365,13 +365,13 @@
   },
   "record-list": {
     "export": "Exporter",
-    "msg1": "Les enregistrements sont stockés dans votre navigateur jusqu'à ce qu'ils soient téléchargés (même si vous éteignez votre ordinateur ou passez hors ligne).",
-    "msg2": "Les enregistrements en file d'attente, à l'exception de ceux marqués comme brouillon __icon__, sont téléchargés automatiquement, en arrière-plan, toutes les 5 minutes lorsque la page web est ouverte et qu'une connexion Internet est disponible.",
-    "msg2-nodraft": "Les enregistrements en file d'attente sont téléchargés automatiquement, en arrière-plan, toutes les 5 minutes lorsque la page web est ouverte et qu'une connexion Internet est disponible.",
-    "msg3": "Pour forcer un téléchargement entre les tentatives automatiques, cliquez sur « Télécharger ».",
+    "msg1": "Les enregistrements sont stockés dans votre navigateur jusqu'à ce qu'ils soient téléversés (même si vous éteignez votre ordinateur ou passez hors ligne).",
+    "msg2": "Les enregistrements en file d'attente, à l'exception de ceux marqués comme brouillon __icon__, sont téléversés automatiquement, en arrière-plan, toutes les 5 minutes lorsque la page web est ouverte et qu'une connexion Internet est disponible.",
+    "msg2-nodraft": "Les enregistrements en file d'attente sont téléversés automatiquement, en arrière-plan, toutes les 5 minutes lorsque la page web est ouverte et qu'une connexion Internet est disponible.",
+    "msg3": "Pour forcer un téléversement entre les tentatives automatiques, cliquez sur « Téléverser ».",
     "norecords": "aucun enregistrement en file d'attente",
     "title": "File d'attente",
-    "upload": "Télécharger"
+    "upload": "Téléverser"
   },
   "selectpicker": {
     "noneselected": "aucun sélectionné",
