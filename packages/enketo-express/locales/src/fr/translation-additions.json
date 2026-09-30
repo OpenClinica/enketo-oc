@@ -82,6 +82,9 @@
       },
       "signatureservicefailed": {
         "msg": "La signature n’a pas été reçue. La question est restée sans réponse."
+      },
+      "unsavedbeforesign": {
+        "msg": "Vos réponses n'ont pas fini d'être enregistrées. Veuillez vérifier votre connexion et réessayer dans un instant."
       }
     },
     "confirm": {
