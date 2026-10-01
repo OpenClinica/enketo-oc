@@ -171,7 +171,7 @@
       "invisible": "L'élément auquel vous essayez d'accéder n'est pas visible sur le formulaire.",
       "notfound": "L'élément auquel vous essayez d'accéder a été supprimé de ce formulaire.",
       "msg1": "Utilisez l'icône « Afficher uniquement la requête » au lieu de l'icône « Afficher la requête dans l'enregistrement » pour l'afficher.",
-      "msg2": "Veuillez consulter __miniform__ pour l'afficher :",
+      "msg2": "Veuillez consulter __miniform__ pour l'afficher.",
       "form": "ce formulaire"
     },
     "loaderror": {

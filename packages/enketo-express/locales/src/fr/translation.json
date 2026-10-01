@@ -136,8 +136,8 @@
   "confirm": {
     "autosaveload": {
       "heading": "Enregistrement non sauvegardé trouvé",
-      "msg": "Enketo a trouvé un enregistrement non sauvegardé. Souhaitez-vous charger cet enregistrement ou l'ignorer ?",
-      "negButton": "Ignorer",
+      "msg": "Enketo a trouvé un enregistrement non sauvegardé. Souhaitez-vous charger cet enregistrement ou le supprimer ?",
+      "negButton": "Supprimer",
       "posButton": "Charger l'enregistrement"
     },
     "default": {
