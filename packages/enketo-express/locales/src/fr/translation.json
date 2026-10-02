@@ -1,409 +1,409 @@
 {
-    "advanced": {
-        "flushdb": "Effacer le stockage"
+  "advanced": {
+    "flushdb": "Effacer le stockage"
+  },
+  "alert": {
+    "addtohomescreen": {
+      "androidchrome": {
+        "msg": "Pour ajouter ce formulaire à votre écran d'accueil, cliquez sur l'icône des paramètres du navigateur __image1__ et sélectionnez : « Ajouter à l'écran d'accueil »."
+      },
+      "androidfirefox": {
+        "msg": "Pour ajouter ce formulaire à votre écran d'accueil, appuyez longuement sur la barre d'adresse et sélectionnez « Ajouter à l'écran d'accueil »."
+      },
+      "heading": "Ajouter à l'écran d'accueil",
+      "iossafari": {
+        "msg": "Pour ajouter ce formulaire à votre écran d'accueil, cliquez sur l'icône de partage __image1__ en haut à droite de votre navigateur et sélectionnez : « + Ajouter à l'écran d'accueil »."
+      }
     },
-    "alert": {
-        "addtohomescreen": {
-            "androidchrome": {
-                "msg": "Pour ajouter ce formulaire à votre écran d’accueil, cliquez sur l’icône des paramètres du navigateur __image1__ et sélectionnez : « Ajouter à l’écran d’accueil »."
-            },
-            "androidfirefox": {
-                "msg": "Pour ajouter ce formulaire à votre écran d’accueil, appuyez longtemps sur la barre d’adresse et sélectionnez « Ajouter à l’écran d’accueil »."
-            },
-            "heading": "Ajouter à l’écran d’accueil",
-            "iossafari": {
-                "msg": "Pour ajouter ce formulaire à votre écran d’accueil, cliquez sur l’icône de partage __image1__ dans le coin droit de votre navigateur, puis sélectionnez « + Ajouter à l’écran d’accueil »."
-            }
-        },
-        "appupdated": {
-            "heading": "Appli mise à jour!",
-            "msg": "Une nouvelle version de cette application a été téléchargée. Veuillez actualiser cette page pour charger la version à jour."
-        },
-        "closing": {
-            "heading": "Fermeture..."
-        },
-        "default": {
-            "button": "Fermer",
-            "heading": "Alerte"
-        },
-        "export": {
-            "error": {
-                "filecreatedmsg": "Un fichier d’exportation incomplet a tout de même été créé.",
-                "heading": "Erreur d’exportation",
-                "msg": "Des erreurs sont survenues lors de la création du fichier d’exportation des enregistrements non envoyés. Erreurs : __errors__"
-            },
-            "success": {
-                "heading": "Fichier d’exportation créé",
-                "msg": "Fichier d’exportation créé pour tous les enregistrements non envoyés correspondant à ce formulaire."
-            }
-        },
-        "formupdated": {
-            "heading": "Formulaire mis à jour!",
-            "msg": "Une nouvelle version de ce formulaire a été téléchargée. Veuillez actualiser cette page pour charger la version à jour."
-        },
-        "gotonotfound": {
-            "msg": "La question « __path__ » n’a pas été trouvée dans le formulaire. La référence à cette question est-elle exacte?"
-        },
-        "loaderror": {
-            "editadvice": "Nous vous déconseillons de modifier cet enregistrement tant que ce problème n’est pas résolu.",
-            "entryadvice": "Nous vous déconseillons d’utiliser ce formulaire pour la saisie de données jusqu’à ce que ce problème soit résolu.",
-            "heading": "Erreur de chargement",
-            "msg1": "Une erreur est survenue lors du chargement de ce formulaire.",
-            "msg2": "Veuillez contacter __emailLink__ en cliquant sur le lien vers cette page et sur le message d’erreur ci-dessous :",
-            "heading_plural": "Erreurs de chargement",
-            "msg1_plural": "Des erreurs sont survenues lors du chargement de ce formulaire.",
-            "msg2_plural": "Veuillez contacter __emailLink__ en cliquant sur le lien vers cette page et sur les messages d’erreur ci-dessous :"
-        },
-        "logout": {
-            "heading": "Déconnecté",
-            "msg": "Vous avez été déconnecté."
-        },
-        "offlinesupported": {
-            "heading": "Le formulaire peut être utilisé hors ligne!",
-            "msg": [
-                "Ce formulaire peut maintenant être chargé et utilisé hors ligne sur cet appareil. Créez un signet pour y accéder facilement hors ligne.",
-                "Les enregistrements sont stockés et mis en attente de façon automatique dans votre navigateur, jusqu’à ce qu’une connexion Internet soit disponible. Lorsque l’application est en ligne, les enregistrements sont envoyés automatiquement, l’un après l’autre.",
-                "Un enregistrement n’est retiré de la file d’attente que lorsqu’il a été envoyé avec succès. Vous pouvez en toute sécurité fermer votre navigateur et votre appareil lorsque des éléments se trouvent dans la file d’attente. Ils y seront toujours lors du prochain chargement du formulaire."
-            ]
-        },
-        "offlineunsupported": {
-            "heading": "Impossible de lancer l’application hors ligne",
-            "msg": "Le lancement d’une application hors ligne n’est pas pris en charge par votre navigateur. Vous pouvez utiliser l’enquête sans cette fonctionnalité ou consulter les options disponibles pour résoudre ce problème.",
-            "negButton": "L’utiliser",
-            "posButton": "Afficher les options",
-            "refresh": "Il n’est plus possible de lancer ce formulaire hors ligne. Veuillez actualiser la page pour tenter de résoudre ce problème."
-        },
-        "queuesubmissionsuccess": {
-            "msg": "__recordNames__ a été envoyé avec succès",
-            "msg_plural": "__recordNames__ ont été envoyés avec succès"
-        },
-        "recordloadsuccess": {
-            "msg": "__recordName__ a été chargé"
-        },
-        "recordnotfound": {
-            "msg": "Cet enregistrement n’a pas pu être récupéré ou est vide."
-        },
-        "recordsavesuccess": {
-            "draftmsg": "Enregistrement sauvegardé comme brouillon.",
-            "finalmsg": "Enregistrement en attente d’envoi."
-        },
-        "savedraftinfo": {
-            "heading": "Finaliser l’enregistrement plus tard",
-            "msg": [
-                "L’enregistrement brouillon n’est conservé que dans le navigateur actuel. Vous pouvez fermer ce navigateur sans perdre l’enregistrement stocké.",
-                "Vous pouvez accéder aux enregistrements brouillons en ouvrant à nouveau cette page et en cliquant sur le bouton situé à gauche de l’écran, qui se présente comme suit : __icon__",
-                "Avertissement : Si vous videz le cache de votre navigateur, tous les brouillons et tous les enregistrements finaux non envoyés seront définitivement supprimés."
-            ]
-        },
-        "submission": {
-            "msg": "Envoi...",
-            "redirectmsg": "Vous serez automatiquement redirigé une fois l’enregistrement envoyé."
-        },
-        "submissionerror": {
-            "authrequiredmsg": "Authentification requise. Veuillez vous authentifier __here__ dans un autre onglet du navigateur, puis réessayez.",
-            "fnfmsg": [
-                "Les fichiers multimédias suivants n’ont pas pu être récupérés : __failedFiles__. L’envoi s’est déroulé sans ces fichiers et a été couronné de succès.",
-                "Veuillez contacter __supportEmail__ pour signaler un bogue et, si possible, expliquer comment le problème peut être reproduit."
-            ],
-            "heading": "Échec de l’envoi"
-        },
-        "submissionsuccess": {
-            "heading": "Envoi réussi",
-            "msg": "Vos données ont été envoyées!",
-            "redirectmsg": "Vous serez maintenant redirigé."
-        },
-        "thanks": {
-            "heading": "Merci de votre participation!",
-            "msg": "Vous pouvez à présent fermer cette fenêtre.",
-            "msgTaken": "Vous avez déjà répondu à cette enquête."
-        },
-        "validationerror": {
-            "msg": "Le formulaire contient des erreurs. Veuillez vous référer aux champs marqués en rouge."
-        },
-        "validationsuccess": {
-            "heading": "OK",
-            "msg": "Formulaire valide!"
-        },
-        "valuehasspaces": {
-            "multiple": "Sélectionner une question multiple a une valeur illégale « __value__ » contenant une espace."
-        },
-        "xpatherror": {
-            "heading": "Erreur de formule",
-            "msg": "Une erreur est survenue lors de l’évaluation de la formule. Veuillez contacter __emailLink__ pour signaler cette erreur :"
-        }
+    "appupdated": {
+      "heading": "Application mise à jour !",
+      "msg": "Une nouvelle version de cette application a été téléchargée. Veuillez actualiser cette page pour charger la version mise à jour."
     },
-    "changelog": "Journal des modifications",
-    "confirm": {
-        "autosaveload": {
-            "heading": "Enregistrement non sauvegardé détecté",
-            "msg": "Enketo a trouvé un enregistrement non sauvegardé. Souhaitez-vous charger cet enregistrement ou le supprimer?",
-            "negButton": "Supprimer",
-            "posButton": "Charger l’enregistrement"
-        },
-        "default": {
-            "heading": "Êtes-vous sûr?",
-            "msg": "Veuillez confirmer cette action",
-            "negButton": "Annuler",
-            "posButton": "Confirmer"
-        },
-        "deleteall": {
-            "heading": "ATTENTION!",
-            "msg": [
-                "Cette action supprimera toutes les données en file d’attente et tous les formulaires de la mémoire du navigateur. Les données seront définitivement perdues. N’utilisez cette option qu’en dernier recours si le stockage du navigateur semble corrompu.",
-                "Fermez d’abord tous les autres onglets du navigateur Enketo.",
-                "La page sera actualisée. En cas d’erreur, vous devrez peut-être répéter l’opération.",
-                "Êtes-vous sûr de vouloir le faire?"
-            ],
-            "posButton": "Tout supprimer"
-        },
-        "discardcurrent": {
-            "heading": "Modifications non supprimées",
-            "msg": "Le formulaire actuel contient des modifications non enregistrées. Souhaitez-vous charger un enregistrement sans enregistrer au préalable les modifications apportées au formulaire sur lequel vous travailliez?",
-            "posButton": "Poursuivre sans enregistrer"
-        },
-        "login": {
-            "heading": "Connexion requise",
-            "queuedMsg": [
-                "Enregistrement en attente d’envoi. Vous devez vous connecter pour envoyer vos données en file d’attente.",
-                "Souhaitez-vous vous connecter maintenant ou plus tard?"
-            ],
-            "msg": [
-                "Vous devez vous connecter pour envoyer vos données en file d’attente. Si vous souhaitez le faire maintenant, vous serez redirigé et vous perdrez les informations non enregistrées.",
-                "Souhaitez-vous vous connecter maintenant ou plus tard?"
-            ],
-            "negButton": "Plus tard",
-            "posButton": "Me connecter maintenant"
-        },
-        "print": {
-            "a4": "A4",
-            "heading": "Sélectionner les paramètres d’impression",
-            "landscape": "Paysage",
-            "letter": "Lettre",
-            "msg": "Pour obtenir une impression optimisée, veuillez sélectionner les paramètres d’impression ci-dessous",
-            "orientation": "Orientation du papier",
-            "portrait": "Portrait",
-            "posButton": "Préparer",
-            "psize": "Format du papier",
-            "reminder": "Pensez à définir ces mêmes paramètres d’impression dans le menu d’impression du navigateur!"
-        },
-        "repeatremove": {
-            "heading": "Supprimer ce groupe de réponses?",
-            "msg": "Cette action est irréversible. Êtes-vous sûr de vouloir continuer?"
-        },
-        "save": {
-            "existingerror": "Ce nom ou cet ID d’enregistrement existe déjà. Veuillez le modifier.",
-            "hint": "Ce nom vous permet de retrouver facilement votre enregistrement brouillon pour le terminer plus tard.",
-            "msg": "Certaines modifications n’ont pas été enregistrées. Souhaitez-vous continuer sans les enregistrer?",
-            "name": "Nom de l’enregistrement",
-            "posButton": "Enregistrer et fermer",
-            "renamemsg": "Êtes-vous sûr de vouloir renommer __currentName__ comme __newName__?",
-            "unkownerror": "Une erreur inconnue est survenue lors de l’enregistrement des données."
-        }
+    "closing": {
+      "heading": "Fermeture..."
     },
-    "constraint": {
-        "invalid": "Valeur invalide",
-        "required": "Ce champ est obligatoire"
+    "default": {
+      "button": "Fermer",
+      "heading": "Alerte"
     },
-    "contact": {
-        "admin": "Veuillez contacter l’administrateur de l’enquête.",
-        "support": "Veuillez contacter __supportEmail__."
+    "export": {
+      "error": {
+        "filecreatedmsg": "Néanmoins, un fichier d'exportation incomplet a été créé.",
+        "heading": "Erreur d'exportation",
+        "msg": "Des erreurs se sont produites lors de la création du fichier d'exportation des enregistrements non soumis. Erreurs : __errors__"
+      },
+      "success": {
+        "heading": "Exportation créée",
+        "msg": "Fichier d'exportation créé pour tous les enregistrements non soumis appartenant à ce formulaire."
+      }
     },
-    "drawwidget": {
-        "annotation": "fichier et dessin",
-        "drawing": "dessin",
-        "signature": "signature"
+    "formupdated": {
+      "heading": "Formulaire mis à jour !",
+      "msg": "Une nouvelle version de ce formulaire a été téléchargée. Veuillez actualiser cette page pour charger la version mise à jour."
     },
-    "enketo": {
-        "power": "Alimenté par"
+    "gotonotfound": {
+      "msg": "Impossible de trouver la question « __path__ » dans le formulaire. La référence à cette question est-elle correcte ?"
     },
-    "error": {
-        "code": "Code d’erreur : __code__",
-        "dataloadfailed": "Échec du chargement de __filename__.",
-        "econnrefused": "Impossible de se connecter au serveur des formulaires",
-        "encryptionnotsupported": "Ce formulaire nécessite un chiffrement local des enregistrements. Malheureusement, votre navigateur ne prend pas en charge cette option. Nous vous recommandons d’utiliser un navigateur récent.",
-        "formloadfailed": "Échec du chargement du formulaire",
-        "instancenotfound": "Enregistrement introuvable. Il se peut qu’il ait expiré.",
-        "invalidediturl": "URL de modification invalide",
-        "loadfailed": "Échec du chargement de __resource__",
-        "notfoundinformlist": "Ce formulaire n’existe pas ou vous n’y avez plus accès. Veuillez vérifier que des caractères ne manquent pas dans l’URL.\n\nSi le formulaire existait auparavant, il peut avoir été archivé, désactivé ou supprimé. Si cette situation est inattendue, veuillez contacter la personne qui vous a demandé de remplir le formulaire.\n\n(Tentative d’accès au formulaire avec l’ID : __formId__)",
-        "notfounddirectformurl": "Ce formulaire n’existe pas ou vous n’y avez plus accès. Veuillez vérifier que des caractères ne manquent pas dans l’URL.\n\nSi le formulaire existait auparavant, il peut avoir été archivé, désactivé ou supprimé. Si cette situation est inattendue, veuillez contacter la personne qui vous a demandé de remplir le formulaire.\n\n(Tentative d’accès au formulaire : __notfounddirectformurl__)",
-        "pagenotfound": "Page introuvable",
-        "surveyidnotactive": "L’enquête correspondant à cet ID n’est plus active",
-        "surveyidnotfound": "L’enquête correspondant à cet ID est introuvable",
-        "unknown": "Une erreur inconnue est survenue"
+    "loaderror": {
+      "editadvice": "Nous vous recommandons de ne pas modifier cet enregistrement tant que ce problème n'est pas résolu.",
+      "entryadvice": "Nous vous recommandons de ne pas utiliser ce formulaire pour la saisie de données tant que ce problème n'est pas résolu.",
+      "heading": "Erreur de chargement",
+      "msg1": "Une erreur s'est produite lors du chargement de ce formulaire.",
+      "msg2": "Veuillez contacter __emailLink__ avec le lien vers cette page et le message d'erreur ci-dessous :",
+      "heading_plural": "Erreurs de chargement",
+      "msg1_plural": "Des erreurs se sont produites lors du chargement de ce formulaire.",
+      "msg2_plural": "Veuillez contacter __emailLink__ avec le lien vers cette page et les messages d'erreur ci-dessous :"
     },
-    "feedback": {
-        "header": "Information"
+    "logout": {
+      "heading": "Déconnecté",
+      "msg": "Vous avez été déconnecté."
     },
-    "filepicker": {
-        "file": "fichier",
-        "notFound": "Le fichier __existing__ est introuvable (ne pas modifier s’il a déjà été envoyé et que vous souhaitez le conserver).",
-        "placeholder": "Cliquez ici pour téléverser le fichier. (< __maxSize__)",
-        "resetWarning": "Cette action supprimera le __item__. Êtes-vous sûr de vouloir le faire?",
-        "toolargeerror": "Fichier trop volumineux (> __maxSize__)",
-        "waitingForPermissions": "En attente des autorisations de l’utilisateur."
+    "offlinesupported": {
+      "heading": "Le formulaire fonctionne hors ligne !",
+      "msg": [
+        "Ce formulaire peut désormais être chargé et utilisé sans connexion Internet sur cet appareil. Ajoutez-le à vos favoris pour un accès facile hors ligne.",
+        "Les enregistrements sont automatiquement stockés et mis en file d'attente dans votre navigateur jusqu'à ce qu'une connexion Internet soit disponible. Lorsque l'application est en ligne, les enregistrements sont automatiquement soumis, un par un.",
+        "Ce n'est qu'après la soumission réussie d'un enregistrement qu'il est retiré de la file d'attente. Vous pouvez fermer votre navigateur et votre appareil en toute sécurité avec des éléments en file d'attente. Ils seront toujours présents la prochaine fois que vous chargerez le formulaire."
+      ]
     },
-    "form": {
-        "chooseLanguage": "Choisir une langue",
-        "logout": "se déconnecter",
-        "pages": {
-            "back": "Retour",
-            "end": "Aller à la fin",
-            "next": "Suivant",
-            "return": "Revenir au début"
-        },
-        "required": "obligatoire"
+    "offlineunsupported": {
+      "heading": "Impossible de démarrer l'application hors ligne",
+      "msg": "Le démarrage d'applications hors ligne n'est pas pris en charge par votre navigateur. Vous pouvez utiliser l'enquête sans cette fonctionnalité ou afficher les options pour résoudre ce problème.",
+      "negButton": "Utiliser",
+      "posButton": "Afficher les options",
+      "refresh": "Ce formulaire ne peut plus être démarré hors ligne. Veuillez actualiser la page pour tenter de résoudre ce problème."
     },
-    "formfooter": {
-        "complete": {
-            "btn": "Terminer"
-        },
-        "savedraft": {
-            "btn": "Enregistrer le brouillon",
-            "label": "Enregistrer comme brouillon"
-        },
-        "submit": {
-            "btn": "Envoyer"
-        },
-        "validate": {
-            "btn": "Valider"
-        }
+    "queuesubmissionsuccess": {
+      "msg": "__recordNames__ a été soumis avec succès",
+      "msg_plural": "__recordNames__ ont été soumis avec succès"
     },
-    "geopicker": {
-        "accuracy": "précision (m)",
-        "altitude": "altitude (m)",
-        "closepolygon": "fermer le polygone",
-        "kmlcoords": "Coordonnées KML",
-        "kmlpaste": "coller les coordonnées KML ici",
-        "latitude": "latitude (x.y °)",
-        "longitude": "longitude (x.y °)",
-        "points": "points",
-        "removePoint": "Cette action supprimera complètement le point géo actuel de la liste des points géo et ne pourra pas être annulée. Êtes-vous sûr de vouloir le faire?",
-        "searchPlaceholder": "recherche d’un lieu ou d’une adresse",
-        "bordersintersectwarning": "Les limites ne peuvent pas se croiser"
+    "recordloadsuccess": {
+      "msg": "__recordName__ a été chargé"
     },
-    "here": "ici",
-    "hint": {
-        "guidance": {
-            "details": "plus de détails"
-        }
+    "recordnotfound": {
+      "msg": "Impossible de récupérer l'enregistrement ou celui-ci ne contenait aucune donnée."
     },
-    "home": {
-        "msg": "__appTitle__ est en cours d’exécution! Veuillez accéder aux formulaires Enketo à partir de votre installation __serverName__."
+    "recordsavesuccess": {
+      "draftmsg": "Enregistrement stocké comme brouillon.",
+      "finalmsg": "Enregistrement mis en file d'attente pour soumission."
     },
-    "imagemap": {
-        "svgNotFound": "Image SVG introuvable"
-    },
-    "langs": {
-        "ar": "Arabe",
-        "cs": "Tchèque",
-        "de": "Allemand",
-        "el": "Grec",
-        "en": "Anglais",
-        "es": "Espagnol",
-        "fa": "Perse",
-        "fi": "Finnois",
-        "fr": "Français",
-        "he": "Hébreu",
-        "hi": "Hindi",
-        "it": "Italien",
-        "ka": "Georgien",
-        "km": "Khmer",
-        "lo": "Lao",
-        "nl": "Néerlandais",
-        "no": "Norvégien",
-        "pa": "Panjabi",
-        "pl": "Polonais",
-        "pt": "Portugais",
-        "ro": "Roumain",
-        "ru": "Russe",
-        "sk": "Slovaque",
-        "sq": "Albanais",
-        "supported": "Langues prises en charge : ",
-        "sv": "Suédois",
-        "sw": "Swahili",
-        "th": "Thaïlandais",
-        "tr": "Turc",
-        "uk": "Ukrainien",
-        "vi": "Vietnamien",
-        "zh": "Chinois"
-    },
-    "literacywidget": {
-        "finish": "Finnois",
-        "start": "Démarrer"
-    },
-    "page": {
-        "modernbrowsers": {
-            "heading": "Navigateurs modernes",
-            "ie": {
-                "heading": "Pourquoi ce manque d’amour pour les versions obsolètes d’Internet Explorer?",
-                "msg": "Nous comprenons que certaines personnes, en particulier celles qui travaillent dans de grandes administrations, n’ont pas accès aux navigateurs les plus récents et les plus performants. Comme nous savons à quel point le Web peut être formidable avec les bons outils, nous avons beaucoup d’empathie pour les utilisateurs qui se trouvent dans cette situation malheureuse. En principe, nous devrions essayer de fournir des solutions de contournement pour prendre en charge certains navigateurs obsolètes populaires. Malheureusement, la création d’Enketo repose sur la disponibilité de certaines technologies de pointe très sophistiquées. Hélas, les utilisateurs de navigateurs plus anciens n’ont pas de chance."
-            },
-            "msg1": "Dommage! Désolé, vous avez probablement été envoyé ici parce que votre navigateur est obsolète ou que ses principales fonctionnalités ont été désactivées en utilisant le mode « navigation privée ».",
-            "msg2": "Si vous utilisez un navigateur obsolète, nous vous recommandons de passer à une version récente de l’un des excellents navigateurs modernes suivants :"
-        },
-        "offline": {
-            "heading": "Impossible d’accéder à la page demandée",
-            "msg1": "Cette page est accessible uniquement lorsque le navigateur dispose d’une connexion Internet et que le serveur est accessible (sauf si la page n’existe pas)."
-        }
-    },
-    "prompt": {
-        "default": {
-            "heading": "Saisir les valeurs"
-        },
-        "login": {
-            "heading": "Saisissez vos identifiants __server__",
-            "password": "Mot de passe",
-            "remember": "S’en souvenir sur cet ordinateur",
-            "submit": "Envoyer",
-            "username": "Nom d’utilisateur"
-        }
-    },
-    "rankwidget": {
-        "clickstart": "Cliquez pour commencer",
-        "tapstart": "Appuyez pour commencer"
-    },
-    "record-list": {
-        "export": "Exporter",
-        "msg1": "Les enregistrements sont stockés dans votre navigateur jusqu’à ce que vous les téléversiez (même si vous éteignez votre ordinateur ou si vous vous déconnectez).",
-        "msg2": "Les enregistrements en file d’attente, à l’exception de ceux marqués comme brouillon __icon__, sont téléversés automatiquement, en arrière-plan, toutes les 5 minutes lorsque la page Web est ouverte et qu’une connexion Internet est disponible.",
-        "msg2-nodraft": "Les enregistrements en attente sont téléversés automatiquement, en arrière-plan, toutes les 5 minutes, lorsque la page Web est ouverte et qu’une connexion Internet est disponible.",
-        "msg3": "Pour forcer un téléversement entre deux tentatives automatiques, cliquez sur Téléverser.",
-        "norecords": "aucun enregistrement dans la file d’attente",
-        "title": "File d’attente",
-        "upload": "Téléverser"
-    },
-    "selectpicker": {
-        "noneselected": "aucun élément sélectionné",
-        "numberselected": "__number__ sélectionné"
-    },
-    "store": {
-        "error": {
-            "iosusesafari": "Votre navigateur iOS ne parvient pas à exécuter ce formulaire. Sur iOS, nous recommandons l’utilisation de Safari.",
-            "notavailable": "Le stockage du navigateur est nécessaire, mais indisponible, corrompu ou en lecture seule. Si vous êtes en mode « navigation privée », veuillez passer au mode normal, sinon changez de navigateur. (erreur : __error__)",
-            "notsupported": "Votre navigateur ne parvient pas à exécuter ce formulaire. Nous vous recommandons d’utiliser un navigateur moderne."
-        }
+    "savedraftinfo": {
+      "heading": "Finaliser l'enregistrement plus tard",
+      "msg": [
+        "L'enregistrement provisoire est stocké uniquement dans le navigateur actuel. Vous pouvez fermer ce navigateur sans perdre l'enregistrement stocké.",
+        "Les enregistrements provisoires sont accessibles en rouvrant cette page et en cliquant sur le bouton situé à gauche de l'écran qui ressemble à ceci : __icon__",
+        "Avertissement : Si vous videz le cache de votre navigateur, tous les enregistrements provisoires et finaux non soumis seront définitivement supprimés."
+      ]
     },
     "submission": {
-        "http0": "Le serveur est indisponible ou vous n’êtes pas connecté à Internet.",
-        "http2xx": "Réponse inattendue lors de l’envoi des données.",
-        "http400": "Le serveur a rejeté les données.",
-        "http401": "Problème d’authentification avec le serveur de données.",
-        "http403": "Vous n’êtes pas autorisé à enregistrer des données sur ce serveur de données.",
-        "http404": "Le service d’envoi du serveur de données est introuvable.",
-        "http408": "Le serveur de données a expiré.",
-        "http413": "Les données sont trop volumineuses.",
-        "http4xx": "Problème d’envoi inconnu sur le serveur de données.",
-        "http500": "Le serveur de données de votre formulaire ou le serveur Enketo est hors service. Veuillez réessayer plus tard ou contacter __supportEmail__.",
-        "http504": "Impossible d’établir une connexion avec le serveur de données."
+      "msg": "Envoi en cours...",
+      "redirectmsg": "Vous serez automatiquement redirigé après l'envoi."
     },
-    "themes": {
-        "supported": "Thèmes pris en charge"
+    "submissionerror": {
+      "authrequiredmsg": "Authentification requise. Veuillez vous authentifier __here__ dans un autre onglet du navigateur, puis réessayer.",
+      "fnfmsg": [
+        "Les fichiers multimédias suivants n'ont pas pu être récupérés : __failedFiles__. La soumission a été effectuée sans ces fichiers et a réussi.",
+        "Veuillez contacter __supportEmail__ pour signaler ce problème et, si possible, expliquer comment le reproduire."
+      ],
+      "heading": "Échec de l'envoi"
     },
-    "version": "version :",
-    "widget": {
-        "comment": {
-            "update": "Mise à jour"
-        }
+    "submissionsuccess": {
+      "heading": "Envoi réussi",
+      "msg": "Vos données ont été envoyées !",
+      "redirectmsg": "Vous allez maintenant être redirigé."
+    },
+    "thanks": {
+      "heading": "Merci de votre participation !",
+      "msg": "Vous pouvez maintenant fermer cette fenêtre.",
+      "msgTaken": "Vous avez déjà rempli cette enquête."
+    },
+    "validationerror": {
+      "msg": "Le formulaire contient des erreurs. Veuillez consulter les champs marqués en rouge."
+    },
+    "validationsuccess": {
+      "heading": "OK",
+      "msg": "Le formulaire est valide !"
+    },
+    "valuehasspaces": {
+      "multiple": "La question à choix multiples contient une valeur illégale « __value__ » qui contient un espace."
+    },
+    "xpatherror": {
+      "heading": "Erreur de formule",
+      "msg": "Une erreur d'évaluation de formule s'est produite. Veuillez contacter __emailLink__ avec cette erreur :"
     }
+  },
+  "changelog": "Journal des modifications",
+  "confirm": {
+    "autosaveload": {
+      "heading": "Enregistrement non sauvegardé trouvé",
+      "msg": "Enketo a trouvé un enregistrement non sauvegardé. Souhaitez-vous charger cet enregistrement ou le supprimer ?",
+      "negButton": "Supprimer",
+      "posButton": "Charger l'enregistrement"
+    },
+    "default": {
+      "heading": "Êtes-vous sûr ?",
+      "msg": "Veuillez confirmer cette action",
+      "negButton": "Annuler",
+      "posButton": "Confirmer"
+    },
+    "deleteall": {
+      "heading": "PANIQUE !",
+      "msg": [
+        "Cette action supprimera toutes vos données en file d'attente ainsi que tous vos formulaires du stockage du navigateur. Les données seront perdues définitivement. N'utilisez cette option qu'en dernier recours si le stockage du navigateur semble corrompu.",
+        "Fermez d'abord tous les autres onglets Enketo du navigateur.",
+        "La page va se recharger. Si vous voyez une erreur, il se peut que vous deviez répéter cette action.",
+        "Êtes-vous sûr de vouloir faire cela ?"
+      ],
+      "posButton": "Tout supprimer"
+    },
+    "discardcurrent": {
+      "heading": "Modifications non enregistrées",
+      "msg": "Le formulaire actuel contient des modifications non enregistrées. Souhaitez-vous charger un enregistrement sans enregistrer les modifications apportées au formulaire sur lequel vous travailliez ?",
+      "posButton": "Continuer sans enregistrer"
+    },
+    "login": {
+      "heading": "Connexion requise",
+      "queuedMsg": [
+        "Enregistrement mis en file d'attente pour soumission. Pour soumettre vos données en file d'attente, vous devez vous connecter.",
+        "Souhaitez-vous vous connecter maintenant ou plus tard ?"
+      ],
+      "msg": [
+        "Pour soumettre vos données en file d'attente, vous devez vous connecter. Si vous souhaitez le faire maintenant, vous serez redirigé et perdrez les informations non enregistrées.",
+        "Souhaitez-vous vous connecter maintenant ou plus tard ?"
+      ],
+      "negButton": "Plus tard",
+      "posButton": "Se connecter maintenant"
+    },
+    "print": {
+      "a4": "A4",
+      "heading": "Sélectionner les paramètres d'impression",
+      "landscape": "Paysage",
+      "letter": "Lettre",
+      "msg": "Pour préparer une impression optimisée, veuillez sélectionner les paramètres d'impression ci-dessous.",
+      "orientation": "Orientation du papier",
+      "portrait": "Portrait",
+      "posButton": "Préparer",
+      "psize": "Format du papier",
+      "reminder": "N'oubliez pas de configurer ensuite ces mêmes paramètres d'impression dans le menu d'impression de votre navigateur !"
+    },
+    "repeatremove": {
+      "heading": "Supprimer ce groupe de réponses ?",
+      "msg": "Cette action est irréversible. Êtes-vous sûr de vouloir continuer ?"
+    },
+    "save": {
+      "existingerror": "Ce nom ou identifiant d'enregistrement existe déjà. Veuillez le modifier.",
+      "hint": "Ce nom vous permet de retrouver facilement votre brouillon d'enregistrement pour le terminer plus tard.",
+      "msg": "Il y a des modifications non enregistrées. Souhaitez-vous continuer sans les enregistrer ?",
+      "name": "Nom de l'enregistrement",
+      "posButton": "Enregistrer et fermer",
+      "renamemsg": "Êtes-vous sûr de vouloir renommer __currentName__ en __newName__ ?",
+      "unkownerror": "Une erreur inconnue s'est produite lors de la tentative d'enregistrement des données."
+    }
+  },
+  "constraint": {
+    "invalid": "Valeur non autorisée",
+    "required": "Ce champ est obligatoire."
+  },
+  "contact": {
+    "admin": "Veuillez contacter l'administrateur de l'enquête.",
+    "support": "Veuillez contacter __supportEmail__."
+  },
+  "drawwidget": {
+    "annotation": "fichier et dessin",
+    "drawing": "dessin",
+    "signature": "signature"
+  },
+  "enketo": {
+    "power": "Propulsé par"
+  },
+  "error": {
+    "code": "Code d'erreur : __code__",
+    "dataloadfailed": "Échec du chargement de __filename__.",
+    "econnrefused": "Impossible de se connecter au serveur de formulaires",
+    "encryptionnotsupported": "Ce formulaire nécessite le chiffrement local des enregistrements. Malheureusement, cette fonctionnalité n'est pas prise en charge par votre navigateur. Nous vous recommandons de passer à un navigateur moderne.",
+    "formloadfailed": "Échec du chargement du formulaire",
+    "instancenotfound": "Enregistrement introuvable. Il a peut-être expiré.",
+    "invalidediturl": "URL de modification non valide",
+    "loadfailed": "Échec du chargement de __resource__.",
+    "notfoundinformlist": "Ce formulaire n'existe pas ou vous n'y avez plus accès. Veuillez vérifier que l'URL ne comporte pas de caractères manquants.\n\nSi le formulaire a existé précédemment, il a peut-être été archivé, désactivé ou supprimé. Si cela est inattendu, veuillez contacter la personne qui vous a demandé de remplir ce formulaire.\n\n(Tentative d'accès au formulaire avec l'ID : __formId__)",
+    "notfounddirectformurl": "Ce formulaire n'existe pas ou vous n'y avez plus accès. Veuillez vérifier que l'URL ne comporte pas de caractères manquants.\n\nSi le formulaire a existé précédemment, il a peut-être été archivé, désactivé ou supprimé. Si cela est inattendu, veuillez contacter la personne qui vous a demandé de remplir ce formulaire.\n\n(Tentative d'accès au formulaire : __notfounddirectformurl__)",
+    "pagenotfound": "Page introuvable",
+    "surveyidnotactive": "L'enquête avec cet identifiant n'est plus active",
+    "surveyidnotfound": "Aucune enquête n'a été trouvée avec cet identifiant",
+    "unknown": "Une erreur inconnue s'est produite."
+  },
+  "feedback": {
+    "header": "Informations"
+  },
+  "filepicker": {
+    "file": "fichier",
+    "notFound": "Le fichier __existing__ est introuvable (laissez-le inchangé s'il a déjà été soumis et que vous souhaitez le conserver).",
+    "placeholder": "Cliquez ici pour charger le fichier. (< __maxSize__)",
+    "resetWarning": "Cela supprimera __item__. Êtes-vous sûr de vouloir faire cela ?",
+    "toolargeerror": "Fichier trop volumineux (> __maxSize__)",
+    "waitingForPermissions": "En attente des autorisations de l'utilisateur."
+  },
+  "form": {
+    "chooseLanguage": "Choisir la langue",
+    "logout": "se déconnecter",
+    "pages": {
+      "back": "Précédent",
+      "end": "Aller à la fin",
+      "next": "Suivant",
+      "return": "Retour au début"
+    },
+    "required": "obligatoire"
+  },
+  "formfooter": {
+    "complete": {
+      "btn": "Terminer"
+    },
+    "savedraft": {
+      "btn": "Enregistrer le brouillon",
+      "label": "Enregistrer comme brouillon"
+    },
+    "submit": {
+      "btn": "Soumettre"
+    },
+    "validate": {
+      "btn": "Valider"
+    }
+  },
+  "geopicker": {
+    "accuracy": "précision (m)",
+    "altitude": "altitude (m)",
+    "closepolygon": "fermer le polygone",
+    "kmlcoords": "Coordonnées KML",
+    "kmlpaste": "coller les coordonnées KML ici",
+    "latitude": "latitude (x.y °)",
+    "longitude": "longitude (x.y °)",
+    "points": "points",
+    "removePoint": "Ceci supprimera complètement le point géographique actuel de la liste des points géographiques et cette action ne peut pas être annulée. Êtes-vous sûr de vouloir faire cela ?",
+    "searchPlaceholder": "rechercher un lieu ou une adresse",
+    "bordersintersectwarning": "Les limites ne peuvent pas se croiser"
+  },
+  "here": "ici",
+  "hint": {
+    "guidance": {
+      "details": "plus de détails"
+    }
+  },
+  "home": {
+    "msg": "__appTitle__ est en cours d'exécution ! Accédez aux formulaires Enketo depuis votre installation __serverName__."
+  },
+  "imagemap": {
+    "svgNotFound": "Image SVG introuvable"
+  },
+  "langs": {
+    "ar": "Arabe",
+    "cs": "Tchèque",
+    "de": "Allemand",
+    "el": "Grec",
+    "en": "Anglais",
+    "es": "Espagnol",
+    "fa": "Persan",
+    "fi": "Finnois",
+    "fr": "Français",
+    "he": "Hébreu",
+    "hi": "Hindi",
+    "it": "Italien",
+    "ka": "Géorgien",
+    "km": "Khmer",
+    "lo": "Lao",
+    "nl": "Néerlandais",
+    "no": "Norvégien",
+    "pa": "Pendjabi",
+    "pl": "Polonais",
+    "pt": "Portugais",
+    "ro": "Roumain",
+    "ru": "Russe",
+    "sk": "Slovaque",
+    "sq": "Albanais",
+    "supported": "Langues prises en charge : ",
+    "sv": "Suédois",
+    "sw": "Swahili",
+    "th": "Thaï",
+    "tr": "Turc",
+    "uk": "Ukrainien",
+    "vi": "Vietnamien",
+    "zh": "Chinois"
+  },
+  "literacywidget": {
+    "finish": "Terminer",
+    "start": "Démarrer"
+  },
+  "page": {
+    "modernbrowsers": {
+      "heading": "Navigateurs modernes",
+      "ie": {
+        "heading": "Pourquoi ces méchantes versions obsolètes d'Internet Explorer ne sont-elles pas appréciées ?",
+        "msg": "Nous comprenons que certaines personnes, en particulier celles qui travaillent pour de grandes bureaucraties, n'ont pas accès aux navigateurs les plus récents et les meilleurs. Sachant à quel point le Web pourrait être formidable avec les bons outils, nous éprouvons une grande empathie pour les utilisateurs se trouvant dans cette situation malheureuse. Habituellement, nous essaierions de proposer des solutions de contournement pour prendre en charge certains navigateurs obsolètes populaires. Cependant, la raison d'être d'Enketo est la disponibilité de certaines technologies de pointe très sophistiquées. Par conséquent, les utilisateurs de navigateurs plus anciens n'ont malheureusement pas de chance."
+      },
+      "msg1": "Oups ! Désolé, vous avez probablement été redirigé(e) ici parce que votre navigateur est obsolète ou parce que certaines de ses fonctionnalités clés sont désactivées en mode « navigation privée ».",
+      "msg2": "Si vous utilisez un navigateur obsolète, nous vous recommandons de passer à une version récente de l'un des excellents navigateurs modernes suivants :"
+    },
+    "offline": {
+      "heading": "Impossible d'accéder à la page demandée",
+      "msg1": "Cette page n'est accessible que lorsque le navigateur dispose d'une connexion Internet et que le serveur est accessible (sauf si la page n'existe pas)."
+    }
+  },
+  "prompt": {
+    "default": {
+      "heading": "Saisir des valeurs"
+    },
+    "login": {
+      "heading": "Saisissez vos identifiants pour __server__",
+      "password": "Mot de passe",
+      "remember": "Se souvenir sur cet ordinateur",
+      "submit": "Soumettre",
+      "username": "Nom d'utilisateur"
+    }
+  },
+  "rankwidget": {
+    "clickstart": "Cliquez pour commencer",
+    "tapstart": "Appuyez pour commencer"
+  },
+  "record-list": {
+    "export": "Exporter",
+    "msg1": "Les enregistrements sont stockés dans votre navigateur jusqu'à ce qu'ils soient téléversés (même si vous éteignez votre ordinateur ou passez hors ligne).",
+    "msg2": "Les enregistrements en file d'attente, à l'exception de ceux marqués comme brouillon __icon__, sont téléversés automatiquement, en arrière-plan, toutes les 5 minutes lorsque la page web est ouverte et qu'une connexion Internet est disponible.",
+    "msg2-nodraft": "Les enregistrements en file d'attente sont téléversés automatiquement, en arrière-plan, toutes les 5 minutes lorsque la page web est ouverte et qu'une connexion Internet est disponible.",
+    "msg3": "Pour forcer un téléversement entre les tentatives automatiques, cliquez sur « Téléverser ».",
+    "norecords": "aucun enregistrement en file d'attente",
+    "title": "File d'attente",
+    "upload": "Téléverser"
+  },
+  "selectpicker": {
+    "noneselected": "aucun sélectionné",
+    "numberselected": "__number__ sélectionné(s)"
+  },
+  "store": {
+    "error": {
+      "iosusesafari": "Votre navigateur iOS ne peut pas exécuter ce formulaire. Sur iOS, nous recommandons d'utiliser Safari.",
+      "notavailable": "Le stockage du navigateur est requis, mais il n'est pas disponible, est corrompu ou n'est pas accessible en écriture. Si vous êtes en mode de « navigation privée », veuillez passer en mode normal ; sinon, utilisez un autre navigateur. (erreur : __error__)",
+      "notsupported": "Votre navigateur ne peut pas exécuter ce formulaire. Nous recommandons d'utiliser un navigateur moderne."
+    }
+  },
+  "submission": {
+    "http0": "Le serveur n'est pas disponible ou vous n'êtes peut-être pas connecté à Internet.",
+    "http2xx": "Réponse inattendue lors de l'envoi des données.",
+    "http400": "Le serveur de données n'a pas accepté les données.",
+    "http401": "Problème d'authentification avec le serveur de données.",
+    "http403": "L'envoi de données vers ce serveur de données n'est pas autorisé.",
+    "http404": "Service de soumission introuvable sur le serveur de données.",
+    "http408": "Le délai d'attente du serveur de données a été dépassé.",
+    "http413": "Les données sont trop volumineuses.",
+    "http4xx": "Problème d'envoi inconnu sur le serveur de données.",
+    "http500": "Le serveur de données de votre formulaire ou le serveur Enketo est hors service. Veuillez réessayer plus tard ou contacter __supportEmail__.",
+    "http504": "Impossible d'établir la connexion avec le serveur de données."
+  },
+  "themes": {
+    "supported": "Thèmes pris en charge"
+  },
+  "version": "version :",
+  "widget": {
+    "comment": {
+      "update": "Mettre à jour"
+    }
+  }
 }
