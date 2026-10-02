@@ -152,7 +152,7 @@
     }
   },
   "constraint": {
-    "relevant": "Una risposta è cambiata in un'altra domanda che richiede che questa domanda sia nascosta, ma non è possibile nasconderla finché contiene dati. Elimina i dati oppure modifica le risposte dipendenti."
+    "relevant": "La risposta a un'altra domanda è cambiata e richiede che questa domanda venga nascosta, ma non è possibile nasconderla finché contiene dati. Elimina i dati oppure modifica le risposte dipendenti."
   },
   "home": {
     "msg": "__appTitle__ è in esecuzione! Accedi ai moduli OpenClinica dalla tua installazione __serverName__."
