@@ -170,7 +170,7 @@
       "irrelevant": "Het item dat u probeert te openen, is momenteel verborgen.",
       "invisible": "Het item dat u probeert te openen, is niet zichtbaar op het formulier.",
       "notfound": "Het item dat u probeert te openen, is uit dit formulier verwijderd.",
-      "msg1": "Gebruik het pictogram Alleen vraag weergeven in plaats van het pictogram Vraag in record weergeven om dit te zien.",
+      "msg1": "Gebruik het pictogram Alleen query weergeven in plaats van het pictogram Query in record weergeven om dit te zien.",
       "msg2": "Bezoek __miniform__ om het te bekijken.",
       "form": "dit formulier"
     },
@@ -190,7 +190,7 @@
   },
   "formfooter": {
     "exit": {
-      "btn": "Later afsluiten"
+      "btn": "Later afronden"
     },
     "done": {
       "btn": "Ik ben klaar"
