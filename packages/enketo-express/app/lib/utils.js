@@ -249,6 +249,44 @@ function preserveURLParser(str) {
     return parsed;
 }
 
+/**
+ * OC-28872: checks a preview-by-URL form URL against the "preview form hosts" config.
+ * An entry is an exact host (`kpi.example.com`, or `kpi.example.com:8443` for a
+ * non-default port), or a leading-dot suffix (".example.com", default port only).
+ *
+ * @param {string} url - form URL
+ * @param {string[]} hosts - allowed hosts
+ * @return {'ok' | 'invalid' | 'forbidden'} result
+ */
+function isAllowedPreviewFormUrl(url, hosts) {
+    let parsed;
+
+    try {
+        parsed = new URL(url);
+    } catch (error) {
+        return 'invalid';
+    }
+
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+        return 'invalid';
+    }
+
+    // `host` has the port only when it is not the scheme's default port
+    const { host } = parsed;
+    const allowed = hosts.some((item) => {
+        const entry = item.toLowerCase();
+
+        return entry.startsWith('.') ? host.endsWith(entry) : host === entry;
+    });
+
+    if (!allowed) {
+        return 'forbidden';
+    }
+
+    // A user name or password could be sent as an Authorization header
+    return parsed.username || parsed.password ? 'invalid' : 'ok';
+}
+
 module.exports = {
     getOpenRosaKey,
     getXformsManifestHash,
@@ -261,4 +299,5 @@ module.exports = {
     insecureAes192Decrypt,
     insecureAes192Encrypt,
     preserveURLParser,
+    isAllowedPreviewFormUrl,
 };

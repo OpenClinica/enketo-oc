@@ -561,4 +561,92 @@ describe('Communicator Library', () => {
             );
         });
     });
+
+    describe('getPreviewXForm (OC-28872)', () => {
+        afterEach(() => {
+            nock.cleanAll();
+        });
+
+        it('resolves with the form text', async () => {
+            nock('https://kpi.example.com')
+                .get('/f.xml')
+                .reply(200, '<h:html/>');
+
+            const xform = await communicator.getPreviewXForm(
+                'https://kpi.example.com/f.xml'
+            );
+
+            expect(xform).to.equal('<h:html/>');
+        });
+
+        it('does not follow redirects', async () => {
+            nock('https://kpi.example.com')
+                .get('/f.xml')
+                .reply(302, '', { Location: 'http://169.254.169.254/latest' });
+            const metadata = nock('http://169.254.169.254')
+                .get('/latest')
+                .reply(200, 'secret');
+
+            let caught = null;
+
+            try {
+                await communicator.getPreviewXForm(
+                    'https://kpi.example.com/f.xml'
+                );
+            } catch (error) {
+                caught = error;
+            }
+
+            expect(caught.status).to.equal(302);
+            expect(metadata.isDone()).to.equal(false);
+        });
+
+        it('rejects a response larger than the size limit with 413', async () => {
+            nock('https://kpi.example.com')
+                .get('/f.xml')
+                .reply(200, '<h:html>too large</h:html>');
+
+            let caught = null;
+
+            try {
+                await communicator.getPreviewXForm(
+                    'https://kpi.example.com/f.xml',
+                    10
+                );
+            } catch (error) {
+                caught = error;
+            }
+
+            expect(caught.status).to.equal(413);
+        });
+
+        it('accepts a response at the size limit', async () => {
+            nock('https://kpi.example.com')
+                .get('/f.xml')
+                .reply(200, '<h:html/>');
+
+            const xform = await communicator.getPreviewXForm(
+                'https://kpi.example.com/f.xml',
+                '<h:html/>'.length
+            );
+
+            expect(xform).to.equal('<h:html/>');
+        });
+
+        it('passes on the upstream error status', async () => {
+            nock('https://kpi.example.com').get('/f.xml').reply(404);
+
+            let caught = null;
+
+            try {
+                await communicator.getPreviewXForm(
+                    'https://kpi.example.com/f.xml'
+                );
+            } catch (error) {
+                caught = error;
+            }
+
+            expect(caught.status).to.equal(404);
+        });
+    });
 });
