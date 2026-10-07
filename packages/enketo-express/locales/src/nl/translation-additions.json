@@ -1,0 +1,207 @@
+{
+  "widget": {
+    "dn": {
+      "assignto": "Toewijzen aan:",
+      "assignedto": "__id__ toegewezen aan __assignee__.",
+      "closequerytext": "Deze query sluiten",
+      "notifytext": "E-mail?",
+      "addquerybutton": "Query toevoegen",
+      "addannotationbutton": "Annotatie toevoegen",
+      "addnewtext": "Nieuw",
+      "emptyhistorytext": "Geen geschiedenis",
+      "printhistoryheading": "Geschiedenis voor - __labelText__ (__questionName__)",
+      "me": "Ik",
+      "status": "Status: __status__",
+      "reopen": "Heropenen",
+      "reopenlabel": "Typ hier om te heropenen",
+      "autoclosed": "Query automatisch gesloten door het systeem omdat dit item verborgen was",
+      "valuechange": "Waarde gewijzigd van __previous__ naar __new__",
+      "autoconstraint": "Automatische query voor: __errorMsg__",
+      "autonoreason": "Automatische query voor: Waarde gewijzigd en geen reden voor de wijziging opgegeven",
+      "closedmodified": "Gegevens gewijzigd na het sluiten van de query",
+      "newfile": "Nieuw bestand geüpload",
+      "fileremoved": "Bestand verwijderd",
+      "addnewquery": "Een nieuwe query toevoegen",
+      "addnewannotation": "Een nieuwe annotatie toevoegen",
+      "typeresponse": "Reageren op de query",
+      "allhistory": "Volledige geschiedenis weergeven",
+      "queries": "Query's",
+      "annotations": "Annotaties",
+      "showvaluechanges": "Waardewijzigingen weergeven",
+      "now": "Zojuist",
+      "second": "__count__ seconde",
+      "second_plural": "__count__ seconden",
+      "minute": "__count__ minuut",
+      "minute_plural": "__count__ minuten",
+      "hour": "__count__ uur",
+      "hour_plural": "__count__ uur",
+      "day": "__count__ dag",
+      "day_plural": "__count__ dagen",
+      "month": "__count__ maand",
+      "month_plural": "__count__ maanden",
+      "year": "__count__ jaar",
+      "year_plural": "__count__ jaar"
+    }
+  },
+  "fieldsubmission": {
+    "alert": {
+      "close": {
+        "heading1": "Sluiten",
+        "heading2": "Waarschuwing",
+        "msg1": "Niet-opgeslagen gegevens worden verzonden...",
+        "msg2": "Niet alle gegevens zijn verzonden. Als u deze pagina verlaat, gaan ze verloren."
+      },
+      "locked": {
+        "heading": "Vergrendeld",
+        "msg": "Dit formulier of record is vergrendeld en verzendingen kunnen niet worden opgeslagen."
+      },
+      "complete": {
+        "msg": "Gegevens konden niet worden verzonden."
+      },
+      "validationerror": {
+        "msg": "U moet alle fouten op dit formulier oplossen voordat het als voltooid kan worden gemarkeerd. Werk de waarde bij of voeg een query toe voor elk veld dat rood is gemarkeerd."
+      },
+      "relevantvalidationerror": {
+        "msg": "Antwoord(en) in sommige velden maken bepaalde gegevens op dit formulier ongeldig. Dit moet worden gecorrigeerd om het formulier als voltooid te markeren."
+      },
+      "reasonforchangevalidationerror": {
+        "msg": "Voor elk gewijzigd veld moet een reden voor de wijziging worden opgegeven. Voeg de ontbrekende redenen toe."
+      },
+      "stricterror": {
+        "heading": "Ongeldige waarde",
+        "msg": "Voer een geschikte waarde in om het veld bij te werken."
+      },
+      "participanterror": {
+        "msg": [
+          "Het lijkt erop dat sommige velden aandacht nodig hebben",
+          "Controleer deze voordat u verdergaat."
+        ]
+      },
+      "unsavedbeforesign": {
+        "msg": "Uw antwoorden zijn nog niet volledig opgeslagen. Controleer uw verbinding en probeer het straks opnieuw."
+      },
+      "signatureservicenotavailable": {
+        "msg": "De handtekeningservice is momenteel niet beschikbaar. De vraag is uitgevinkt."
+      },
+      "signatureservicefailed": {
+        "msg": "Handtekening niet ontvangen. Het vinkje bij de vraag is verwijderd."
+      }
+    },
+    "confirm": {
+      "autoquery": {
+        "msg1": "Sommige veldwaarden bevatten fouten. Deze moeten worden opgelost voordat het formulier wordt gesloten.",
+        "msg2": [
+          "Klik op Annuleren om terug te keren naar het formulier om de waarde handmatig bij te werken of een query toe te voegen voor elk veld dat rood is gemarkeerd.",
+          "Klik op Doorgaan om het formulier nu te blijven sluiten. Er wordt automatisch een query toegevoegd voor elk veld dat rood is gemarkeerd."
+        ],
+        "automatic": "Doorgaan",
+        "manual": "Annuleren"
+      },
+      "complete": {
+        "msg": "Wilt u dit record voltooien en afsluiten?",
+        "heading": "Voltooiing bevestigen"
+      },
+      "leaveanyway": {
+        "msg": "Wilt u de wijzigingen verwerpen en toch afsluiten?",
+        "button": "Toch afsluiten"
+      }
+    },
+    "prompt": {
+      "reason": {
+        "msg": "Geef in dat geval een reden op voor het verwijderen van de groep."
+      }
+    },
+    "feedback": {
+      "ongoing": "Bezig met opslaan...",
+      "success": "Alle wijzigingen zijn opgeslagen.",
+      "fail": "Opslaan van de wijzigingen is mislukt.",
+      "disabled": "Opslaan is uitgeschakeld."
+    },
+    "readonly": {
+      "msg": "U bevindt zich in de alleen-lezenmodus."
+    },
+    "noteonly": {
+      "msg": "U bevindt zich in de alleen-controlerenmodus."
+    },
+    "reason": {
+      "heading": "Het lijkt erop dat u enkele wijzigingen hebt aangebracht. Laat ons weten waarom:",
+      "placeholder1": "Geef een reden voor uw wijzigingen op",
+      "placeholder2": "Geef een reden voor het wijzigen van deze waarde op",
+      "applytoall": "Op alles toepassen",
+      "questionmsg": "Geef onderaan de pagina een reden voor de wijziging op."
+    }
+  },
+  "confirm": {
+    "deleteall": {
+      "heading": "WAARSCHUWING",
+      "msg": [
+        "Dit zal al uw in de wachtrij geplaatste gegevens en al uw formulieren uit de browseropslag verwijderen. De gegevens gaan voorgoed verloren en de formulieren zijn niet bruikbaar totdat u weer online bent. Gebruik dit alleen als uw browseropslag beschadigd lijkt te zijn.",
+        "Sluit voordat u doorgaat alle andere tabbladen met offline formulieren. Deze pagina wordt opnieuw geladen. Als u een foutmelding ziet, moet u deze actie mogelijk herhalen.",
+        "Wilt u doorgaan?"
+      ],
+      "posButton": "Alles verwijderen"
+    },
+    "print": {
+      "queries": "Geschiedenis weergeven",
+      "queryShow": "weergeven",
+      "heading": "Opties",
+      "msg": "Selecteer de onderstaande opties om een geoptimaliseerde afdruk voor te bereiden"
+    },
+    "repeatremove": {
+      "msg": "Deze actie kan niet ongedaan worden gemaakt (dit wordt vastgelegd in het audittrail). Weet u zeker dat u wilt doorgaan?"
+    }
+  },
+  "constraint": {
+    "relevant": "Een antwoord op een andere vraag is gewijzigd, waardoor deze vraag verborgen moet worden, maar dit kan niet zolang er gegevens in staan. Wis de gegevens of wijzig de afhankelijke antwoorden."
+  },
+  "home": {
+    "msg": "__appTitle__ wordt uitgevoerd! Open OpenClinica-formulieren vanuit uw __serverName__-installatie."
+  },
+  "alert": {
+    "appupdated": {
+      "heading": "Vernieuw de pagina",
+      "msg": "Vernieuw deze webpagina om het formulier offline te kunnen gebruiken (ref.: toepassing)"
+    },
+    "formupdated": {
+      "heading": "Vernieuw de pagina",
+      "msg": "Vernieuw deze webpagina om het formulier offline te kunnen gebruiken (ref.: definitie)"
+    },
+    "goto": {
+      "irrelevant": "Het item dat u probeert te openen, is momenteel verborgen.",
+      "invisible": "Het item dat u probeert te openen, is niet zichtbaar op het formulier.",
+      "notfound": "Het item dat u probeert te openen, is uit dit formulier verwijderd.",
+      "msg1": "Gebruik het pictogram Alleen query weergeven in plaats van het pictogram Query in record weergeven om dit te zien.",
+      "msg2": "Bezoek __miniform__ om het te bekijken.",
+      "form": "dit formulier"
+    },
+    "loaderror": {
+      "editadvice": "",
+      "entryadvice": "",
+      "heading": "Een ogenblik geduld...",
+      "msg1": "Neem contact op met uw supportteam met de link naar deze pagina en het onderstaande bericht als u meer hulp nodig heeft.",
+      "msg2": "",
+      "heading_plural": "Een ogenblik geduld...",
+      "msg1_plural": "Neem contact op met uw supportteam met de link naar deze pagina en de onderstaande berichten als u meer hulp nodig heeft.",
+      "msg2_plural": ""
+    }
+  },
+  "submission": {
+    "http500": "Er is een probleem opgetreden met uw indiening. Probeer het opnieuw of neem contact op met __supportEmail__ als het probleem aanhoudt."
+  },
+  "formfooter": {
+    "exit": {
+      "btn": "Later afronden"
+    },
+    "done": {
+      "btn": "Ik ben klaar"
+    }
+  },
+  "repeat": {
+    "addanother": {
+      "btn": "Nog een toevoegen"
+    },
+    "remove": {
+      "btn": "Verwijderen"
+    }
+  }
+}
