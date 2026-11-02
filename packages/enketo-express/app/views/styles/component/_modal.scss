@@ -2,6 +2,10 @@
 @import '/packages/enketo-express/node_modules/vex-js/sass/vex-theme-plain.sass';
 
 .vex.vex-theme-plain {
+    .vex-close:before {
+        color: #4d4d4d;
+    }
+
     h3 {
         margin-top: 10px;
         color: $text-color;

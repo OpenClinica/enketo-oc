@@ -172,7 +172,7 @@ $offline-color: #d15200;
         }
 
         &.submitting {
-            color: #ce4f07;
+            color: $brand-primary-color;
         }
 
         &:hover {

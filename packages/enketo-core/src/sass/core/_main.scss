@@ -72,7 +72,7 @@ $media-margin: 10px;
 .or-hint.active {
     @include font-normal;
 
-    color: #888888;
+    color: #5a5a5a;
     display: block;
     line-height: 16px;
     font-weight: normal;
@@ -90,7 +90,7 @@ $media-margin: 10px;
     color: $brand-primary-color;
 
     summary {
-        color: #888888;
+        color: #5a5a5a;
     }
 }
 
