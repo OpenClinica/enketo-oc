@@ -282,6 +282,10 @@
     padding-left: $pad;
     padding-right: $pad;
     padding-bottom: $pad;
+
+    .required {
+        color: $state-danger-text;
+    }
 }
 
 // Moving this styles to a mixin facilitates custom functionality added in OpenClinica with multiple constraints.
