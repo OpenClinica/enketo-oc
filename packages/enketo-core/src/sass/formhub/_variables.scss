@@ -2,9 +2,10 @@
 
 $font-size-base: 15px !default;
 $brand-primary-color: #b05400 !default;
-$brand-secondary-color: lighten($brand-primary-color, 50%) !default;
+// Tints keep the values the old #ce4f07 produced (OC-29216)
+$brand-secondary-color: #fee5d6 !default;
 
-$repeat-bg: lighten($brand-primary-color, 55%) !default;
+$repeat-bg: #fef5ef !default;
 
 $radiocheck-unchecked-color: #cccccc !default;
 $radiocheck-checked-color: lighten($brand-primary-color, 10%) !default;
