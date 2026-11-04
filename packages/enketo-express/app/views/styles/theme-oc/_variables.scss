@@ -1,23 +1,23 @@
 $body-bg: #f0f0f0;
 
-// OC Orange, darkened to the WCAG 2.2 AA accent orange (5.1:1 on white)
-$brand-primary-color: #b05400;
+// OC Orange, darkened to the WCAG 2.2 AA accent orange (5.2:1 on white)
+$brand-primary-color: #c2410c;
 // Hover and repeat tints keep the values the old #f58220 produced
 $brand-secondary-color: #fde2cb;
 $repeat-bg: #ffffff;
 $button-border-width: 1px;
 
 // WCAG 2.2 AA palette tokens
-$link-color: #005377;
-$input-border: #69798a;
-$input-border-focus: #005377;
-$input-color-placeholder: #757575;
-$btn-default-border: #69798a;
-$secondary-button-border-color: #69798a;
-$radiocheck-unchecked-color: #69798a;
-$radiocheck-checked-color: #b05400;
+$link-color: #0070dc;
+$input-border: #7d8396;
+$input-border-focus: #0070dc;
+$input-color-placeholder: #64748b;
+$btn-default-border: #7d8396;
+$secondary-button-border-color: #7d8396;
+$radiocheck-unchecked-color: #7d8396;
+$radiocheck-checked-color: #c2410c;
 $state-danger-bg: #f8d7da;
-$state-danger-text: #8b2020;
+$state-danger-text: #b91c1c;
 
 
 // wider forms
