@@ -8,7 +8,7 @@ $brand-secondary-color: #fee5d6 !default;
 $repeat-bg: #fef5ef !default;
 
 $radiocheck-unchecked-color: #cccccc !default;
-$radiocheck-checked-color: lighten($brand-primary-color, 10%) !default;
+$radiocheck-checked-color: $brand-primary-color !default;
 
 $note-bg: white !default;
 $note-border: 1px solid #e1e1e1 !default;

@@ -286,6 +286,15 @@
     .required {
         color: $state-danger-text;
     }
+
+    // Field borders must keep 3:1 on the error background (OC-29216)
+    input:not(:checked),
+    input[type='radio']:not(:checked),
+    input[type='checkbox']:not(:checked),
+    select,
+    textarea {
+        border-color: $state-danger-text;
+    }
 }
 
 // Moving this styles to a mixin facilitates custom functionality added in OpenClinica with multiple constraints.
