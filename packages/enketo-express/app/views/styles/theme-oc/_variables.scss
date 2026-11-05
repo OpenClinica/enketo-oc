@@ -14,9 +14,10 @@ $link-color: oc-token(link);
 $input-border: oc-token(input-border);
 $input-border-focus: oc-token(focus);
 $input-color-placeholder: oc-token(placeholder);
-$btn-default-border: oc-token(input-border);
+// PO decision Q9, 2026-11-05: grey buttons have no border, so the border takes the fill colour.
+$btn-default-border: oc-token(secondary-bg);
 $button-font-color-alt: oc-token(on-secondary);
-$secondary-button-border-color: oc-token(input-border);
+$secondary-button-border-color: oc-token(secondary-bg);
 $radiocheck-unchecked-color: oc-token(input-border);
 $radiocheck-checked-color: oc-token(accent);
 $state-danger-bg: oc-token(error-bg);

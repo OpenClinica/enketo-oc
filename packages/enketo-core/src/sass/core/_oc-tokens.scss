@@ -11,7 +11,7 @@ $oc-tokens: (
     on-primary: #FFFFFF,
     secondary-bg: #EAEAEA,
     on-secondary: #333847,
-    secondary-border: 1px solid #7D8396, // PO decision Q9 pending; set to none if declined
+    secondary-border: none, // PO decision Q9, 2026-11-05: no border (PRD 4.2 as written)
     header: #0678C7,
     input-border: #7D8396,
     body-text: #333847,
@@ -22,7 +22,7 @@ $oc-tokens: (
     success: #15803D,
     error: #B91C1C,
     error-bg: #f8d7da,
-    link: #0070DC, // PO decision Q2 pending; #00509A if approved
+    link: #00509A, // PO decision Q2, 2026-11-05: Primary pressed for all links
     focus: #0070DC,
     focus-on-dark: #FFFFFF,
     // Study Designer label palette
