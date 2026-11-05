@@ -11,6 +11,8 @@ $button-border-width: 1px;
 
 // WCAG 2.2 AA palette (OC tokens, design spec 4.1)
 $link-color: oc-token(link);
+// Hover keeps the link token: enketo-core would otherwise darken() it (design spec 4.1, principle 1).
+$link-hover-color: oc-token(link);
 $input-border: oc-token(input-border);
 $input-border-focus: oc-token(focus);
 $input-color-placeholder: oc-token(placeholder);
