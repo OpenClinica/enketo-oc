@@ -1,23 +1,26 @@
+@import '/packages/enketo-core/src/sass/core/oc-tokens';
+
 $body-bg: #f0f0f0;
 
 // OC Orange, darkened to the WCAG 2.2 AA accent orange (5.2:1 on white)
-$brand-primary-color: #c2410c;
+$brand-primary-color: oc-token(accent);
 // Hover and repeat tints keep the values the old #f58220 produced
 $brand-secondary-color: #fde2cb;
 $repeat-bg: #ffffff;
 $button-border-width: 1px;
 
-// WCAG 2.2 AA palette tokens
-$link-color: #0070dc;
-$input-border: #7d8396;
-$input-border-focus: #0070dc;
-$input-color-placeholder: #64748b;
-$btn-default-border: #7d8396;
-$secondary-button-border-color: #7d8396;
-$radiocheck-unchecked-color: #7d8396;
-$radiocheck-checked-color: #c2410c;
-$state-danger-bg: #f8d7da;
-$state-danger-text: #b91c1c;
+// WCAG 2.2 AA palette (OC tokens, design spec 4.1)
+$link-color: oc-token(link);
+$input-border: oc-token(input-border);
+$input-border-focus: oc-token(focus);
+$input-color-placeholder: oc-token(placeholder);
+$btn-default-border: oc-token(input-border);
+$button-font-color-alt: oc-token(on-secondary);
+$secondary-button-border-color: oc-token(input-border);
+$radiocheck-unchecked-color: oc-token(input-border);
+$radiocheck-checked-color: oc-token(accent);
+$state-danger-bg: oc-token(error-bg);
+$state-danger-text: oc-token(error);
 
 
 // wider forms

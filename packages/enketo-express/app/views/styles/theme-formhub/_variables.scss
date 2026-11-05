@@ -1,2 +1,4 @@
+@import '/packages/enketo-core/src/sass/core/oc-tokens';
+
 $body-bg: #f0f0f0;
-$brand-primary-color: #c2410c;
+$brand-primary-color: oc-token(accent);

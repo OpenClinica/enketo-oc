@@ -1,9 +1,11 @@
+@import '../core/oc-tokens';
+
 /** GRID THEME **/
 
 $font-size-base: 16px;
 
 // colors
-$brand-primary-color: #c2410c;
+$brand-primary-color: oc-token(accent);
 $brand-secondary-color: #e4f4ff;
 $radiocheck-unchecked-color: #666666;
 $radiocheck-checked-color: black;

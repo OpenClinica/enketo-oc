@@ -1,5 +1,5 @@
 // background of default button
-$secondary-color: #eeeeee;
+$secondary-color: oc-token(secondary-bg);
 
 // error block inside a modal dialog (e.g. upon Complete button click).
 .vex.vex-theme-plain .vex-dialog-form .vex-dialog-message {
@@ -263,7 +263,7 @@ $secondary-color: #eeeeee;
 
 .oc-reason-msg {
     @extend .or-required-msg;
-    color: #0070dc !important;
+    color: oc-token(primary) !important;
     display: block !important;
 }
 

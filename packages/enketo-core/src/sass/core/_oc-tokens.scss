@@ -1,0 +1,47 @@
+// OC accessibility tokens (design spec 4.1). Values come from reqs-design
+// platform/wcag-accessibility/PRD.md section 4.2. Change the PRD first, then
+// copy the values again. Same names and values as the :root block in the other
+// OC apps; theme-oc emits this map as that :root block.
+// Hover and pressed have their own tokens: never apply lighten() or darken() to a token.
+// This file has no CSS output, so it is safe to import more than once.
+$oc-tokens: (
+    primary: #0070DC,
+    primary-hover: #0060BD,
+    primary-pressed: #00509A,
+    on-primary: #FFFFFF,
+    secondary-bg: #EAEAEA,
+    on-secondary: #333847,
+    secondary-border: 1px solid #7D8396, // PO decision Q9 pending; set to none if declined
+    header: #0678C7,
+    input-border: #7D8396,
+    body-text: #333847,
+    secondary-text: #475569,
+    placeholder: #64748B,
+    accent: #C2410C,
+    accent-border: #9A3412,
+    success: #15803D,
+    error: #B91C1C,
+    error-bg: #f8d7da,
+    link: #0070DC, // PO decision Q2 pending; #00509A if approved
+    focus: #0070DC,
+    focus-on-dark: #FFFFFF,
+    // Study Designer label palette
+    label-green: #15803D,
+    label-yellow: #A16207,
+    label-orange: #C2410C,
+    label-red: #CC1F30,
+    label-purple: #8A2FC4,
+    label-blue: #0A6FD1,
+    label-pink: #C4157F,
+    label-sky: #0077A8,
+    label-lime: #4D7C0F,
+    label-black: #475569,
+);
+
+@function oc-token($name) {
+    @if not map-has-key($oc-tokens, $name) {
+        @error "Unknown OC token: #{$name}";
+    }
+
+    @return map-get($oc-tokens, $name);
+}

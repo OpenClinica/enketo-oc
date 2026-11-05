@@ -1,6 +1,6 @@
 $analog-picker-tick-color: black !default;
 $border: 1px solid $analog-picker-tick-color;
-$analog-picker-handle-color: #c2410c !default;
+$analog-picker-handle-color: oc-token(accent) !default;
 $analog-picker-width: 150px !default;
 $analog-picker-min-height: 400px !default;
 $analog-picker-max-height: 800px !default;

@@ -5,10 +5,10 @@ $max-height: 500px;
 
 $dn-nav-hover-bg: lighten($gray-lighter, 2%);
 $dn-nav-bg: rgb(228, 228, 228);
-$dn-updated-color:#c2410c;
+$dn-updated-color: oc-token(accent);
 $dn-closed-color:#555555;
 $dn-closed-modified-color:#808080;
-$dn-new-color:#b91c1c;
+$dn-new-color: oc-token(error);
 $dn-default-color: #575756;
 
 // from https://codepen.io/zandroid/pen/qdgBRw
@@ -664,7 +664,7 @@ $dn-default-color: #575756;
                             display: block;
                             width: 100%;
                             font-size: 10px;
-                            color: #475569;
+                            color: oc-token(secondary-text);
                         }
                     }
 

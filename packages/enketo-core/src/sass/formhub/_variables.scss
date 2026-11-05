@@ -1,7 +1,9 @@
+@import '../core/oc-tokens';
+
 // load this before the core/variables
 
 $font-size-base: 15px !default;
-$brand-primary-color: #c2410c !default;
+$brand-primary-color: oc-token(accent) !default;
 // Tints keep the values the old #ce4f07 produced (OC-29216)
 $brand-secondary-color: #fee5d6 !default;
 
