@@ -9,6 +9,8 @@ $dn-updated-color: oc-token(accent);
 $dn-closed-color: oc-token(secondary-text);
 $dn-closed-modified-color: oc-token(body-text);
 $dn-new-color: oc-token(error);
+// Invalid shares the error colour with new; the x glyph and aria-label tell them apart
+$dn-invalid-color: oc-token(error);
 $dn-default-color: oc-token(secondary-text);
 
 // from https://codepen.io/zandroid/pen/qdgBRw
@@ -68,7 +70,7 @@ $dn-default-color: oc-token(secondary-text);
         new: "<path d='M305 280V430' #{$stroke}/><circle cx='305' cy='512' r='36' fill='#{$ink}'/>",
         updated: "<path d='M420 500V470A70 70 0 0 0 350 400H200M260 340L200 400L260 460' #{$stroke}/>",
         closed: $tick,
-        closed-modified: "#{$tick}<circle cx='560' cy='210' r='70' fill='#222222' stroke='#ffffff' stroke-width='28'/>",
+        closed-modified: "#{$tick}<circle cx='560' cy='210' r='70' fill='#{oc-token(body-text)}' stroke='#ffffff' stroke-width='28'/>",
         invalid: "<path d='M225 312L385 472M385 312L225 472' #{$stroke}/>",
     ), $state) or "";
 }
@@ -747,7 +749,7 @@ $dn-default-color: oc-token(secondary-text);
     }
 
     &.invalid {
-        @include dn-icon-states($state-dangerest-text, invalid);
+        @include dn-icon-states($dn-invalid-color, invalid);
     }
 
     &.closed {
