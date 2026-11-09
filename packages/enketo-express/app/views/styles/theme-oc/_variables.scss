@@ -1,10 +1,39 @@
+@import '/packages/enketo-core/src/sass/core/oc-tokens';
+
 $body-bg: #f0f0f0;
 
-// OC Orange
-$brand-primary-color: #f58220;
-$brand-secondary-color: lighten($brand-primary-color, 35%);
-$repeat-bg: lighten($brand-primary-color, 50%);
+// OC Orange, darkened to the WCAG 2.2 AA accent orange (5.2:1 on white)
+$brand-primary-color: oc-token(accent);
+// Hover and repeat tints keep the values the old #f58220 produced
+$brand-secondary-color: #fde2cb;
+$repeat-bg: #ffffff;
 $button-border-width: 1px;
+
+// WCAG 2.2 AA palette (OC tokens, design spec 4.1)
+$link-color: oc-token(link);
+// Hover keeps the link token: enketo-core would otherwise darken() it (design spec 4.1, principle 1).
+$link-hover-color: oc-token(link);
+$input-border: oc-token(input-border);
+$input-border-focus: oc-token(focus);
+$focus-ring-color: oc-token(focus);
+// Icon-only buttons: Secondary text, solid at rest and 0.7 on hover (3.59:1 on white)
+$btn-icon-only-color: oc-token(secondary-text);
+$btn-icon-only-opacity: 1;
+$btn-icon-only-hover-opacity: 0.7;
+$input-color-placeholder: oc-token(placeholder);
+// PO decision Q9, 2026-11-05: grey buttons have no border, so the border takes the fill colour.
+$btn-default-border: oc-token(secondary-bg);
+// Accent buttons: hover fill and border use the accent border token. The button-base mixin would derive both with scale-color().
+$button-bg-hover: oc-token(accent-border);
+$btn-primary-border: oc-token(accent-border);
+$button-font-color-alt: oc-token(on-secondary);
+// First and last page arrows sit on the grey footer buttons
+$footer-nav-icon-color: oc-token(on-secondary);
+$secondary-button-border-color: oc-token(secondary-bg);
+$radiocheck-unchecked-color: oc-token(input-border);
+$radiocheck-checked-color: oc-token(accent);
+$state-danger-bg: oc-token(error-bg);
+$state-danger-text: oc-token(error);
 
 
 // wider forms

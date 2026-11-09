@@ -1,13 +1,16 @@
+@import '../core/oc-tokens';
+
 // load this before the core/variables
 
 $font-size-base: 15px !default;
-$brand-primary-color: #ce4f07 !default;
-$brand-secondary-color: lighten($brand-primary-color, 50%) !default;
+$brand-primary-color: oc-token(accent) !default;
+// Tints keep the values the old #ce4f07 produced (OC-29216)
+$brand-secondary-color: #fee5d6 !default;
 
-$repeat-bg: lighten($brand-primary-color, 55%) !default;
+$repeat-bg: #fef5ef !default;
 
 $radiocheck-unchecked-color: #cccccc !default;
-$radiocheck-checked-color: lighten($brand-primary-color, 10%) !default;
+$radiocheck-checked-color: $brand-primary-color !default;
 
 $note-bg: white !default;
 $note-border: 1px solid #e1e1e1 !default;
