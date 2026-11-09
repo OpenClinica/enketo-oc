@@ -1,6 +1,11 @@
 // background of default button
 $secondary-color: oc-token(secondary-bg);
 
+// Focus ring colour (PRD 4.2 Focus indicator). The ring style belongs to P0.4.
+:focus-visible {
+    outline-color: oc-token(focus);
+}
+
 // error block inside a modal dialog (e.g. upon Complete button click).
 .vex.vex-theme-plain .vex-dialog-form .vex-dialog-message {
     color: inherit;
@@ -263,7 +268,7 @@ $secondary-color: oc-token(secondary-bg);
 
 .oc-reason-msg {
     @extend .or-required-msg;
-    color: oc-token(primary) !important;
+    color: oc-token(link) !important;
     display: block !important;
 }
 

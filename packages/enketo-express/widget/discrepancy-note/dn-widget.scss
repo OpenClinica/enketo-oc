@@ -6,10 +6,10 @@ $max-height: 500px;
 $dn-nav-hover-bg: lighten($gray-lighter, 2%);
 $dn-nav-bg: rgb(228, 228, 228);
 $dn-updated-color: oc-token(accent);
-$dn-closed-color:#555555;
-$dn-closed-modified-color:#808080;
+$dn-closed-color: oc-token(secondary-text);
+$dn-closed-modified-color: oc-token(body-text);
 $dn-new-color: oc-token(error);
-$dn-default-color: #575756;
+$dn-default-color: oc-token(secondary-text);
 
 // from https://codepen.io/zandroid/pen/qdgBRw
 @mixin multiline-ellipsis($lines,

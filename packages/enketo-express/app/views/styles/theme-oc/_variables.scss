@@ -15,9 +15,17 @@ $link-color: oc-token(link);
 $link-hover-color: oc-token(link);
 $input-border: oc-token(input-border);
 $input-border-focus: oc-token(focus);
+$focus-ring-color: oc-token(focus);
+// Icon-only buttons: Secondary text, solid at rest and 0.7 on hover (3.59:1 on white)
+$btn-icon-only-color: oc-token(secondary-text);
+$btn-icon-only-opacity: 1;
+$btn-icon-only-hover-opacity: 0.7;
 $input-color-placeholder: oc-token(placeholder);
 // PO decision Q9, 2026-11-05: grey buttons have no border, so the border takes the fill colour.
 $btn-default-border: oc-token(secondary-bg);
+// Accent buttons: hover fill and border use the accent border token. The button-base mixin would derive both with scale-color().
+$button-bg-hover: oc-token(accent-border);
+$btn-primary-border: oc-token(accent-border);
 $button-font-color-alt: oc-token(on-secondary);
 $secondary-button-border-color: oc-token(secondary-bg);
 $radiocheck-unchecked-color: oc-token(input-border);

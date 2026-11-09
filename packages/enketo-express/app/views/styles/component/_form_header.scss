@@ -52,7 +52,7 @@ $offline-color: #d15200;
     }
 
     &__button--print {
-        @include icon-print($gray);
+        @include icon-print(oc-token(secondary-text));
 
         order: 40;
         width: 32px;

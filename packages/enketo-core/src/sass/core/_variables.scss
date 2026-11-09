@@ -88,6 +88,10 @@ $note-border-radius: 4px !default;
 
 // text states
 $text-color: $gray-dark !default;
+$focus-ring-color: -webkit-focus-ring-color !default;
+$btn-icon-only-color: $text-color !default;
+$btn-icon-only-opacity: 0.7 !default;
+$btn-icon-only-hover-opacity: 0.5 !default;
 $text-muted: $gray-light !default;
 
 $state-success-text: #3c763d !default;
