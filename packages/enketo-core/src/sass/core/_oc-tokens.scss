@@ -8,6 +8,11 @@ $oc-tokens: (
     primary: #0070DC,
     primary-hover: #0060BD,
     primary-pressed: #00509A,
+    // Hover tokens: spec 9.1 Q1, interim until PRD 4.2 adds the rows
+    secondary-hover: #DCDCDC,
+    success-hover: #166534,
+    input-border-hover: #475569,
+    error-hover: #991B1B,
     on-primary: #FFFFFF,
     secondary-bg: #EAEAEA,
     on-secondary: #333847,
