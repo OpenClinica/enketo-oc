@@ -1,3 +1,6 @@
+// Colour of the first and last page arrows; black is what these icons always rendered.
+$footer-nav-icon-color: black !default;
+
 .form-footer {
     position: relative;
 
@@ -91,7 +94,7 @@
                 }
 
                 &::before {
-                    @include icon-first(#757474);
+                    @include icon-first($footer-nav-icon-color);
 
                     width: 17px;
                     height: 16px;
@@ -106,7 +109,7 @@
                 padding-right: 32px;
 
                 &::before {
-                    @include icon-last(#757474);
+                    @include icon-last($footer-nav-icon-color);
 
                     width: 24px;
                     height: 16px;

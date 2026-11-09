@@ -728,8 +728,9 @@ $dn-default-color: oc-token(secondary-text);
         // this is the "none" state
         @include dn-icon($color, false, false, false);
 
+        // 0.7 keeps 3:1 on white and on the error background, like the other icon buttons
         &:hover {
-            opacity: 0.5;
+            opacity: 0.7;
         }
     }
 

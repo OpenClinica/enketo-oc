@@ -27,6 +27,8 @@ $btn-default-border: oc-token(secondary-bg);
 $button-bg-hover: oc-token(accent-border);
 $btn-primary-border: oc-token(accent-border);
 $button-font-color-alt: oc-token(on-secondary);
+// First and last page arrows sit on the grey footer buttons
+$footer-nav-icon-color: oc-token(on-secondary);
 $secondary-button-border-color: oc-token(secondary-bg);
 $radiocheck-unchecked-color: oc-token(input-border);
 $radiocheck-checked-color: oc-token(accent);
