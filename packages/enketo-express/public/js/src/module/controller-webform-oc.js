@@ -1454,6 +1454,9 @@ function _setFormEventHandlers() {
                                         clearTimeout(timeoutId);
                                         gui.close();
                                         resetQuestion();
+                                        // Return focus to the signature question
+                                        // for keyboard and screen reader users.
+                                        event.target.focus();
                                         window.removeEventListener(
                                             'message',
                                             receiveMessage
