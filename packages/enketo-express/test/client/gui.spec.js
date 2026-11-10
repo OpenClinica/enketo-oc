@@ -134,3 +134,29 @@ describe('Accessible dialogs', () => {
         expect(document.activeElement).to.equal(opener);
     });
 });
+
+describe('Confirm dialog button order', () => {
+    afterEach(() => {
+        gui.close();
+        document
+            .querySelectorAll('.vex, .vex-overlay')
+            .forEach((el) => el.remove());
+    });
+
+    ['confirm', 'prompt'].forEach((kind) => {
+        it(`puts Cancel before Confirm in ${kind} (confirm also focuses Cancel)`, () => {
+            gui[kind]({ msg: 'Sure?' }, {}, '<input type="text" name="x">');
+
+            const buttons = [
+                ...document.querySelectorAll('.vex-dialog-buttons button'),
+            ];
+
+            expect(
+                buttons.map((b) => b.classList.contains('btn-primary'))
+            ).to.deep.equal([false, true]);
+            if (kind === 'confirm') {
+                expect(document.activeElement).to.equal(buttons[0]);
+            }
+        });
+    });
+});

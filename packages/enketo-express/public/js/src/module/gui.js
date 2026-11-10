@@ -358,13 +358,13 @@ function confirm(content, choices) {
             unsafeMessage: errorMsg + (message || t('confirm.default.msg')),
             title: content.heading || t('confirm.default.heading'),
             buttons: [
-                $.extend({}, vex.dialog.buttons.YES, {
-                    text: choices.posButton || t('confirm.default.posButton'),
-                    className: 'btn btn-primary small',
-                }),
                 $.extend({}, vex.dialog.buttons.NO, {
                     text: choices.negButton || t('confirm.default.negButton'),
                     className: 'btn btn-default small',
+                }),
+                $.extend({}, vex.dialog.buttons.YES, {
+                    text: choices.posButton || t('confirm.default.posButton'),
+                    className: 'btn btn-primary small',
                 }),
             ],
             callback: resolve,
@@ -394,13 +394,13 @@ function prompt(content, choices, inputs) {
             unsafeMessage: errorMsg + (message || ''),
             title: content.heading || t('prompt.default.heading'),
             buttons: [
-                $.extend({}, vex.dialog.buttons.YES, {
-                    text: choices.posButton || t('confirm.default.posButton'),
-                    className: 'btn btn-primary small',
-                }),
                 $.extend({}, vex.dialog.buttons.NO, {
                     text: choices.negButton || t('confirm.default.negButton'),
                     className: 'btn btn-default small',
+                }),
+                $.extend({}, vex.dialog.buttons.YES, {
+                    text: choices.posButton || t('confirm.default.posButton'),
+                    className: 'btn btn-primary small',
                 }),
             ],
             input: inputs,
