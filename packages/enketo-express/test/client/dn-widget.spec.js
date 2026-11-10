@@ -397,10 +397,11 @@ describe('DN object', () => {
     });
 });
 
-describe('DN query modal accessibility', () => {
+describe('DN query modal dialog behaviour', () => {
     let dn;
     let hidden;
     let linkedQuestion;
+    let input;
 
     const clearVex = () =>
         document
@@ -418,9 +419,10 @@ describe('DN query modal accessibility', () => {
         linkedQuestion.innerHTML = `<section class="or-comment-widget">
             <h3><span class="or-comment-widget__nav__main__title">Queries</span></h3>
             <button type="button" class="first">first</button>
-            <textarea name="dn-comment"></textarea>
+            <textarea name="dn-comment" data-initial="auto text"></textarea>
         </section>`;
         document.body.append(linkedQuestion);
+        input = linkedQuestion.querySelector('textarea');
         dn.linkedQuestion = linkedQuestion;
     });
 
@@ -444,9 +446,49 @@ describe('DN query modal accessibility', () => {
         expect(document.activeElement).to.equal(widget.querySelector('.first'));
     });
 
-    it('closes on Escape', () => {
+    it('closes on request without asking when the comment is unchanged', () => {
+        input.value = 'auto text';
+
+        dn._requestHideCommentModal();
+
+        expect(hidden).to.equal(1);
+        expect(document.querySelector('.vex')).to.equal(null);
+    });
+
+    it('closes without asking when the pre-filled text was deleted', () => {
+        input.value = '';
+
+        dn._requestHideCommentModal();
+
+        expect(hidden).to.equal(1);
+        expect(document.querySelector('.vex')).to.equal(null);
+    });
+
+    it('asks before closing when a comment was typed, and Cancel keeps it', async () => {
+        input.value = 'my own text';
+
+        const result = dn._requestHideCommentModal();
+        document.querySelector('.vex-dialog-button:not(.btn-primary)').click();
+        await result;
+
+        expect(hidden).to.equal(0);
+        expect(input.value).to.equal('my own text');
+    });
+
+    it('closes after the discard confirmation is accepted', async () => {
+        input.value = 'my own text';
+
+        const result = dn._requestHideCommentModal();
+        document.querySelector('.vex-dialog-button.btn-primary').click();
+        await result;
+
+        expect(hidden).to.equal(1);
+    });
+
+    it('opens one confirmation on Escape and does not close it at once', () => {
         const widget = linkedQuestion.querySelector('.or-comment-widget');
 
+        input.value = 'my own text';
         dn._setModalA11y(widget);
         document.dispatchEvent(
             new KeyboardEvent('keyup', {
@@ -456,6 +498,7 @@ describe('DN query modal accessibility', () => {
             })
         );
 
-        expect(hidden).to.equal(1);
+        expect(document.querySelectorAll('.vex').length).to.equal(1);
+        expect(hidden).to.equal(0);
     });
 });

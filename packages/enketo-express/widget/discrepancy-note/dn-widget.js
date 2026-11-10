@@ -5,6 +5,7 @@ import $ from 'jquery';
 import reasons from 'enketo-core/src/js/reasons';
 import { t } from '../../public/js/src/module/translator';
 import settings from '../../public/js/src/module/settings';
+import gui from '../../public/js/src/module/gui';
 import events from '../../public/js/src/module/event';
 import fileManager from '../../public/js/src/module/file-manager';
 import { Form } from '../../public/js/src/module/form-oc';
@@ -182,7 +183,7 @@ class Comment extends Widget {
         this.commentButton.addEventListener('click', (event) => {
             event.preventDefault();
             if (this._isCommentModalShown(this.linkedQuestion)) {
-                this._hideCommentModal(this.linkedQuestion);
+                this._requestHideCommentModal();
                 // Note there is an edge case where a disabled (non-relevant) question (as page) does not get hidden
                 // and we need to make sure the DN widget get disabled in that case.
                 // https://github.com/OpenClinica/enketo-express-oc/issues/459
@@ -843,7 +844,7 @@ class Comment extends Widget {
         );
         [closeButton, overlay].forEach((el) => {
             el.addEventListener('click', (event) => {
-                this._hideCommentModal(this.linkedQuestion);
+                this._requestHideCommentModal();
                 event.preventDefault();
                 event.stopPropagation();
             });
@@ -893,10 +894,12 @@ class Comment extends Widget {
         });
 
         // On the document, so that Escape works when focus is on a non-focusable
-        // part of the modal. While a vex dialog is open, vex handles Escape.
+        // part of the modal. It stops the event so that vex does not close the
+        // confirmation that this opens. While a vex dialog is open, vex handles Escape.
         this._escapeHandler = (event) => {
             if (event.key === 'Escape' && !document.querySelector('.vex')) {
-                this._hideCommentModal(this.linkedQuestion);
+                event.stopPropagation();
+                this._requestHideCommentModal();
             }
         };
         document.addEventListener('keyup', this._escapeHandler);
@@ -908,6 +911,42 @@ class Comment extends Widget {
                 first.focus();
             }
         }
+    }
+
+    /**
+     * Closes the modal like the x button does, but first asks for confirmation if
+     * there is a typed comment that has not been saved.
+     *
+     * @return { Promise }
+     */
+    _requestHideCommentModal() {
+        const widget = this.linkedQuestion.querySelector('.or-comment-widget');
+        const input = widget && widget.querySelector('[name="dn-comment"]');
+
+        const typed = input ? input.value.trim() : '';
+
+        // Deleting the pre-filled text counts as nothing to lose.
+        if (typed && typed !== (input.dataset.initial || '').trim()) {
+            return gui
+                .confirm(
+                    {
+                        heading: t('widget.dn.discard.heading'),
+                        msg: t('widget.dn.discard.msg'),
+                    },
+                    {
+                        posButton: t('widget.dn.discard.button'),
+                        negButton: t('confirm.default.negButton'),
+                    }
+                )
+                .then((discard) => {
+                    if (discard) {
+                        this._hideCommentModal(this.linkedQuestion);
+                    }
+                });
+        }
+        this._hideCommentModal(this.linkedQuestion);
+
+        return Promise.resolve();
     }
 
     _mapChecker() {
@@ -1457,6 +1496,7 @@ class Comment extends Widget {
             this.type === 'comment' && !this.threadId
                 ? this.linkedQuestionErrorMsg
                 : '';
+        input.dataset.initial = input.value;
 
         const user =
             this.type === 'annotation' && !this.threadId

@@ -8,6 +8,11 @@
             "addquerybutton": "Add Query",
             "addannotationbutton": "Add Annotation",
             "addnewtext": "New",
+            "discard": {
+                "heading": "Discard comment?",
+                "msg": "The comment has not been saved. Do you want to discard it?",
+                "button": "Discard"
+            },
             "emptyhistorytext": "No History",
             "printhistoryheading": "History for - __labelText__ (__questionName__)",
             "me": "Me",
