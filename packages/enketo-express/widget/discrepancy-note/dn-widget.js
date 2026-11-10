@@ -2,12 +2,12 @@
 import Widget from 'enketo-core/src/js/widget';
 import { getSiblingElements } from 'enketo-core/src/js/dom-utils';
 import $ from 'jquery';
+import reasons from 'enketo-core/src/js/reasons';
 import { t } from '../../public/js/src/module/translator';
 import settings from '../../public/js/src/module/settings';
 import events from '../../public/js/src/module/event';
 import fileManager from '../../public/js/src/module/file-manager';
 import { Form } from '../../public/js/src/module/form-oc';
-import reasons from 'enketo-core/src/js/reasons';
 
 let currentUser;
 let users;
@@ -15,6 +15,10 @@ let annotationIconDataUri;
 const SYSTEM_USER = 'system';
 
 const pad2 = (x) => (x < 10 ? `0${x}` : x);
+
+const FOCUSABLE =
+    'button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])';
+let titleCounter = 0;
 
 /**
  * Visually transforms a question into a comment modal that can be shown on its linked question.
@@ -650,8 +654,9 @@ class Comment extends Widget {
 
     _showCommentModal() {
         const range = document.createRange();
-        const closeButtonHtml =
-            '<button class="btn-icon-only or-comment-widget__content__btn-close-x" type="button">&times;</button>';
+        const closeButtonHtml = `<button class="btn-icon-only or-comment-widget__content__btn-close-x" type="button" aria-label="${t(
+            'alert.default.button'
+        )}">&times;</button>`;
         const newQueryButtonHtml = `<button class="btn btn-primary small" data-type="comment"><span class="icon icon-plus"> </span> ${t(
             'widget.dn.addnewtext'
         )}</button>`;
@@ -843,6 +848,66 @@ class Comment extends Widget {
                 event.stopPropagation();
             });
         });
+
+        this._setModalA11y(widget);
+    }
+
+    /**
+     * Makes the query modal a labelled dialog with a Tab trap, Escape handling
+     * and initial focus.
+     *
+     * @param { Element } widget - the section.or-comment-widget element
+     */
+    _setModalA11y(widget) {
+        const title = widget.querySelector(
+            '.or-comment-widget__nav__main__title'
+        );
+
+        widget.setAttribute('role', 'dialog');
+        widget.setAttribute('aria-modal', 'true');
+        if (title) {
+            title.id = `or-comment-widget-title-${++titleCounter}`;
+            widget.setAttribute('aria-labelledby', title.id);
+        }
+
+        const focusables = () =>
+            [...widget.querySelectorAll(FOCUSABLE)].filter(
+                (el) => !el.disabled && el.offsetParent !== null
+            );
+
+        widget.addEventListener('keydown', (event) => {
+            if (event.key !== 'Tab') {
+                return;
+            }
+            const items = focusables();
+            const first = items[0];
+            const last = items[items.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        });
+
+        // On the document, so that Escape works when focus is on a non-focusable
+        // part of the modal. While a vex dialog is open, vex handles Escape.
+        this._escapeHandler = (event) => {
+            if (event.key === 'Escape' && !document.querySelector('.vex')) {
+                this._hideCommentModal(this.linkedQuestion);
+            }
+        };
+        document.addEventListener('keyup', this._escapeHandler);
+
+        if (!widget.contains(document.activeElement)) {
+            const [first] = focusables();
+
+            if (first) {
+                first.focus();
+            }
+        }
     }
 
     _mapChecker() {
@@ -907,12 +972,14 @@ class Comment extends Widget {
     }
 
     _hideCommentModal(linkedQuestion) {
+        document.removeEventListener('keyup', this._escapeHandler);
         this.element.closest('form').dispatchEvent(events.Heartbeat());
         linkedQuestion.querySelector('.or-comment-widget').remove();
         linkedQuestion
             .closest('.or, .or-group, .or-group-data')
             .querySelector('.or-comment-widget__overlay--shadow-giver')
             .remove();
+        this.commentButton.focus();
     }
 
     /**

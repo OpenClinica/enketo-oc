@@ -396,3 +396,66 @@ describe('DN object', () => {
         });
     });
 });
+
+describe('DN query modal accessibility', () => {
+    let dn;
+    let hidden;
+    let linkedQuestion;
+
+    const clearVex = () =>
+        document
+            .querySelectorAll('.vex, .vex-overlay')
+            .forEach((e) => e.remove());
+
+    beforeEach(() => {
+        clearVex();
+        dn = new Dn(el);
+        hidden = 0;
+        dn._hideCommentModal = () => {
+            hidden++;
+        };
+        linkedQuestion = document.createElement('div');
+        linkedQuestion.innerHTML = `<section class="or-comment-widget">
+            <h3><span class="or-comment-widget__nav__main__title">Queries</span></h3>
+            <button type="button" class="first">first</button>
+            <textarea name="dn-comment"></textarea>
+        </section>`;
+        document.body.append(linkedQuestion);
+        dn.linkedQuestion = linkedQuestion;
+    });
+
+    afterEach(() => {
+        document.removeEventListener('keyup', dn._escapeHandler);
+        linkedQuestion.remove();
+        clearVex();
+    });
+
+    it('is a labelled modal dialog and focuses its first control', () => {
+        const widget = linkedQuestion.querySelector('.or-comment-widget');
+
+        dn._setModalA11y(widget);
+
+        expect(widget.getAttribute('role')).to.equal('dialog');
+        expect(widget.getAttribute('aria-modal')).to.equal('true');
+        expect(
+            document.getElementById(widget.getAttribute('aria-labelledby'))
+                .textContent
+        ).to.equal('Queries');
+        expect(document.activeElement).to.equal(widget.querySelector('.first'));
+    });
+
+    it('closes on Escape', () => {
+        const widget = linkedQuestion.querySelector('.or-comment-widget');
+
+        dn._setModalA11y(widget);
+        document.dispatchEvent(
+            new KeyboardEvent('keyup', {
+                key: 'Escape',
+                keyCode: 27,
+                bubbles: true,
+            })
+        );
+
+        expect(hidden).to.equal(1);
+    });
+});
