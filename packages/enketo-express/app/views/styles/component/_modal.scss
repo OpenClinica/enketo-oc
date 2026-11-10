@@ -13,6 +13,22 @@
         border-radius: 4px;
     }
 
+    button.vex-close {
+        padding: 0;
+        border: 0;
+        background: transparent;
+    }
+    // The button has no size of its own (the x is a pseudo-element), so the
+    // focus ring has to be drawn on the pseudo-element.
+    button.vex-close:focus-visible {
+        outline: none;
+
+        &:before {
+            outline: 2px solid $text-color;
+            outline-offset: -2px;
+        }
+    }
+
     .vex-dialog-button {
         @extend .btn;
 
