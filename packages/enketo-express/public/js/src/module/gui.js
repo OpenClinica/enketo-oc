@@ -204,6 +204,92 @@ function feedback(message, duration, heading = t('feedback.header')) {
     }
 }
 
+const FOCUSABLE =
+    'button,[href],input,select,textarea,iframe,[tabindex]:not([tabindex="-1"])';
+let dialogCounter = 0;
+const dialogOpeners = new WeakMap();
+
+/**
+ * The element to return focus to when a new dialog closes. vex removes a closed
+ * dialog only after its close animation, so a dialog opened from another
+ * dialog's button would otherwise get that (soon removed) button as its opener.
+ *
+ * @return { Element|null } element to return focus to
+ */
+function _getOpener() {
+    const active = document.activeElement;
+    const root = active && active.closest('.vex');
+
+    return root && dialogOpeners.has(root) ? dialogOpeners.get(root) : active;
+}
+
+/**
+ * Makes a vex dialog accessible: role, aria-modal, label, named close button,
+ * Tab trap and focus return to the opener.
+ *
+ * @param { object } instance - vex instance
+ * @param { Element|null } opener - element that had focus before the dialog opened
+ * @return { object } the same instance
+ */
+function _a11y(instance, opener) {
+    const { contentEl } = instance;
+
+    dialogOpeners.set(instance.rootEl, opener);
+    const title = contentEl.querySelector('.vex-dialog-title');
+
+    contentEl.setAttribute('role', 'dialog');
+    contentEl.setAttribute('aria-modal', 'true');
+    if (title) {
+        title.id = `vex-dialog-title-${++dialogCounter}`;
+        contentEl.setAttribute('aria-labelledby', title.id);
+    }
+    if (instance.closeEl) {
+        const closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
+        closeBtn.className = instance.closeEl.className;
+        closeBtn.setAttribute('aria-label', t('alert.default.button'));
+        closeBtn.addEventListener('click', () => instance.close());
+        instance.closeEl.replaceWith(closeBtn);
+        instance.closeEl = closeBtn;
+    }
+    contentEl.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') {
+            return;
+        }
+        const items = [...contentEl.querySelectorAll(FOCUSABLE)].filter(
+            (el) => !el.disabled && el.offsetParent !== null
+        );
+        if (!items.length) {
+            return;
+        }
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    });
+    const afterClose = instance.options.afterClose;
+    instance.options.afterClose = function (...args) {
+        if (afterClose) {
+            afterClose.apply(this, args);
+        }
+        // Skip if another dialog took over, so focus is not stolen from it.
+        if (
+            opener &&
+            document.contains(opener) &&
+            !document.querySelector('.vex')
+        ) {
+            opener.focus();
+        }
+    };
+
+    return instance;
+}
+
 /**
  * Shows a modal alert dialog.
  * TODO: parameters should change to (content, options)
@@ -215,8 +301,9 @@ function feedback(message, duration, heading = t('feedback.header')) {
  */
 function alert(message, heading, level, duration) {
     level = level || 'error';
+    const opener = _getOpener();
     vex.closeAll();
-    vex.dialog.alert({
+    const dialog = vex.dialog.alert({
         unsafeMessage: `<span>${message}</span>`,
         title: heading || t('alert.default.heading'),
         messageClassName: level === 'normal' ? '' : `alert-box ${level}`,
@@ -230,6 +317,7 @@ function alert(message, heading, level, duration) {
         autoClose: duration,
         showCloseButton: true,
     });
+    _a11y(dialog, opener);
 
     return Promise.resolve();
 }
@@ -264,18 +352,19 @@ function confirm(content, choices) {
                 ? choices.allowAlternativeClose
                 : true;
 
+        const opener = _getOpener();
         vex.closeAll();
-        vex.dialog.confirm({
+        const dialog = vex.dialog.confirm({
             unsafeMessage: errorMsg + (message || t('confirm.default.msg')),
             title: content.heading || t('confirm.default.heading'),
             buttons: [
-                $.extend({}, vex.dialog.buttons.YES, {
-                    text: choices.posButton || t('confirm.default.posButton'),
-                    className: 'btn btn-primary small',
-                }),
                 $.extend({}, vex.dialog.buttons.NO, {
                     text: choices.negButton || t('confirm.default.negButton'),
                     className: 'btn btn-default small',
+                }),
+                $.extend({}, vex.dialog.buttons.YES, {
+                    text: choices.posButton || t('confirm.default.posButton'),
+                    className: 'btn btn-primary small',
                 }),
             ],
             callback: resolve,
@@ -284,6 +373,7 @@ function confirm(content, choices) {
             escapeButtonCloses: choices.allowAlternativeClose,
             overlayClosesOnClick: choices.allowAlternativeClose,
         });
+        _a11y(dialog, opener);
     });
 }
 
@@ -298,24 +388,26 @@ function prompt(content, choices, inputs) {
     return new Promise((resolve) => {
         choices = choices || {};
 
+        const opener = _getOpener();
         vex.closeAll();
-        vex.dialog.prompt({
+        const dialog = vex.dialog.prompt({
             unsafeMessage: errorMsg + (message || ''),
             title: content.heading || t('prompt.default.heading'),
             buttons: [
-                $.extend({}, vex.dialog.buttons.YES, {
-                    text: choices.posButton || t('confirm.default.posButton'),
-                    className: 'btn btn-primary small',
-                }),
                 $.extend({}, vex.dialog.buttons.NO, {
                     text: choices.negButton || t('confirm.default.negButton'),
                     className: 'btn btn-default small',
+                }),
+                $.extend({}, vex.dialog.buttons.YES, {
+                    text: choices.posButton || t('confirm.default.posButton'),
+                    className: 'btn btn-primary small',
                 }),
             ],
             input: inputs,
             callback: resolve,
             showCloseButton: true,
         });
+        _a11y(dialog, opener);
     });
 }
 
