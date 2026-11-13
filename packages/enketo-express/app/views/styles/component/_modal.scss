@@ -19,6 +19,16 @@
         margin-top: 20px !important;
         margin-left: 30px !important;
         margin-bottom: 0 !important;
+
+        // OC-29219: vex-theme-plain gives focused buttons `outline: none` and a pulsing shadow with a
+        // more specific selector than the global :focus-visible rule, so restore the ring here.
+        &:focus {
+            animation: none;
+        }
+
+        &:focus-visible {
+            @include focus-ring;
+        }
     }
 
     .vex-auto-close-timer {
@@ -82,6 +92,22 @@
             + label {
                 margin-left: 20px;
             }
+        }
+    }
+}
+
+// OC-29219: same for vex-theme-plain's `outline: none` + inset shadow on focused dialog fields
+// (selectors match vex's specificity).
+.vex.vex-theme-plain .vex-dialog-form .vex-dialog-input {
+    select,
+    textarea,
+    input:not([type='checkbox'], [type='radio']) {
+        &:focus {
+            box-shadow: none;
+        }
+
+        &:focus-visible {
+            @include focus-ring;
         }
     }
 }

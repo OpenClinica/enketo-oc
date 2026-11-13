@@ -32,14 +32,10 @@
 
         @include disabled;
 
-        @include radiocheck-focus;
-
         border-radius: 10px;
 
         &:checked {
             @include radio-checked-style;
-
-            @include radiocheck-focus;
         }
     }
 
@@ -50,12 +46,8 @@
 
         @include disabled;
 
-        @include radiocheck-focus;
-
         &:checked {
             @include checkbox-checked-style;
-
-            @include radiocheck-focus;
         }
     }
 }

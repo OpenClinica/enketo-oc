@@ -40,30 +40,8 @@ $secondary-color: #eeeeee;
         background: inherit !important;
     }
 
-    // suppress focus style, for most form controls except for discrepancy note controls
-    select:not([name=dn-assignee]),
-    textarea:not([name=dn-comment]),
-    input:not([name=dn-notify], [name=dn-comment]),
-    .draw-widget__body__canvas {
-        &:focus {
-            box-shadow: inherit !important;
-
-            &:not(:checked) {
-                border-color: $input-border !important;
-            }
-        }
-    }
-
-    // suppress focus style for pulldown widgets
-    a:focus {
-        outline: 0 !important;
-    }
-
-    // suppress image grid focus style
-    input:focus~.active {
-        box-shadow: inherit !important;
-        border: none !important;
-    }
+    // OC-29219: the focus-suppression rules that were here (form controls, pulldown links, image grid)
+    // were removed so the global :focus-visible ring is shown in readonly and note-only views too.
 }
 
 // Error messages on groups (which is a feature that doesn't exist in Enketo Express and Enketo Core)

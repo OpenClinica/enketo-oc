@@ -20,7 +20,11 @@
 .or-comment-widget__content__user__dn-assignee select,
 .or-comment-widget__content__type select {
     border: 0;
-    outline: 1px solid black;
+
+    // OC-29219: this outline is the border; let the global focus ring replace it on keyboard focus
+    &:not(:focus-visible) {
+        outline: 1px solid black;
+    }
 }
 
 .repeat-buttons .remove {

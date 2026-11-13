@@ -7,8 +7,8 @@
     background-color: $background;
     border-color: $border;
 
+    // OC-29219: focus is shown by the global outline, not by copying the hover background
     &:hover,
-    &:focus,
     &:active,
     &.active {
         color: $color;
