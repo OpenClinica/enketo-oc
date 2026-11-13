@@ -27,7 +27,6 @@
     flex-basis: $input-height;
 
     &:focus {
-        outline: none;
         box-shadow: none;
     } // Placeholder
     @include placeholder;

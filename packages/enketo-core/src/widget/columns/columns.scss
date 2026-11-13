@@ -59,8 +59,9 @@
                 border-color: $brand-primary-color;
             }
 
-            &:focus ~ .active {
-                @include focus-shadow;
+            // OC-29219: the input is visually hidden, so its image shows the focus ring
+            &:focus-visible ~ .active {
+                @include focus-ring;
             }
         }
     }
