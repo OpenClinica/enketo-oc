@@ -10,7 +10,7 @@ on:
 
 jobs:
     changes:
-        runs-on: 'ubuntu-latest'
+        runs-on: 'ubuntu-24.04'
 
         outputs:
             root: ${{ steps.changes.outputs.root }}
@@ -42,7 +42,7 @@ jobs:
                           - 'packages/enketo-express/**'
 
     install-and-build:
-        runs-on: 'ubuntu-latest'
+        runs-on: 'ubuntu-24.04'
 
         strategy:
             matrix:
@@ -87,7 +87,7 @@ jobs:
 
     lint:
         needs: ['install-and-build', 'changes']
-        runs-on: 'ubuntu-latest'
+        runs-on: 'ubuntu-24.04'
 
         strategy:
             matrix:
@@ -128,7 +128,7 @@ jobs:
     test-evaluator:
         needs: ['install-and-build', 'changes']
         if: github.event_name == 'release' || needs.changes.outputs.root == 'true' || needs.changes.outputs.evaluator == 'true'
-        runs-on: 'ubuntu-latest'
+        runs-on: 'ubuntu-24.04'
 
         strategy:
             matrix:
@@ -175,7 +175,7 @@ jobs:
     test-transformer:
         needs: ['install-and-build', 'changes']
         if: github.event_name == 'release' || needs.changes.outputs.root == 'true' || needs.changes.outputs.transformer == 'true'
-        runs-on: 'ubuntu-latest'
+        runs-on: 'ubuntu-24.04'
 
         strategy:
             matrix:
@@ -237,7 +237,7 @@ jobs:
     test-core:
         needs: ['install-and-build', 'changes']
         if: github.event_name == 'release' || needs.changes.outputs.root == 'true' || needs.changes.outputs.evaluator == 'true' || needs.changes.outputs.transformer == 'true' || needs.changes.outputs.core == 'true'
-        runs-on: 'ubuntu-latest'
+        runs-on: 'ubuntu-24.04'
 
         strategy:
             matrix:
@@ -291,7 +291,7 @@ jobs:
     test-express:
         needs: ['install-and-build', 'changes']
         if: needs.changes.outputs.root == 'true' || needs.changes.outputs.evaluator == 'true' || needs.changes.outputs.transformer == 'true' || needs.changes.outputs.core == 'true' || needs.changes.outputs.express == 'true'
-        runs-on: 'ubuntu-latest'
+        runs-on: 'ubuntu-24.04'
 
         env:
             TEST_REDIS_MAIN_PORT: 6379
