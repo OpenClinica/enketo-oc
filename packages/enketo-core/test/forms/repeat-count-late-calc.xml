@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    OC-27957: the repeat count (`cnt`, a visible calculation placed early in the form) depends on a chain
+    of hidden calculations placed later in the form, and `b` (also early) depends on a later hidden
+    calculation as well. Because the form calculates in document order, `cnt` only settles in a late
+    calculation pass of Form.init().
+-->
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:oc="http://openclinica.org/xforms" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>repeat-count-late-calc</h:title>
+    <model>
+      <instance>
+        <late-count id="late-count">
+          <inp>12</inp>
+          <b/>
+          <cnt/>
+          <e/>
+          <c/>
+          <d/>
+          <rep jr:template="">
+            <txt/>
+          </rep>
+          <meta>
+            <instanceID/>
+          </meta>
+        </late-count>
+      </instance>
+      <bind nodeset="/late-count/inp" type="int"/>
+      <bind calculate="/late-count/e" nodeset="/late-count/b" readonly="true()" type="int"/>
+      <bind calculate="if(/late-count/d &gt;= 18, 5, 6)" nodeset="/late-count/cnt" readonly="true()" type="int"/>
+      <bind calculate="/late-count/inp" nodeset="/late-count/e" type="int"/>
+      <bind calculate="/late-count/b" nodeset="/late-count/c" type="int"/>
+      <bind calculate="/late-count/c" nodeset="/late-count/d" type="int"/>
+      <bind nodeset="/late-count/rep/txt" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/late-count/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/late-count/inp">
+      <label>Source value</label>
+    </input>
+    <input ref="/late-count/b">
+      <label>Copy of the late value</label>
+    </input>
+    <input ref="/late-count/cnt">
+      <label>Number of repeats</label>
+    </input>
+    <group ref="/late-count/rep">
+      <label>Repeat</label>
+      <repeat jr:count="/late-count/cnt" nodeset="/late-count/rep">
+        <input ref="/late-count/rep/txt">
+          <label>Text</label>
+        </input>
+      </repeat>
+    </group>
+  </h:body>
+</h:html>

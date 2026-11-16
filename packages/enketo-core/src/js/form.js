@@ -505,6 +505,12 @@ Form.prototype.init = function () {
         // field values are calculated
         this.calc.update();
 
+        // OC-27957: a jr:count value can settle in the calc.update() above, which
+        // runs after repeats.init() and, for the earlier pass, before the event
+        // handlers exist, so the repeat instances were never reconciled to it.
+        // Reconcile once here, before editStatus is reset. No-op when counts match.
+        this.repeats.countUpdate();
+
         this.required.init();
 
         this.editStatus = false;
