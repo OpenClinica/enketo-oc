@@ -8,9 +8,18 @@ describe('Pages mode', () => {
         /** @type {SinonFakeTimers} */
         let timers;
 
+        /** @type {HTMLElement} */
+        let formFooter;
+
         beforeEach(() => {
             sandbox = sinon.createSandbox();
             timers = sandbox.useFakeTimers();
+            // A new repeat page runs OC's reason-for-change check (page.js, reasons.js), which inserts its section
+            // before the page's .form-footer. Provide one, as a real page has, instead of relying on a footer
+            // another spec happened to leave in the document.
+            formFooter = document.createElement('section');
+            formFooter.classList.add('form-footer');
+            document.body.append(formFooter);
         });
 
         afterEach(() => {
@@ -20,6 +29,7 @@ describe('Pages mode', () => {
             timers.clearInterval();
             timers.restore();
             sandbox.restore();
+            formFooter.remove();
         });
 
         it('loads to the proper first page', () => {

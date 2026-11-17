@@ -1525,6 +1525,34 @@ describe('aria-invalid and aria-describedby on invalid questions', () => {
         expect(input.hasAttribute('aria-invalid')).to.equal(false);
         expect(input.hasAttribute('aria-describedby')).to.equal(false);
     });
+
+    it('mirrors the state onto the desktop select toggle button', () => {
+        const form = loadForm('comment.xml');
+
+        form.init();
+
+        const question = document.createElement('label');
+        question.className = 'question invalid-required';
+        question.innerHTML =
+            '<select name="/s/a"><option value="">-</option></select>' +
+            '<div class="bootstrap-select"><button type="button" class="dropdown-toggle"></button></div>' +
+            '<span class="or-required-msg active">This field is required</span>';
+        form.view.html.appendChild(question);
+        const select = question.querySelector('select');
+        const toggle = question.querySelector('.dropdown-toggle');
+        const msg = question.querySelector('.or-required-msg');
+
+        form.syncAriaInvalid(select);
+
+        expect(toggle.getAttribute('aria-invalid')).to.equal('true');
+        expect(toggle.getAttribute('aria-describedby')).to.equal(msg.id);
+
+        question.classList.remove('invalid-required');
+        form.syncAriaInvalid(select);
+
+        expect(toggle.hasAttribute('aria-invalid')).to.equal(false);
+        expect(toggle.hasAttribute('aria-describedby')).to.equal(false);
+    });
 });
 
 describe('getting related nodes', () => {

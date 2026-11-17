@@ -175,7 +175,12 @@ class DrawWidget extends Widget {
             .then(() => {
                 that.$widget
                     .find('.btn-reset')
-                    .attr('aria-label', t('drawwidget.clear'))
+                    .attr({
+                        'aria-label': t('drawwidget.clear'),
+                        // lets the app's localize() update the label on a language change
+                        'data-i18n': 'drawwidget.clear',
+                        'data-i18n-attr': 'aria-label',
+                    })
                     .on('click', that._reset.bind(that))
                     .end()
                     .find('.draw-widget__colorpicker')
@@ -294,13 +299,16 @@ class DrawWidget extends Widget {
     _updateStatus() {
         const status = this.$widget[0].querySelector('.draw-widget__status');
         const filled = !!(this.cache || this.element.value);
-        status.textContent = filled
+        const key = filled
             ? this.props.type === 'signature'
-                ? t('drawwidget.signaturedrawn')
-                : t('drawwidget.drawn')
+                ? 'drawwidget.signaturedrawn'
+                : 'drawwidget.drawn'
             : this.props.type === 'signature'
-            ? t('drawwidget.nosignature')
-            : t('drawwidget.nodrawing');
+            ? 'drawwidget.nosignature'
+            : 'drawwidget.nodrawing';
+        // data-i18n lets the app's localize() re-translate the status on a language change
+        status.dataset.i18n = key;
+        status.textContent = t(key);
     }
 
     _forceUpdate() {
@@ -438,7 +446,7 @@ class DrawWidget extends Widget {
             : '';
         const fullscreenBtns = this.props.touch
             ? '<button type="button" class="show-canvas-btn btn btn-default">Draw/Sign</button>' +
-              `<button type="button" class="hide-canvas-btn btn btn-default" aria-label="${t(
+              `<button type="button" class="hide-canvas-btn btn btn-default" data-i18n="drawwidget.done" data-i18n-attr="aria-label" aria-label="${t(
                   'drawwidget.done'
               )}"><span class="icon icon-arrow-left"> </span></button>`
             : '';
@@ -453,9 +461,9 @@ class DrawWidget extends Widget {
                     ${
                         this.props.type === 'signature'
                             ? ''
-                            : `<button class="btn-icon-only draw-widget__undo" aria-label="${t(
-                              'drawwidget.undo'
-                          )}" type=button><i class="icon icon-undo"> </i></button>`
+                            : `<button class="btn-icon-only draw-widget__undo" data-i18n="drawwidget.undo" data-i18n-attr="aria-label" aria-label="${t(
+                                  'drawwidget.undo'
+                              )}" type=button><i class="icon icon-undo"> </i></button>`
                     }
                 </div>
                 <div class="draw-widget__footer">

@@ -1181,7 +1181,6 @@ Form.prototype.setValid = function (control, type) {
     this.syncAriaInvalid(control);
 };
 
-
 /**
  * Exposes the invalid state of a question or group to assistive technology: sets aria-invalid on the inputs inside
  * it and links them (aria-describedby) to the visible constraint/required/relevant message of their question and of

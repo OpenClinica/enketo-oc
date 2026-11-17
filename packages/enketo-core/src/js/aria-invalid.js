@@ -81,19 +81,39 @@ export function syncInputAria(input) {
             : null;
     }
 
+    const targets = [input];
+    // desktop selects hide the <select> and take focus on the .bootstrap-select toggle button instead
+    if (input.matches('select') && question) {
+        const toggle = question.querySelector(
+            '.bootstrap-select .dropdown-toggle'
+        );
+        if (toggle) {
+            targets.push(toggle);
+        }
+    }
+    targets.forEach((el) => applyAria(el, invalid, known, msgIds));
+}
+
+/**
+ * @param {Element} el - element that receives the state
+ * @param {boolean} invalid - whether it is invalid
+ * @param {Array<string>} known - all message ids this helper manages for it
+ * @param {Array<string>} msgIds - ids of the messages that currently describe it
+ */
+function applyAria(el, invalid, known, msgIds) {
     if (invalid) {
-        input.setAttribute('aria-invalid', 'true');
+        el.setAttribute('aria-invalid', 'true');
     } else {
-        input.removeAttribute('aria-invalid');
+        el.removeAttribute('aria-invalid');
     }
     // keep any other aria-describedby values (e.g. hint), replace only message ids
-    const others = (input.getAttribute('aria-describedby') || '')
+    const others = (el.getAttribute('aria-describedby') || '')
         .split(/\s+/)
         .filter((id) => id && !known.includes(id) && !msgIds.includes(id));
     const ids = [...others, ...msgIds];
     if (ids.length) {
-        input.setAttribute('aria-describedby', ids.join(' '));
+        el.setAttribute('aria-describedby', ids.join(' '));
     } else {
-        input.removeAttribute('aria-describedby');
+        el.removeAttribute('aria-describedby');
     }
 }

@@ -38,6 +38,8 @@ function _announceInvalidAndFocus() {
     const selectors = [
         '.invalid-required',
         '.invalid-relevant',
+        // number-input widget: malformed integer/decimal, also a validation failure in Form.validate()
+        '.invalid-value',
         ...form.constraintClassesInvalid.map((cls) => `.${cls}`),
     ].join(', ');
     const matches = [...form.view.html.querySelectorAll(selectors)];
@@ -64,7 +66,9 @@ function _announceInvalidAndFocus() {
 
     // first enabled, visible control in an invalid question or group
     const isFocusable = (el) =>
-        !el.disabled && !el.closest('.disabled') && el.getClientRects().length > 0;
+        !el.disabled &&
+        !el.closest('.disabled') &&
+        el.getClientRects().length > 0;
     let input = null;
     invalidEls.some((el) => {
         input =
