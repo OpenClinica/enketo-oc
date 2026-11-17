@@ -70,7 +70,8 @@ function _announceInvalidAndFocus() {
         input =
             [
                 ...el.querySelectorAll(
-                    'input:not([type="hidden"]):not(.ignore), select, textarea'
+                    // desktop selects hide the <select> and show a .bootstrap-select button instead
+                    'input:not([type="hidden"]):not(.ignore), select, textarea, .bootstrap-select .dropdown-toggle'
                 ),
             ].find(isFocusable) || null;
 

@@ -532,13 +532,14 @@ class DrawWidget extends Widget {
                     }
                     that.pad.clear();
                     that.cache = null;
-                    that._updateStatus();
                     // Only upon reset is loadedFileName removed, so that "undo" will work
                     // for drawings loaded from storage.
                     delete that.element.dataset.loadedFileName;
                     delete that.element.dataset.loadedUrl;
                     that.element.dataset.filenamePostfix = '';
                     $(that.element).val('').trigger('change');
+                    // update the announced status only after the control is empty, or it would still say "drawn"
+                    that._updateStatus();
                     if (that._updateWithDelay) {
                         // This ensures that an emptied canvas will not be considered a drawing to be captured
                         // in _forceUpdate, e.g. after the blur event fires on an empty canvas see issue #924

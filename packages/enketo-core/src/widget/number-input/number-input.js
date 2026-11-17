@@ -1,3 +1,4 @@
+import { syncInputAria } from '../../js/aria-invalid';
 import events from '../../js/event';
 import { t } from '../../js/fake-translator';
 import Widget from '../../js/widget';
@@ -248,6 +249,8 @@ class NumberInput extends Widget {
         question.classList.toggle('invalid-value', !isValid);
         message.innerText = isValid ? '' : t('constraint.invalid');
         this.isValid = isValid;
+        // expose the number-format error to assistive technology (aria-invalid + aria-describedby)
+        syncInputAria(element);
     }
 }
 

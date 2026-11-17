@@ -133,6 +133,25 @@ describe('Number inputs', () => {
     describe('integer', () => {
         runAllCommonWidgetTests(IntegerInput, formHTML, '2');
 
+        it('exposes an invalid value with aria-invalid and its message', async () => {
+            const control = formElement.querySelector(IntegerInput.selector);
+
+            input.setVal(control, '4.1', events.Input());
+            await Promise.resolve();
+
+            const { message } = integerInput;
+
+            expect(control.getAttribute('aria-invalid')).to.equal('true');
+            expect(control.getAttribute('aria-describedby')).to.contain(
+                message.id
+            );
+
+            input.setVal(control, '4', events.Input());
+            await Promise.resolve();
+
+            expect(control.hasAttribute('aria-invalid')).to.equal(false);
+        });
+
         it('is valid with an integer value', async () => {
             const control = formElement.querySelector(IntegerInput.selector);
             const value = '4';
