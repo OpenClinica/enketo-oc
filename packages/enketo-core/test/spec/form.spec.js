@@ -1473,6 +1473,32 @@ describe('aria-invalid and aria-describedby on invalid questions', () => {
         expect(input.hasAttribute('aria-invalid')).to.equal(false);
         expect(input.getAttribute('aria-describedby')).to.equal('hint-id');
     });
+
+    it('links the input to the "value should be cleared" message for invalid-relevant', () => {
+        const form = loadForm('comment.xml');
+
+        form.init();
+
+        const input = form.view.html.querySelector('[name="/comment/one"]');
+        const question = input.closest('.question');
+        if (!question.querySelector('.or-relevant-msg')) {
+            const span = document.createElement('span');
+            span.className = 'or-relevant-msg active';
+            span.textContent = 'This value should be cleared';
+            question.appendChild(span);
+        }
+
+        form.setInvalid(input, 'relevant');
+
+        const msg = question.querySelector('.or-relevant-msg.active');
+
+        expect(input.getAttribute('aria-invalid')).to.equal('true');
+        expect(input.getAttribute('aria-describedby')).to.contain(msg.id);
+
+        form.setValid(input, 'relevant');
+
+        expect(input.hasAttribute('aria-invalid')).to.equal(false);
+    });
 });
 
 describe('getting related nodes', () => {

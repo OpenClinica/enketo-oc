@@ -1184,7 +1184,7 @@ let ariaMsgCounter = 0;
 
 /**
  * Exposes the invalid state of a question to assistive technology: sets aria-invalid on its inputs and links them
- * (aria-describedby) to the visible constraint/required message. The messages themselves are deliberately
+ * (aria-describedby) to the visible constraint/required/relevant message. The messages themselves are deliberately
  * not live regions (they would be announced while typing).
  *
  * @param {Element} control - form control HTML element
@@ -1206,9 +1206,12 @@ Form.prototype.syncAriaInvalid = function (control) {
     if (invalidClasses.some((cl) => cl.indexOf('invalid-constraint') === 0)) {
         msgSelectors.push('.or-constraint-msg.active');
     }
+    if (invalidClasses.includes('invalid-relevant')) {
+        msgSelectors.push('.or-relevant-msg.active');
+    }
     const allMsgs = [
         ...wrap.querySelectorAll(
-            '.or-required-msg.active, .or-constraint-msg.active'
+            '.or-required-msg.active, .or-constraint-msg.active, .or-relevant-msg.active'
         ),
     ];
     allMsgs.forEach((msg) => {

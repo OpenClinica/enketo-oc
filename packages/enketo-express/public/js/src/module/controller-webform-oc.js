@@ -40,7 +40,14 @@ function _announceInvalidAndFocus() {
         '.invalid-relevant',
         ...form.constraintClassesInvalid.map((cls) => `.${cls}`),
     ].join(', ');
-    const invalidEls = [...form.view.html.querySelectorAll(selectors)];
+    const matches = [...form.view.html.querySelectorAll(selectors)];
+    // relevant-oc.js also marks .or-group / .or-group-data invalid-relevant: count a group only when none of
+    // the questions inside it is counted already, so nothing is counted twice.
+    const invalidEls = matches.filter(
+        (el) =>
+            el.matches('.question') ||
+            !matches.some((other) => other !== el && el.contains(other))
+    );
 
     if (!invalidEls.length) {
         return;
@@ -55,9 +62,20 @@ function _announceInvalidAndFocus() {
         { assertive: true }
     );
 
-    const input = invalidEls[0].querySelector(
-        'input:not([type="hidden"]):not(.ignore), select, textarea'
-    );
+    // first enabled, visible control in an invalid question or group
+    const isFocusable = (el) =>
+        !el.disabled && !el.closest('.disabled') && el.getClientRects().length > 0;
+    let input = null;
+    invalidEls.some((el) => {
+        input =
+            [
+                ...el.querySelectorAll(
+                    'input:not([type="hidden"]):not(.ignore), select, textarea'
+                ),
+            ].find(isFocusable) || null;
+
+        return !!input;
+    });
     if (!input) {
         return;
     }
