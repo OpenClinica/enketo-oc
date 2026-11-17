@@ -262,12 +262,12 @@ button::-moz-focus-inner {
 .btn-icon-only {
     margin: 0 10px 0 10px;
     padding: 0;
-    color: $text-color;
+    color: $btn-icon-only-color;
     background: none;
     border: none;
     font-size: 20px;
     box-shadow: none;
-    opacity: 0.7;
+    opacity: $btn-icon-only-opacity;
 
     &:hover,
     &:focus,
@@ -280,8 +280,8 @@ button::-moz-focus-inner {
     }
 
     &:hover {
-        color: $text-color;
-        opacity: 0.5;
+        color: $btn-icon-only-color;
+        opacity: $btn-icon-only-hover-opacity;
     }
 }
 

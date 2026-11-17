@@ -12,6 +12,14 @@
             "printhistoryheading": "History for - __labelText__ (__questionName__)",
             "me": "Me",
             "status": "Status: __status__",
+            "querystate": {
+                "none": "Query: none",
+                "new": "Query: new",
+                "updated": "Query: updated",
+                "closed": "Query: closed",
+                "closed-modified": "Query: closed, value changed",
+                "invalid": "Query: invalid"
+            },
             "reopen": "Reopen",
             "reopenlabel": "Type here to reopen",
             "autoclosed": "Query closed by system because this item was hidden",

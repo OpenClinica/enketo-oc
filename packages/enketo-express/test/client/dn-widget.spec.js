@@ -1,4 +1,6 @@
 import Dn from '../../widget/discrepancy-note/dn-widget';
+import { t } from '../../public/js/src/module/translator';
+import en from '../../locales/src/en/translation-additions.json';
 
 Dn.prototype._init = () => {};
 const fragment = document.createRange().createContextualFragment(
@@ -394,5 +396,29 @@ describe('DN object', () => {
                 expect(dn._getDefaultAssignee(notes)).to.equal(test[1]);
             });
         });
+    });
+
+    describe('setting the query button state', () => {
+        const dn = new Dn(el);
+        dn.commentButton = document.createElement('a');
+        const labels = en.widget.dn.querystate;
+
+        ['', 'new', 'updated', 'closed', 'closed-modified', 'invalid'].forEach(
+            (state) => {
+                it(`sets the class and aria-label for "${state}"`, () => {
+                    dn._setCommentButtonState(state);
+                    const key = state || 'none';
+                    expect(labels[key]).to.be.a('string');
+                    expect(
+                        dn.commentButton.getAttribute('aria-label')
+                    ).to.equal(t(`widget.dn.querystate.${key}`));
+                    if (state) {
+                        expect(
+                            dn.commentButton.classList.contains(state)
+                        ).to.equal(true);
+                    }
+                });
+            }
+        );
     });
 });

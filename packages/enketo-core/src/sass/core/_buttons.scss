@@ -113,13 +113,13 @@ button {
 .btn-icon-only {
     margin: 0 10px 0 10px;
     padding: 7px;
-    color: $text-color;
+    color: $btn-icon-only-color;
     background: none;
     border: none;
     width: $input-height;
     height: $input-height;
     box-shadow: none;
-    opacity: 0.7;
+    opacity: $btn-icon-only-opacity;
 
     &:hover,
     &:focus,
@@ -131,10 +131,14 @@ button {
         box-shadow: none;
     }
 
-    &:hover,
+    &:hover {
+        color: $btn-icon-only-color;
+        opacity: $btn-icon-only-hover-opacity;
+    }
+
     &:disabled,
     &.disabled {
-        color: $text-color;
+        color: $btn-icon-only-color;
         opacity: 0.5;
     }
 }

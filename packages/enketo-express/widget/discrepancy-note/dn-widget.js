@@ -61,7 +61,7 @@ class Comment extends Widget {
             const commentButton = document
                 .createRange()
                 .createContextualFragment(
-                    '<a class="btn-icon-only btn-comment btn-dn" tabindex="-1" type="button" href="#"><i class="icon"> </i></a>'
+                    '<a class="btn-icon-only btn-comment btn-dn" tabindex="-1" type="button" href="#"><i class="icon" aria-hidden="true"> </i></a>'
                 );
             const lastLabel = [
                 ...this.linkedQuestion.querySelectorAll('.question-label'),
@@ -160,6 +160,10 @@ class Comment extends Widget {
         if (state) {
             this.commentButton.classList.add(state);
         }
+        this.commentButton.setAttribute(
+            'aria-label',
+            t(`widget.dn.querystate.${state || 'none'}`)
+        );
         this.commentButton.classList.toggle(
             'multi',
             state !== 'closed' && state !== 'closed-modified' && multi
