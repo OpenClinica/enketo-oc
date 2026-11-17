@@ -158,6 +158,10 @@
     "msg": "__appTitle__ est en cours d'exécution ! Accédez aux formulaires OpenClinica depuis votre installation __serverName__."
   },
   "alert": {
+    "invalidquestions": {
+      "msg": "__count__ question nécessite votre attention",
+      "msg_plural": "__count__ questions nécessitent votre attention"
+    },
     "appupdated": {
       "heading": "Veuillez actualiser",
       "msg": "Actualisez cette page Web pour utiliser le formulaire hors ligne (réf. : application)"
@@ -202,6 +206,20 @@
     },
     "remove": {
       "btn": "Supprimer"
+    }
+  },
+  "drawwidget": {
+    "clear": "Effacer",
+    "undo": "Annuler",
+    "done": "Terminer le dessin",
+    "signaturedrawn": "Signature : dessinée",
+    "nosignature": "Aucune signature",
+    "drawn": "Dessin : dessiné",
+    "nodrawing": "Aucun dessin"
+  },
+  "formheader": {
+    "print": {
+      "label": "Imprimer"
     }
   }
 }

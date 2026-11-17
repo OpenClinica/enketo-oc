@@ -13,6 +13,7 @@ import { dataUriToBlobSync, getFilename } from '../../js/utils';
 import downloadUtils from '../../js/download-utils';
 
 const DELAY = 1500;
+let idCounter = 0;
 
 /**
  * SignaturePad.prototype.fromDataURL is asynchronous and does not return
@@ -128,6 +129,7 @@ class DrawWidget extends Widget {
         this.$widget = $(question.querySelector('.widget'));
 
         canvas = this.$widget[0].querySelector('.draw-widget__body__canvas');
+        this._setupAccessibleNames(canvas);
         this._handleResize(canvas);
         this._resizeCanvas(canvas);
 
@@ -159,6 +161,7 @@ class DrawWidget extends Widget {
             that.pad.off();
             if (existingFilename) {
                 that.element.value = existingFilename;
+                that._updateStatus();
 
                 return that
                     ._loadFileIntoPad(existingFilename)
@@ -172,6 +175,7 @@ class DrawWidget extends Widget {
             .then(() => {
                 that.$widget
                     .find('.btn-reset')
+                    .attr('aria-label', t('drawwidget.clear'))
                     .on('click', that._reset.bind(that))
                     .end()
                     .find('.draw-widget__colorpicker')
@@ -245,7 +249,7 @@ class DrawWidget extends Widget {
             .on('applyfocus', () => {
                 canvas.focus();
             })
-            .closest('[role="page"]')
+            .closest('[data-page]')
             .on(events.PageFlip().type, () => {
                 // When an existing value is loaded into the canvas and is not
                 // the first page, it won't become visible until the canvas is clicked
@@ -255,6 +259,48 @@ class DrawWidget extends Widget {
                 // https://github.com/kobotoolbox/enketo-express/issues/844
                 that._resizeCanvas(canvas);
             });
+    }
+
+    /**
+     * Gives the canvas an accessible name made of the question label and a
+     * visually hidden status ("Signature: drawn" / "No signature").
+     * Visible output is unchanged.
+     *
+     * @param {Element} canvas - Canvas element
+     */
+    _setupAccessibleNames(canvas) {
+        idCounter += 1;
+        const status = this.$widget[0].querySelector('.draw-widget__status');
+        status.id = `draw-widget-status-${idCounter}`;
+        const label =
+            this.question.querySelector('.question-label.active') ||
+            this.question.querySelector('.question-label');
+        const ids = [];
+        if (label) {
+            if (!label.id) {
+                label.id = `draw-widget-label-${idCounter}`;
+            }
+            ids.push(label.id);
+        }
+        ids.push(status.id);
+        canvas.setAttribute('aria-labelledby', ids.join(' '));
+        this._updateStatus();
+    }
+
+    /**
+     * Updates the visually hidden status that tells assistive technology
+     * whether the canvas holds a drawing or signature.
+     */
+    _updateStatus() {
+        const status = this.$widget[0].querySelector('.draw-widget__status');
+        const filled = !!(this.cache || this.element.value);
+        status.textContent = filled
+            ? this.props.type === 'signature'
+                ? t('drawwidget.signaturedrawn')
+                : t('drawwidget.drawn')
+            : this.props.type === 'signature'
+            ? t('drawwidget.nosignature')
+            : t('drawwidget.nodrawing');
     }
 
     _forceUpdate() {
@@ -392,19 +438,24 @@ class DrawWidget extends Widget {
             : '';
         const fullscreenBtns = this.props.touch
             ? '<button type="button" class="show-canvas-btn btn btn-default">Draw/Sign</button>' +
-              '<button type="button" class="hide-canvas-btn btn btn-default"><span class="icon icon-arrow-left"> </span></button>'
+              `<button type="button" class="hide-canvas-btn btn btn-default" aria-label="${t(
+                  'drawwidget.done'
+              )}"><span class="icon icon-arrow-left"> </span></button>`
             : '';
         const fragment = document.createRange().createContextualFragment(
             `<div class="widget draw-widget">
                 <div class="draw-widget__body">
                     ${fullscreenBtns}
                     ${load}
-                    <canvas class="draw-widget__body__canvas noSwipe disabled" tabindex="0"></canvas>
+                    <canvas class="draw-widget__body__canvas noSwipe disabled" tabindex="0" role="img"></canvas>
+                    <span class="draw-widget__status"></span>
                     <div class="draw-widget__colorpicker"></div>
                     ${
                         this.props.type === 'signature'
                             ? ''
-                            : '<button class="btn-icon-only draw-widget__undo" aria-label="undo" type=button><i class="icon icon-undo"> </i></button>'
+                            : `<button class="btn-icon-only draw-widget__undo" aria-label="${t(
+                              'drawwidget.undo'
+                          )}" type=button><i class="icon icon-undo"> </i></button>`
                     }
                 </div>
                 <div class="draw-widget__footer">
@@ -454,6 +505,7 @@ class DrawWidget extends Widget {
             // pad.toData() doesn't seem to work when redrawing on a smaller canvas. Doesn't scale.
             // pad.toDataURL() is crude and memory-heavy but the advantage is that it will also work for appearance=annotate
             this.value = newValue;
+            this._updateStatus();
             this._updateDownloadLink(this.value);
         }
     }
@@ -480,6 +532,7 @@ class DrawWidget extends Widget {
                     }
                     that.pad.clear();
                     that.cache = null;
+                    that._updateStatus();
                     // Only upon reset is loadedFileName removed, so that "undo" will work
                     // for drawings loaded from storage.
                     delete that.element.dataset.loadedFileName;
@@ -525,6 +578,7 @@ class DrawWidget extends Widget {
             .then(that.pad.fromObjectURL.bind(that.pad))
             .then((objectUrl) => {
                 that.cache = objectUrl;
+                that._updateStatus();
 
                 return objectUrl;
             })
@@ -611,6 +665,8 @@ class DrawWidget extends Widget {
         this.initialize.then(() => {
             that.pad.off();
             canvas.classList.add('disabled');
+            // A disabled/read-only canvas stays announced (role=img) but is not a dead Tab stop
+            canvas.removeAttribute('tabindex');
             that.$widget.find('.btn-reset').prop('disabled', true);
         });
     }
@@ -629,6 +685,7 @@ class DrawWidget extends Widget {
             if (!that.props.readonly && !needFile && !touchNotFull) {
                 that.pad.on();
                 canvas.classList.remove('disabled');
+                canvas.setAttribute('tabindex', '0');
                 that.$widget.find('.btn-reset').prop('disabled', false);
             }
             // https://github.com/enketo/enketo-core/issues/450

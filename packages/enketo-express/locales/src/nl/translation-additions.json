@@ -158,6 +158,10 @@
     "msg": "__appTitle__ wordt uitgevoerd! Open OpenClinica-formulieren vanuit uw __serverName__-installatie."
   },
   "alert": {
+    "invalidquestions": {
+      "msg": "__count__ vraag vereist aandacht",
+      "msg_plural": "__count__ vragen vereisen aandacht"
+    },
     "appupdated": {
       "heading": "Vernieuw de pagina",
       "msg": "Vernieuw deze webpagina om het formulier offline te kunnen gebruiken (ref.: toepassing)"
@@ -202,6 +206,20 @@
     },
     "remove": {
       "btn": "Verwijderen"
+    }
+  },
+  "drawwidget": {
+    "clear": "Wissen",
+    "undo": "Ongedaan maken",
+    "done": "Klaar met tekenen",
+    "signaturedrawn": "Handtekening: getekend",
+    "nosignature": "Geen handtekening",
+    "drawn": "Tekening: getekend",
+    "nodrawing": "Geen tekening"
+  },
+  "formheader": {
+    "print": {
+      "label": "Afdrukken"
     }
   }
 }

@@ -24,9 +24,60 @@ import records from './records-queue';
 import formCache from './form-cache';
 import FieldSubmissionQueue from './field-submission-queue';
 import rc from './controller-webform';
+import { announce } from './announce';
 import { replaceMediaSources, replaceModelMediaSources } from './media';
 
 let fieldSubmissionQueue;
+
+/**
+ * After a user-initiated validation (Validate / Submit button) has failed: announces the number of questions
+ * that need attention and moves focus to the first invalid question's first input.
+ * Accessibility only. Never call this from autosave/fieldsubmission background paths.
+ */
+function _announceInvalidAndFocus() {
+    const selectors = [
+        '.invalid-required',
+        '.invalid-relevant',
+        ...form.constraintClassesInvalid.map((cls) => `.${cls}`),
+    ].join(', ');
+    const invalidEls = [...form.view.html.querySelectorAll(selectors)];
+
+    if (!invalidEls.length) {
+        return;
+    }
+
+    announce(
+        t('alert.invalidquestions.msg', {
+            count: invalidEls.length,
+            defaultValue: '__count__ question needs attention',
+            defaultValue_plural: '__count__ questions need attention',
+        }),
+        { assertive: true }
+    );
+
+    const input = invalidEls[0].querySelector(
+        'input:not([type="hidden"]):not(.ignore), select, textarea'
+    );
+    if (!input) {
+        return;
+    }
+    // The "Form contains errors" alert is usually open at this point; focusing the input now would put focus
+    // behind the modal, so wait until the dialog is dismissed.
+    const dialog = document.querySelector('.vex');
+    if (!dialog) {
+        input.focus();
+
+        return;
+    }
+    const observer = new MutationObserver(() => {
+        if (!dialog.isConnected) {
+            observer.disconnect();
+            input.focus();
+        }
+    });
+    observer.observe(dialog.parentNode, { childList: true });
+}
+
 const DEFAULT_THANKS_URL = '/thanks';
 let form;
 let formData;
@@ -1619,6 +1670,7 @@ function _setButtonEventHandlers(survey) {
                             } else {
                                 gui.alert(t('alert.validationerror.msg'));
                             }
+                            _announceInvalidAndFocus();
                         } else {
                             gui.alert(
                                 t('alert.validationsuccess.msg'),
@@ -1653,6 +1705,7 @@ function _setButtonEventHandlers(survey) {
                         return _submitRecord();
                     }
                     gui.alert(t('alert.validationerror.msg'));
+                    _announceInvalidAndFocus();
                 })
                 .catch((e) => {
                     gui.alert(e.message);

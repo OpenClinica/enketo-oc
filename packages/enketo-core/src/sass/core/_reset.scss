@@ -37,10 +37,6 @@ a {
     &:focus {
         color: $link-hover-color;
     }
-
-    &:focus {
-        @include tab-focus;
-    }
 }
 
 figure {

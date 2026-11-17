@@ -233,7 +233,7 @@ $q-pad-right: 0px !default;
 }
 
 // corrections for pages mode
-.pages.or [role='page'] {
+.pages.or [data-page] {
     &.or-analog-scale-initialized {
         &.current:not(.or-appearance-horizontal) {
             @include display-flex;

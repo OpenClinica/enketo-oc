@@ -105,13 +105,6 @@ select[size] {
     height: auto;
 }
 
-// Focus for file, radio, and checkbox
-input[type='file']:focus,
-input[type='radio']:focus,
-input[type='checkbox']:focus {
-    @include tab-focus;
-}
-
 // Search inputs in iOS
 //
 // This overrides the extra rounded corners on search inputs in iOS so that our

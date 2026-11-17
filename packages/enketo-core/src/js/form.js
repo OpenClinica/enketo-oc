@@ -380,7 +380,7 @@ Form.prototype.init = function () {
         // before itemset.update
         this.langs.init(this.options.language);
 
-        // before repeats.init so that template contains role="page" when applicable
+        // before repeats.init so that template contains data-page when applicable
         this.pages.init();
 
         const repeatPaths = Array.from(
@@ -1177,6 +1177,73 @@ Form.prototype.setValid = function (control, type) {
         ? [`invalid-${type}`]
         : [...wrap.classList].filter((cl) => cl.indexOf('invalid-') === 0);
     wrap.classList.remove(...classes);
+    this.syncAriaInvalid(control);
+};
+
+let ariaMsgCounter = 0;
+
+/**
+ * Exposes the invalid state of a question to assistive technology: sets aria-invalid on its inputs and links them
+ * (aria-describedby) to the visible constraint/required message. The messages themselves are deliberately
+ * not live regions (they would be announced while typing).
+ *
+ * @param {Element} control - form control HTML element
+ */
+Form.prototype.syncAriaInvalid = function (control) {
+    const wrap = control.closest('.question, .calculation');
+
+    if (!wrap) {
+        return;
+    }
+
+    const invalidClasses = [...wrap.classList].filter(
+        (cl) => cl.indexOf('invalid-') === 0
+    );
+    const msgSelectors = [];
+    if (invalidClasses.includes('invalid-required')) {
+        msgSelectors.push('.or-required-msg.active');
+    }
+    if (invalidClasses.some((cl) => cl.indexOf('invalid-constraint') === 0)) {
+        msgSelectors.push('.or-constraint-msg.active');
+    }
+    const allMsgs = [
+        ...wrap.querySelectorAll(
+            '.or-required-msg.active, .or-constraint-msg.active'
+        ),
+    ];
+    allMsgs.forEach((msg) => {
+        if (!msg.id) {
+            ariaMsgCounter += 1;
+            msg.id = `or-msg-${ariaMsgCounter}`;
+        }
+    });
+    const allMsgIds = allMsgs.map((msg) => msg.id);
+    const msgIds = msgSelectors.length
+        ? allMsgs
+              .filter((msg) => msg.matches(msgSelectors.join(', ')))
+              .map((msg) => msg.id)
+        : [];
+    const invalid = msgSelectors.length > 0;
+
+    wrap.querySelectorAll(
+        'input:not([type="hidden"]):not(.ignore), select, textarea'
+    ).forEach((input) => {
+        if (invalid) {
+            input.setAttribute('aria-invalid', 'true');
+        } else {
+            input.removeAttribute('aria-invalid');
+        }
+        // keep any other aria-describedby values (e.g. hint), replace only our message ids
+        const others = (input.getAttribute('aria-describedby') || '')
+            .split(/\s+/)
+            .filter((id) => id && !allMsgIds.includes(id));
+        const ids = [...others, ...msgIds];
+        if (ids.length) {
+            input.setAttribute('aria-describedby', ids.join(' '));
+        } else {
+            input.removeAttribute('aria-describedby');
+        }
+    });
 };
 
 /**
@@ -1198,6 +1265,7 @@ Form.prototype.setInvalid = function (control, type = 'constraint') {
     }
 
     wrap.classList.add(`invalid-${type}`);
+    this.syncAriaInvalid(control);
 };
 
 /**

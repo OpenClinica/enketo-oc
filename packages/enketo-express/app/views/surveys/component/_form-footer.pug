@@ -2,6 +2,9 @@ section.form-footer
   .form-footer__content
     if !headless
       .form-footer__content__main-controls
+        button.btn.btn-default.previous-page.disabled(type="button", disabled)
+          i.icon.icon-arrow-left
+          span(data-i18n='form.pages.back')= t('form.pages.back')
         if type === 'preview'
           if nextPrompt
             fieldset.question.next-prompt
@@ -38,18 +41,14 @@ section.form-footer
               else
                 i.icon.icon-check= ' '
                 span(data-i18n='formfooter.complete.btn')= t('formfooter.complete.btn')
-        a.btn.btn-primary.next-page(href="#")
+        button.btn.btn-primary.next-page(type="button")
           i.icon.icon-arrow-right
           span(data-i18n='form.pages.next')= t('form.pages.next')
 
         include _logout
         include _enketo-power
-        a.btn.btn-default.previous-page.disabled(href="#")
-          i.icon.icon-arrow-left
-          span(data-i18n='form.pages.back')= t('form.pages.back')
-
       .form-footer__content__jump-nav
         if !nojump
-          a.btn.btn-default.disabled.first-page(href="#", data-i18n='form.pages.return')= t('form.pages.return')
-          a.btn.btn-default.disabled.last-page(href="#", data-i18n='form.pages.end')= t('form.pages.end')
+          button.btn.btn-default.disabled.first-page(type="button", disabled, data-i18n='form.pages.return')= t('form.pages.return')
+          button.btn.btn-default.disabled.last-page(type="button", disabled, data-i18n='form.pages.end')= t('form.pages.end')
 

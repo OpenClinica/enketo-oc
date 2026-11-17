@@ -1448,6 +1448,33 @@ describe('re-validating inputs and updating user feedback', () => {
     });
 });
 
+describe('aria-invalid and aria-describedby on invalid questions', () => {
+    it('links the input to the visible message and removes it when valid', () => {
+        const form = loadForm('comment.xml');
+
+        form.init();
+
+        const input = form.view.html.querySelector('[name="/comment/one"]');
+        const question = input.closest('.question');
+        input.setAttribute('aria-describedby', 'hint-id');
+
+        form.setInvalid(input, 'required');
+
+        const msg = question.querySelector('.or-required-msg.active');
+
+        expect(input.getAttribute('aria-invalid')).to.equal('true');
+        expect(msg.id).to.not.equal('');
+        expect(input.getAttribute('aria-describedby')).to.equal(
+            `hint-id ${msg.id}`
+        );
+
+        form.setValid(input, 'required');
+
+        expect(input.hasAttribute('aria-invalid')).to.equal(false);
+        expect(input.getAttribute('aria-describedby')).to.equal('hint-id');
+    });
+});
+
 describe('getting related nodes', () => {
     stubDialogConfirm();
 
@@ -2029,8 +2056,7 @@ describe('Focus', () => {
         formElement = form.view.html;
         formFooter.classList.add('form-footer');
         document.body.append(formElement, formFooter);
-        nextPageButton = document.createElement('a');
-        nextPageButton.href = '#';
+        nextPageButton = document.createElement('button');
         nextPageButton.type = 'button';
         nextPageButton.classList.add(
             'btn',
