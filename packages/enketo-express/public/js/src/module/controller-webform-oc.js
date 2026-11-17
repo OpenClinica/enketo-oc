@@ -669,13 +669,15 @@ function _close(options = { autoQueries: false, reasons: false }) {
                             msg: t('fieldsubmission.confirm.leaveanyway.msg'),
                         },
                         {
-                            posButton: t('confirm.default.negButton'),
-                            negButton: t(
+                            posButton: t(
                                 'fieldsubmission.confirm.leaveanyway.button'
                             ),
+                            negButton: t('confirm.default.negButton'),
                         }
                     ).then((confirmed) => {
-                        if (!confirmed) {
+                        // Escape, the close button and an overlay click all
+                        // resolve false, so they stay on the form.
+                        if (confirmed) {
                             document.dispatchEvent(events.Close());
                             _redirect(100);
                         }
@@ -1452,6 +1454,9 @@ function _setFormEventHandlers() {
                                         clearTimeout(timeoutId);
                                         gui.close();
                                         resetQuestion();
+                                        // Return focus to the signature question
+                                        // for keyboard and screen reader users.
+                                        event.target.focus();
                                         window.removeEventListener(
                                             'message',
                                             receiveMessage

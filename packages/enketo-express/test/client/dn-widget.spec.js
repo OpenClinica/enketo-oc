@@ -396,3 +396,109 @@ describe('DN object', () => {
         });
     });
 });
+
+describe('DN query modal dialog behaviour', () => {
+    let dn;
+    let hidden;
+    let linkedQuestion;
+    let input;
+
+    const clearVex = () =>
+        document
+            .querySelectorAll('.vex, .vex-overlay')
+            .forEach((e) => e.remove());
+
+    beforeEach(() => {
+        clearVex();
+        dn = new Dn(el);
+        hidden = 0;
+        dn._hideCommentModal = () => {
+            hidden++;
+        };
+        linkedQuestion = document.createElement('div');
+        linkedQuestion.innerHTML = `<section class="or-comment-widget">
+            <h3><span class="or-comment-widget__nav__main__title">Queries</span></h3>
+            <button type="button" class="first">first</button>
+            <textarea name="dn-comment" data-initial="auto text"></textarea>
+        </section>`;
+        document.body.append(linkedQuestion);
+        input = linkedQuestion.querySelector('textarea');
+        dn.linkedQuestion = linkedQuestion;
+    });
+
+    afterEach(() => {
+        document.removeEventListener('keyup', dn._escapeHandler);
+        linkedQuestion.remove();
+        clearVex();
+    });
+
+    it('is a labelled modal dialog and focuses its first control', () => {
+        const widget = linkedQuestion.querySelector('.or-comment-widget');
+
+        dn._setModalA11y(widget);
+
+        expect(widget.getAttribute('role')).to.equal('dialog');
+        expect(widget.getAttribute('aria-modal')).to.equal('true');
+        expect(
+            document.getElementById(widget.getAttribute('aria-labelledby'))
+                .textContent
+        ).to.equal('Queries');
+        expect(document.activeElement).to.equal(widget.querySelector('.first'));
+    });
+
+    it('closes on request without asking when the comment is unchanged', () => {
+        input.value = 'auto text';
+
+        dn._requestHideCommentModal();
+
+        expect(hidden).to.equal(1);
+        expect(document.querySelector('.vex')).to.equal(null);
+    });
+
+    it('closes without asking when the pre-filled text was deleted', () => {
+        input.value = '';
+
+        dn._requestHideCommentModal();
+
+        expect(hidden).to.equal(1);
+        expect(document.querySelector('.vex')).to.equal(null);
+    });
+
+    it('asks before closing when a comment was typed, and Cancel keeps it', async () => {
+        input.value = 'my own text';
+
+        const result = dn._requestHideCommentModal();
+        document.querySelector('.vex-dialog-button:not(.btn-primary)').click();
+        await result;
+
+        expect(hidden).to.equal(0);
+        expect(input.value).to.equal('my own text');
+    });
+
+    it('closes after the discard confirmation is accepted', async () => {
+        input.value = 'my own text';
+
+        const result = dn._requestHideCommentModal();
+        document.querySelector('.vex-dialog-button.btn-primary').click();
+        await result;
+
+        expect(hidden).to.equal(1);
+    });
+
+    it('opens one confirmation on Escape and does not close it at once', () => {
+        const widget = linkedQuestion.querySelector('.or-comment-widget');
+
+        input.value = 'my own text';
+        dn._setModalA11y(widget);
+        document.dispatchEvent(
+            new KeyboardEvent('keyup', {
+                key: 'Escape',
+                keyCode: 27,
+                bubbles: true,
+            })
+        );
+
+        expect(document.querySelectorAll('.vex').length).to.equal(1);
+        expect(hidden).to.equal(0);
+    });
+});
