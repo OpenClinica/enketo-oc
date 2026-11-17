@@ -45,6 +45,9 @@ const pendingFieldSubmissions = [];
 // OC-27957: upper bound for waiting on the submissions above. A submission that never settles (a drawing whose
 // canvas.toBlob() returns null) must not hold back a repeat removal, or close and complete, for ever.
 const PENDING_SUBMISSION_WAIT_MS = 3000;
+// Submissions that already made a wait time out. Later waits skip them, so one hung submission costs 3 seconds once.
+// They stay in pendingFieldSubmissions, because signing waits for that list without a limit.
+const timedOutSubmissions = new WeakSet();
 
 /**
  * Resolves when the submissions that are pending right now have reached the queue (or failed), or after
@@ -54,11 +57,17 @@ const PENDING_SUBMISSION_WAIT_MS = 3000;
  */
 function _waitForPendingSubmissions() {
     let timer;
+    const snapshot = pendingFieldSubmissions.filter(
+        (pending) => !timedOutSubmissions.has(pending)
+    );
     const settled = Promise.all(
-        pendingFieldSubmissions.map((pending) => pending.catch(() => undefined))
+        snapshot.map((pending) => pending.catch(() => undefined))
     );
     const timedOut = new Promise((resolve) => {
-        timer = setTimeout(resolve, PENDING_SUBMISSION_WAIT_MS);
+        timer = setTimeout(() => {
+            snapshot.forEach((pending) => timedOutSubmissions.add(pending));
+            resolve();
+        }, PENDING_SUBMISSION_WAIT_MS);
     });
 
     return Promise.race([settled, timedOut]).then(() => clearTimeout(timer));
