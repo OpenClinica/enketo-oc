@@ -1499,6 +1499,32 @@ describe('aria-invalid and aria-describedby on invalid questions', () => {
 
         expect(input.hasAttribute('aria-invalid')).to.equal(false);
     });
+
+    it('marks controls inside a group that is invalid-relevant and links the group message', () => {
+        const form = loadForm('comment.xml');
+
+        form.init();
+
+        const group = document.createElement('section');
+        group.className = 'or-group invalid-relevant';
+        group.innerHTML =
+            '<span class="or-relevant-msg active">This value should be cleared</span>' +
+            '<label class="question"><input type="text" name="/g/a"></label>';
+        form.view.html.appendChild(group);
+        const input = group.querySelector('input');
+        const msg = group.querySelector('.or-relevant-msg');
+
+        form.syncAriaInvalid(group);
+
+        expect(input.getAttribute('aria-invalid')).to.equal('true');
+        expect(input.getAttribute('aria-describedby')).to.equal(msg.id);
+
+        group.classList.remove('invalid-relevant');
+        form.syncAriaInvalid(group);
+
+        expect(input.hasAttribute('aria-invalid')).to.equal(false);
+        expect(input.hasAttribute('aria-describedby')).to.equal(false);
+    });
 });
 
 describe('getting related nodes', () => {

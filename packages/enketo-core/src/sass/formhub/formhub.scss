@@ -15,3 +15,6 @@
 @import '../core/responsive';
 @import '../core/dropdown';
 @import 'main';
+
+// keep last: visible keyboard focus
+@import '../core/focus';

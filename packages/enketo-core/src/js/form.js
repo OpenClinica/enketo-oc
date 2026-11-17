@@ -1183,71 +1183,116 @@ Form.prototype.setValid = function (control, type) {
 let ariaMsgCounter = 0;
 
 /**
- * Exposes the invalid state of a question to assistive technology: sets aria-invalid on its inputs and links them
- * (aria-describedby) to the visible constraint/required/relevant message. The messages themselves are deliberately
- * not live regions (they would be announced while typing).
+ * Exposes the invalid state of a question or group to assistive technology: sets aria-invalid on the inputs inside
+ * it and links them (aria-describedby) to the visible constraint/required/relevant message of their question and of
+ * any enclosing group marked invalid-relevant (OC marks .or-group and .or-group-data too). The messages themselves
+ * are deliberately not live regions (they would be announced while typing).
  *
- * @param {Element} control - form control HTML element
+ * @param {Element} control - form control HTML element, or a group element
  */
 Form.prototype.syncAriaInvalid = function (control) {
-    const wrap = control.closest('.question, .calculation');
+    const scope =
+        control.closest('.question, .calculation') ||
+        control.closest('.or-group, .or-group-data');
 
-    if (!wrap) {
+    if (!scope) {
         return;
     }
 
-    const invalidClasses = [...wrap.classList].filter(
-        (cl) => cl.indexOf('invalid-') === 0
-    );
-    const msgSelectors = [];
-    if (invalidClasses.includes('invalid-required')) {
-        msgSelectors.push('.or-required-msg.active');
-    }
-    if (invalidClasses.some((cl) => cl.indexOf('invalid-constraint') === 0)) {
-        msgSelectors.push('.or-constraint-msg.active');
-    }
-    if (invalidClasses.includes('invalid-relevant')) {
-        msgSelectors.push('.or-relevant-msg.active');
-    }
-    const allMsgs = [
-        ...wrap.querySelectorAll(
-            '.or-required-msg.active, .or-constraint-msg.active, .or-relevant-msg.active'
-        ),
-    ];
-    allMsgs.forEach((msg) => {
-        if (!msg.id) {
-            ariaMsgCounter += 1;
-            msg.id = `or-msg-${ariaMsgCounter}`;
-        }
-    });
-    const allMsgIds = allMsgs.map((msg) => msg.id);
-    const msgIds = msgSelectors.length
-        ? allMsgs
-              .filter((msg) => msg.matches(msgSelectors.join(', ')))
-              .map((msg) => msg.id)
-        : [];
-    const invalid = msgSelectors.length > 0;
-
-    wrap.querySelectorAll(
-        'input:not([type="hidden"]):not(.ignore), select, textarea'
-    ).forEach((input) => {
-        if (invalid) {
-            input.setAttribute('aria-invalid', 'true');
-        } else {
-            input.removeAttribute('aria-invalid');
-        }
-        // keep any other aria-describedby values (e.g. hint), replace only our message ids
-        const others = (input.getAttribute('aria-describedby') || '')
-            .split(/\s+/)
-            .filter((id) => id && !allMsgIds.includes(id));
-        const ids = [...others, ...msgIds];
-        if (ids.length) {
-            input.setAttribute('aria-describedby', ids.join(' '));
-        } else {
-            input.removeAttribute('aria-describedby');
-        }
-    });
+    scope
+        .querySelectorAll(
+            'input:not([type="hidden"]):not(.ignore), select, textarea'
+        )
+        .forEach((input) => syncInputAria(input));
 };
+
+/**
+ * @param {Element} msg - message element that needs an id to be referenced
+ * @return {string} its id
+ */
+function ensureMsgId(msg) {
+    if (!msg.id) {
+        ariaMsgCounter += 1;
+        msg.id = `or-msg-${ariaMsgCounter}`;
+    }
+
+    return msg.id;
+}
+
+/**
+ * @param {Element} input - a form control
+ */
+function syncInputAria(input) {
+    const known = [];
+    const msgIds = [];
+    let invalid = false;
+    const question = input.closest('.question, .calculation');
+
+    if (question) {
+        const classes = [...question.classList];
+        const selectors = [];
+        if (classes.includes('invalid-required')) {
+            selectors.push('.or-required-msg.active');
+        }
+        if (classes.some((cl) => cl.indexOf('invalid-constraint') === 0)) {
+            selectors.push('.or-constraint-msg.active');
+        }
+        if (classes.includes('invalid-relevant')) {
+            selectors.push('.or-relevant-msg.active');
+        }
+        question
+            .querySelectorAll(
+                '.or-required-msg, .or-constraint-msg, .or-relevant-msg'
+            )
+            .forEach((msg) => {
+                if (msg.id) {
+                    known.push(msg.id);
+                }
+                if (selectors.length && msg.matches(selectors.join(', '))) {
+                    msgIds.push(ensureMsgId(msg));
+                }
+            });
+        invalid = selectors.length > 0;
+    }
+
+    // enclosing groups marked invalid-relevant: only their own (direct child) message belongs to them
+    let group = (question || input).parentElement
+        ? (question || input).parentElement.closest('.or-group, .or-group-data')
+        : null;
+    while (group) {
+        const groupInvalid = group.classList.contains('invalid-relevant');
+        [...group.children]
+            .filter((el) => el.matches('.or-relevant-msg'))
+            .forEach((msg) => {
+                if (msg.id) {
+                    known.push(msg.id);
+                }
+                if (groupInvalid && msg.matches('.active')) {
+                    msgIds.push(ensureMsgId(msg));
+                }
+            });
+        invalid = invalid || groupInvalid;
+        group = group.parentElement
+            ? group.parentElement.closest('.or-group, .or-group-data')
+            : null;
+    }
+
+    if (invalid) {
+        input.setAttribute('aria-invalid', 'true');
+    } else {
+        input.removeAttribute('aria-invalid');
+    }
+    // keep any other aria-describedby values (e.g. hint), replace only message ids
+    const others = (input.getAttribute('aria-describedby') || '')
+        .split(/\s+/)
+        .filter((id) => id && !known.includes(id) && !msgIds.includes(id));
+    const ids = [...others, ...msgIds];
+    if (ids.length) {
+        input.setAttribute('aria-describedby', ids.join(' '));
+    } else {
+        input.removeAttribute('aria-describedby');
+    }
+}
 
 /**
  * Marks a question as invalid in the form UI.
