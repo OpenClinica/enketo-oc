@@ -84,7 +84,6 @@ export default {
                 this.$btnFirst = this.$formFooter.find('.first-page');
                 this.$btnPrev = this.$formFooter.find('.previous-page');
                 this.$btnNext = this.$formFooter.find('.next-page');
-                this.$btnNext.attr('tabindex', 2);
                 this.$btnLast = this.$formFooter.find('.last-page');
                 this.$toc = $(formWrapper.querySelector('.pages-toc__list'));
                 this._updateAllActive(allPages);
@@ -474,7 +473,7 @@ export default {
             // shifts the layout mid-tap, swallowing the first tap. See the
             // matching skip in _focusOnFirstQuestion (#258).
             if (!pageEl.classList.contains('or-appearance-field-list')) {
-                pageEl.setAttribute('tabindex', 1);
+                pageEl.setAttribute('tabindex', -1);
             }
         }
     },
@@ -528,6 +527,13 @@ export default {
         const prev = this._getPrev(index);
         this.$btnNext.add(this.$btnLast).toggleClass('disabled', !next);
         this.$btnPrev.add(this.$btnFirst).toggleClass('disabled', !prev);
+        // D10: mirror the disabled class for assistive technology
+        this.$btnNext
+            .add(this.$btnLast)
+            .attr('aria-disabled', next ? null : 'true');
+        this.$btnPrev
+            .add(this.$btnFirst)
+            .attr('aria-disabled', prev ? null : 'true');
         this.$formFooter.toggleClass('end', !next);
     },
     /**

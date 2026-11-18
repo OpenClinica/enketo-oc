@@ -1,13 +1,34 @@
+//- DOM order = visual order (flex `order` in _common-oc.scss): Previous, the
+//- buttons with order 2, Next, then the buttons that `~` rules move after Next.
+mixin nextPromptField
+  fieldset.question.next-prompt
+    .option-wrapper: label
+      input.ignore(type='checkbox', name='next-prompt')
+      span.option-label #{nextPrompt}
+mixin closeButtonEl
+  if participant
+    button(id="close-form", class="btn btn-primary participant", data-i18n='formfooter.done.btn')= t('formfooter.done.btn')
+  else
+    button(id="close-form", class=`btn ${completeButton ? 'btn-default' : 'btn-primary'}`, data-i18n='alert.default.button')= t('alert.default.button')
+mixin completeButtonEl
+  button(id="complete-form", class=`btn btn-primary`)
+    if !closeButton
+      span(data-i18n='alert.default.button')= t('alert.default.button')
+    else
+      i.icon.icon-check= ' '
+      span(data-i18n='formfooter.complete.btn')= t('formfooter.complete.btn')
+
 section.form-footer
   .form-footer__content
     if !headless
       .form-footer__content__main-controls
+        - var entry = type === 'fieldsubmission' || type === 'view'
+        if nextPrompt && (type === 'preview' || (entry && completeButton))
+          +nextPromptField
+        button.btn.btn-default.previous-page.disabled(type="button")
+          i.icon.icon-arrow-left
+          span(data-i18n='form.pages.back')= t('form.pages.back')
         if type === 'preview'
-          if nextPrompt
-            fieldset.question.next-prompt
-              .option-wrapper: label
-                input.ignore(type='checkbox', name='next-prompt')
-                span.option-label #{nextPrompt}
           button#validate-form.btn.btn-primary
             i.icon.icon-check= ' '
             span(data-i18n='formfooter.validate.btn')= t('formfooter.validate.btn')
@@ -20,36 +41,28 @@ section.form-footer
           button#submit-form.btn.btn-primary
             i.icon.icon-check= ' '
             span(data-i18n='formfooter.submit.btn')= t('formfooter.submit.btn')
-        else if type === 'fieldsubmission' || type === 'view'
-          if nextPrompt && completeButton
-            fieldset.question.next-prompt
-              .option-wrapper: label
-                input.ignore(type='checkbox', name='next-prompt')
-                span.option-label #{nextPrompt}
+        else if entry
           if participant
             button(id="exit-form", class="btn btn-default participant", data-i18n='formfooter.exit.btn')= t('formfooter.exit.btn')
-            button(id="close-form", class="btn btn-primary participant", data-i18n='formfooter.done.btn')= t('formfooter.done.btn')
           else if closeButton
-            button(id="close-form", class=`btn ${completeButton ? 'btn-default' : 'btn-primary'}`, data-i18n='alert.default.button')= t('alert.default.button')
-          if completeButton
-            button(id="complete-form", class=`btn btn-primary`)
-              if !closeButton
-                span(data-i18n='alert.default.button')= t('alert.default.button')
-              else
-                i.icon.icon-check= ' '
-                span(data-i18n='formfooter.complete.btn')= t('formfooter.complete.btn')
-        a.btn.btn-primary.next-page(href="#")
+            +closeButtonEl
+          else if completeButton
+            +completeButtonEl
+        button.btn.btn-primary.next-page(type="button")
           i.icon.icon-arrow-right
           span(data-i18n='form.pages.next')= t('form.pages.next')
+        if entry
+          if participant
+            +closeButtonEl
+            if completeButton
+              +completeButtonEl
+          else if closeButton && completeButton
+            +completeButtonEl
 
         include _logout
         include _enketo-power
-        a.btn.btn-default.previous-page.disabled(href="#")
-          i.icon.icon-arrow-left
-          span(data-i18n='form.pages.back')= t('form.pages.back')
 
       .form-footer__content__jump-nav
         if !nojump
-          a.btn.btn-default.disabled.first-page(href="#", data-i18n='form.pages.return')= t('form.pages.return')
-          a.btn.btn-default.disabled.last-page(href="#", data-i18n='form.pages.end')= t('form.pages.end')
-
+          button.btn.btn-default.disabled.first-page(type="button", data-i18n='form.pages.return')= t('form.pages.return')
+          button.btn.btn-default.disabled.last-page(type="button", data-i18n='form.pages.end')= t('form.pages.end')
