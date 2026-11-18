@@ -1,6 +1,8 @@
 {
     "widget": {
         "dn": {
+            "dialogname": "Consultas y anotaciones",
+            "discardcomment": "¿Descartar el texto que escribió?",
             "assignto": "Asignar a:",
             "assignedto": "__id__ asignado a __assignee__.",
             "closequerytext": "Cerrar esta consulta",

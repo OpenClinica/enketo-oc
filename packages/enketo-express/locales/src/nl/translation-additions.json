@@ -1,6 +1,8 @@
 {
   "widget": {
     "dn": {
+      "dialogname": "Query's en annotaties",
+      "discardcomment": "De getypte tekst verwijderen?",
       "assignto": "Toewijzen aan:",
       "assignedto": "__id__ toegewezen aan __assignee__.",
       "closequerytext": "Deze query sluiten",

@@ -1,6 +1,8 @@
 {
   "widget": {
     "dn": {
+      "dialogname": "Requêtes et annotations",
+      "discardcomment": "Abandonner le texte saisi ?",
       "assignto": "Attribuer à :",
       "assignedto": "__id__ attribué à __assignee__.",
       "closequerytext": "Fermer cette requête",

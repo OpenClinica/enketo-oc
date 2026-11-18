@@ -1,6 +1,8 @@
 {
   "widget": {
     "dn": {
+      "dialogname": "Query e annotazioni",
+      "discardcomment": "Eliminare il testo digitato?",
       "assignto": "Assegna a:",
       "assignedto": "__id__ assegnato a __assignee__.",
       "closequerytext": "Chiudi questa query",

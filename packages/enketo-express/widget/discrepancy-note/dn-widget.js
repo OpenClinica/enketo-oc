@@ -3,6 +3,7 @@ import Widget from 'enketo-core/src/js/widget';
 import { getSiblingElements } from 'enketo-core/src/js/dom-utils';
 import $ from 'jquery';
 import { t } from '../../public/js/src/module/translator';
+import gui from '../../public/js/src/module/gui';
 import settings from '../../public/js/src/module/settings';
 import events from '../../public/js/src/module/event';
 import fileManager from '../../public/js/src/module/file-manager';
@@ -839,9 +840,65 @@ class Comment extends Widget {
         [closeButton, overlay].forEach((el) => {
             el.addEventListener('click', (event) => {
                 this._hideCommentModal(this.linkedQuestion);
+                this.commentButton.focus();
                 event.preventDefault();
                 event.stopPropagation();
             });
+        });
+
+        // Not aria-modal: the widget sits inside the question, behind a fixed overlay.
+        widget.setAttribute('role', 'dialog');
+        widget.setAttribute('aria-label', t('widget.dn.dialogname'));
+        closeButton.setAttribute('aria-label', t('alert.close'));
+        if (!widget.contains(document.activeElement)) {
+            closeButton.focus();
+        }
+
+        widget.addEventListener('keydown', (event) => {
+            if (event.key !== 'Tab') {
+                return;
+            }
+            const items = [
+                ...widget.querySelectorAll(
+                    'button, input, select, textarea, a[href], [tabindex]'
+                ),
+            ].filter(
+                (el) =>
+                    !el.disabled &&
+                    el.tabIndex >= 0 &&
+                    el.getClientRects().length > 0
+            );
+            const index = items.indexOf(document.activeElement);
+            const last = items.length - 1;
+
+            if (event.shiftKey && index <= 0) {
+                event.preventDefault();
+                items[last].focus();
+            } else if (!event.shiftKey && (index === -1 || index === last)) {
+                event.preventDefault();
+                items[0].focus();
+            }
+        });
+
+        // keyup, not keydown: vex closes its top dialog on a window Escape keyup,
+        // so stop it there, or it would close the confirm dialog opened here.
+        widget.addEventListener('keyup', async (event) => {
+            if (event.key !== 'Escape') {
+                return;
+            }
+            event.stopPropagation();
+            const input = widget.querySelector('[name="dn-comment"]');
+            if (
+                input &&
+                input.value.trim() &&
+                !(await gui.confirm(t('widget.dn.discardcomment')))
+            ) {
+                return;
+            }
+            if (widget.isConnected) {
+                this._hideCommentModal(this.linkedQuestion);
+                this.commentButton.focus();
+            }
         });
     }
 

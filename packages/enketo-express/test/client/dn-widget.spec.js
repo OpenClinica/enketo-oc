@@ -1,4 +1,6 @@
 import Dn from '../../widget/discrepancy-note/dn-widget';
+import vex from 'vex-js';
+import { t } from '../../public/js/src/module/translator';
 
 Dn.prototype._init = () => {};
 const fragment = document.createRange().createContextualFragment(
@@ -394,5 +396,220 @@ describe('DN object', () => {
                 expect(dn._getDefaultAssignee(notes)).to.equal(test[1]);
             });
         });
+    });
+});
+
+describe('query dialog accessibility', () => {
+    let form;
+    let dn;
+
+    const OPEN_THREAD =
+        '{"queries":[{"type":"comment","id":"1","date_time":"2019-05-03 11:08:06.802 -06:00","comment":"x","status":"new","assigned_to":"","notify":false,"thread_id":"abc","user":"jen"}],"logs":[]}';
+
+    const key = (target, type, name, extra = {}) => {
+        const event = new KeyboardEvent(type, {
+            key: name,
+            bubbles: true,
+            cancelable: true,
+            ...extra,
+        });
+        if (name === 'Escape') {
+            Object.defineProperty(event, 'keyCode', { get: () => 27 });
+        }
+        target.dispatchEvent(event);
+
+        return event;
+    };
+    const escape = (target) => {
+        key(target, 'keydown', 'Escape');
+        key(target, 'keyup', 'Escape');
+    };
+    const tick = () => new Promise((resolve) => setTimeout(resolve, 0));
+    const widget = () => form.querySelector('.or-comment-widget');
+    const textarea = () => widget().querySelector('[name="dn-comment"]');
+    const closeButton = () =>
+        widget().querySelector('.or-comment-widget__content__btn-close-x');
+    const openDialogs = () =>
+        [...document.querySelectorAll('.vex')].filter(
+            (el) => !el.classList.contains('vex-closing')
+        );
+    // Karma loads no CSS, so vex never gets animationend: fire it by hand.
+    const finishAllClosing = () =>
+        document
+            .querySelectorAll('.vex.vex-closing')
+            .forEach((el) => el.dispatchEvent(new Event('animationend')));
+    const openWithTextarea = () => {
+        dn._showCommentModal();
+        widget().querySelector('button[data-type="comment"]').click();
+    };
+
+    beforeEach(() => {
+        form = document
+            .createRange()
+            .createContextualFragment(
+                `<form class="or">
+                    <label class="question">
+                        <span class="question-label">Q</span>
+                        <a class="btn-icon-only btn-comment btn-dn" tabindex="-1" type="button" href="#"></a>
+                        <input name="/data/node"/>
+                    </label>
+                    <label class="question or-appearance-dn">
+                        <span class="question-label">C</span>
+                        <textarea name="/data/comment" data-for="/data/node"></textarea>
+                    </label>
+                </form>`
+            )
+            .querySelector('form');
+        document.body.append(form);
+        dn = new Dn(form.querySelector('[data-for]'));
+        dn.linkedQuestion = form.querySelector('.question');
+        dn.commentButton = form.querySelector('.btn-dn');
+        dn.notes = { queries: [], logs: [] };
+        dn.readOnly = false;
+        dn.usersOptionsHtml = '<option value=""></option>';
+        dn.linkedQuestionErrorMsg = '';
+        // `users` is module state that _init sets; these tests skip _init.
+        dn._parseFullName = () => 'Jen';
+        dn._parseInitials = () => 'J';
+    });
+
+    afterEach(() => {
+        form.remove();
+        vex.closeAll();
+        finishAllClosing();
+    });
+
+    it('the query dialog has role="dialog" and aria-label = widget.dn.dialogname', () => {
+        dn._showCommentModal();
+
+        expect(widget().getAttribute('role')).to.equal('dialog');
+        expect(widget().getAttribute('aria-label')).to.equal(
+            t('widget.dn.dialogname')
+        );
+    });
+
+    it('it has no aria-modal attribute', () => {
+        dn._showCommentModal();
+
+        expect(widget().hasAttribute('aria-modal')).to.equal(false);
+    });
+
+    it('focus is inside the dialog after it opens', () => {
+        dn._showCommentModal();
+        expect(document.activeElement).to.equal(closeButton());
+        dn._hideCommentModal(dn.linkedQuestion);
+
+        dn.notes = dn._parseModelFromString(OPEN_THREAD);
+        dn.threadNameMap = dn._generateThreadNameMap(dn.notes);
+        dn._showCommentModal();
+        expect(document.activeElement).to.equal(textarea());
+    });
+
+    it('the close button has the name "Close" and is reached by Tab', () => {
+        dn._showCommentModal();
+        const button = closeButton();
+
+        expect(button.tagName).to.equal('BUTTON');
+        expect(button.tabIndex).to.equal(0);
+        expect(button.disabled).to.equal(false);
+        expect(button.getAttribute('aria-label')).to.equal(t('alert.close'));
+    });
+
+    it('Tab does not leave the dialog', () => {
+        openWithTextarea();
+        const items = [
+            ...widget().querySelectorAll(
+                'button, input, select, textarea, a[href], [tabindex]'
+            ),
+        ].filter(
+            (el) =>
+                !el.disabled &&
+                el.tabIndex >= 0 &&
+                el.getClientRects().length > 0
+        );
+        const first = items[0];
+        const last = items[items.length - 1];
+
+        last.focus();
+        let event = key(last, 'keydown', 'Tab');
+        expect(event.defaultPrevented).to.equal(true);
+        expect(document.activeElement).to.equal(first);
+
+        event = key(first, 'keydown', 'Tab', { shiftKey: true });
+        expect(event.defaultPrevented).to.equal(true);
+        expect(document.activeElement).to.equal(last);
+
+        // focus on no control of the dialog: Tab goes to the first control
+        document.activeElement.blur();
+        key(widget(), 'keydown', 'Tab');
+        expect(document.activeElement).to.equal(first);
+    });
+
+    it('Escape (keydown then keyup) with an empty comment closes it and focuses the trigger', () => {
+        openWithTextarea();
+        escape(textarea());
+
+        return tick().then(() => {
+            expect(widget()).to.equal(null);
+            expect(openDialogs().length).to.equal(0);
+            expect(document.activeElement).to.equal(dn.commentButton);
+        });
+    });
+
+    it('the Escape keyup does not reach the window listener of vex', () => {
+        let reached = false;
+        const listener = () => (reached = true);
+        window.addEventListener('keyup', listener);
+        openWithTextarea();
+        escape(textarea());
+        window.removeEventListener('keyup', listener);
+
+        expect(reached).to.equal(false);
+    });
+
+    it('Escape with typed text asks first; "no" keeps the dialog and the text', () => {
+        openWithTextarea();
+        const input = textarea();
+        input.value = 'typed';
+        escape(input);
+
+        expect(widget()).not.to.equal(null);
+        expect(openDialogs().length).to.equal(1);
+        expect(openDialogs()[0].textContent).to.include(
+            t('widget.dn.discardcomment')
+        );
+
+        openDialogs()[0].querySelectorAll('.vex-dialog-button')[1].click();
+        finishAllClosing();
+
+        return tick().then(() => {
+            expect(widget()).not.to.equal(null);
+            expect(input.value).to.equal('typed');
+            expect(document.activeElement).to.equal(input);
+        });
+    });
+
+    it('Escape with typed text and "yes" closes it', () => {
+        openWithTextarea();
+        textarea().value = 'typed';
+        escape(textarea());
+
+        openDialogs()[0].querySelectorAll('.vex-dialog-button')[0].click();
+
+        return tick().then(() => {
+            finishAllClosing();
+            expect(widget()).to.equal(null);
+            expect(document.activeElement).to.equal(dn.commentButton);
+        });
+    });
+
+    it('the close button with typed text closes without asking (unchanged)', () => {
+        openWithTextarea();
+        textarea().value = 'typed';
+        closeButton().click();
+
+        expect(widget()).to.equal(null);
+        expect(openDialogs().length).to.equal(0);
+        expect(document.activeElement).to.equal(dn.commentButton);
     });
 });

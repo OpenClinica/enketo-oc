@@ -1,6 +1,8 @@
 {
     "widget": {
         "dn": {
+            "dialogname": "Queries and annotations",
+            "discardcomment": "Discard the text you typed?",
             "assignto": "Assign to:",
             "assignedto": "__id__ assigned to __assignee__.",
             "closequerytext": "Close This Query",

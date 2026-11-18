@@ -1,6 +1,8 @@
 ﻿{
     "widget": {
         "dn": {
+            "dialogname": "Abfragen und Anmerkungen",
+            "discardcomment": "Den eingegebenen Text verwerfen?",
             "assignto": "Zuweisen zu:",
             "assignedto": "__id__ zugewiesen zu __assignee__.",
             "closequerytext": "Diese Abfrage schließen",
