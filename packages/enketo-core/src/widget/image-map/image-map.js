@@ -237,7 +237,7 @@ class ImageMap extends Widget {
      * Handles page flip of page in which the widget is placed.
      */
     _setPageHandler() {
-        const page = this.element.closest('[role="page"]');
+        const page = this.element.closest('[data-page]');
 
         if (page) {
             page.addEventListener(events.PageFlip().type, () =>

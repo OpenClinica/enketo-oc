@@ -1,4 +1,6 @@
 import loadForm from '../helpers/load-form';
+import events from '../../src/js/event';
+import reasons from '../../src/js/reasons';
 
 describe('Pages mode', () => {
     describe('Initial loading if form includes repeats-as-page', () => {
@@ -51,6 +53,49 @@ describe('Pages mode', () => {
         });
     });
 
+    describe('OC-29480: data-page replaces the invalid role="page"', () => {
+        it('marks every page with data-page and none with role="page"', () => {
+            const form = loadForm('pages.xml');
+            form.init();
+
+            expect(form.pages.activePages.length).to.be.above(0);
+            form.pages.activePages.forEach((page) => {
+                expect(page.hasAttribute('data-page')).to.equal(true);
+            });
+            expect(form.view.html.querySelector('[role="page"]')).to.equal(
+                null
+            );
+        });
+
+        it('gives a repeat clone added after init data-page', () => {
+            const form = loadForm('repeat-only-pages.xml');
+            form.init();
+
+            form.repeats.add(form.view.html.querySelector('.or-repeat-info'));
+
+            const repeats = form.view.html.querySelectorAll('.or-repeat');
+            expect(repeats.length).to.equal(2);
+            repeats.forEach((repeat) => {
+                expect(repeat.hasAttribute('data-page')).to.equal(true);
+                expect(repeat.hasAttribute('role')).to.equal(false);
+            });
+        });
+
+        it('still calls toggleButtons when a repeat page is added while a reason is empty', () => {
+            const form = loadForm('repeat-only-pages.xml');
+            form.init();
+            const sandbox = sinon.createSandbox();
+            sandbox.stub(reasons, 'validate').returns(false);
+            form.pages.toggleButtons = sandbox.spy();
+
+            const repeat = form.view.html.querySelector('.or-repeat');
+            repeat.dispatchEvent(events.AddRepeat({ trigger: 'user' }));
+            sandbox.restore();
+
+            expect(form.pages.toggleButtons).to.have.been.called;
+        });
+    });
+
     describe('Flip to page on multipages form', () => {
         it('flip to second page', () => {
             const form = loadForm('pages-comment.xml');
@@ -62,7 +107,7 @@ describe('Pages mode', () => {
             );
             const pageComment = form.view.html
                 .querySelector('input[name="/data/item2"]')
-                .closest('[role="page"]');
+                .closest('[data-page]');
             const pageTwoTextAreaCommentAncestor =
                 pageTwoTextAreaHiddenComment.closest('[role="comment"]');
 
@@ -110,7 +155,7 @@ describe('Pages mode', () => {
             form.pages.flipToPageContaining([fieldListPage]);
 
             const questionPage = form.view.html.querySelector(
-                '.question[role="page"]'
+                '.question[data-page]'
             );
             const focusSpy = sandbox.spy(questionPage, 'focus');
 

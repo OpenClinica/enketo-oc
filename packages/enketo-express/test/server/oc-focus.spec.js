@@ -136,3 +136,15 @@ describe('OC focus ring', () => {
         })
     );
 });
+
+describe('OC-29480: data-page replaces role="page"', () => {
+    ['theme-oc', 'theme-grid'].forEach((theme) => {
+        ['', '.print'].forEach((suffix) => {
+            it(`${theme}${suffix}.css selects pages by [data-page]`, () => {
+                const css = read(`${theme}${suffix}`);
+                expect(css).to.not.match(/role=['"]?page/);
+                expect(css).to.contain('[data-page]');
+            });
+        });
+    });
+});

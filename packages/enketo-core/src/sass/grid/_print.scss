@@ -175,7 +175,7 @@ $printBaseFontSize: 10px;
     }
 }
 
-.pages.or [role='page'].current:not(.question) {
+.pages.or [data-page].current:not(.question) {
     display: inherit;
 }
 
