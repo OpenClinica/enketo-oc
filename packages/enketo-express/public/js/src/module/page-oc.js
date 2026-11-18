@@ -28,6 +28,9 @@ pageModule._next = function () {
     const that = this;
 
     this.form.validateContent($(this.current)).then((valid) => {
+        if (!valid) {
+            that.form.announceInvalid(that.current);
+        }
         const currentIndex = that._getCurrentIndex();
         const next = that._getNext(currentIndex);
         const newIndex = currentIndex + 1;

@@ -170,6 +170,8 @@
         }
     },
     "constraint": {
+        "attention": "__count__ Frage erfordert Ihre Aufmerksamkeit",
+        "attention_plural": "__count__ Fragen erfordern Ihre Aufmerksamkeit",
         "relevant": "Durch eine Antwort wurde zu einer anderen Frage gewechselt, für die diese Frage ausgeblendet werden muss, sie kann aber nicht ausgeblendet werden, solange sie Daten enthält. Löschen Sie die Daten oder ändern Sie die abhängigen Antworten."
     },
     "home": {

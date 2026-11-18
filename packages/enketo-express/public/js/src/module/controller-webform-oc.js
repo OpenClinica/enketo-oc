@@ -515,6 +515,7 @@ function _close(options = { autoQueries: false, reasons: false }) {
     ) {
         return form.validate().then((valid) => {
             if (!valid) {
+                form.announceInvalid();
                 const requiredViolations =
                     form.view.html.querySelector('.invalid-required');
                 if (settings.participant && requiredViolations) {
@@ -559,6 +560,7 @@ function _close(options = { autoQueries: false, reasons: false }) {
 
     return form.validate().then((valid) => {
         if (!valid) {
+            form.announceInvalid();
             if (options.autoQueries) {
                 const violations = [
                     ...form.view.html.querySelectorAll(
@@ -741,6 +743,7 @@ function _complete(
     // form.validate() will trigger fieldsubmissions for timeEnd before it resolves
     return form.validate().then((valid) => {
         if (!valid) {
+            form.announceInvalid();
             const strictViolations = form.view.html.querySelector(
                 settings.strictViolationSelector
             );

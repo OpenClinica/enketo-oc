@@ -159,6 +159,8 @@
         }
     },
     "constraint": {
+        "attention": "__count__ question needs attention",
+        "attention_plural": "__count__ questions need attention",
         "relevant": "An answer has changed to another question that requires this question to be hidden, but we cannot hide it while it has data. Please clear out the data or modify the dependent answers."
     },
     "home": {

@@ -162,6 +162,8 @@
     }
   },
   "constraint": {
+    "attention": "__count__ question nécessite votre attention",
+    "attention_plural": "__count__ questions nécessitent votre attention",
     "relevant": "La réponse à un autre champ exige que ce champ soit masqué, mais nous ne pouvons pas le masquer tant qu'il contient des données. Veuillez supprimer les données ou modifier les réponses dépendantes."
   },
   "home": {

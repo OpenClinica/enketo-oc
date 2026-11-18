@@ -162,6 +162,8 @@
     }
   },
   "constraint": {
+    "attention": "__count__ vraag vereist aandacht",
+    "attention_plural": "__count__ vragen vereisen aandacht",
     "relevant": "Een antwoord op een andere vraag is gewijzigd, waardoor deze vraag verborgen moet worden, maar dit kan niet zolang er gegevens in staan. Wis de gegevens of wijzig de afhankelijke antwoorden."
   },
   "home": {

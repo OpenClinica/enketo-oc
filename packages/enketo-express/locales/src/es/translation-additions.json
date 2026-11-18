@@ -159,6 +159,8 @@
         }
     },
     "constraint": {
+        "attention": "__count__ pregunta requiere atención",
+        "attention_plural": "__count__ preguntas requieren atención",
         "relevant": "Una respuesta ha cambiado a otra pregunta que requiere que esta pregunta esté oculta, pero no podemos ocultarla mientras tenga datos. Borre los datos o modifique las respuestas dependientes."
     },
     "home": {

@@ -162,6 +162,8 @@
     }
   },
   "constraint": {
+    "attention": "__count__ domanda richiede attenzione",
+    "attention_plural": "__count__ domande richiedono attenzione",
     "relevant": "La risposta a un'altra domanda è cambiata e richiede che questa domanda venga nascosta, ma non è possibile nasconderla finché contiene dati. Elimina i dati oppure modifica le risposte dipendenti."
   },
   "home": {
