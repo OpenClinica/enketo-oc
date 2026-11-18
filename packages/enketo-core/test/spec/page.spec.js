@@ -218,29 +218,46 @@ describe('Pages mode', () => {
 
         it('mirrors the disabled class in aria-disabled and sets no disabled property', () => {
             const { form, footer } = initWithFooter('groups-pages.xml');
-            const names = ['next-page', 'previous-page', 'first-page', 'last-page'];
+            const names = [
+                'next-page',
+                'previous-page',
+                'first-page',
+                'last-page',
+            ];
             const check = () => {
                 names.forEach((c) => {
                     const el = btn(footer, c);
                     expect(el.disabled).to.equal(false);
                     expect(el.hasAttribute('disabled')).to.equal(false);
                     if (el.classList.contains('disabled')) {
-                        expect(el.getAttribute('aria-disabled')).to.equal('true');
+                        expect(el.getAttribute('aria-disabled')).to.equal(
+                            'true'
+                        );
                     } else {
-                        expect(el.hasAttribute('aria-disabled')).to.equal(false);
+                        expect(el.hasAttribute('aria-disabled')).to.equal(
+                            false
+                        );
                     }
                 });
             };
 
             // first page: previous and first disabled, next and last enabled
             check();
-            expect(btn(footer, 'previous-page').getAttribute('aria-disabled')).to.equal('true');
-            expect(btn(footer, 'next-page').hasAttribute('aria-disabled')).to.equal(false);
+            expect(
+                btn(footer, 'previous-page').getAttribute('aria-disabled')
+            ).to.equal('true');
+            expect(
+                btn(footer, 'next-page').hasAttribute('aria-disabled')
+            ).to.equal(false);
 
             form.pages._toggleButtons(form.pages.activePages.length - 1);
             check();
-            expect(btn(footer, 'next-page').getAttribute('aria-disabled')).to.equal('true');
-            expect(btn(footer, 'previous-page').hasAttribute('aria-disabled')).to.equal(false);
+            expect(
+                btn(footer, 'next-page').getAttribute('aria-disabled')
+            ).to.equal('true');
+            expect(
+                btn(footer, 'previous-page').hasAttribute('aria-disabled')
+            ).to.equal(false);
         });
 
         it('calls _next once when an enabled Next is clicked', () => {

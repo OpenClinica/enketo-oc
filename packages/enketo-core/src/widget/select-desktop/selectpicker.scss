@@ -87,12 +87,6 @@
     }
 }
 
-// On active and open, don't show outline
-
-.btn-group .dropdown-toggle:active,
-.btn-group.open .dropdown-toggle {
-}
-
 // The clickable button for toggling the menu
 // Remove the gradient and set the same inset shadow as the :active state
 .btn-group.open .dropdown-toggle {

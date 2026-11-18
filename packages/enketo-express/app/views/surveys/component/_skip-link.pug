@@ -21,4 +21,6 @@ if !headless
       background: #fff;
       color: #000;
     }
-  a.oc-skip-link(href="#form-title")= t('form.skiplink')
+  //- onclick moves focus without writing #form-title into the URL: the OC controller reads the hash as a go-to target on reload.
+  //- The href stays for use without JavaScript.
+  a.oc-skip-link(href="#form-title", onclick="var h=document.getElementById('form-title');if(h){h.setAttribute('tabindex','-1');h.focus();}return false;")= t('form.skiplink')

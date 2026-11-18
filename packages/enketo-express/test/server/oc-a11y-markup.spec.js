@@ -15,7 +15,7 @@ const locals = {
     headless: false,
 };
 const render = (file, extra = {}) =>
-    pug.renderFile(path.resolve(viewsDir, file), Object.assign({}, locals, extra));
+    pug.renderFile(path.resolve(viewsDir, file), { ...locals, ...extra });
 
 const tagOf = (html, re) => {
     const m = html.match(re);
@@ -58,8 +58,34 @@ describe('Skip link to the form', () => {
     it('renders a link to #form-title', () => {
         const html = render('surveys/component/_skip-link.pug');
         expect(html).to.match(
-            /<a class="oc-skip-link" href="#form-title">form\.skiplink<\/a>/
+            /<a class="oc-skip-link" href="#form-title" onclick="[^"]+">form\.skiplink<\/a>/
         );
+    });
+
+    // A #form-title hash would be read as a go-to target on reload.
+    it('activation focuses the form title and does not follow the href', () => {
+        const html = render('surveys/component/_skip-link.pug');
+        const code = html
+            .match(/class="oc-skip-link"[^>]*onclick="([^"]+)"/)[1]
+            .replace(/&#39;/g, "'");
+        const title = {
+            attrs: {},
+            setAttribute(name, value) {
+                this.attrs[name] = value;
+            },
+            focus() {
+                this.focused = true;
+            },
+        };
+        const doc = {
+            getElementById: (id) => (id === 'form-title' ? title : null),
+        };
+        // eslint-disable-next-line no-new-func
+        const result = new Function('document', code)(doc);
+
+        expect(result).to.equal(false);
+        expect(title.focused).to.equal(true);
+        expect(title.attrs.tabindex).to.equal('-1');
     });
 
     it('renders nothing when headless', () => {
@@ -112,9 +138,9 @@ describe('Skip link to the form', () => {
         };
 
         it('hides the link with the .oc-visually-hidden declarations until focused', () => {
-            expect(decls(selectorRule('.oc-skip-link:not(:focus)'))).to.deep.equal(
-                decls(visuallyHidden)
-            );
+            expect(
+                decls(selectorRule('.oc-skip-link:not(:focus)'))
+            ).to.deep.equal(decls(visuallyHidden));
         });
 
         it('shows the link at the top of the page on focus', () => {
@@ -130,7 +156,7 @@ describe('Skip link to the form', () => {
             'utf8'
         );
         expect(src).to.match(
-            /^block content\n  include component\/_skip-link\n/m
+            /^block content\n {2}include component\/_skip-link\n/m
         );
     });
 });
@@ -164,7 +190,11 @@ describe('Form footer page controls are buttons in visual Tab order', () => {
         ],
         [
             'participant with Complete',
-            { type: 'fieldsubmission', participant: true, completeButton: true },
+            {
+                type: 'fieldsubmission',
+                participant: true,
+                completeButton: true,
+            },
             [
                 'previous-page',
                 'exit-form',
@@ -229,17 +259,14 @@ describe('Form footer page controls are buttons in visual Tab order', () => {
         const html = footer({ type: 'view', closeButton: true });
         [
             ['btn btn-primary next-page', /class="btn btn-primary next-page"/],
-            [
-                'previous',
-                /class="btn btn-default previous-page disabled"/,
-            ],
-            [
-                'first',
-                /class="btn btn-default disabled first-page"/,
-            ],
+            ['previous', /class="btn btn-default previous-page disabled"/],
+            ['first', /class="btn btn-default disabled first-page"/],
             ['last', /class="btn btn-default disabled last-page"/],
         ].forEach(([, re]) => {
-            const tag = tagOf(html, new RegExp(`<button[^>]*${re.source}[^>]*>`));
+            const tag = tagOf(
+                html,
+                new RegExp(`<button[^>]*${re.source}[^>]*>`)
+            );
             expect(tag).to.match(/type="button"/);
         });
         expect(html).to.not.match(/<a[^>]*(next|previous|first|last)-page/);

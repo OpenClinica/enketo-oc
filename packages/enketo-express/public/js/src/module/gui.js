@@ -33,6 +33,13 @@ vex.defaultOptions.className = 'vex-theme-plain';
 
 const FOCUSABLE = 'button, input, select, textarea, a[href], [tabindex]';
 
+// A button that is disabled when it is clicked (btnBusyState) loses focus to body,
+// so the last focused element is kept to find the opener.
+let lastFocused = null;
+document.addEventListener('focusin', (event) => {
+    lastFocused = event.target;
+});
+
 /**
  * Returns the element to give focus back to when a dialog closes.
  * An element inside a vex dialog is not used, because that dialog closes.
@@ -40,7 +47,11 @@ const FOCUSABLE = 'button, input, select, textarea, a[href], [tabindex]';
  * @return {HTMLElement|null} opener
  */
 function _getOpener() {
-    const el = document.activeElement;
+    let el = document.activeElement;
+
+    if ((!el || el === document.body) && lastFocused && lastFocused.disabled) {
+        el = lastFocused;
+    }
 
     return el && el !== document.body && !el.closest('.vex') ? el : null;
 }
@@ -83,15 +94,16 @@ function _makeDialogAccessible(vexInstance, opener) {
                 el.tabIndex >= 0 &&
                 el.getClientRects().length > 0
         );
-        const first = items[0];
-        const last = items[items.length - 1];
+        const index = items.indexOf(document.activeElement);
+        const last = items.length - 1;
 
-        if (event.shiftKey && document.activeElement === first) {
+        // index -1: focus is on the dialog text or the dialog itself.
+        if (event.shiftKey && index <= 0) {
             event.preventDefault();
-            last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
+            items[last].focus();
+        } else if (!event.shiftKey && (index === -1 || index === last)) {
             event.preventDefault();
-            first.focus();
+            items[0].focus();
         }
     });
 
@@ -102,19 +114,39 @@ function _makeDialogAccessible(vexInstance, opener) {
         if (afterClose) {
             afterClose.call(this);
         }
-        const active = document.activeElement;
-        const otherOpen = Object.values(vex.getAll()).some((v) => v.isOpen);
-
-        if (
-            opener &&
-            opener.isConnected &&
-            !otherOpen &&
-            (!active ||
-                active === document.body ||
-                this.rootEl.contains(active))
-        ) {
-            opener.focus();
+        if (!opener) {
+            return;
         }
+        const returnFocus = () => {
+            const active = document.activeElement;
+            const otherOpen = Object.values(vex.getAll()).some((v) => v.isOpen);
+
+            if (
+                opener.isConnected &&
+                !otherOpen &&
+                (!active || active === document.body)
+            ) {
+                opener.focus();
+            }
+        };
+
+        if (!opener.disabled) {
+            returnFocus();
+
+            return;
+        }
+        // A disabled element cannot take focus: wait until it is enabled again.
+        // ponytail: the observer stays if the opener is never enabled again (e.g. the page unloads).
+        const observer = new MutationObserver(() => {
+            if (!opener.disabled) {
+                observer.disconnect();
+                returnFocus();
+            }
+        });
+        observer.observe(opener, {
+            attributes: true,
+            attributeFilter: ['disabled'],
+        });
     };
 }
 
@@ -337,7 +369,7 @@ function close() {
  *
  * @param {?(object.<string, (string|boolean)>|string)=} content - In its simplest form this is just a string but it can
  *                                                         also an object with parameters msg, heading and errorMsg.
- * @param {object=} choices - [type/description]; `negFirst: true` puts Cancel first (and focused)
+ * @param {object=} choices - button texts (posButton, negButton), allowAlternativeClose; `negFirst: true` puts Cancel first (and focused)
  */
 function confirm(content, choices) {
     let errorMsg = '';

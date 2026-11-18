@@ -75,6 +75,7 @@
         "abortcontroller-polyfill": "^1.7.5",
         "nock": "^13.3.3",
         "node-sass": "^9.0.0",
+        "postcss": "^8.4.38",
         "supertest": "^6.3.3"
     },
     "resolutions": {

@@ -162,6 +162,46 @@ describe('vex dialog accessibility', () => {
         expect(document.activeElement).to.equal(opener);
     });
 
+    // The Complete button is disabled (btnBusyState) while Confirm Completion is open.
+    it('closing returns focus to an opener that was disabled at open, once it is enabled again', async () => {
+        const opener = add('<button type="button">open</button>');
+        opener.focus();
+        opener.disabled = true;
+        // Chromium moves focus off a disabled element (at once or at the next
+        // rendering step, by version); blur to model it.
+        opener.blur();
+        expect(document.activeElement).to.equal(document.body);
+        gui.confirm('msg');
+
+        content().querySelector('.vex-close').click();
+        finishAllClosing();
+        expect(document.activeElement).to.equal(document.body);
+
+        opener.disabled = false;
+        // MutationObserver callbacks run as a microtask.
+        await Promise.resolve();
+
+        expect(document.activeElement).to.equal(opener);
+    });
+
+    it('Tab and Shift+Tab wrap when focus is on the dialog itself', () => {
+        gui.confirm('msg');
+        const el = content();
+        const first = el.querySelector('.vex-dialog-button.vex-first');
+        const last = el.querySelector('.vex-close');
+
+        el.tabIndex = -1;
+        el.focus();
+        let event = keydownTab(el);
+        expect(document.activeElement).to.equal(first);
+        expect(event.defaultPrevented).to.equal(true);
+
+        el.focus();
+        event = keydownTab(el, true);
+        expect(document.activeElement).to.equal(last);
+        expect(event.defaultPrevented).to.equal(true);
+    });
+
     it('focus is not pulled back when another vex dialog is open at close time', () => {
         const opener = add('<button type="button">open</button>');
         opener.focus();

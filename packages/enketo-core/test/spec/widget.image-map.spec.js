@@ -51,7 +51,9 @@ describe('image-map keyboard access', () => {
         const css = await (
             await fetch('/base/src/widget/image-map/image-map.scss')
         ).text();
-        const rule = css.match(/\.option-wrapper:not\(:focus-within\)\s*\{[^}]*\}/)[0];
+        const rule = css.match(
+            /\.option-wrapper:not\(:focus-within\)\s*\{[^}]*\}/
+        )[0];
         expect(rule).to.not.contain('display: none');
         expect(rule).to.contain('clip: rect(0, 0, 0, 0)');
     });
@@ -85,10 +87,7 @@ describe('image-map keyboard access', () => {
 
     it('ignores svg clicks and marks the map read-only for a read-only widget', async () => {
         ({ host } = await create(
-            FORM1.replace(
-                'type="radio"',
-                'type="radio" readonly disabled'
-            )
+            FORM1.replace('type="radio"', 'type="radio" readonly disabled')
         ));
         const svg = host.querySelector('.image-map > svg');
         const path = svg.querySelector('path#CO');

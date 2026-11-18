@@ -660,7 +660,9 @@ describe('query dialog accessibility', () => {
                     t(`widget.dn.trigger.${key}`)
                 );
                 expect(dn.commentButton.className).to.equal(
-                    `btn-icon-only btn-comment btn-dn${state ? ` ${state}` : ''}`
+                    `btn-icon-only btn-comment btn-dn${
+                        state ? ` ${state}` : ''
+                    }`
                 );
             });
         });
@@ -693,6 +695,20 @@ describe('query dialog accessibility', () => {
             expect(space.defaultPrevented).to.equal(true);
             key(dn.commentButton, 'keydown', 'a');
             expect(clicks).to.equal(1);
+        });
+
+        it('a held Space (repeat) does not click again', () => {
+            let clicks = 0;
+            dn.commentButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                clicks += 1;
+            });
+            key(dn.commentButton, 'keydown', ' ');
+            const repeat = key(dn.commentButton, 'keydown', ' ', {
+                repeat: true,
+            });
+            expect(clicks).to.equal(1);
+            expect(repeat.defaultPrevented).to.equal(true);
         });
     });
 });

@@ -125,6 +125,30 @@ describe('OC tokens', () => {
             })
         );
 
+        // .btn-icon-only sets opacity 0.7 (0.5 on hover); the × must render at the token.
+        ['', ':hover'].forEach((state) =>
+            it(`.or-comment-widget__content__btn-close-x${state} is opaque`, () => {
+                const sel = `.or-comment-widget__content__btn-close-x${state}`;
+                let last;
+                root.walkRules((rule) => {
+                    const decl = rule.nodes
+                        .filter((n) => n.prop === 'opacity')
+                        .pop();
+                    if (
+                        decl &&
+                        rule.selectors.some(
+                            (s) =>
+                                s.trim() === sel ||
+                                s.trim() === `.btn-icon-only${state}`
+                        )
+                    ) {
+                        last = decl.value;
+                    }
+                });
+                expect(last).to.equal('1');
+            })
+        );
+
         it('new-query bubbles carry #fa0000 and no #ff8080', () => {
             expect(css).to.not.match(/ff8080/i);
             const rules = [];
@@ -193,12 +217,19 @@ describe('OC tokens', () => {
         ['theme-kobo', 'theme-plain'].forEach((theme) => {
             ['css', 'print.css'].forEach((ext) => {
                 const file = `${theme}.${ext}`;
-                (before ? it : it.skip)(`${file} equals the file in OC_CSS_BEFORE`, () => {
-                    const built = fs.readFileSync(
-                        path.resolve(__dirname, '../../public/css', file)
-                    );
-                    expect(built.equals(fs.readFileSync(path.join(before, file)))).to.equal(true);
-                });
+                (before ? it : it.skip)(
+                    `${file} equals the file in OC_CSS_BEFORE`,
+                    () => {
+                        const built = fs.readFileSync(
+                            path.resolve(__dirname, '../../public/css', file)
+                        );
+                        expect(
+                            built.equals(
+                                fs.readFileSync(path.join(before, file))
+                            )
+                        ).to.equal(true);
+                    }
+                );
             });
         });
     });

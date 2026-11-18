@@ -19,6 +19,13 @@
     color: var(--oc-icon-muted);
 }
 
+// .btn-icon-only fades to opacity 0.7 (0.5 on hover), which renders the token
+// at 2.27:1. Keep the query dialog × at the token colour.
+.or-comment-widget__content__btn-close-x,
+.or-comment-widget__content__btn-close-x:hover {
+    opacity: 1;
+}
+
 .form-footer__content__jump-nav .first-page,
 .form-footer__content__jump-nav .last-page,
 .form-footer__content__jump-nav .first-page:hover,

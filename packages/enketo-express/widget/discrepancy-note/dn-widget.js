@@ -2,10 +2,7 @@
 import Widget from 'enketo-core/src/js/widget';
 import { getSiblingElements } from 'enketo-core/src/js/dom-utils';
 import $ from 'jquery';
-import {
-    t,
-    onUiLanguageChange,
-} from '../../public/js/src/module/translator';
+import { t, onUiLanguageChange } from '../../public/js/src/module/translator';
 import gui from '../../public/js/src/module/gui';
 import settings from '../../public/js/src/module/settings';
 import events from '../../public/js/src/module/event';
@@ -207,6 +204,10 @@ class Comment extends Widget {
         this.commentButton.addEventListener('keydown', (event) => {
             if (event.key === ' ') {
                 event.preventDefault();
+                // A held Space key repeats keydown; open once only.
+                if (event.repeat) {
+                    return;
+                }
                 this.commentButton.click();
             }
         });
