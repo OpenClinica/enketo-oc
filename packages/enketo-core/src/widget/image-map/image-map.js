@@ -109,6 +109,8 @@ class ImageMap extends Widget {
                         .before(fragment);
                     const widget = that.question.querySelector('.image-map');
                     const svg = widget.querySelector('svg');
+                    // the native option inputs are the accessible control
+                    svg.setAttribute('aria-hidden', 'true');
 
                     // Use any explicitly defined viewPort and else define one using bounding box or attributes
                     if (!svg.getAttribute('viewBox')) {

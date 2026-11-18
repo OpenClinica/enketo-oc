@@ -28,3 +28,73 @@ runAllCommonWidgetTests(ImageMapWidget, FORM1, 'CO');
 // the test with checkboxes don't run because input.setVal and input.getVal are not compatible for select_multiple type questions.
 // One uses space-separated value and the other uses and array.
 // runAllCommonWidgetTests( ImageMapWidget, FORM2, [ 'CO' ] );
+
+describe('image-map keyboard access', () => {
+    const create = async (template = FORM1) => {
+        const fragment = document
+            .createRange()
+            .createContextualFragment(template);
+        const control = fragment.querySelector(ImageMapWidget.selector);
+        const host = document.createElement('div');
+        host.append(fragment);
+        document.body.append(host);
+        const widget = await new ImageMapWidget(control);
+
+        return { host, control, widget };
+    };
+
+    let host;
+    afterEach(() => host && host.remove());
+
+    it('does not hide the option inputs with display: none', async () => {
+        ({ host } = await create());
+        const css = await (
+            await fetch('/base/src/widget/image-map/image-map.scss')
+        ).text();
+        const rule = css.match(/\.option-wrapper:not\(:focus-within\)\s*\{[^}]*\}/)[0];
+        expect(rule).to.not.contain('display: none');
+        expect(rule).to.contain('clip: rect(0, 0, 0, 0)');
+    });
+
+    it('hides the inlined svg from assistive technology', async () => {
+        ({ host } = await create());
+        expect(
+            host.querySelector('.image-map > svg').getAttribute('aria-hidden')
+        ).to.equal('true');
+    });
+
+    it('gives the same value and map highlight for a keyboard choice as for an svg click', async () => {
+        let ctx = await create();
+        let path = ctx.host.querySelector('svg path#CO');
+        expect(path.hasAttribute('or-selected')).to.equal(false);
+        path.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+        const clicked = ctx.widget.value;
+        expect(clicked).to.equal('CO');
+        expect(path.hasAttribute('or-selected')).to.equal(true);
+        ctx.host.remove();
+
+        ctx = await create();
+        host = ctx.host;
+        path = ctx.host.querySelector('svg path#CO');
+        expect(path.hasAttribute('or-selected')).to.equal(false);
+        ctx.control.checked = true;
+        ctx.control.dispatchEvent(new Event('change', { bubbles: true }));
+        expect(ctx.widget.value).to.equal(clicked);
+        expect(path.hasAttribute('or-selected')).to.equal(true);
+    });
+
+    it('ignores svg clicks and marks the map read-only for a read-only widget', async () => {
+        ({ host } = await create(
+            FORM1.replace(
+                'type="radio"',
+                'type="radio" readonly disabled'
+            )
+        ));
+        const svg = host.querySelector('.image-map > svg');
+        const path = svg.querySelector('path#CO');
+        expect(svg.hasAttribute('or-readonly')).to.equal(true);
+        path.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+        expect(host.querySelector('input').checked).to.equal(false);
+        expect(path.hasAttribute('or-selected')).to.equal(false);
+    });
+});
