@@ -1677,7 +1677,7 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
              <xsl:attribute name="data-itext-id">
                 <xsl:value-of select="$id"/>
             </xsl:attribute>
-             <xsl:attribute name="alt">image</xsl:attribute>
+             <xsl:attribute name="alt"></xsl:attribute>
          </img>
     </xsl:template>
 

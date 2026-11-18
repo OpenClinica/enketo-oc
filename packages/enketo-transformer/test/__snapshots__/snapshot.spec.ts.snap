@@ -925572,7 +925572,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -925673,7 +925673,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -925775,7 +925775,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -925876,7 +925876,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -925977,7 +925977,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926078,7 +926078,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926179,7 +926179,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926280,7 +926280,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926381,7 +926381,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926482,7 +926482,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926583,7 +926583,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926684,7 +926684,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -928011,7 +928011,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -928133,7 +928133,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -928256,7 +928256,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -928378,7 +928378,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -928495,7 +928495,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -928617,7 +928617,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -928739,7 +928739,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -928861,7 +928861,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -928983,7 +928983,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -929105,7 +929105,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -929227,7 +929227,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -929349,7 +929349,7 @@ exports[`Snapshots > enketo-transformer > 'jr-url-space.xml' > transforms jr-url
       lang=\\"en\\">
     </span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/outside/l1:label\\"
       lang=\\"en\\"
@@ -952189,7 +952189,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -952205,7 +952205,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -952241,7 +952241,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -952257,7 +952257,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -952698,7 +952698,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -952713,7 +952713,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -952747,7 +952747,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -952762,7 +952762,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -952796,7 +952796,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -952811,7 +952811,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -952854,7 +952854,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -952869,7 +952869,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -952898,7 +952898,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -952913,7 +952913,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -952942,7 +952942,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -952957,7 +952957,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -953561,7 +953561,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -953578,7 +953578,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -953595,7 +953595,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -954661,7 +954661,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -954677,7 +954677,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -954713,7 +954713,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -954729,7 +954729,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -955170,7 +955170,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -955185,7 +955185,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -955219,7 +955219,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -955234,7 +955234,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -955268,7 +955268,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -955283,7 +955283,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -955326,7 +955326,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -955341,7 +955341,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -955370,7 +955370,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -955385,7 +955385,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -955414,7 +955414,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -955429,7 +955429,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -956033,7 +956033,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -956050,7 +956050,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -956067,7 +956067,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -957134,7 +957134,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -957150,7 +957150,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -957186,7 +957186,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -957202,7 +957202,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -957643,7 +957643,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -957658,7 +957658,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -957692,7 +957692,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -957707,7 +957707,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -957741,7 +957741,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -957756,7 +957756,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -957799,7 +957799,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -957814,7 +957814,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -957843,7 +957843,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -957858,7 +957858,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -957887,7 +957887,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -957902,7 +957902,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -958506,7 +958506,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -958523,7 +958523,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -958540,7 +958540,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -959606,7 +959606,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -959622,7 +959622,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -959658,7 +959658,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -959674,7 +959674,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -960115,7 +960115,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -960130,7 +960130,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -960164,7 +960164,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -960179,7 +960179,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -960213,7 +960213,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -960228,7 +960228,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -960271,7 +960271,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -960286,7 +960286,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -960315,7 +960315,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -960330,7 +960330,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -960359,7 +960359,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -960374,7 +960374,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -960976,7 +960976,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -960993,7 +960993,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -961010,7 +961010,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -962076,7 +962076,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -962092,7 +962092,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -962128,7 +962128,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -962144,7 +962144,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -962585,7 +962585,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -962600,7 +962600,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -962634,7 +962634,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -962649,7 +962649,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -962683,7 +962683,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -962698,7 +962698,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -962741,7 +962741,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -962756,7 +962756,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -962785,7 +962785,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -962800,7 +962800,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -962829,7 +962829,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -962844,7 +962844,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -963448,7 +963448,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -963465,7 +963465,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -963482,7 +963482,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -964548,7 +964548,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -964564,7 +964564,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -964600,7 +964600,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -964616,7 +964616,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -965057,7 +965057,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -965072,7 +965072,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -965106,7 +965106,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -965121,7 +965121,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -965155,7 +965155,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -965170,7 +965170,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -965213,7 +965213,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -965228,7 +965228,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -965257,7 +965257,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -965272,7 +965272,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -965301,7 +965301,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -965316,7 +965316,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -965920,7 +965920,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -965937,7 +965937,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -965954,7 +965954,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -967020,7 +967020,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -967036,7 +967036,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -967072,7 +967072,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -967088,7 +967088,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -967529,7 +967529,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -967544,7 +967544,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -967578,7 +967578,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -967593,7 +967593,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -967627,7 +967627,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -967642,7 +967642,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -967685,7 +967685,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -967700,7 +967700,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -967729,7 +967729,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -967744,7 +967744,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -967773,7 +967773,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -967788,7 +967788,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -968392,7 +968392,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -968409,7 +968409,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -968426,7 +968426,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -969492,7 +969492,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -969508,7 +969508,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -969544,7 +969544,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -969560,7 +969560,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -970001,7 +970001,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -970016,7 +970016,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -970050,7 +970050,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -970065,7 +970065,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -970099,7 +970099,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -970114,7 +970114,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -970157,7 +970157,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -970172,7 +970172,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -970201,7 +970201,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -970216,7 +970216,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -970245,7 +970245,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -970260,7 +970260,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -970864,7 +970864,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -970881,7 +970881,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -970898,7 +970898,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -971964,7 +971964,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -971980,7 +971980,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -972016,7 +972016,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -972032,7 +972032,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -972473,7 +972473,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -972488,7 +972488,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -972522,7 +972522,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -972537,7 +972537,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -972571,7 +972571,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -972586,7 +972586,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -972629,7 +972629,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -972644,7 +972644,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -972673,7 +972673,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -972688,7 +972688,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -972717,7 +972717,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -972732,7 +972732,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -973336,7 +973336,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -973353,7 +973353,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -973370,7 +973370,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -974436,7 +974436,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -974452,7 +974452,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -974488,7 +974488,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -974504,7 +974504,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -974945,7 +974945,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -974960,7 +974960,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -974994,7 +974994,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -975009,7 +975009,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -975043,7 +975043,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -975058,7 +975058,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -975101,7 +975101,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -975116,7 +975116,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -975145,7 +975145,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -975160,7 +975160,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -975189,7 +975189,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -975204,7 +975204,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -975808,7 +975808,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -975825,7 +975825,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -975842,7 +975842,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -976908,7 +976908,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -976924,7 +976924,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -976960,7 +976960,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -976976,7 +976976,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -977417,7 +977417,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -977432,7 +977432,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -977466,7 +977466,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -977481,7 +977481,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -977515,7 +977515,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -977530,7 +977530,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -977573,7 +977573,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -977588,7 +977588,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -977617,7 +977617,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -977632,7 +977632,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -977661,7 +977661,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -977676,7 +977676,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -978280,7 +978280,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -978297,7 +978297,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -978314,7 +978314,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -979380,7 +979380,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/a:label\\"
               lang=\\"default\\"
@@ -979396,7 +979396,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test/b:label\\"
               lang=\\"default\\"
@@ -979432,7 +979432,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/a:label\\"
               lang=\\"default\\"
@@ -979448,7 +979448,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\">
             </span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/select_widgets/grid_test_audio/b:label\\"
               lang=\\"default\\"
@@ -979889,7 +979889,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/happy:label\\"
                 lang=\\"default\\"
@@ -979904,7 +979904,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_second_method/sad:label\\"
                 lang=\\"default\\"
@@ -979938,7 +979938,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/happy:label\\"
                 lang=\\"default\\"
@@ -979953,7 +979953,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_brian2/sad:label\\"
                 lang=\\"default\\"
@@ -979987,7 +979987,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/happy:label\\"
                 lang=\\"default\\"
@@ -980002,7 +980002,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table_2/happy_sad_michael2/sad:label\\"
                 lang=\\"default\\"
@@ -980045,7 +980045,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/happy:label\\"
                 lang=\\"default\\"
@@ -980060,7 +980060,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/reserved_name_for_field_list_labels_47/sad:label\\"
                 lang=\\"default\\"
@@ -980089,7 +980089,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/happy:label\\"
                 lang=\\"default\\"
@@ -980104,7 +980104,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_brian/sad:label\\"
                 lang=\\"default\\"
@@ -980133,7 +980133,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/happy:label\\"
                 lang=\\"default\\"
@@ -980148,7 +980148,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
                 lang=\\"default\\">
               </span
               ><img
-                alt=\\"image\\"
+                alt=\\"\\"
                 class=\\"active\\"
                 data-itext-id=\\"/widgets/select_widgets/happy_sad_table/happy_sad_michael/sad:label\\"
                 lang=\\"default\\"
@@ -980752,7 +980752,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -980769,7 +980769,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -980786,7 +980786,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"

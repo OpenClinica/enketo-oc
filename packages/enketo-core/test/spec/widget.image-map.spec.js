@@ -8,7 +8,7 @@ const FORM1 = `<form class="or">
             <fieldset>
                 <legend>
                     <span lang="default" class="question-label active" >Select states from the image</span>
-                    <img lang="default" class="active" src="${SVG}" alt="image">
+                    <img lang="default" class="active" src="${SVG}" alt="">
                 </legend>
                 <div class="option-wrapper">
                     <label>
