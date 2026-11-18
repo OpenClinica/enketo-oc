@@ -218,6 +218,8 @@
     }
   },
   "form": {
+    "print": "Stampa",
+    "skiplink": "Vai al modulo",
     "pages": {
       "position": "Pagina __current__ di __total__"
     }

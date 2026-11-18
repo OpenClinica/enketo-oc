@@ -215,6 +215,8 @@
         }
     },
     "form": {
+        "print": "Imprimir",
+        "skiplink": "Ir al formulario",
         "pages": {
             "position": "Página __current__ de __total__"
         }
