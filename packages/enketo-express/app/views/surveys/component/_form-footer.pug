@@ -3,7 +3,7 @@ section.form-footer
     if !headless
       .form-footer__content__main-controls
         button.btn.btn-default.previous-page.disabled(type="button", disabled)
-          i.icon.icon-arrow-left
+          i.icon.icon-arrow-left(aria-hidden='true')
           span(data-i18n='form.pages.back')= t('form.pages.back')
         if type === 'preview'
           if nextPrompt
@@ -42,7 +42,7 @@ section.form-footer
                 i.icon.icon-check= ' '
                 span(data-i18n='formfooter.complete.btn')= t('formfooter.complete.btn')
         button.btn.btn-primary.next-page(type="button")
-          i.icon.icon-arrow-right
+          i.icon.icon-arrow-right(aria-hidden='true')
           span(data-i18n='form.pages.next')= t('form.pages.next')
 
         include _logout

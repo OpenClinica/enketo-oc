@@ -1648,6 +1648,11 @@ function _setButtonEventHandlers(survey) {
             _close(options)
                 .catch((e) => {
                     gui.alert(e.message);
+                    // Participate's "I'm Done" route: announce and focus the questions that block closing.
+                    // Does nothing when no question is invalid (e.g. a network error).
+                    if (settings.participant) {
+                        _announceInvalidAndFocus();
+                    }
                 })
                 .then(() => {
                     $button.btnBusyState(false);
