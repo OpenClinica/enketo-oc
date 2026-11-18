@@ -28,6 +28,14 @@
     color: var(--oc-jump-nav-text);
 }
 
+// vex close control is a <button> (gui.js). Its × is an absolute :before at
+// top/right 3px, 30px square; size the button around it so the focus ring encloses it.
+.vex.vex-theme-plain .vex-close {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+}
+
 // Focus ring (one 2px ring everywhere). The vex theme hides focus with
 // outline:none; its input rules are 4 classes + [type] + :focus, so [type] is needed to match.
 .vex.vex-theme-plain .vex-dialog-button:focus-visible,

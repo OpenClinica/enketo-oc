@@ -155,6 +155,7 @@
         "msg": "__appTitle__ is running! Please access OpenClinica forms from your __serverName__ installation."
     },
     "alert": {
+        "close": "Close",
         "appupdated": {
             "heading": "Please refresh",
             "msg": "Please refresh this webpage to use the form offline (ref: application)"

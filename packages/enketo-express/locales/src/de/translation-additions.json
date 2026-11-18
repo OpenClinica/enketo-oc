@@ -166,6 +166,7 @@
         "msg": "__appTitle__ wird ausgeführt. Rufen Sie OpenClinica-Formulare von Ihrer __serverName__-Installation aus auf."
     },
     "alert": {
+        "close": "Schließen",
         "appupdated": {
             "heading": "Bitte aktualisieren",
             "msg": "Aktualisieren Sie diese Webseite, damit Formulare offline verwenden werden können (Ref.: Anwendung)"

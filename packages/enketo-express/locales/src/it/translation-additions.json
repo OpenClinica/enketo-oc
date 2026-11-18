@@ -158,6 +158,7 @@
     "msg": "__appTitle__ è in esecuzione! Accedi ai moduli OpenClinica dalla tua installazione __serverName__."
   },
   "alert": {
+    "close": "Chiudi",
     "appupdated": {
       "heading": "Aggiorna",
       "msg": "Aggiorna questa pagina web per utilizzare il modulo offline (rif.: applicazione)"

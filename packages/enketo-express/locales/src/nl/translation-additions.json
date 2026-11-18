@@ -158,6 +158,7 @@
     "msg": "__appTitle__ wordt uitgevoerd! Open OpenClinica-formulieren vanuit uw __serverName__-installatie."
   },
   "alert": {
+    "close": "Sluiten",
     "appupdated": {
       "heading": "Vernieuw de pagina",
       "msg": "Vernieuw deze webpagina om het formulier offline te kunnen gebruiken (ref.: toepassing)"

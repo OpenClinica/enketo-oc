@@ -158,6 +158,7 @@
     "msg": "__appTitle__ est en cours d'exécution ! Accédez aux formulaires OpenClinica depuis votre installation __serverName__."
   },
   "alert": {
+    "close": "Fermer",
     "appupdated": {
       "heading": "Veuillez actualiser",
       "msg": "Actualisez cette page Web pour utiliser le formulaire hors ligne (réf. : application)"

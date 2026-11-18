@@ -155,6 +155,7 @@
         "msg": "¡__appTitle__ se está ejecutando! Acceda a los formularios de OpenClinica desde su instalación de __serverName__."
     },
     "alert": {
+        "close": "Cerrar",
         "appupdated": {
             "heading": "Actualice",
             "msg": "Actualice esta página web para usar el formulario sin conexión (ref.: aplicación)"
