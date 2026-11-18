@@ -1,6 +1,14 @@
 {
   "widget": {
     "dn": {
+      "trigger": {
+        "none": "Requête : aucune",
+        "new": "Requête : nouvelle",
+        "updated": "Requête : mise à jour",
+        "closed": "Requête : fermée",
+        "closed-modified": "Requête : fermée, modifiée",
+        "invalid": "Requête : non valide"
+      },
       "dialogname": "Requêtes et annotations",
       "discardcomment": "Abandonner le texte saisi ?",
       "assignto": "Attribuer à :",

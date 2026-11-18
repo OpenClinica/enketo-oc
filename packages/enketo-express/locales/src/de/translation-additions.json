@@ -1,6 +1,14 @@
 ﻿{
     "widget": {
         "dn": {
+            "trigger": {
+                "none": "Abfrage: keine",
+                "new": "Abfrage: neu",
+                "updated": "Abfrage: aktualisiert",
+                "closed": "Abfrage: geschlossen",
+                "closed-modified": "Abfrage: geschlossen, geändert",
+                "invalid": "Abfrage: ungültig"
+            },
             "dialogname": "Abfragen und Anmerkungen",
             "discardcomment": "Den eingegebenen Text verwerfen?",
             "assignto": "Zuweisen zu:",

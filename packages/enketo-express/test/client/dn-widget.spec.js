@@ -1,6 +1,7 @@
 import Dn from '../../widget/discrepancy-note/dn-widget';
 import vex from 'vex-js';
 import { t } from '../../public/js/src/module/translator';
+import i18next from 'i18next';
 
 Dn.prototype._init = () => {};
 const fragment = document.createRange().createContextualFragment(
@@ -611,5 +612,87 @@ describe('query dialog accessibility', () => {
         expect(widget()).to.equal(null);
         expect(openDialogs().length).to.equal(0);
         expect(document.activeElement).to.equal(dn.commentButton);
+    });
+
+    describe('the query trigger', () => {
+        const STATES = [
+            ['', 'none'],
+            ['new', 'new'],
+            ['updated', 'updated'],
+            ['closed', 'closed'],
+            ['closed-modified', 'closed-modified'],
+            ['invalid', 'invalid'],
+        ];
+
+        beforeEach(() => {
+            // Use the markup the widget really inserts.
+            const real = document
+                .createRange()
+                .createContextualFragment(Dn.COMMENT_BUTTON_HTML)
+                .querySelector('a');
+            dn.commentButton.replaceWith(real);
+            dn.commentButton = real;
+            dn._setCommentButtonHandler();
+        });
+
+        it('is an <a> with role="button" and no tabindex attribute', () => {
+            expect(dn.commentButton.tagName).to.equal('A');
+            expect(dn.commentButton.getAttribute('role')).to.equal('button');
+            expect(dn.commentButton.hasAttribute('tabindex')).to.equal(false);
+            expect(dn.commentButton.hasAttribute('type')).to.equal(false);
+        });
+
+        it('has aria-label "none" with no thread and "new" after state new', () => {
+            dn._setCommentButtonState();
+            expect(dn.commentButton.getAttribute('aria-label')).to.equal(
+                t('widget.dn.trigger.none')
+            );
+            dn._setCommentButtonState('new');
+            expect(dn.commentButton.getAttribute('aria-label')).to.equal(
+                t('widget.dn.trigger.new')
+            );
+        });
+
+        STATES.forEach(([state, key]) => {
+            it(`has the label and class list for state "${key}"`, () => {
+                dn._setCommentButtonState(state, false, false);
+                expect(dn.commentButton.getAttribute('aria-label')).to.equal(
+                    t(`widget.dn.trigger.${key}`)
+                );
+                expect(dn.commentButton.className).to.equal(
+                    `btn-icon-only btn-comment btn-dn${state ? ` ${state}` : ''}`
+                );
+            });
+        });
+
+        it('keeps the multi and annotation classes', () => {
+            dn._setCommentButtonState('new', true, true);
+            expect(dn.commentButton.className).to.equal(
+                'btn-icon-only btn-comment btn-dn new multi annotation'
+            );
+        });
+
+        it('follows a language change', () => {
+            dn._setCommentButtonState('updated');
+            dn.commentButton.setAttribute('aria-label', 'stale');
+            // i18next emits this after the UI language has switched.
+            i18next.emit('languageChanged', 'de');
+            expect(dn.commentButton.getAttribute('aria-label')).to.equal(
+                t('widget.dn.trigger.updated')
+            );
+        });
+
+        it('Space dispatches the same click as the mouse, Enter and others do not', () => {
+            let clicks = 0;
+            dn.commentButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                clicks += 1;
+            });
+            const space = key(dn.commentButton, 'keydown', ' ');
+            expect(clicks).to.equal(1);
+            expect(space.defaultPrevented).to.equal(true);
+            key(dn.commentButton, 'keydown', 'a');
+            expect(clicks).to.equal(1);
+        });
     });
 });

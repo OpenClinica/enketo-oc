@@ -1,6 +1,14 @@
 {
   "widget": {
     "dn": {
+      "trigger": {
+        "none": "Query: geen",
+        "new": "Query: nieuw",
+        "updated": "Query: bijgewerkt",
+        "closed": "Query: gesloten",
+        "closed-modified": "Query: gesloten, gewijzigd",
+        "invalid": "Query: ongeldig"
+      },
       "dialogname": "Query's en annotaties",
       "discardcomment": "De getypte tekst verwijderen?",
       "assignto": "Toewijzen aan:",

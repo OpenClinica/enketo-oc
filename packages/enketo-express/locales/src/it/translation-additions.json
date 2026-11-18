@@ -1,6 +1,14 @@
 {
   "widget": {
     "dn": {
+      "trigger": {
+        "none": "Query: nessuna",
+        "new": "Query: nuova",
+        "updated": "Query: aggiornata",
+        "closed": "Query: chiusa",
+        "closed-modified": "Query: chiusa, modificata",
+        "invalid": "Query: non valida"
+      },
       "dialogname": "Query e annotazioni",
       "discardcomment": "Eliminare il testo digitato?",
       "assignto": "Assegna a:",

@@ -1,6 +1,14 @@
 {
     "widget": {
         "dn": {
+            "trigger": {
+                "none": "Consulta: ninguna",
+                "new": "Consulta: nueva",
+                "updated": "Consulta: actualizada",
+                "closed": "Consulta: cerrada",
+                "closed-modified": "Consulta: cerrada, modificada",
+                "invalid": "Consulta: no válida"
+            },
             "dialogname": "Consultas y anotaciones",
             "discardcomment": "¿Descartar el texto que escribió?",
             "assignto": "Asignar a:",

@@ -1,6 +1,14 @@
 {
     "widget": {
         "dn": {
+            "trigger": {
+                "none": "Query: none",
+                "new": "Query: new",
+                "updated": "Query: updated",
+                "closed": "Query: closed",
+                "closed-modified": "Query: closed, modified",
+                "invalid": "Query: invalid"
+            },
             "dialogname": "Queries and annotations",
             "discardcomment": "Discard the text you typed?",
             "assignto": "Assign to:",

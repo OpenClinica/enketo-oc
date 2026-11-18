@@ -2,7 +2,10 @@
 import Widget from 'enketo-core/src/js/widget';
 import { getSiblingElements } from 'enketo-core/src/js/dom-utils';
 import $ from 'jquery';
-import { t } from '../../public/js/src/module/translator';
+import {
+    t,
+    onUiLanguageChange,
+} from '../../public/js/src/module/translator';
 import gui from '../../public/js/src/module/gui';
 import settings from '../../public/js/src/module/settings';
 import events from '../../public/js/src/module/event';
@@ -15,12 +18,29 @@ let users;
 let annotationIconDataUri;
 const SYSTEM_USER = 'system';
 
+// One shared listener: the trigger labels follow the UI language, which switches
+// after the form is built and after the form's own "changelanguage" event.
+const triggerWidgets = new Set();
+onUiLanguageChange(() => {
+    triggerWidgets.forEach((widget) => {
+        if (widget.commentButton.isConnected) {
+            widget._setCommentButtonLabel();
+        } else {
+            triggerWidgets.delete(widget);
+        }
+    });
+});
+
 const pad2 = (x) => (x < 10 ? `0${x}` : x);
 
 /**
  * Visually transforms a question into a comment modal that can be shown on its linked question.
  */
 class Comment extends Widget {
+    static get COMMENT_BUTTON_HTML() {
+        return '<a class="btn-icon-only btn-comment btn-dn" role="button" href="#"><i class="icon"> </i></a>';
+    }
+
     static get selector() {
         return '.or-appearance-dn input[type="text"][data-for], .or-appearance-dn textarea[data-for]';
     }
@@ -61,9 +81,7 @@ class Comment extends Widget {
             // See http://codepen.io/MartijnR/pen/rWJeOG?editors=1111
             const commentButton = document
                 .createRange()
-                .createContextualFragment(
-                    '<a class="btn-icon-only btn-comment btn-dn" tabindex="-1" type="button" href="#"><i class="icon"> </i></a>'
-                );
+                .createContextualFragment(Comment.COMMENT_BUTTON_HTML);
             const lastLabel = [
                 ...this.linkedQuestion.querySelectorAll('.question-label'),
             ].slice(-1)[0];
@@ -161,11 +179,20 @@ class Comment extends Widget {
         if (state) {
             this.commentButton.classList.add(state);
         }
+        this.commentButtonStatus = state || 'none';
+        this._setCommentButtonLabel();
         this.commentButton.classList.toggle(
             'multi',
             state !== 'closed' && state !== 'closed-modified' && multi
         );
         this.commentButton.classList.toggle('annotation', annotation);
+    }
+
+    _setCommentButtonLabel() {
+        this.commentButton.setAttribute(
+            'aria-label',
+            t(`widget.dn.trigger.${this.commentButtonStatus || 'none'}`)
+        );
     }
 
     _commentHasError() {
@@ -176,6 +203,14 @@ class Comment extends Widget {
     }
 
     _setCommentButtonHandler() {
+        // An anchor activates on Enter but not on Space.
+        this.commentButton.addEventListener('keydown', (event) => {
+            if (event.key === ' ') {
+                event.preventDefault();
+                this.commentButton.click();
+            }
+        });
+        triggerWidgets.add(this);
         this.commentButton.addEventListener('click', (event) => {
             event.preventDefault();
             if (this._isCommentModalShown(this.linkedQuestion)) {
