@@ -6,7 +6,19 @@ module.exports = function (config) {
     process.env.TZ = 'America/Phoenix';
     config.set({
         frameworks: ['mocha'],
-        browsers: ['ChromeHeadless', 'FirefoxHeadless'],
+        customLaunchers: {
+            ChromeHeadlessNoSandbox: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox', '--disable-setuid-sandbox'],
+            },
+        },
+        // Ubuntu 24.04 runners block the Chrome sandbox (AppArmor userns).
+        browsers: [
+            process.env.GITHUB_ACTIONS
+                ? 'ChromeHeadlessNoSandbox'
+                : 'ChromeHeadless',
+            'FirefoxHeadless',
+        ],
         files: [{ pattern: 'test/integration/index.js', watched: false }],
         preprocessors: {
             'test/integration/index.js': ['webpack'],
