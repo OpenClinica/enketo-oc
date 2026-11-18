@@ -714,10 +714,13 @@ function _complete(
 ) {
     if (!bypassConfirmation) {
         return gui
-            .confirm({
-                heading: t('fieldsubmission.confirm.complete.heading'),
-                msg: t('fieldsubmission.confirm.complete.msg'),
-            })
+            .confirm(
+                {
+                    heading: t('fieldsubmission.confirm.complete.heading'),
+                    msg: t('fieldsubmission.confirm.complete.msg'),
+                },
+                { negFirst: true }
+            )
             .then((again) => {
                 if (again) {
                     return _complete(true, options);

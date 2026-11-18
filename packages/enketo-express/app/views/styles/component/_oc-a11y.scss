@@ -36,6 +36,13 @@
     padding: 0;
 }
 
+// confirm({ negFirst: true }) (gui.js) puts Cancel first in the DOM. The theme floats
+// buttons right, which would put Cancel on the right; keep Confirm on the right.
+.vex.vex-theme-plain.vex-neg-first .vex-dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
 // Text for screen readers only: live regions (webform.pug), offline status (_form-header.pug).
 .oc-visually-hidden {
     position: absolute !important;

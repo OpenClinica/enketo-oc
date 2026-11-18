@@ -337,7 +337,7 @@ function close() {
  *
  * @param {?(object.<string, (string|boolean)>|string)=} content - In its simplest form this is just a string but it can
  *                                                         also an object with parameters msg, heading and errorMsg.
- * @param {object=} choices - [type/description]
+ * @param {object=} choices - [type/description]; `negFirst: true` puts Cancel first (and focused)
  */
 function confirm(content, choices) {
     let errorMsg = '';
@@ -354,27 +354,30 @@ function confirm(content, choices) {
                 ? choices.allowAlternativeClose
                 : true;
 
+        const yes = $.extend({}, vex.dialog.buttons.YES, {
+            text: choices.posButton || t('confirm.default.posButton'),
+            className: 'btn btn-primary small',
+        });
+        const no = $.extend({}, vex.dialog.buttons.NO, {
+            text: choices.negButton || t('confirm.default.negButton'),
+            className: 'btn btn-default small',
+        });
         const opener = _getOpener();
         vex.closeAll();
+        // vex focuses the first button, so negFirst also puts initial focus on Cancel.
         const instance = vex.dialog.confirm({
             unsafeMessage: errorMsg + (message || t('confirm.default.msg')),
             title: content.heading || t('confirm.default.heading'),
-            buttons: [
-                $.extend({}, vex.dialog.buttons.YES, {
-                    text: choices.posButton || t('confirm.default.posButton'),
-                    className: 'btn btn-primary small',
-                }),
-                $.extend({}, vex.dialog.buttons.NO, {
-                    text: choices.negButton || t('confirm.default.negButton'),
-                    className: 'btn btn-default small',
-                }),
-            ],
+            buttons: choices.negFirst ? [no, yes] : [yes, no],
             callback: resolve,
             afterClose: resolve,
             showCloseButton: choices.allowAlternativeClose,
             escapeButtonCloses: choices.allowAlternativeClose,
             overlayClosesOnClick: choices.allowAlternativeClose,
         });
+        if (choices.negFirst) {
+            instance.rootEl.classList.add('vex-neg-first');
+        }
         _makeDialogAccessible(instance, opener);
     });
 }

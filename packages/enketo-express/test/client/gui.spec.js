@@ -202,6 +202,63 @@ describe('vex dialog accessibility', () => {
         expect(document.activeElement).not.to.equal(inner);
     });
 
+    const buttonTexts = (el) =>
+        [...el.querySelectorAll('.vex-dialog-button')].map(
+            (b) => b.textContent
+        );
+
+    it('negFirst renders Cancel before Confirm and focuses Cancel', () => {
+        gui.confirm('msg', {
+            posButton: 'Yes',
+            negButton: 'No',
+            negFirst: true,
+        });
+        const el = content();
+        const cancel = el.querySelector('.vex-dialog-button.vex-first');
+
+        expect(buttonTexts(el)).to.deep.equal(['No', 'Yes']);
+        expect(
+            openDialogs().pop().classList.contains('vex-neg-first')
+        ).to.equal(true);
+        expect(document.activeElement).to.equal(cancel);
+    });
+
+    it('without negFirst the button order is unchanged', () => {
+        gui.confirm('msg', { posButton: 'Yes', negButton: 'No' });
+        const el = content();
+
+        expect(buttonTexts(el)).to.deep.equal(['Yes', 'No']);
+        expect(
+            openDialogs().pop().classList.contains('vex-neg-first')
+        ).to.equal(false);
+        expect(document.activeElement).to.equal(
+            el.querySelector('.vex-dialog-button.vex-first')
+        );
+    });
+
+    // A synthetic keydown does not activate a button, so the test checks nothing
+    // intercepts Enter and Cancel is not a submit button, then does what the browser does
+    // for Enter on a focused button: click it.
+    it('Enter on the focused Cancel resolves false', () => {
+        const result = gui.confirm('msg', { negButton: 'No', negFirst: true });
+        const cancel = document.activeElement;
+        const event = new KeyboardEvent('keydown', {
+            key: 'Enter',
+            bubbles: true,
+            cancelable: true,
+        });
+        cancel.dispatchEvent(event);
+
+        expect(cancel.textContent).to.equal('No');
+        expect(cancel.type).to.equal('button');
+        expect(event.defaultPrevented).to.equal(false);
+        cancel.click();
+
+        expect(openDialogs().length).to.equal(0);
+
+        return result.then((value) => expect(value).to.equal(false));
+    });
+
     it('Escape closes the dialog and resolves false', () => {
         const result = gui.confirm('msg');
         const event = new KeyboardEvent('keyup', {
