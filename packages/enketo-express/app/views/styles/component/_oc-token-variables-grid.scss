@@ -12,3 +12,9 @@ $repeat-bg: #fef5ef;
 $columns-hover-border-color: #faa474;
 $image-map-tooltip-bg: #fee5d6;
 $input-border-focus-shadow: rgba(102, 175, 233, 0.6);
+
+// Query and strict-question colours. The strict background stays #fcd4b2 (D2), set in strict-class.scss.
+$dn-new-color: oc-token('query-new');
+$c: oc-token('accent');
+$button-bg-hover: oc-token('accent-hover');
+$button-border-color: oc-token('accent-hover');

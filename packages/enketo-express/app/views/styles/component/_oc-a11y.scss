@@ -12,3 +12,18 @@
 .or-form-guidance.active summary {
     color: var(--oc-secondary-text);
 }
+
+// Close icons (comment widget, vex dialog) and jump-nav buttons
+.or-comment-widget__content__btn-close-x,
+.vex.vex-theme-plain .vex-close:before {
+    color: var(--oc-icon-muted);
+}
+
+.form-footer__content__jump-nav .first-page,
+.form-footer__content__jump-nav .last-page,
+.form-footer__content__jump-nav .first-page:hover,
+.form-footer__content__jump-nav .last-page:hover,
+.form-footer__content__jump-nav .first-page:focus,
+.form-footer__content__jump-nav .last-page:focus {
+    color: var(--oc-jump-nav-text);
+}

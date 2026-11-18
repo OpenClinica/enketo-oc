@@ -12,3 +12,9 @@ $state-danger-text: oc-token('error');
 // Tints that were derived from the old brand are held at today's value in each
 // theme's own _variables.scss (oc and formhub differ).
 $input-border-focus-shadow: rgba(102, 175, 233, 0.6);
+
+// Query and strict-question colours. The strict background stays #fcd4b2 (D2), set in strict-class.scss.
+$dn-new-color: oc-token('query-new');
+$c: oc-token('accent');
+$button-bg-hover: oc-token('accent-hover');
+$button-border-color: oc-token('accent-hover');
