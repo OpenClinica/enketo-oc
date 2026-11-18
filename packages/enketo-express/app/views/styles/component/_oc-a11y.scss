@@ -1,0 +1,14 @@
+// Only theme-oc, theme-formhub and theme-grid import this partial, last.
+@import 'oc-tokens';
+
+:root {
+    @each $name, $value in $oc-tokens {
+        --oc-#{$name}: #{$value};
+    }
+}
+
+// Hints and guidance (core _main.scss:75, 93)
+.or-hint.active,
+.or-form-guidance.active summary {
+    color: var(--oc-secondary-text);
+}

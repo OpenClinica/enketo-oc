@@ -1,7 +1,12 @@
 /** The next styles are meant to easily customize the background and border of radiobuttons and checkboxes, not their size! */
 
 @mixin disabled-radiocheck-style {
-    border-color: lighten($radiocheck-unchecked-color, 5%);
+    // a theme may set $radiocheck-disabled-border-color to hold a literal
+    @if variable-exists(radiocheck-disabled-border-color) {
+        border-color: $radiocheck-disabled-border-color;
+    } @else {
+        border-color: lighten($radiocheck-unchecked-color, 5%);
+    }
 }
 
 @mixin checkbox-unchecked-style {

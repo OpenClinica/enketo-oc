@@ -1,3 +1,5 @@
+$image-map-tooltip-bg: lighten($brand-primary-color, 50%) !default;
+
 // These rules are specific only to this particular widget
 .or-image-map-initialized {
     img {
@@ -54,7 +56,7 @@
 
         &__tooltip {
             display: inline-block;
-            background: lighten($brand-primary-color, 50%);
+            background: $image-map-tooltip-bg;
             padding: 2px 8px;
             color: $gray;
             border-radius: 2px;

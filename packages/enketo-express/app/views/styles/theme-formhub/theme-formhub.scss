@@ -1,6 +1,7 @@
 // variables
 @import 'variables';
 @import '../component/variables';
+@import '../component/oc-token-variables';
 @import '/packages/enketo-core/src/sass/formhub/variables';
 @import '/packages/enketo-core/src/sass/core/variables';
 
@@ -36,3 +37,6 @@
 @import 'form_formhub';
 @import '../component/form_header';
 @import '../component/form_footer';
+
+// accessibility tokens and rules (last)
+@import '../component/oc-a11y';

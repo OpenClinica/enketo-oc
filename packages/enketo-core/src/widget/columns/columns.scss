@@ -1,3 +1,5 @@
+$columns-hover-border-color: lighten($brand-primary-color, 30%) !default;
+
 @mixin margin($dir: right) {
     margin-#{$dir}: 10px;
 }
@@ -43,7 +45,7 @@
             z-index: -1;
 
             &:not([disabled]):not([readonly]) ~ .active:hover {
-                border-color: lighten($brand-primary-color, 30%);
+                border-color: $columns-hover-border-color;
             }
 
             &[disabled],
