@@ -36,6 +36,19 @@
     padding: 0;
 }
 
+// Text for screen readers only: live regions (webform.pug), offline status (_form-header.pug).
+.oc-visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
 // Focus ring (one 2px ring everywhere). The vex theme hides focus with
 // outline:none; its input rules are 4 classes + [type] + :focus, so [type] is needed to match.
 .vex.vex-theme-plain .vex-dialog-button:focus-visible,

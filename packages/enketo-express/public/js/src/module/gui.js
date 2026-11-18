@@ -9,6 +9,7 @@ import vex from 'vex-js';
 import $ from 'jquery';
 import vexEnketoDialog from 'vex-dialog-enketo';
 import feedbackBar from './feedback-bar';
+import announce from './announce';
 import settings from './settings';
 import { init as initTranslator, t } from './translator';
 import sniffer from './sniffer';
@@ -858,6 +859,21 @@ updateStatus = {
             $('.offline-enabled__icon.not-enabled').removeClass('not-enabled');
         } else {
             $('.offline-enabled__icon').addClass('not-enabled');
+        }
+
+        // Text for the `title`-only icon; announced when it changes (not when first set).
+        const status = document.querySelector('.offline-enabled__status');
+        const text = t(
+            offlineCapable
+                ? 'offline.status.enabled'
+                : 'offline.status.disabled'
+        );
+        if (status && status.textContent !== text) {
+            const changed = status.textContent !== '';
+            status.textContent = text;
+            if (changed) {
+                announce(text);
+            }
         }
     },
     applicationVersion(version) {

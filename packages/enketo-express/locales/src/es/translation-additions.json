@@ -211,5 +211,16 @@
         "remove": {
             "btn": "Eliminar"
         }
+    },
+    "form": {
+        "pages": {
+            "position": "Página __current__ de __total__"
+        }
+    },
+    "offline": {
+        "status": {
+            "enabled": "Este formulario se puede usar sin conexión",
+            "disabled": "El uso sin conexión no está disponible"
+        }
     }
 }

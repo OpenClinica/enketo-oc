@@ -214,5 +214,16 @@
     "remove": {
       "btn": "Rimuovi"
     }
+  },
+  "form": {
+    "pages": {
+      "position": "Pagina __current__ di __total__"
+    }
+  },
+  "offline": {
+    "status": {
+      "enabled": "Questo modulo può essere usato offline",
+      "disabled": "L'uso offline non è disponibile"
+    }
   }
 }

@@ -211,5 +211,16 @@
         "remove": {
             "btn": "Remove"
         }
+    },
+    "form": {
+        "pages": {
+            "position": "Page __current__ of __total__"
+        }
+    },
+    "offline": {
+        "status": {
+            "enabled": "This form can be used offline",
+            "disabled": "Offline use is not available"
+        }
     }
 }

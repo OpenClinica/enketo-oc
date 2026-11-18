@@ -214,5 +214,16 @@
     "remove": {
       "btn": "Verwijderen"
     }
+  },
+  "form": {
+    "pages": {
+      "position": "Pagina __current__ van __total__"
+    }
+  },
+  "offline": {
+    "status": {
+      "enabled": "Dit formulier kan offline worden gebruikt",
+      "disabled": "Offline gebruik is niet beschikbaar"
+    }
   }
 }

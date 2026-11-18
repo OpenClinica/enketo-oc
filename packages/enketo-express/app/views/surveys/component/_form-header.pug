@@ -3,6 +3,7 @@ header.form-header
     .offline-enabled
       .offline-enabled__icon.not-enabled(title="This form is able to launch offline")
       .offline-enabled__queue-length(title="Records Queued")
+      span.oc-visually-hidden.offline-enabled__status(style=ocVisuallyHidden)
   .form-progress
   if (logo.source)
     if (logo.href)
