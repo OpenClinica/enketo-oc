@@ -114,7 +114,6 @@ $dropdown-link-disabled-color: $gray-light !default;
     &:focus {
         color: $dropdown-link-active-color;
         text-decoration: none;
-        outline: 0;
         background-color: $dropdown-link-active-bg;
     }
 }
@@ -152,6 +151,5 @@ $dropdown-link-disabled-color: $gray-light !default;
     }
     // Remove the outline when :focus is triggered
     > a {
-        outline: 0;
     }
 }
