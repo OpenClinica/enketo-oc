@@ -229,5 +229,12 @@
       "enabled": "Questo modulo può essere usato offline",
       "disabled": "L'uso offline non è disponibile"
     }
+  },
+  "drawwidget": {
+    "clear": "Cancella __item__",
+    "state": {
+      "signed": "Firma: disegnata",
+      "empty": "Nessuna firma"
+    }
   }
 }

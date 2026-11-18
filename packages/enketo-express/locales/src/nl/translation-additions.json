@@ -229,5 +229,12 @@
       "enabled": "Dit formulier kan offline worden gebruikt",
       "disabled": "Offline gebruik is niet beschikbaar"
     }
+  },
+  "drawwidget": {
+    "clear": "Wis __item__",
+    "state": {
+      "signed": "Handtekening: getekend",
+      "empty": "Geen handtekening"
+    }
   }
 }

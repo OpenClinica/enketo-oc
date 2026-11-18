@@ -226,5 +226,12 @@
             "enabled": "This form can be used offline",
             "disabled": "Offline use is not available"
         }
+    },
+    "drawwidget": {
+        "clear": "Clear __item__",
+        "state": {
+            "signed": "Signature: drawn",
+            "empty": "No signature"
+        }
     }
 }

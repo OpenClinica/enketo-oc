@@ -229,5 +229,12 @@
       "enabled": "Ce formulaire peut être utilisé hors ligne",
       "disabled": "L'utilisation hors ligne n'est pas disponible"
     }
+  },
+  "drawwidget": {
+    "clear": "Effacer __item__",
+    "state": {
+      "signed": "Signature : dessinée",
+      "empty": "Aucune signature"
+    }
   }
 }

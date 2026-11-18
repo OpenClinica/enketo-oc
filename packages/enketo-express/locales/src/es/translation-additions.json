@@ -226,5 +226,12 @@
             "enabled": "Este formulario se puede usar sin conexión",
             "disabled": "El uso sin conexión no está disponible"
         }
+    },
+    "drawwidget": {
+        "clear": "Borrar __item__",
+        "state": {
+            "signed": "Firma: dibujada",
+            "empty": "Sin firma"
+        }
     }
 }

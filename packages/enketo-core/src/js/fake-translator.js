@@ -25,6 +25,11 @@ const SOURCE_STRINGS = {
         drawing: 'drawing',
         signature: 'signature',
         annotation: 'file and drawing',
+        clear: 'Clear __item__',
+        state: {
+            signed: 'Signature: drawn',
+            empty: 'No signature',
+        },
     },
     form: {
         required: 'required',
@@ -109,4 +114,16 @@ function t(key, options) {
     return str;
 }
 
-export { t };
+/**
+ * Meant to be replaced by the app's translator: calls fn after the UI language has switched.
+ * This placeholder has no UI language switch, so it does nothing.
+ *
+ * @static
+ * @param {Function} _fn - callback
+ * @return {undefined}
+ */
+function onUiLanguageChange(_fn) {
+    return undefined;
+}
+
+export { t, onUiLanguageChange };

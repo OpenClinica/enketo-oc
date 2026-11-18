@@ -229,5 +229,12 @@
             "enabled": "Dieses Formular kann offline verwendet werden",
             "disabled": "Offline-Nutzung ist nicht verfügbar"
         }
+    },
+    "drawwidget": {
+        "clear": "__item__ löschen",
+        "state": {
+            "signed": "Signatur: gezeichnet",
+            "empty": "Keine Signatur"
+        }
     }
 }

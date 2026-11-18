@@ -4,7 +4,7 @@ import fileManager from 'enketo/file-manager';
  * @external SignaturePad
  */
 import SignaturePad from 'signature_pad';
-import { t } from 'enketo/translator';
+import { t, onUiLanguageChange } from 'enketo/translator';
 import dialog from 'enketo/dialog';
 import support from '../../js/support';
 import events from '../../js/event';
@@ -13,6 +13,19 @@ import { dataUriToBlobSync, getFilename } from '../../js/utils';
 import downloadUtils from '../../js/download-utils';
 
 const DELAY = 1500;
+
+// One shared listener: the state and Clear names follow the UI language, which switches
+// after the form's own "changelanguage" event.
+const namedWidgets = new Set();
+onUiLanguageChange(() => {
+    namedWidgets.forEach((widget) => {
+        if (widget.question.isConnected) {
+            widget._setCanvasName();
+        } else {
+            namedWidgets.delete(widget);
+        }
+    });
+});
 
 /**
  * SignaturePad.prototype.fromDataURL is asynchronous and does not return
@@ -128,6 +141,8 @@ class DrawWidget extends Widget {
         this.$widget = $(question.querySelector('.widget'));
 
         canvas = this.$widget[0].querySelector('.draw-widget__body__canvas');
+        this._setCanvasName();
+        namedWidgets.add(this);
         this._handleResize(canvas);
         this._resizeCanvas(canvas);
 
@@ -159,6 +174,7 @@ class DrawWidget extends Widget {
             that.pad.off();
             if (existingFilename) {
                 that.element.value = existingFilename;
+                that._setCanvasName();
 
                 return that
                     ._loadFileIntoPad(existingFilename)
@@ -456,6 +472,7 @@ class DrawWidget extends Widget {
             this.value = newValue;
             this._updateDownloadLink(this.value);
         }
+        this._setCanvasName();
     }
 
     /**
@@ -497,10 +514,45 @@ class DrawWidget extends Widget {
                         .val('')
                         .trigger('change');
                     that._updateDownloadLink('');
+                    that._setCanvasName();
                     that.disable();
                     that.enable();
                 });
         }
+    }
+
+    /**
+     * Names the Clear button and, for a signature, names the canvas with the active
+     * question label and the signature state. Presentation only.
+     */
+    _setCanvasName() {
+        // Same keys as the reset warning in _reset.
+        const item =
+            this.props.type === 'signature'
+                ? t('drawwidget.signature')
+                : this.props.type === 'drawing'
+                ? t('drawwidget.drawing')
+                : t('drawwidget.annotation');
+        const reset = this.$widget[0].querySelector('.btn-reset');
+        reset.setAttribute('aria-label', t('drawwidget.clear', { item }));
+
+        if (this.props.type !== 'signature') {
+            return;
+        }
+        const canvas = this.$widget[0].querySelector(
+            '.draw-widget__body__canvas'
+        );
+        const label = this.question.querySelector('.question-label.active');
+        const state = this.element.value
+            ? t('drawwidget.state.signed')
+            : t('drawwidget.state.empty');
+        canvas.setAttribute('role', 'img');
+        canvas.setAttribute(
+            'aria-label',
+            [label && label.textContent.trim(), state]
+                .filter(Boolean)
+                .join('. ')
+        );
     }
 
     /**
@@ -647,6 +699,8 @@ class DrawWidget extends Widget {
      * we need to do.
      */
     update() {
+        // Also called by enketo-core on the form "changelanguage" event: refresh the names.
+        this._setCanvasName();
         if (this.originalInputValue === '') {
             this._reset();
         }
