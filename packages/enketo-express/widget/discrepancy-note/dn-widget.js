@@ -927,7 +927,9 @@ class Comment extends Widget {
             if (
                 input &&
                 input.value.trim() &&
-                !(await gui.confirm(t('widget.dn.discardcomment')))
+                !(await gui.confirm(t('widget.dn.discardcomment'), {
+                    negFirst: true,
+                }))
             ) {
                 return;
             }

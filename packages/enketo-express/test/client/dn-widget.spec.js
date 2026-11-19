@@ -580,7 +580,8 @@ describe('query dialog accessibility', () => {
             t('widget.dn.discardcomment')
         );
 
-        openDialogs()[0].querySelectorAll('.vex-dialog-button')[1].click();
+        // Cancel is first (D13)
+        openDialogs()[0].querySelectorAll('.vex-dialog-button')[0].click();
         finishAllClosing();
 
         return tick().then(() => {
@@ -590,12 +591,28 @@ describe('query dialog accessibility', () => {
         });
     });
 
+    it('the discard prompt has Cancel first and focused, Confirm second', () => {
+        openWithTextarea();
+        textarea().value = 'typed';
+        escape(textarea());
+
+        const buttons = openDialogs()[0].querySelectorAll('.vex-dialog-button');
+
+        expect(buttons.length).to.equal(2);
+        expect(buttons[0].textContent).to.equal(t('confirm.default.negButton'));
+        expect(buttons[1].textContent).to.equal(t('confirm.default.posButton'));
+        expect(openDialogs()[0].classList.contains('vex-neg-first')).to.equal(
+            true
+        );
+        expect(document.activeElement).to.equal(buttons[0]);
+    });
+
     it('Escape with typed text and "yes" closes it', () => {
         openWithTextarea();
         textarea().value = 'typed';
         escape(textarea());
 
-        openDialogs()[0].querySelectorAll('.vex-dialog-button')[0].click();
+        openDialogs()[0].querySelectorAll('.vex-dialog-button')[1].click();
 
         return tick().then(() => {
             finishAllClosing();
