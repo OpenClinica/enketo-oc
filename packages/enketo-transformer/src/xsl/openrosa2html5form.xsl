@@ -1451,6 +1451,11 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
                                     <xsl:attribute name="href">
                                         <xsl:value-of select="../xf:value[@form = 'big-image']"/>
                                     </xsl:attribute>
+                                    <xsl:if test="$notext != 'true'">
+                                        <xsl:attribute name="aria-label">
+                                            <xsl:value-of select="normalize-space(../xf:value[not(@form) or @form = 'long' or @form = 'short'][1])"/>
+                                        </xsl:attribute>
+                                    </xsl:if>
                                     <xsl:call-template name="image">
                                         <xsl:with-param name="active" select="$active"/>
                                         <xsl:with-param name="notext" select="$notext"/>
