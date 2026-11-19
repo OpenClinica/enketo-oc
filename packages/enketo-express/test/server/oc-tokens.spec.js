@@ -49,12 +49,12 @@ const expectRatio = (fg, bgs, min) =>
 describe('OC tokens', () => {
     it('every token equals its Token Table value', () => {
         expect(tokens).to.deep.equal({
-            accent: '#994a07',
-            'accent-hover': '#7a3b06',
+            accent: '#b13300',
+            'accent-hover': '#c25700',
             'input-border': '#7c7c7c',
             'secondary-text': '#606060',
-            error: '#a2413f',
-            focus: '#1e80ce',
+            error: '#a43f3e',
+            focus: '#0070dc',
             'query-new': '#fa0000',
             'icon-muted': '#8a8a8a',
             'jump-nav-text': '#1b1b1b',
@@ -194,7 +194,7 @@ describe('OC tokens', () => {
             )
         );
 
-        it('button hover background and border are #7a3b06', () => {
+        it('button hover background and border are #c25700', () => {
             const decl = (selector, prop) => {
                 let value;
                 root.walkRules((rule) => {
@@ -207,8 +207,8 @@ describe('OC tokens', () => {
 
                 return value;
             };
-            expect(decl('.btn:hover', 'background-color')).to.equal('#7a3b06');
-            expect(decl('.btn', 'border-color')).to.equal('#7a3b06');
+            expect(decl('.btn:hover', 'background-color')).to.equal('#c25700');
+            expect(decl('.btn', 'border-color')).to.equal('#c25700');
         });
     });
 
