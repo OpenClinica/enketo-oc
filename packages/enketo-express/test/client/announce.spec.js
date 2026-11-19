@@ -142,6 +142,19 @@ describe('Live regions (announce)', () => {
             expect(polite().textContent).to.equal(t('offline.status.disabled'));
         });
 
+        it('rewrites the status text on a UI language change without announcing it', () => {
+            gui.updateStatus.offlineCapable(false);
+            polite().textContent = '';
+            document.querySelector('.offline-enabled__status').textContent =
+                'stale';
+
+            // i18next emits this after the UI language has switched.
+            i18next.emit('languageChanged', 'de');
+
+            expect(status()).to.equal(t('offline.status.disabled'));
+            expect(polite().textContent).to.equal('');
+        });
+
         it('has the English strings in the en bundle', () => {
             expect(en.offline.status.enabled).to.equal(
                 'This form can be used offline'

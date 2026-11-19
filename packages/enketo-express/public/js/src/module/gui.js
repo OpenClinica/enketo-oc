@@ -11,7 +11,7 @@ import vexEnketoDialog from 'vex-dialog-enketo';
 import feedbackBar from './feedback-bar';
 import announce from './announce';
 import settings from './settings';
-import { init as initTranslator, t } from './translator';
+import { init as initTranslator, t, onUiLanguageChange } from './translator';
 import sniffer from './sniffer';
 import events from './event';
 import './plugin';
@@ -883,6 +883,10 @@ function alertCacheUnsupported() {
     });
 }
 
+// Last offline state, so the hidden status text can follow a UI language change.
+let lastOfflineCapable;
+let offlineLanguageListener = false;
+
 /**
  * Updates various statuses in the GUI (connection, form-edited, browsersupport)
  *
@@ -894,6 +898,22 @@ updateStatus = {
             $('.offline-enabled__icon.not-enabled').removeClass('not-enabled');
         } else {
             $('.offline-enabled__icon').addClass('not-enabled');
+        }
+
+        lastOfflineCapable = offlineCapable;
+        if (!offlineLanguageListener) {
+            offlineLanguageListener = true;
+            // Rewrite the text in the new language. No announcement: the state did not change.
+            onUiLanguageChange(() => {
+                const el = document.querySelector('.offline-enabled__status');
+                if (el && el.textContent !== '') {
+                    el.textContent = t(
+                        lastOfflineCapable
+                            ? 'offline.status.enabled'
+                            : 'offline.status.disabled'
+                    );
+                }
+            });
         }
 
         // Text for the `title`-only icon; announced when it changes (not when first set).
