@@ -1395,7 +1395,7 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
                 <xsl:if test="string($lang) = string($current-lang)">active</xsl:if>
             </xsl:variable>
             <xsl:variable name="notext">
-                <xsl:value-of select="string-length(./xf:value[@form='long' or @form='short' or not(@form)]) = 0" />
+                <xsl:value-of select="string-length(normalize-space(./xf:value[@form='long' or @form='short' or not(@form)])) = 0" />
             </xsl:variable>
             <!-- text labels get priority -->
             <xsl:for-each select="./xf:value" >

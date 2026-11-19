@@ -365,6 +365,19 @@ describe('transformer', () => {
                 ).to.equal('');
             });
 
+            it('and treats a whitespace-only label as no text', async () => {
+                const result = await transform({
+                    xform: bigImageXForm('<value>   </value>'),
+                });
+                const doc = parser.parseFromString(result.form, 'text/html');
+                const link = doc.querySelector('a.or-big-image');
+
+                expect(link?.hasAttribute('aria-label')).to.equal(false);
+                expect(
+                    link?.querySelector('img')?.getAttribute('alt')
+                ).to.equal('image');
+            });
+
             it('and adds no aria-label when the image is the only label', async () => {
                 const result = await transform({
                     xform: bigImageXForm(''),
