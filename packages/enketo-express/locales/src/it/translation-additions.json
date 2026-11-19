@@ -158,6 +158,10 @@
     "msg": "__appTitle__ è in esecuzione! Accedi ai moduli OpenClinica dalla tua installazione __serverName__."
   },
   "alert": {
+    "invalidquestions": {
+      "msg": "__count__ domanda richiede attenzione",
+      "msg_plural": "__count__ domande richiedono attenzione"
+    },
     "appupdated": {
       "heading": "Aggiorna",
       "msg": "Aggiorna questa pagina web per utilizzare il modulo offline (rif.: applicazione)"
@@ -202,6 +206,20 @@
     },
     "remove": {
       "btn": "Rimuovi"
+    }
+  },
+  "drawwidget": {
+    "clear": "Cancella",
+    "undo": "Annulla",
+    "done": "Fine disegno",
+    "signaturedrawn": "Firma: disegnata",
+    "nosignature": "Nessuna firma",
+    "drawn": "Disegno: disegnato",
+    "nodrawing": "Nessun disegno"
+  },
+  "formheader": {
+    "print": {
+      "label": "Stampa"
     }
   }
 }

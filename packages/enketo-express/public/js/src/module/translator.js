@@ -120,7 +120,10 @@ const localize = (container, lng) => {
                     // needs to be localized, since placeholders are only used on form controls,
                     // and the textContent of a form control is never translatable.
                     const translationCache = cache[key];
-                    if (el.placeholder) {
+                    if (el.dataset.i18nAttr) {
+                        // e.g. data-i18n-attr="aria-label" on icon-only buttons (OC-29440)
+                        el.setAttribute(el.dataset.i18nAttr, translationCache);
+                    } else if (el.placeholder) {
                         el.placeholder = translationCache;
                     } else if (el.dataset.i18nIcon) {
                         el.textContent = '';

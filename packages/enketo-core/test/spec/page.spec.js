@@ -8,9 +8,18 @@ describe('Pages mode', () => {
         /** @type {SinonFakeTimers} */
         let timers;
 
+        /** @type {HTMLElement} */
+        let formFooter;
+
         beforeEach(() => {
             sandbox = sinon.createSandbox();
             timers = sandbox.useFakeTimers();
+            // A new repeat page runs OC's reason-for-change check (page.js, reasons.js), which inserts its section
+            // before the page's .form-footer. Provide one, as a real page has, instead of relying on a footer
+            // another spec happened to leave in the document.
+            formFooter = document.createElement('section');
+            formFooter.classList.add('form-footer');
+            document.body.append(formFooter);
         });
 
         afterEach(() => {
@@ -20,6 +29,7 @@ describe('Pages mode', () => {
             timers.clearInterval();
             timers.restore();
             sandbox.restore();
+            formFooter.remove();
         });
 
         it('loads to the proper first page', () => {
@@ -62,7 +72,7 @@ describe('Pages mode', () => {
             );
             const pageComment = form.view.html
                 .querySelector('input[name="/data/item2"]')
-                .closest('[role="page"]');
+                .closest('[data-page]');
             const pageTwoTextAreaCommentAncestor =
                 pageTwoTextAreaHiddenComment.closest('[role="comment"]');
 
@@ -110,7 +120,7 @@ describe('Pages mode', () => {
             form.pages.flipToPageContaining([fieldListPage]);
 
             const questionPage = form.view.html.querySelector(
-                '.question[role="page"]'
+                '.question[data-page]'
             );
             const focusSpy = sandbox.spy(questionPage, 'focus');
 
@@ -142,7 +152,7 @@ describe('Pages mode', () => {
             expect(
                 firstPage.classList.contains('or-appearance-field-list')
             ).to.equal(false);
-            expect(firstPage.getAttribute('tabindex')).to.equal('1');
+            expect(firstPage.getAttribute('tabindex')).to.equal('-1');
         });
     });
 

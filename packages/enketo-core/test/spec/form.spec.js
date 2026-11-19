@@ -1448,6 +1448,113 @@ describe('re-validating inputs and updating user feedback', () => {
     });
 });
 
+describe('aria-invalid and aria-describedby on invalid questions', () => {
+    it('links the input to the visible message and removes it when valid', () => {
+        const form = loadForm('comment.xml');
+
+        form.init();
+
+        const input = form.view.html.querySelector('[name="/comment/one"]');
+        const question = input.closest('.question');
+        input.setAttribute('aria-describedby', 'hint-id');
+
+        form.setInvalid(input, 'required');
+
+        const msg = question.querySelector('.or-required-msg.active');
+
+        expect(input.getAttribute('aria-invalid')).to.equal('true');
+        expect(msg.id).to.not.equal('');
+        expect(input.getAttribute('aria-describedby')).to.equal(
+            `hint-id ${msg.id}`
+        );
+
+        form.setValid(input, 'required');
+
+        expect(input.hasAttribute('aria-invalid')).to.equal(false);
+        expect(input.getAttribute('aria-describedby')).to.equal('hint-id');
+    });
+
+    it('links the input to the "value should be cleared" message for invalid-relevant', () => {
+        const form = loadForm('comment.xml');
+
+        form.init();
+
+        const input = form.view.html.querySelector('[name="/comment/one"]');
+        const question = input.closest('.question');
+        if (!question.querySelector('.or-relevant-msg')) {
+            const span = document.createElement('span');
+            span.className = 'or-relevant-msg active';
+            span.textContent = 'This value should be cleared';
+            question.appendChild(span);
+        }
+
+        form.setInvalid(input, 'relevant');
+
+        const msg = question.querySelector('.or-relevant-msg.active');
+
+        expect(input.getAttribute('aria-invalid')).to.equal('true');
+        expect(input.getAttribute('aria-describedby')).to.contain(msg.id);
+
+        form.setValid(input, 'relevant');
+
+        expect(input.hasAttribute('aria-invalid')).to.equal(false);
+    });
+
+    it('marks controls inside a group that is invalid-relevant and links the group message', () => {
+        const form = loadForm('comment.xml');
+
+        form.init();
+
+        const group = document.createElement('section');
+        group.className = 'or-group invalid-relevant';
+        group.innerHTML =
+            '<span class="or-relevant-msg active">This value should be cleared</span>' +
+            '<label class="question"><input type="text" name="/g/a"></label>';
+        form.view.html.appendChild(group);
+        const input = group.querySelector('input');
+        const msg = group.querySelector('.or-relevant-msg');
+
+        form.syncAriaInvalid(group);
+
+        expect(input.getAttribute('aria-invalid')).to.equal('true');
+        expect(input.getAttribute('aria-describedby')).to.equal(msg.id);
+
+        group.classList.remove('invalid-relevant');
+        form.syncAriaInvalid(group);
+
+        expect(input.hasAttribute('aria-invalid')).to.equal(false);
+        expect(input.hasAttribute('aria-describedby')).to.equal(false);
+    });
+
+    it('mirrors the state onto the desktop select toggle button', () => {
+        const form = loadForm('comment.xml');
+
+        form.init();
+
+        const question = document.createElement('label');
+        question.className = 'question invalid-required';
+        question.innerHTML =
+            '<select name="/s/a"><option value="">-</option></select>' +
+            '<div class="bootstrap-select"><button type="button" class="dropdown-toggle"></button></div>' +
+            '<span class="or-required-msg active">This field is required</span>';
+        form.view.html.appendChild(question);
+        const select = question.querySelector('select');
+        const toggle = question.querySelector('.dropdown-toggle');
+        const msg = question.querySelector('.or-required-msg');
+
+        form.syncAriaInvalid(select);
+
+        expect(toggle.getAttribute('aria-invalid')).to.equal('true');
+        expect(toggle.getAttribute('aria-describedby')).to.equal(msg.id);
+
+        question.classList.remove('invalid-required');
+        form.syncAriaInvalid(select);
+
+        expect(toggle.hasAttribute('aria-invalid')).to.equal(false);
+        expect(toggle.hasAttribute('aria-describedby')).to.equal(false);
+    });
+});
+
 describe('getting related nodes', () => {
     stubDialogConfirm();
 
@@ -2029,8 +2136,7 @@ describe('Focus', () => {
         formElement = form.view.html;
         formFooter.classList.add('form-footer');
         document.body.append(formElement, formFooter);
-        nextPageButton = document.createElement('a');
-        nextPageButton.href = '#';
+        nextPageButton = document.createElement('button');
         nextPageButton.type = 'button';
         nextPageButton.classList.add(
             'btn',

@@ -364,11 +364,11 @@ input[type='checkbox'] {
 
 // pages mode
 .pages.or {
-    &.print-relevant-only .disabled[role='page'] {
+    &.print-relevant-only .disabled[data-page] {
         display: none;
     }
 
-    [role='page'] {
+    [data-page] {
         display: inherit;
     }
 

@@ -324,6 +324,7 @@ Form.prototype.setValid = function (control, type) {
         ? [`invalid-${type}`]
         : [...wrap.classList].filter((cl) => cl.indexOf('invalid-') === 0);
     wrap.classList.remove(...classes);
+    this.syncAriaInvalid(control);
 };
 
 /**
@@ -348,6 +349,7 @@ Form.prototype.setInvalid = function (control, type = 'constraint') {
     }
 
     wrap.classList.add(`invalid-${type}`);
+    this.syncAriaInvalid(control);
 };
 
 // TODO can this function be removed entirely?

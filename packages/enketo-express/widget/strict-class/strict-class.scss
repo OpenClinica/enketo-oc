@@ -1,8 +1,12 @@
-$c: #f58220;
+@import '/packages/enketo-core/src/sass/core/oc-tokens';
+
+$c: oc-token(accent);
+// today's background, lighten(#f58220, 30%), kept as a literal: it stays, the foregrounds on it pass
+$bg: #fcd4b2;
 
 @mixin oc-strict-error {
     border-color: $c;
-    background-color: lighten($c, 30%);
+    background-color: $bg;
 }
 
 .oc-strict-constraint.invalid-constraint,
@@ -17,6 +21,6 @@ $c: #f58220;
 
 .vex-dialog-title {
     .icon.oc-strict-error {
-        color: lighten($c, 20%);
+        color: $c;
     }
 }

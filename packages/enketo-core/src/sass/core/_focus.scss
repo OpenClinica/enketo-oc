@@ -1,0 +1,15 @@
+// OC-29219 / OC-29440 (WCAG 2.4.7): the visible keyboard focus indicator for Enketo Core's own
+// entry stylesheets (formhub, plain, grid). The Enketo Express themes emit the same rule at the end
+// of each theme file. Import this last so nothing later in the cascade overrides it.
+:focus-visible {
+    outline: 2px solid var(--oc-focus, #0070dc);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.oc-on-dark :focus-visible {
+    outline-color: var(--oc-focus-on-dark, #ffffff);
+}

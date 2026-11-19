@@ -2,6 +2,7 @@ import $ from 'jquery';
 import { t } from 'enketo/translator';
 import config from 'enketo/config';
 import { FormModel } from './form-model';
+import { syncInputAria } from './aria-invalid';
 import {
     parseFunctionFromExpression,
     stripQuotes,
@@ -380,7 +381,7 @@ Form.prototype.init = function () {
         // before itemset.update
         this.langs.init(this.options.language);
 
-        // before repeats.init so that template contains role="page" when applicable
+        // before repeats.init so that template contains data-page when applicable
         this.pages.init();
 
         const repeatPaths = Array.from(
@@ -1177,6 +1178,31 @@ Form.prototype.setValid = function (control, type) {
         ? [`invalid-${type}`]
         : [...wrap.classList].filter((cl) => cl.indexOf('invalid-') === 0);
     wrap.classList.remove(...classes);
+    this.syncAriaInvalid(control);
+};
+
+/**
+ * Exposes the invalid state of a question or group to assistive technology: sets aria-invalid on the inputs inside
+ * it and links them (aria-describedby) to the visible constraint/required/relevant message of their question and of
+ * any enclosing group marked invalid-relevant (OC marks .or-group and .or-group-data too). The messages themselves
+ * are deliberately not live regions (they would be announced while typing).
+ *
+ * @param {Element} control - form control HTML element, or a group element
+ */
+Form.prototype.syncAriaInvalid = function (control) {
+    const scope =
+        control.closest('.question, .calculation') ||
+        control.closest('.or-group, .or-group-data');
+
+    if (!scope) {
+        return;
+    }
+
+    scope
+        .querySelectorAll(
+            'input:not([type="hidden"]):not(.ignore), select, textarea'
+        )
+        .forEach((input) => syncInputAria(input));
 };
 
 /**
@@ -1198,6 +1224,7 @@ Form.prototype.setInvalid = function (control, type = 'constraint') {
     }
 
     wrap.classList.add(`invalid-${type}`);
+    this.syncAriaInvalid(control);
 };
 
 /**

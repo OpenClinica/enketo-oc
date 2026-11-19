@@ -1,0 +1,36 @@
+// OC accessibility tokens for the Form Engine (design spec 4.1, OC-29440).
+// Each value is today's Form Engine colour, darkened (hue kept, OKLab lightness lowered) only until the worst
+// background it sits on passes its target. Values and measured ratios: PALETTE-TOKENS.md, "Form Engine".
+// Backgrounds measured: white, page #f0f0f0, invalid question #f2dede, strict-constraint #fcd4b2 (and #fde2cb
+// for orange hover tints). theme-oc emits this map as the :root block. Never apply lighten() or darken() to a
+// token: hover tints keep their literal values. This file has no CSS output, so it is safe to import twice.
+$oc-tokens: (
+    // orange headings, links, required marks, checked radio/checkbox; under white text on primary buttons
+    // two oranges today (#f58220 theme-oc, #ce4f07 form header and formhub/grid): one token, darkened from the
+    // darker one (design spec 4.1 step 5) until 4.5:1 on its worst background, #fcd4b2 (4.55:1)
+    accent: #B13300,
+    // border and hover fill of orange buttons (white text on it)
+    accent-border: #C25700,
+    // grey (Back, Finish Later, Close) button fill and its text: both already pass, unchanged
+    secondary-bg: #EEEEEE,
+    on-secondary: #333333,
+    // borders of inputs, selects, checkboxes, radios and grey buttons
+    input-border: #7C7C7C,
+    // hints and helper text
+    secondary-text: #606060,
+    // placeholders and footer text
+    placeholder: #656565,
+    // error text
+    error: #A43F3E,
+    // focus ring on light and on dark or coloured surfaces (2px, offset 2px)
+    focus: #0070DC,
+    focus-on-dark: #FFFFFF,
+);
+
+@function oc-token($name) {
+    @if not map-has-key($oc-tokens, $name) {
+        @error "Unknown OC token: #{$name}";
+    }
+
+    @return map-get($oc-tokens, $name);
+}
