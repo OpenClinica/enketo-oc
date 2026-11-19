@@ -430,9 +430,14 @@ Form.prototype.announceInvalid = function (container = this.view.html) {
     ]
         .concat(this.constraintClassesInvalid.map((cls) => `.${cls}`))
         .join(', ');
-    const count =
-        container.querySelectorAll(selector).length +
-        (container.matches(selector) ? 1 : 0);
+    const marked = [...container.querySelectorAll(selector)];
+    if (container.matches(selector)) {
+        marked.push(container);
+    }
+    // A marked group that holds another marked element is the same problem: count it once.
+    const count = marked.filter(
+        (el) => !marked.some((other) => other !== el && el.contains(other))
+    ).length;
 
     if (count) {
         announce(t('constraint.attention', { count }), { assertive: true });

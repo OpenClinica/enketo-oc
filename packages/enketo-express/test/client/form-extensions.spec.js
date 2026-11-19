@@ -287,6 +287,32 @@ describe('Errors tied to their field and announced', () => {
         expect(assertive().textContent).to.equal('');
     });
 
+    it('counts a marked group that holds a marked question once', () => {
+        const group = wrapper.querySelector('section.or-group');
+        group.classList.add('invalid-relevant');
+        question(a).classList.add('invalid-required');
+        form.announceInvalid();
+        expect(assertive().textContent).to.equal('1 question needs attention');
+    });
+
+    it('counts a marked group with no marked question inside once', () => {
+        wrapper
+            .querySelector('section.or-group')
+            .classList.add('invalid-relevant');
+        form.announceInvalid();
+        expect(assertive().textContent).to.equal('1 question needs attention');
+    });
+
+    it('still counts two separate marked questions as 2', () => {
+        form.setInvalid(a, 'required');
+        form.setInvalid(
+            wrapper.querySelector('input[name="/data/g/b"]'),
+            'required'
+        );
+        form.announceInvalid();
+        expect(assertive().textContent).to.equal('2 questions need attention');
+    });
+
     it('no announcement while typing in a field', async () => {
         const settle = () => new Promise((resolve) => setTimeout(resolve, 50));
         a.value = 'y';
