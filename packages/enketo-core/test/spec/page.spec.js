@@ -1,4 +1,6 @@
 import loadForm from '../helpers/load-form';
+import events from '../../src/js/event';
+import reasons from '../../src/js/reasons';
 
 describe('Pages mode', () => {
     describe('Initial loading if form includes repeats-as-page', () => {
@@ -51,6 +53,49 @@ describe('Pages mode', () => {
         });
     });
 
+    describe('OC-29480: data-page replaces the invalid role="page"', () => {
+        it('marks every page with data-page and none with role="page"', () => {
+            const form = loadForm('pages.xml');
+            form.init();
+
+            expect(form.pages.activePages.length).to.be.above(0);
+            form.pages.activePages.forEach((page) => {
+                expect(page.hasAttribute('data-page')).to.equal(true);
+            });
+            expect(form.view.html.querySelector('[role="page"]')).to.equal(
+                null
+            );
+        });
+
+        it('gives a repeat clone added after init data-page', () => {
+            const form = loadForm('repeat-only-pages.xml');
+            form.init();
+
+            form.repeats.add(form.view.html.querySelector('.or-repeat-info'));
+
+            const repeats = form.view.html.querySelectorAll('.or-repeat');
+            expect(repeats.length).to.equal(2);
+            repeats.forEach((repeat) => {
+                expect(repeat.hasAttribute('data-page')).to.equal(true);
+                expect(repeat.hasAttribute('role')).to.equal(false);
+            });
+        });
+
+        it('still calls toggleButtons when a repeat page is added while a reason is empty', () => {
+            const form = loadForm('repeat-only-pages.xml');
+            form.init();
+            const sandbox = sinon.createSandbox();
+            sandbox.stub(reasons, 'validate').returns(false);
+            form.pages.toggleButtons = sandbox.spy();
+
+            const repeat = form.view.html.querySelector('.or-repeat');
+            repeat.dispatchEvent(events.AddRepeat({ trigger: 'user' }));
+            sandbox.restore();
+
+            expect(form.pages.toggleButtons).to.have.been.called;
+        });
+    });
+
     describe('Flip to page on multipages form', () => {
         it('flip to second page', () => {
             const form = loadForm('pages-comment.xml');
@@ -62,7 +107,7 @@ describe('Pages mode', () => {
             );
             const pageComment = form.view.html
                 .querySelector('input[name="/data/item2"]')
-                .closest('[role="page"]');
+                .closest('[data-page]');
             const pageTwoTextAreaCommentAncestor =
                 pageTwoTextAreaHiddenComment.closest('[role="comment"]');
 
@@ -110,7 +155,7 @@ describe('Pages mode', () => {
             form.pages.flipToPageContaining([fieldListPage]);
 
             const questionPage = form.view.html.querySelector(
-                '.question[role="page"]'
+                '.question[data-page]'
             );
             const focusSpy = sandbox.spy(questionPage, 'focus');
 
@@ -142,7 +187,87 @@ describe('Pages mode', () => {
             expect(
                 firstPage.classList.contains('or-appearance-field-list')
             ).to.equal(false);
-            expect(firstPage.getAttribute('tabindex')).to.equal('1');
+            expect(firstPage.getAttribute('tabindex')).to.equal('-1');
+        });
+    });
+
+    describe('OC-29480: footer page buttons', () => {
+        const initWithFooter = (file) => {
+            const form = loadForm(file);
+            const footer = document.createElement('section');
+            footer.className = 'form-footer';
+            footer.innerHTML =
+                '<button type="button" class="btn next-page disabled"></button>' +
+                '<button type="button" class="btn previous-page disabled"></button>' +
+                '<button type="button" class="btn first-page disabled"></button>' +
+                '<button type="button" class="btn last-page disabled"></button>';
+            form.view.html.parentNode.append(footer);
+            form.init();
+
+            return { form, footer };
+        };
+        const btn = (footer, c) => footer.querySelector(`.${c}`);
+
+        it('does not give Next a positive tabindex', () => {
+            const { footer } = initWithFooter('groups-pages.xml');
+
+            expect(btn(footer, 'next-page').hasAttribute('tabindex')).to.equal(
+                false
+            );
+        });
+
+        it('mirrors the disabled class in aria-disabled and sets no disabled property', () => {
+            const { form, footer } = initWithFooter('groups-pages.xml');
+            const names = [
+                'next-page',
+                'previous-page',
+                'first-page',
+                'last-page',
+            ];
+            const check = () => {
+                names.forEach((c) => {
+                    const el = btn(footer, c);
+                    expect(el.disabled).to.equal(false);
+                    expect(el.hasAttribute('disabled')).to.equal(false);
+                    if (el.classList.contains('disabled')) {
+                        expect(el.getAttribute('aria-disabled')).to.equal(
+                            'true'
+                        );
+                    } else {
+                        expect(el.hasAttribute('aria-disabled')).to.equal(
+                            false
+                        );
+                    }
+                });
+            };
+
+            // first page: previous and first disabled, next and last enabled
+            check();
+            expect(
+                btn(footer, 'previous-page').getAttribute('aria-disabled')
+            ).to.equal('true');
+            expect(
+                btn(footer, 'next-page').hasAttribute('aria-disabled')
+            ).to.equal(false);
+
+            form.pages._toggleButtons(form.pages.activePages.length - 1);
+            check();
+            expect(
+                btn(footer, 'next-page').getAttribute('aria-disabled')
+            ).to.equal('true');
+            expect(
+                btn(footer, 'previous-page').hasAttribute('aria-disabled')
+            ).to.equal(false);
+        });
+
+        it('calls _next once when an enabled Next is clicked', () => {
+            const { form, footer } = initWithFooter('groups-pages.xml');
+            const spy = sinon.spy(form.pages, '_next');
+
+            btn(footer, 'next-page').click();
+
+            expect(spy).to.have.been.calledOnce;
+            spy.restore();
         });
     });
 

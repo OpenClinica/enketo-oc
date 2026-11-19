@@ -1,6 +1,16 @@
 {
   "widget": {
     "dn": {
+      "trigger": {
+        "none": "Query: geen",
+        "new": "Query: nieuw",
+        "updated": "Query: bijgewerkt",
+        "closed": "Query: gesloten",
+        "closed-modified": "Query: gesloten, gewijzigd",
+        "invalid": "Query: ongeldig"
+      },
+      "dialogname": "Query's en annotaties",
+      "discardcomment": "De getypte tekst verwijderen?",
       "assignto": "Toewijzen aan:",
       "assignedto": "__id__ toegewezen aan __assignee__.",
       "closequerytext": "Deze query sluiten",
@@ -152,12 +162,15 @@
     }
   },
   "constraint": {
+    "attention": "__count__ vraag vereist aandacht",
+    "attention_plural": "__count__ vragen vereisen aandacht",
     "relevant": "Een antwoord op een andere vraag is gewijzigd, waardoor deze vraag verborgen moet worden, maar dit kan niet zolang er gegevens in staan. Wis de gegevens of wijzig de afhankelijke antwoorden."
   },
   "home": {
     "msg": "__appTitle__ wordt uitgevoerd! Open OpenClinica-formulieren vanuit uw __serverName__-installatie."
   },
   "alert": {
+    "close": "Sluiten",
     "appupdated": {
       "heading": "Vernieuw de pagina",
       "msg": "Vernieuw deze webpagina om het formulier offline te kunnen gebruiken (ref.: toepassing)"
@@ -202,6 +215,26 @@
     },
     "remove": {
       "btn": "Verwijderen"
+    }
+  },
+  "form": {
+    "print": "Afdrukken",
+    "skiplink": "Naar formulier springen",
+    "pages": {
+      "position": "Pagina __current__ van __total__"
+    }
+  },
+  "offline": {
+    "status": {
+      "enabled": "Dit formulier kan offline worden gebruikt",
+      "disabled": "Offline gebruik is niet beschikbaar"
+    }
+  },
+  "drawwidget": {
+    "clear": "Wis __item__",
+    "state": {
+      "signed": "Handtekening: getekend",
+      "empty": "Geen handtekening"
     }
   }
 }

@@ -37,7 +37,7 @@ describe('Media replacement', () => {
                             an image
                         </span>
                         <a class="or-big-image" href="jr://images/an%20image.jpg">
-                            <img lang="default" class="active" src="jr://images/an%20image.jpg" data-itext-id="/data/an-image:label" alt="image">
+                            <img lang="default" class="active" src="jr://images/an%20image.jpg" data-itext-id="/data/an-image:label" alt="">
                         </a>
                         <input type="text" name="/data/an-image" data-type-xml="string" maxlength="2000">
                     </label>

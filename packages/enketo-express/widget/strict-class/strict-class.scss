@@ -1,8 +1,8 @@
-$c: #f58220;
+$c: #f58220 !default;
 
 @mixin oc-strict-error {
     border-color: $c;
-    background-color: lighten($c, 30%);
+    background-color: #fcd4b2;
 }
 
 .oc-strict-constraint.invalid-constraint,
@@ -17,6 +17,6 @@ $c: #f58220;
 
 .vex-dialog-title {
     .icon.oc-strict-error {
-        color: lighten($c, 20%);
+        color: #f9b982;
     }
 }

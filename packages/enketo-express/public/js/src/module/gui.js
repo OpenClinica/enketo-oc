@@ -9,8 +9,9 @@ import vex from 'vex-js';
 import $ from 'jquery';
 import vexEnketoDialog from 'vex-dialog-enketo';
 import feedbackBar from './feedback-bar';
+import announce from './announce';
 import settings from './settings';
-import { init as initTranslator, t } from './translator';
+import { init as initTranslator, t, onUiLanguageChange } from './translator';
 import sniffer from './sniffer';
 import events from './event';
 import './plugin';
@@ -29,6 +30,125 @@ let formTheme;
 // Customize vex
 vex.registerPlugin(vexEnketoDialog);
 vex.defaultOptions.className = 'vex-theme-plain';
+
+const FOCUSABLE = 'button, input, select, textarea, a[href], [tabindex]';
+
+// A button that is disabled when it is clicked (btnBusyState) loses focus to body,
+// so the last focused element is kept to find the opener.
+let lastFocused = null;
+document.addEventListener('focusin', (event) => {
+    lastFocused = event.target;
+});
+
+/**
+ * Returns the element to give focus back to when a dialog closes.
+ * An element inside a vex dialog is not used, because that dialog closes.
+ *
+ * @return {HTMLElement|null} opener
+ */
+function _getOpener() {
+    let el = document.activeElement;
+
+    if ((!el || el === document.body) && lastFocused && lastFocused.disabled) {
+        el = lastFocused;
+    }
+
+    return el && el !== document.body && !el.closest('.vex') ? el : null;
+}
+
+/**
+ * Makes a vex dialog a named modal dialog, makes its close control a button,
+ * keeps Tab inside it, and gives focus back to the opener when it closes.
+ *
+ * @param {object} vexInstance - the instance that vex.dialog.* returns
+ * @param {HTMLElement|null} opener - the element focused before the dialog opened
+ */
+function _makeDialogAccessible(vexInstance, opener) {
+    const { contentEl, closeEl, options } = vexInstance;
+    const title = contentEl.querySelector('.vex-dialog-title');
+
+    contentEl.setAttribute('role', 'dialog');
+    contentEl.setAttribute('aria-modal', 'true');
+    if (title) {
+        title.id = `vex-dialog-title-${vexInstance.id}`;
+        contentEl.setAttribute('aria-labelledby', title.id);
+    }
+
+    if (closeEl) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = closeEl.className;
+        button.setAttribute('aria-label', t('alert.close'));
+        button.addEventListener('click', () => vexInstance.close());
+        closeEl.replaceWith(button);
+        vexInstance.closeEl = button;
+    }
+
+    contentEl.addEventListener('keydown', (event) => {
+        if (event.key !== 'Tab') {
+            return;
+        }
+        const items = [...contentEl.querySelectorAll(FOCUSABLE)].filter(
+            (el) =>
+                !el.disabled &&
+                el.tabIndex >= 0 &&
+                el.getClientRects().length > 0
+        );
+        const index = items.indexOf(document.activeElement);
+        const last = items.length - 1;
+
+        // index -1: focus is on the dialog text or the dialog itself.
+        if (event.shiftKey && index <= 0) {
+            event.preventDefault();
+            items[last].focus();
+        } else if (!event.shiftKey && (index === -1 || index === last)) {
+            event.preventDefault();
+            items[0].focus();
+        }
+    });
+
+    // vex calls afterClose after its close animation, so another dialog may be open by then,
+    // or the user may have moved focus to a form field.
+    const { afterClose } = options;
+    options.afterClose = function dialogAfterClose() {
+        if (afterClose) {
+            afterClose.call(this);
+        }
+        if (!opener) {
+            return;
+        }
+        const returnFocus = () => {
+            const active = document.activeElement;
+            const otherOpen = Object.values(vex.getAll()).some((v) => v.isOpen);
+
+            if (
+                opener.isConnected &&
+                !otherOpen &&
+                (!active || active === document.body)
+            ) {
+                opener.focus();
+            }
+        };
+
+        if (!opener.disabled) {
+            returnFocus();
+
+            return;
+        }
+        // A disabled element cannot take focus: wait until it is enabled again.
+        // ponytail: the observer stays if the opener is never enabled again (e.g. the page unloads).
+        const observer = new MutationObserver(() => {
+            if (!opener.disabled) {
+                observer.disconnect();
+                returnFocus();
+            }
+        });
+        observer.observe(opener, {
+            attributes: true,
+            attributeFilter: ['disabled'],
+        });
+    };
+}
 
 /**
  * Initializes the GUI module
@@ -215,8 +335,9 @@ function feedback(message, duration, heading = t('feedback.header')) {
  */
 function alert(message, heading, level, duration) {
     level = level || 'error';
+    const opener = _getOpener();
     vex.closeAll();
-    vex.dialog.alert({
+    const instance = vex.dialog.alert({
         unsafeMessage: `<span>${message}</span>`,
         title: heading || t('alert.default.heading'),
         messageClassName: level === 'normal' ? '' : `alert-box ${level}`,
@@ -230,6 +351,7 @@ function alert(message, heading, level, duration) {
         autoClose: duration,
         showCloseButton: true,
     });
+    _makeDialogAccessible(instance, opener);
 
     return Promise.resolve();
 }
@@ -247,7 +369,7 @@ function close() {
  *
  * @param {?(object.<string, (string|boolean)>|string)=} content - In its simplest form this is just a string but it can
  *                                                         also an object with parameters msg, heading and errorMsg.
- * @param {object=} choices - [type/description]
+ * @param {object=} choices - button texts (posButton, negButton), allowAlternativeClose; `negFirst: true` puts Cancel first (and focused)
  */
 function confirm(content, choices) {
     let errorMsg = '';
@@ -264,26 +386,31 @@ function confirm(content, choices) {
                 ? choices.allowAlternativeClose
                 : true;
 
+        const yes = $.extend({}, vex.dialog.buttons.YES, {
+            text: choices.posButton || t('confirm.default.posButton'),
+            className: 'btn btn-primary small',
+        });
+        const no = $.extend({}, vex.dialog.buttons.NO, {
+            text: choices.negButton || t('confirm.default.negButton'),
+            className: 'btn btn-default small',
+        });
+        const opener = _getOpener();
         vex.closeAll();
-        vex.dialog.confirm({
+        // vex focuses the first button, so negFirst also puts initial focus on Cancel.
+        const instance = vex.dialog.confirm({
             unsafeMessage: errorMsg + (message || t('confirm.default.msg')),
             title: content.heading || t('confirm.default.heading'),
-            buttons: [
-                $.extend({}, vex.dialog.buttons.YES, {
-                    text: choices.posButton || t('confirm.default.posButton'),
-                    className: 'btn btn-primary small',
-                }),
-                $.extend({}, vex.dialog.buttons.NO, {
-                    text: choices.negButton || t('confirm.default.negButton'),
-                    className: 'btn btn-default small',
-                }),
-            ],
+            buttons: choices.negFirst ? [no, yes] : [yes, no],
             callback: resolve,
             afterClose: resolve,
             showCloseButton: choices.allowAlternativeClose,
             escapeButtonCloses: choices.allowAlternativeClose,
             overlayClosesOnClick: choices.allowAlternativeClose,
         });
+        if (choices.negFirst) {
+            instance.rootEl.classList.add('vex-neg-first');
+        }
+        _makeDialogAccessible(instance, opener);
     });
 }
 
@@ -298,8 +425,9 @@ function prompt(content, choices, inputs) {
     return new Promise((resolve) => {
         choices = choices || {};
 
+        const opener = _getOpener();
         vex.closeAll();
-        vex.dialog.prompt({
+        const instance = vex.dialog.prompt({
             unsafeMessage: errorMsg + (message || ''),
             title: content.heading || t('prompt.default.heading'),
             buttons: [
@@ -316,6 +444,7 @@ function prompt(content, choices, inputs) {
             callback: resolve,
             showCloseButton: true,
         });
+        _makeDialogAccessible(instance, opener);
     });
 }
 
@@ -754,6 +883,10 @@ function alertCacheUnsupported() {
     });
 }
 
+// Last offline state, so the hidden status text can follow a UI language change.
+let lastOfflineCapable;
+let offlineLanguageListener = false;
+
 /**
  * Updates various statuses in the GUI (connection, form-edited, browsersupport)
  *
@@ -765,6 +898,37 @@ updateStatus = {
             $('.offline-enabled__icon.not-enabled').removeClass('not-enabled');
         } else {
             $('.offline-enabled__icon').addClass('not-enabled');
+        }
+
+        lastOfflineCapable = offlineCapable;
+        if (!offlineLanguageListener) {
+            offlineLanguageListener = true;
+            // Rewrite the text in the new language. No announcement: the state did not change.
+            onUiLanguageChange(() => {
+                const el = document.querySelector('.offline-enabled__status');
+                if (el && el.textContent !== '') {
+                    el.textContent = t(
+                        lastOfflineCapable
+                            ? 'offline.status.enabled'
+                            : 'offline.status.disabled'
+                    );
+                }
+            });
+        }
+
+        // Text for the `title`-only icon; announced when it changes (not when first set).
+        const status = document.querySelector('.offline-enabled__status');
+        const text = t(
+            offlineCapable
+                ? 'offline.status.enabled'
+                : 'offline.status.disabled'
+        );
+        if (status && status.textContent !== text) {
+            const changed = status.textContent !== '';
+            status.textContent = text;
+            if (changed) {
+                announce(text);
+            }
         }
     },
     applicationVersion(version) {

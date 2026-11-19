@@ -46,23 +46,10 @@ $secondary-color: #eeeeee;
     input:not([name=dn-notify], [name=dn-comment]),
     .draw-widget__body__canvas {
         &:focus {
-            box-shadow: inherit !important;
-
             &:not(:checked) {
                 border-color: $input-border !important;
             }
         }
-    }
-
-    // suppress focus style for pulldown widgets
-    a:focus {
-        outline: 0 !important;
-    }
-
-    // suppress image grid focus style
-    input:focus~.active {
-        box-shadow: inherit !important;
-        border: none !important;
     }
 }
 

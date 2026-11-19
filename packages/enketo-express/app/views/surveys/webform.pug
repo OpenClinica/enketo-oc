@@ -36,6 +36,11 @@ block script
     var env = !{JSON.stringify(clientConfig).replace(/<\//g, '<\\/')};
 
 block content
+  include component/_skip-link
+  //- Inline copy of .oc-visually-hidden (_oc-a11y.scss): theme-kobo and theme-plain do not carry that rule.
+  - var ocVisuallyHidden = 'position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important'
+  #oc-live-polite.oc-visually-hidden(role='status', style=ocVisuallyHidden)
+  #oc-live-assertive.oc-visually-hidden(role='alert', style=ocVisuallyHidden)
   include component/_notification
   .main-loader
     .main-loader__image

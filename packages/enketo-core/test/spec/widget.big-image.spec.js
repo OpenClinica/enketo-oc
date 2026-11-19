@@ -8,7 +8,7 @@ const BIGSOURCE = 'https://enketo.org/big-image.png';
 const SMALLSOURCE = 'https://enketo.org/small-image.png';
 const FORM = `<label class="question">
         <a class="or-big-image" href="${BIGSOURCE}">
-            <img lang="default" class="active" src="${SMALLSOURCE}" alt="image">
+            <img lang="default" class="active" src="${SMALLSOURCE}" alt="">
         </a>
         <input type="number" name="/data/node">
     </label>`;

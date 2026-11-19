@@ -10,11 +10,11 @@
         }
     }
 
-    .or-repeat[role='page'].current + .or-repeat-info {
+    .or-repeat[data-page].current + .or-repeat-info {
         display: block;
     }
 
-    [role='page'] {
+    [data-page] {
         display: none;
 
         &.current {

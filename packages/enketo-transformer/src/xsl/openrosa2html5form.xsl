@@ -1395,7 +1395,7 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
                 <xsl:if test="string($lang) = string($current-lang)">active</xsl:if>
             </xsl:variable>
             <xsl:variable name="notext">
-                <xsl:value-of select="string-length(./xf:value[@form='long' or @form='short' or not(@form)]) = 0" />
+                <xsl:value-of select="string-length(normalize-space(./xf:value[@form='long' or @form='short' or not(@form)])) = 0" />
             </xsl:variable>
             <!-- text labels get priority -->
             <xsl:for-each select="./xf:value" >
@@ -1451,6 +1451,11 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
                                     <xsl:attribute name="href">
                                         <xsl:value-of select="../xf:value[@form = 'big-image']"/>
                                     </xsl:attribute>
+                                    <xsl:if test="$notext != 'true'">
+                                        <xsl:attribute name="aria-label">
+                                            <xsl:value-of select="normalize-space(../xf:value[not(@form) or @form = 'long' or @form = 'short'][1])"/>
+                                        </xsl:attribute>
+                                    </xsl:if>
                                     <xsl:call-template name="image">
                                         <xsl:with-param name="active" select="$active"/>
                                         <xsl:with-param name="notext" select="$notext"/>
@@ -1677,7 +1682,8 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
              <xsl:attribute name="data-itext-id">
                 <xsl:value-of select="$id"/>
             </xsl:attribute>
-             <xsl:attribute name="alt">image</xsl:attribute>
+             <!-- An image is decorative next to text (alt=""); with no text it is the option's or label's only name. -->
+             <xsl:attribute name="alt"><xsl:if test="$notext = 'true'">image</xsl:if></xsl:attribute>
          </img>
     </xsl:template>
 

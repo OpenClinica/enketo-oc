@@ -1,6 +1,16 @@
 {
     "widget": {
         "dn": {
+            "trigger": {
+                "none": "Consulta: ninguna",
+                "new": "Consulta: nueva",
+                "updated": "Consulta: actualizada",
+                "closed": "Consulta: cerrada",
+                "closed-modified": "Consulta: cerrada, modificada",
+                "invalid": "Consulta: no válida"
+            },
+            "dialogname": "Consultas y anotaciones",
+            "discardcomment": "¿Descartar el texto que escribió?",
             "assignto": "Asignar a:",
             "assignedto": "__id__ asignado a __assignee__.",
             "closequerytext": "Cerrar esta consulta",
@@ -149,12 +159,15 @@
         }
     },
     "constraint": {
+        "attention": "__count__ pregunta requiere atención",
+        "attention_plural": "__count__ preguntas requieren atención",
         "relevant": "Una respuesta ha cambiado a otra pregunta que requiere que esta pregunta esté oculta, pero no podemos ocultarla mientras tenga datos. Borre los datos o modifique las respuestas dependientes."
     },
     "home": {
         "msg": "¡__appTitle__ se está ejecutando! Acceda a los formularios de OpenClinica desde su instalación de __serverName__."
     },
     "alert": {
+        "close": "Cerrar",
         "appupdated": {
             "heading": "Actualice",
             "msg": "Actualice esta página web para usar el formulario sin conexión (ref.: aplicación)"
@@ -199,6 +212,26 @@
         },
         "remove": {
             "btn": "Eliminar"
+        }
+    },
+    "form": {
+        "print": "Imprimir",
+        "skiplink": "Ir al formulario",
+        "pages": {
+            "position": "Página __current__ de __total__"
+        }
+    },
+    "offline": {
+        "status": {
+            "enabled": "Este formulario se puede usar sin conexión",
+            "disabled": "El uso sin conexión no está disponible"
+        }
+    },
+    "drawwidget": {
+        "clear": "Borrar __item__",
+        "state": {
+            "signed": "Firma: dibujada",
+            "empty": "Sin firma"
         }
     }
 }

@@ -6,6 +6,8 @@ import $ from 'jquery';
 import config from 'enketo/config';
 import gui from './gui';
 import settings from './settings';
+import announce from './announce';
+import { t } from './translator';
 import './relevant-oc';
 import './page-oc';
 import './repeat-oc';
@@ -323,7 +325,13 @@ Form.prototype.setValid = function (control, type) {
     const classes = type
         ? [`invalid-${type}`]
         : [...wrap.classList].filter((cl) => cl.indexOf('invalid-') === 0);
+    // OC a11y: only sync ARIA when a class is actually removed (this runs 20+ times per validation).
+    const removed = classes.some((cl) => wrap.classList.contains(cl));
     wrap.classList.remove(...classes);
+
+    if (removed) {
+        updateInvalidAria(wrap);
+    }
 };
 
 /**
@@ -348,6 +356,92 @@ Form.prototype.setInvalid = function (control, type = 'constraint') {
     }
 
     wrap.classList.add(`invalid-${type}`);
+    updateInvalidAria(wrap);
+};
+
+const WRAP_SELECTOR = '.question, .calculation, .or-group, .or-group-data';
+let msgIdCounter = 0;
+
+/**
+ * OC a11y: sets aria-invalid on the controls of a question (or on the group) while it has an
+ * invalid-* class, and adds the ids of the active messages of those types to aria-describedby.
+ * Ids that were already in aria-describedby and are not error messages of this wrap are kept.
+ *
+ * @param {Element} wrap - .question, .or-group or .or-group-data element
+ */
+function updateInvalidAria(wrap) {
+    const own = (el) => el.closest(WRAP_SELECTOR) === wrap;
+    const types = [...wrap.classList]
+        .filter((cl) => cl.indexOf('invalid-') === 0)
+        .map((cl) => cl.slice('invalid-'.length));
+    const oldMsgIds = [
+        ...wrap.querySelectorAll('[class^="or-"][class*="-msg"][id]'),
+    ].map((el) => el.id);
+    const msgIds = types
+        .map((type) =>
+            [...wrap.querySelectorAll(`.or-${type}-msg.active`)].find(own)
+        )
+        .filter(Boolean)
+        .map((el) => {
+            if (!el.id) {
+                el.id = `oc-msg-${++msgIdCounter}`;
+            }
+
+            return el.id;
+        });
+    const targets = wrap.matches('.question')
+        ? [
+              ...wrap.querySelectorAll(
+                  'input:not([type="hidden"]), select, textarea'
+              ),
+          ].filter(own)
+        : [wrap];
+
+    targets.forEach((el) => {
+        const ids = (el.getAttribute('aria-describedby') || '')
+            .split(/\s+/)
+            .filter((id) => id && !oldMsgIds.includes(id))
+            .concat(msgIds);
+
+        if (ids.length) {
+            el.setAttribute('aria-describedby', ids.join(' '));
+        } else {
+            el.removeAttribute('aria-describedby');
+        }
+        if (types.length) {
+            el.setAttribute('aria-invalid', 'true');
+        } else {
+            el.removeAttribute('aria-invalid');
+        }
+    });
+}
+
+/**
+ * OC a11y: announces (assertive) how many questions in the container are marked invalid.
+ * Called where a validation resolved false; it changes nothing else.
+ *
+ * @param {Element} [container] - the validated part of the form, default: the whole form
+ */
+Form.prototype.announceInvalid = function (container = this.view.html) {
+    const selector = [
+        '.invalid-value',
+        '.invalid-required',
+        '.invalid-relevant',
+    ]
+        .concat(this.constraintClassesInvalid.map((cls) => `.${cls}`))
+        .join(', ');
+    const marked = [...container.querySelectorAll(selector)];
+    if (container.matches(selector)) {
+        marked.push(container);
+    }
+    // A marked group that holds another marked element is the same problem: count it once.
+    const count = marked.filter(
+        (el) => !marked.some((other) => other !== el && el.contains(other))
+    ).length;
+
+    if (count) {
+        announce(t('constraint.attention', { count }), { assertive: true });
+    }
 };
 
 // TODO can this function be removed entirely?

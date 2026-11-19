@@ -8,7 +8,7 @@ $dn-nav-bg: rgb(228, 228, 228);
 $dn-updated-color:#FFA500;
 $dn-closed-color:#555555;
 $dn-closed-modified-color:#808080;
-$dn-new-color:#FF8080;
+$dn-new-color:#FF8080 !default;
 $dn-default-color: #575756;
 
 // from https://codepen.io/zandroid/pen/qdgBRw
@@ -661,7 +661,6 @@ $dn-default-color: #575756;
             top: 27px;
             right: 55px;
             left: auto;
-            outline: 0;
         }
 
     }

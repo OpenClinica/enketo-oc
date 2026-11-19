@@ -1,0 +1,20 @@
+@import 'oc-tokens';
+
+// Set without !default: they must win over the theme's own values.
+$brand-primary-color: oc-token('accent');
+$link-hover-color: oc-token('accent-hover');
+$input-border: oc-token('input-border');
+$radiocheck-unchecked-color: oc-token('input-border');
+$radiocheck-checked-color: oc-token('accent');
+$input-border-focus: oc-token('focus');
+$state-danger-text: oc-token('error');
+
+// Tints that were derived from the old brand are held at today's value in each
+// theme's own _variables.scss (oc and formhub differ).
+$input-border-focus-shadow: rgba(102, 175, 233, 0.6);
+
+// Query and strict-question colours. The strict background stays #fcd4b2 (D2), set in strict-class.scss.
+$dn-new-color: oc-token('query-new');
+$c: oc-token('accent');
+$button-bg-hover: oc-token('accent-hover');
+$button-border-color: oc-token('accent-hover');

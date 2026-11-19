@@ -1,0 +1,20 @@
+// Form Engine accessibility tokens (OC-29480). No CSS output.
+$oc-tokens: (
+    'accent': #b13300,
+    'accent-hover': #c25700,
+    'input-border': #7c7c7c,
+    'secondary-text': #606060,
+    'error': #a43f3e,
+    'focus': #0070dc,
+    'query-new': #fa0000,
+    'icon-muted': #8a8a8a,
+    'jump-nav-text': #1b1b1b
+);
+
+@function oc-token($name) {
+    @if not map-has-key($oc-tokens, $name) {
+        @error 'Unknown OC token: #{$name}';
+    }
+
+    @return map-get($oc-tokens, $name);
+}

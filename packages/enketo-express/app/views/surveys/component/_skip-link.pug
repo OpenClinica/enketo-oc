@@ -1,0 +1,26 @@
+if !headless
+  //- Hidden until focused. Inline, not in _oc-a11y.scss: theme-kobo and theme-plain do not import that file.
+  style.
+    .oc-skip-link:not(:focus) {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+    .oc-skip-link:focus {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      padding: 8px 16px;
+      background: #fff;
+      color: #000;
+    }
+  //- onclick moves focus without writing #form-title into the URL: the OC controller reads the hash as a go-to target on reload.
+  //- The href stays for use without JavaScript.
+  a.oc-skip-link(href="#form-title", onclick="var h=document.getElementById('form-title');if(h){h.setAttribute('tabindex','-1');h.focus();}return false;")= t('form.skiplink')

@@ -5,6 +5,8 @@ import Widget from '../../js/widget';
 /** @type {Set<NumberInput>} */
 let numberInputInstances = new Set();
 
+let messageIdCounter = 0;
+
 /** @type {WeakMap<HTMLInputElement, HTMLElement>} */
 let questionsByInput = new WeakMap();
 
@@ -192,6 +194,7 @@ class NumberInput extends Widget {
 
         question.setAttribute('lang', this.constructor.language);
         message.classList.add('invalid-value-msg', 'active');
+        message.id = `oc-number-msg-${++messageIdCounter}`;
 
         question.append(message);
 
@@ -248,6 +251,24 @@ class NumberInput extends Widget {
         question.classList.toggle('invalid-value', !isValid);
         message.innerText = isValid ? '' : t('constraint.invalid');
         this.isValid = isValid;
+
+        // OC a11y: ARIA only; tie the input to the message while it is in error.
+        const ids = (element.getAttribute('aria-describedby') || '')
+            .split(/\s+/)
+            .filter((id) => id && id !== message.id);
+
+        if (isValid) {
+            element.removeAttribute('aria-invalid');
+        } else {
+            element.setAttribute('aria-invalid', 'true');
+            ids.push(message.id);
+        }
+
+        if (ids.length) {
+            element.setAttribute('aria-describedby', ids.join(' '));
+        } else {
+            element.removeAttribute('aria-describedby');
+        }
     }
 }
 

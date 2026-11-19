@@ -1,0 +1,20 @@
+@import 'oc-tokens';
+
+// Grid keeps its own radio colours (#666666 and black pass) and $brand-secondary-color.
+$brand-primary-color: oc-token('accent');
+$link-hover-color: oc-token('accent-hover');
+$input-border: oc-token('input-border');
+$input-border-focus: oc-token('focus');
+$state-danger-text: oc-token('error');
+
+// Tints that were derived from the old brand: held at today's value.
+$repeat-bg: #fef5ef;
+$columns-hover-border-color: #faa474;
+$image-map-tooltip-bg: #fee5d6;
+$input-border-focus-shadow: rgba(102, 175, 233, 0.6);
+
+// Query and strict-question colours. The strict background stays #fcd4b2 (D2), set in strict-class.scss.
+$dn-new-color: oc-token('query-new');
+$c: oc-token('accent');
+$button-bg-hover: oc-token('accent-hover');
+$button-border-color: oc-token('accent-hover');
