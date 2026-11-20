@@ -42,6 +42,36 @@ const delayChangeEventBuffer = [];
 // for drawing/file widgets) that hasn't reached fieldSubmissionQueue yet, so
 // signing can wait for it instead of racing an empty/partial queue check.
 const pendingFieldSubmissions = [];
+// OC-27957: upper bound for waiting on the submissions above. A submission that never settles (a drawing whose
+// canvas.toBlob() returns null) must not hold back a repeat removal, or close and complete, for ever.
+const PENDING_SUBMISSION_WAIT_MS = 3000;
+// Submissions that already made a wait time out. Later waits skip them, so one hung submission costs 3 seconds once.
+// They stay in pendingFieldSubmissions, because signing waits for that list without a limit.
+const timedOutSubmissions = new WeakSet();
+
+/**
+ * Resolves when the submissions that are pending right now have reached the queue (or failed), or after
+ * PENDING_SUBMISSION_WAIT_MS, whichever comes first. Never rejects.
+ *
+ * @return {Promise<void>}
+ */
+function _waitForPendingSubmissions() {
+    let timer;
+    const snapshot = pendingFieldSubmissions.filter(
+        (pending) => !timedOutSubmissions.has(pending)
+    );
+    const settled = Promise.all(
+        snapshot.map((pending) => pending.catch(() => undefined))
+    );
+    const timedOut = new Promise((resolve) => {
+        timer = setTimeout(() => {
+            snapshot.forEach((pending) => timedOutSubmissions.add(pending));
+            resolve();
+        }, PENDING_SUBMISSION_WAIT_MS);
+    });
+
+    return Promise.race([settled, timedOut]).then(() => clearTimeout(timer));
+}
 // Guards the SignatureRequested handler against a second overlapping run
 // (e.g. the user dismisses the flush spinner, then unchecks and rechecks
 // the signature box while the first attempt is still resolving).
@@ -628,8 +658,9 @@ function _close(options = { autoQueries: false, reasons: false }) {
 
         let msg = '';
 
-        return fieldSubmissionQueue
-            .submitAll()
+        // OC-27957: submissions (and repeat removals) that are still being prepared must reach the queue first.
+        return _waitForPendingSubmissions()
+            .then(() => fieldSubmissionQueue.submitAll())
             .then(() => {
                 if (
                     fieldSubmissionQueue.enabled &&
@@ -821,8 +852,9 @@ function _complete(
             'bare'
         );
 
-        return fieldSubmissionQueue
-            .submitAll()
+        // OC-27957: submissions (and repeat removals) that are still being prepared must reach the queue first.
+        return _waitForPendingSubmissions()
+            .then(() => fieldSubmissionQueue.submitAll())
             .then(() => {
                 if (Object.keys(fieldSubmissionQueue.get()).length === 0) {
                     instanceId = form.instanceID;
@@ -1267,12 +1299,35 @@ function _setFormEventHandlers() {
 
             postHeartbeat();
 
-            fieldSubmissionQueue.addRepeatRemoval(
-                updated.nodeName,
-                updated.ordinal,
-                instanceId
-            );
-            fieldSubmissionQueue.submitAll();
+            // OC-27957: the value submissions of the removed row (and of any other field) are added to the queue
+            // asynchronously (see the DataUpdate handler below), but the removal used to be added synchronously.
+            // The removal would then precede the values that are still pending, and Study Runner would receive
+            // values for a repeat row it had already removed. So wait for what is pending right now. Later
+            // removals wait for earlier ones as well, because this promise is added to the pending list too.
+            // The wait is bounded, so a submission that never settles cannot hold back this removal for ever.
+            const pendingRemoval = _waitForPendingSubmissions()
+                .then(() => {
+                    fieldSubmissionQueue.addRepeatRemoval(
+                        updated.nodeName,
+                        updated.ordinal,
+                        instanceId
+                    );
+                    fieldSubmissionQueue.submitAll();
+                })
+                .catch((error) => {
+                    console.error(
+                        'Could not submit repeat removal fieldsubmission.',
+                        error
+                    );
+                })
+                .finally(() => {
+                    const index =
+                        pendingFieldSubmissions.indexOf(pendingRemoval);
+                    if (index !== -1) {
+                        pendingFieldSubmissions.splice(index, 1);
+                    }
+                });
+            pendingFieldSubmissions.push(pendingRemoval);
         });
         // Field is changed
         form.view.html.addEventListener(events.DataUpdate().type, (event) => {
