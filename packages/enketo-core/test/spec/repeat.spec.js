@@ -476,6 +476,61 @@ describe('repeat functionality', () => {
             expect(form.model.xml.querySelectorAll('rep').length).to.equal(4);
         });
 
+        // OC-27957: the count settles in a late calculation pass of Form.init(), after repeats.init()
+        // has already applied the stale count and before the event handlers exist.
+        ['more', 'fewer'].forEach((direction) => {
+            it(`reconciles the repeats when the count only settles in a late calculation pass of init (${direction})`, () => {
+                const staleRows = direction === 'fewer' ? 6 : 5;
+                // inp=18 settles cnt at 5; inp=12 settles cnt at 6. The stored hidden values are stale (old inp).
+                const inp = direction === 'fewer' ? 18 : 12;
+                const staleValue = direction === 'fewer' ? 12 : 18;
+                const form = loadForm(
+                    'repeat-count-late-calc.xml',
+                    `
+                <late-count xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="late-count">
+                    <inp>${inp}</inp>
+                    <b>${staleValue}</b>
+                    <cnt>${staleRows}</cnt>
+                    <e>${staleValue}</e>
+                    <c>${staleValue}</c>
+                    <d>${staleValue}</d>
+                    ${'<rep><txt/></rep>'.repeat(staleRows)}
+                    <meta>
+                        <instanceID>uuid:0afd146a-cdc4-4000-b5f4-3ec0705e85d8</instanceID>
+                    </meta>
+                </late-count>
+                `
+                );
+                const rep = '.or-repeat[name="/late-count/rep"]';
+                const expected = direction === 'fewer' ? 5 : 6;
+                let removed = 0;
+
+                form.model.events.addEventListener(event.Removed().type, () => {
+                    removed += 1;
+                });
+
+                form.init();
+
+                expect(
+                    form.model.node('/late-count/cnt').getVal(),
+                    'settled count'
+                ).to.equal(String(expected));
+                expect(
+                    form.model.xml.querySelectorAll('rep').length,
+                    'model repeats'
+                ).to.equal(expected);
+                expect(
+                    form.view.html.querySelectorAll(rep).length,
+                    'view repeats'
+                ).to.equal(expected);
+                // only the surplus row is removed, never more (no double reconcile). A double add
+                // would show in the row counts above.
+                expect(removed, 'removed rows').to.equal(
+                    direction === 'fewer' ? 1 : 0
+                );
+            });
+        });
+
         it('and works nicely with relevant even if repeat count is 0 (with relevant on group)', () => {
             // When repeat count is zero there is no context node to pass to evaluator.
             const form = loadForm('repeat-count-relevant.xml');
