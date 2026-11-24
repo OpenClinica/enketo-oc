@@ -574,7 +574,7 @@ export default {
         el.dataset.optionValue = value;
         if (translation.src) {
             el.src = translation.src;
-            el.alt = translation.alt;
+            el.alt = translation.alt || '';
         }
 
         return el;

@@ -329,6 +329,69 @@ describe('transformer', () => {
             expect(result.form).to.contain('/i/am/very-happy.jpg');
         });
 
+        describe('names the big-image link', () => {
+            const bigImageXForm = (text: string) => `<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>big-image</h:title>
+    <model>
+      <itext>
+        <translation default="true()" lang="default">
+          <text id="/big-image/txt:label">${text}
+            <value form="image">jr://images/happy.jpg</value>
+            <value form="big-image">jr://images/very-happy.jpg</value>
+          </text>
+        </translation>
+      </itext>
+      <instance><big-image id="big-image"><txt/></big-image></instance>
+      <bind nodeset="/big-image/txt" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/big-image/txt"><label ref="jr:itext('/big-image/txt:label')"/></input>
+  </h:body>
+</h:html>`;
+
+            it('with the label text when the label has text', async () => {
+                const result = await transform({
+                    xform: bigImageXForm('<value>  Happy   face </value>'),
+                });
+                const doc = parser.parseFromString(result.form, 'text/html');
+                const link = doc.querySelector('a.or-big-image');
+
+                expect(link?.getAttribute('aria-label')).to.equal('Happy face');
+                expect(
+                    link?.querySelector('img')?.getAttribute('alt')
+                ).to.equal('');
+            });
+
+            it('and treats a whitespace-only label as no text', async () => {
+                const result = await transform({
+                    xform: bigImageXForm('<value>   </value>'),
+                });
+                const doc = parser.parseFromString(result.form, 'text/html');
+                const link = doc.querySelector('a.or-big-image');
+
+                expect(link?.hasAttribute('aria-label')).to.equal(false);
+                expect(
+                    link?.querySelector('img')?.getAttribute('alt')
+                ).to.equal('image');
+            });
+
+            it('and adds no aria-label when the image is the only label', async () => {
+                const result = await transform({
+                    xform: bigImageXForm(''),
+                });
+                const doc = parser.parseFromString(result.form, 'text/html');
+                const link = doc.querySelector('a.or-big-image');
+
+                expect(link?.hasAttribute('aria-label')).to.equal(false);
+                expect(
+                    link?.querySelector('img')?.getAttribute('alt')
+                ).to.equal('image');
+            });
+        });
+
         it('in the Model by replacing them according to a provided map', async () => {
             const media = {
                 'neighborhoods.csv': '/path/to/neighborhoods.csv',
