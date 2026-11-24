@@ -1,6 +1,16 @@
 {
     "widget": {
         "dn": {
+            "trigger": {
+                "none": "Query: none",
+                "new": "Query: new",
+                "updated": "Query: updated",
+                "closed": "Query: closed",
+                "closed-modified": "Query: closed, modified",
+                "invalid": "Query: invalid"
+            },
+            "dialogname": "Queries and annotations",
+            "discardcomment": "Discard the text you typed?",
             "assignto": "Assign to:",
             "assignedto": "__id__ assigned to __assignee__.",
             "closequerytext": "Close This Query",
@@ -149,12 +159,15 @@
         }
     },
     "constraint": {
+        "attention": "__count__ question needs attention",
+        "attention_plural": "__count__ questions need attention",
         "relevant": "An answer has changed to another question that requires this question to be hidden, but we cannot hide it while it has data. Please clear out the data or modify the dependent answers."
     },
     "home": {
         "msg": "__appTitle__ is running! Please access OpenClinica forms from your __serverName__ installation."
     },
     "alert": {
+        "close": "Close",
         "appupdated": {
             "heading": "Please refresh",
             "msg": "Please refresh this webpage to use the form offline (ref: application)"
@@ -200,5 +213,33 @@
         "remove": {
             "btn": "Remove"
         }
+    },
+    "form": {
+        "print": "Print",
+        "skiplink": "Skip to form",
+        "pages": {
+            "position": "Page __current__ of __total__"
+        }
+    },
+    "offline": {
+        "status": {
+            "enabled": "This form can be used offline",
+            "disabled": "Offline use is not available"
+        }
+    },
+    "drawwidget": {
+        "clear": "Clear __item__",
+        "state": {
+            "signed": "Signature: drawn",
+            "empty": "No signature",
+            "drawn": "Drawing: drawn",
+            "blank": "Drawing: empty"
+        },
+        "done": "Done",
+        "color": "Pen colour: __color__"
+    },
+    "geopicker": {
+        "detect": "detect current location",
+        "search": "Search"
     }
 }
