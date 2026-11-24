@@ -1,5 +1,5 @@
 aside.record-list.side-slider
-	button.btn-icon-only.close(type="button", aria-hidden="true") ×
+	button.btn-icon-only.close(type="button", aria-label=t('alert.close'), data-i18n-aria-label='alert.close') ×
 	h3(data-i18n='record-list.title')= t('record-list.title')
 	p(data-i18n='record-list.msg1')= t('record-list.msg1')
 	ul.record-list__records
@@ -7,7 +7,7 @@ aside.record-list.side-slider
 		button.record-list__button-bar__button.upload.btn.btn-primary(type="button", disabled, data-i18n='record-list.upload')= t('record-list.upload')
 		button.record-list__button-bar__button.export.btn.btn-default(type="button", disabled, data-i18n='record-list.export')= t('record-list.export')
 	- var uploadGuidanceKey = draftEnabled ? 'record-list.msg2' : 'record-list.msg2-nodraft';
-		p(data-i18n=uploadGuidanceKey, data-i18n-icon='icon-pencil')!= draftEnabled ? t('record-list.msg2', {icon: '<span class="icon icon-pencil"> </span>', interpolation: {escapeValue: false}}) : t('record-list.msg2-nodraft')
+		p(data-i18n=uploadGuidanceKey, data-i18n-icon='icon-pencil')!= draftEnabled ? t('record-list.msg2', {icon: '<span class="icon icon-pencil" aria-hidden="true"> </span>', interpolation: {escapeValue: false}}) : t('record-list.msg2-nodraft')
 		p(data-i18n='record-list.msg3')= t('record-list.msg3')
 	p.side-slider__app-version.hide
 		span(data-i18n='version')= t('version')

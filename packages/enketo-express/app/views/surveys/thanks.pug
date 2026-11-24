@@ -7,8 +7,8 @@ block style
 block content
   .vex-overlay
   .vex.vex-theme-plain
-    .vex-content
-      h3=  t('alert.thanks.heading')
+    .vex-content(role="dialog", aria-labelledby="thanks-heading")
+      h3#thanks-heading=  t('alert.thanks.heading')
       if taken
         p= t('alert.thanks.msgTaken')
       else 

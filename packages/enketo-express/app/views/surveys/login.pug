@@ -11,9 +11,9 @@ block style
 block content
   .vex-overlay
   .vex.vex-theme-plain
-    .vex-content
+    .vex-content(role="dialog", aria-labelledby="login-heading")
       form(method="post").vex-dialog-form
-        h3= t('prompt.login.heading', {server: server})
+        h3#login-heading= t('prompt.login.heading', {server: server})
         input(type="hidden", name="_csrf", value=csrfToken)
         .vex-dialog-input
           label
