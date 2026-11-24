@@ -62,6 +62,7 @@ class ImageMap extends Widget {
                 this.disable();
             }
             this._setSvgClickHandler();
+            this._setDeleteHandler();
             this._setChangeHandler();
             this._setHoverHandler();
             this._updateImage();
@@ -109,6 +110,8 @@ class ImageMap extends Widget {
                         .before(fragment);
                     const widget = that.question.querySelector('.image-map');
                     const svg = widget.querySelector('svg');
+                    // the native option inputs are the accessible control
+                    svg.setAttribute('aria-hidden', 'true');
 
                     // Use any explicitly defined viewPort and else define one using bounding box or attributes
                     if (!svg.getAttribute('viewBox')) {
@@ -185,6 +188,23 @@ class ImageMap extends Widget {
     }
 
     /**
+     * Radiopicker keeps data-checked on the label; a stale value makes the next click (Space) unselect again.
+     * Resyncs every option of the question, like Radiopicker does on InputUpdate, because choosing a radio
+     * unchecks the others without touching their labels.
+     */
+    _syncDataChecked() {
+        this.question
+            .querySelectorAll('input[type="radio"], input[type="checkbox"]')
+            .forEach((input) => {
+                if (input.checked) {
+                    input.parentNode.dataset.checked = true;
+                } else {
+                    delete input.parentNode.dataset.checked;
+                }
+            });
+    }
+
+    /**
      * Handles SVG click listener
      */
     _setSvgClickHandler() {
@@ -197,9 +217,32 @@ class ImageMap extends Widget {
                 const input = this._getInput(id);
                 if (input) {
                     input.checked = !input.checked;
+                    this._syncDataChecked();
                     input.dispatchEvent(events.Change());
                     input.dispatchEvent(events.FakeFocus());
                 }
+            }
+        });
+    }
+
+    /**
+     * Delete or Backspace on a focused, checked option clears it, like toggling it off with a click.
+     */
+    _setDeleteHandler() {
+        this.question.addEventListener('keydown', (ev) => {
+            const input = ev.target;
+            if (
+                (ev.key === 'Delete' || ev.key === 'Backspace') &&
+                input.matches('input[type="radio"], input[type="checkbox"]') &&
+                input === document.activeElement &&
+                input.checked &&
+                !this.svg.matches('[or-readonly]')
+            ) {
+                ev.preventDefault();
+                input.checked = false;
+                this._syncDataChecked();
+                input.dispatchEvent(events.Change());
+                input.dispatchEvent(events.FakeFocus());
             }
         });
     }
