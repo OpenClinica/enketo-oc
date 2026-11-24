@@ -1,9 +1,12 @@
 $body-bg: #f0f0f0;
 
-// OC Orange
-$brand-primary-color: #f58220;
-$brand-secondary-color: lighten($brand-primary-color, 35%);
-$repeat-bg: lighten($brand-primary-color, 50%);
+// Tints held at their former lighten(#f58220) value (OC-29480)
+$brand-secondary-color: #fde2cb;
+$repeat-bg: #ffffff;
+$columns-hover-border-color: #fcd4b2;
+$image-map-tooltip-bg: #ffffff;
+$radiocheck-disabled-border-color: #d9d9d9;
+
 $button-border-width: 1px;
 
 

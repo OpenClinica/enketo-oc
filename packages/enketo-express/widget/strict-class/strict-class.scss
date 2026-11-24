@@ -1,8 +1,10 @@
-$c: #f58220;
+$c: #f58220 !default;
+// Strict-question background. The contrast checks in test/server/oc-tokens.spec.js read it from the built CSS.
+$oc-strict-bg: #fcd4b2 !default;
 
 @mixin oc-strict-error {
     border-color: $c;
-    background-color: lighten($c, 30%);
+    background-color: $oc-strict-bg;
 }
 
 .oc-strict-constraint.invalid-constraint,
@@ -17,6 +19,6 @@ $c: #f58220;
 
 .vex-dialog-title {
     .icon.oc-strict-error {
-        color: lighten($c, 20%);
+        color: #f9b982;
     }
 }

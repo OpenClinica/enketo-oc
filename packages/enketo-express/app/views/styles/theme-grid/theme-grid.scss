@@ -1,7 +1,11 @@
+// Selects this theme's values in component/_oc-tokens.scss.
+$oc-theme: 'grid';
+
 // variables
 @import 'variables';
 @import '../component/variables';
 @import '/packages/enketo-core/src/sass/grid/variables';
+@import '../component/oc-token-variables';
 @import '/packages/enketo-core/src/sass/formhub/variables';
 @import '/packages/enketo-core/src/sass/core/variables';
 
@@ -41,3 +45,6 @@
 
 // custom OC
 @import '../component/grid-oc';
+
+// accessibility tokens and rules (last)
+@import '../component/oc-a11y';

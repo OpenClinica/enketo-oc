@@ -80,7 +80,6 @@ $left: -85px;
     }
 
     &:focus {
-        outline: 0;
 
         &::-webkit-slider-thumb {
             @include thumb-focus;
