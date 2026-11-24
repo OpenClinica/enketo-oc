@@ -319,8 +319,7 @@ function _loadRecord(survey, instanceId, confirmed) {
                     gui.feedback(
                         t('alert.recordloadsuccess.msg', {
                             recordName: record.name,
-                        }),
-                        2
+                        })
                     );
                 }
                 $('.side-slider__toggle.close').click();
@@ -596,8 +595,7 @@ function _saveRecord(survey, draft, recordName, confirmed) {
                 gui.alert(
                     t('alert.recordsavesuccess.draftmsg'),
                     t('alert.savedraftinfo.heading'),
-                    'info',
-                    5
+                    'info'
                 );
 
                 return true;

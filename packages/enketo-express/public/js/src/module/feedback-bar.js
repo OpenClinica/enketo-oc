@@ -24,10 +24,11 @@ export default {
     /**
      * Shows an unobtrusive feedback bar to the user.
      *
+     * Messages stay until the user closes the bar or a newer message replaces them (WCAG 2.2.1).
+     *
      * @param { string } message - message to show
-     * @param {number=} duration - duration in seconds for the message to show
      */
-    show(message, duration) {
+    show(message) {
         // Max 2 messages displayed
         this.feedbackBar.classList.add('feedback-bar--show');
         const { messages } = this;
@@ -40,16 +41,6 @@ export default {
             const newMessage = document.createElement('p');
             newMessage.innerHTML = message.trim();
             this.feedbackBar.prepend(newMessage);
-
-            // Automatically remove newly added feedback after a period
-            if (duration) {
-                setTimeout(() => {
-                    newMessage.remove();
-                    if (this.messages.length === 0) {
-                        this.hide();
-                    }
-                }, duration * 1000);
-            }
         }
     },
     /**

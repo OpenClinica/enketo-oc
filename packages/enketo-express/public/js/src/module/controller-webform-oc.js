@@ -14,6 +14,7 @@ import { Form } from './form-oc'; // modified for OC
 import { FormModel } from './form-model-oc'; // modified for OC
 import fileManager from './file-manager';
 import events from './event';
+import { setPageLang } from './page-lang-oc';
 import {
     t,
     localize,
@@ -224,9 +225,10 @@ function init(formEl, data, loadErrors = []) {
                     localize(
                         document.querySelector('body'),
                         form.currentLanguage
-                    ).then((dir) =>
-                        document.querySelector('html').setAttribute('dir', dir)
-                    );
+                    ).then((dir) => {
+                        document.querySelector('html').setAttribute('dir', dir);
+                        setPageLang(form.currentLanguage);
+                    });
                 }
 
                 // Create fieldsubmissions for static default values
@@ -545,6 +547,7 @@ function _close(options = { autoQueries: false, reasons: false }) {
     ) {
         return form.validate().then((valid) => {
             if (!valid) {
+                form.announceInvalid();
                 const requiredViolations =
                     form.view.html.querySelector('.invalid-required');
                 if (settings.participant && requiredViolations) {
@@ -589,6 +592,7 @@ function _close(options = { autoQueries: false, reasons: false }) {
 
     return form.validate().then((valid) => {
         if (!valid) {
+            form.announceInvalid();
             if (options.autoQueries) {
                 const violations = [
                     ...form.view.html.querySelectorAll(
@@ -704,9 +708,10 @@ function _close(options = { autoQueries: false, reasons: false }) {
                             negButton: t(
                                 'fieldsubmission.confirm.leaveanyway.button'
                             ),
+                            negValue: LEAVE_ANYWAY,
                         }
                     ).then((confirmed) => {
-                        if (!confirmed) {
+                        if (isLeaveAnyway(confirmed)) {
                             document.dispatchEvent(events.Close());
                             _redirect(100);
                         }
@@ -718,6 +723,11 @@ function _close(options = { autoQueries: false, reasons: false }) {
             });
     });
 }
+
+const LEAVE_ANYWAY = 'leave-anyway';
+
+// Only the "Leave anyway" button leaves: Escape, the close button and the overlay resolve false too.
+const isLeaveAnyway = (confirmed) => confirmed === LEAVE_ANYWAY;
 
 function _redirect(msec) {
     if (settings.headless) {
@@ -743,10 +753,13 @@ function _complete(
 ) {
     if (!bypassConfirmation) {
         return gui
-            .confirm({
-                heading: t('fieldsubmission.confirm.complete.heading'),
-                msg: t('fieldsubmission.confirm.complete.msg'),
-            })
+            .confirm(
+                {
+                    heading: t('fieldsubmission.confirm.complete.heading'),
+                    msg: t('fieldsubmission.confirm.complete.msg'),
+                },
+                { negFirst: true }
+            )
             .then((again) => {
                 if (again) {
                     return _complete(true, options);
@@ -772,6 +785,7 @@ function _complete(
     // form.validate() will trigger fieldsubmissions for timeEnd before it resolves
     return form.validate().then((valid) => {
         if (!valid) {
+            form.announceInvalid();
             const strictViolations = form.view.html.querySelector(
                 settings.strictViolationSelector
             );
@@ -1091,8 +1105,7 @@ function _saveRecord(survey, draft, recordName, confirmed) {
                 gui.alert(
                     t('alert.recordsavesuccess.draftmsg'),
                     t('alert.savedraftinfo.heading'),
-                    'info',
-                    5
+                    'info'
                 );
                 return true;
             }
@@ -1181,8 +1194,7 @@ function _loadRecord(survey, instanceId, confirmed) {
                     gui.feedback(
                         t('alert.recordloadsuccess.msg', {
                             recordName: record.name,
-                        }),
-                        2
+                        })
                     );
                 }
                 $('.side-slider__toggle.close').click();
@@ -1581,7 +1593,10 @@ function _setLanguageUiEventHandlers() {
             event.preventDefault();
             console.log('ready to set UI lang', form.currentLanguage);
             localize(document.querySelector('body'), form.currentLanguage).then(
-                (dir) => document.querySelector('html').setAttribute('dir', dir)
+                (dir) => {
+                    document.querySelector('html').setAttribute('dir', dir);
+                    setPageLang(form.currentLanguage);
+                }
             );
         });
     }
@@ -1655,6 +1670,7 @@ function _setButtonEventHandlers(survey) {
                     .then((valid) => {
                         $button.btnBusyState(false);
                         if (!valid) {
+                            form.announceInvalid();
                             if (settings.strictViolationSelector) {
                                 const strictViolations =
                                     form.view.html.querySelector(
@@ -1707,6 +1723,7 @@ function _setButtonEventHandlers(survey) {
                         }
                         return _submitRecord();
                     }
+                    form.announceInvalid();
                     gui.alert(t('alert.validationerror.msg'));
                 })
                 .catch((e) => {
@@ -1852,6 +1869,8 @@ function postHeartbeat() {
         rc.postEventAsMessageToParentWindow(events.Heartbeat());
     }
 }
+
+export { isLeaveAnyway, LEAVE_ANYWAY };
 
 export default {
     init,

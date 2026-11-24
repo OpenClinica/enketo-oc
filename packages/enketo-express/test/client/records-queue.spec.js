@@ -338,8 +338,7 @@ describe('Records queue', () => {
             expect(guiAlertStub).to.have.been.calledWith(
                 `${t('record-list.msg2')}`,
                 t('alert.recordsavesuccess.finalmsg'),
-                'info',
-                10
+                'info'
             );
             expect(result).to.equal(false);
         });
@@ -361,8 +360,7 @@ describe('Records queue', () => {
                 t('alert.queuesubmissionsuccess.msg', {
                     count: 2,
                     recordNames: `${recordA.name}, ${recordB.name}`,
-                }),
-                7
+                })
             );
         });
 
@@ -422,8 +420,7 @@ describe('Records queue', () => {
                 t('alert.queuesubmissionsuccess.msg', {
                     count: 2,
                     recordNames: `${recordA.name}, ${recordB.name}`,
-                }),
-                7
+                })
             );
         });
 
@@ -562,8 +559,7 @@ describe('Records queue', () => {
                             t('alert.queuesubmissionsuccess.msg', {
                                 count: 2,
                                 recordNames: `${recordA.name}, ${recordB.name}`,
-                            }),
-                            7
+                            })
                         );
                     });
                 }

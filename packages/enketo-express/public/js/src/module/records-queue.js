@@ -238,8 +238,7 @@ const uploadQueue = async (
             gui.alert(
                 `${t('record-list.msg2')}`,
                 t('alert.recordsavesuccess.finalmsg'),
-                'info',
-                10
+                'info'
             );
         }
 
@@ -331,8 +330,7 @@ const uploadQueue = async (
             t('alert.queuesubmissionsuccess.msg', {
                 count: successes.length,
                 recordNames: successes.join(', '),
-            }),
-            7
+            })
         );
     } else if (authError == null) {
         // Start/continue upload retries with exponential backoff if upload is not successful
@@ -344,8 +342,7 @@ const uploadQueue = async (
             gui.alert(
                 `${t('record-list.msg2')}`,
                 t('alert.recordsavesuccess.finalmsg'),
-                'info',
-                10
+                'info'
             );
         }
     } else {

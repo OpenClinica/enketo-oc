@@ -36,9 +36,16 @@ $.fn.btnBusyState = function (busy) {
                         btnContent
                     )
                 )
-                .attr('disabled', true);
+                .attr({
+                    disabled: true,
+                    'aria-label': $.trim($button.text()),
+                    'aria-busy': true,
+                });
         } else if (!busy && btnContent) {
-            $button.empty().append(btnContent).removeAttr('disabled');
+            $button
+                .empty()
+                .append(btnContent)
+                .removeAttr('disabled aria-label aria-busy');
         }
     });
 };
