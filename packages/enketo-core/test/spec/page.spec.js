@@ -62,7 +62,7 @@ describe('Pages mode', () => {
             );
             const pageComment = form.view.html
                 .querySelector('input[name="/data/item2"]')
-                .closest('[role="page"]');
+                .closest('[data-page]');
             const pageTwoTextAreaCommentAncestor =
                 pageTwoTextAreaHiddenComment.closest('[role="comment"]');
 
@@ -110,7 +110,7 @@ describe('Pages mode', () => {
             form.pages.flipToPageContaining([fieldListPage]);
 
             const questionPage = form.view.html.querySelector(
-                '.question[role="page"]'
+                '.question[data-page]'
             );
             const focusSpy = sandbox.spy(questionPage, 'focus');
 
