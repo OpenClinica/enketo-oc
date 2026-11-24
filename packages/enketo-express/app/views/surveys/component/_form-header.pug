@@ -14,7 +14,7 @@ header.form-header
         .logo-wrapper
           img(src=`${logo.source}`, alt="brand logo")
   .form-header__filler
-  button.form-header__button--print.btn-bg-icon-only(onclick="return false;")
+  button.form-header__button--print.btn-bg-icon-only(type="button", onclick="return false;", aria-label=t('formheader.print.label'), data-i18n='formheader.print.label', data-i18n-attr='aria-label')
   span.form-language-selector.hide: span(data-i18n='form.chooseLanguage')= t('form.chooseLanguage')
   button.form-header__button--homescreen.btn-icon-only.hide(type="button", aria-label="add to homescreen")
     i.icon.icon-bookmark-o 

@@ -633,7 +633,7 @@ class Comment extends Widget {
         // select the first question on the current page
         const firstQuestionOnCurrentPage =
             form.querySelector(
-                '[role="page"].current.question, [role="page"].current .question'
+                '[data-page].current.question, [data-page].current .question'
             ) || form.querySelector('.question');
         const mostLeft = $(firstQuestionOnCurrentPage).position().left;
         const linkedQuestionWidth = this.linkedQuestion.offsetWidth;

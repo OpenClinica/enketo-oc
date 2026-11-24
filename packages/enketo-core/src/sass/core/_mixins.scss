@@ -73,11 +73,12 @@
         0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-@mixin tab-focus {
-    // Default
-    outline: thin dotted; // WebKit
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
+// OC-29219: the focus ring, for a visible element that stands in for a visually hidden focused
+// control (e.g. image-grid images). Focused elements themselves get it from the global rule at the
+// end of each theme.
+@mixin focus-ring {
+    outline: 2px solid var(--oc-focus, #0070dc);
+    outline-offset: 2px;
 }
 
 @mixin clearfix {

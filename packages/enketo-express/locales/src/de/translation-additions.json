@@ -166,6 +166,10 @@
         "msg": "__appTitle__ wird ausgeführt. Rufen Sie OpenClinica-Formulare von Ihrer __serverName__-Installation aus auf."
     },
     "alert": {
+        "invalidquestions": {
+            "msg": "__count__ Frage erfordert Ihre Aufmerksamkeit",
+            "msg_plural": "__count__ Fragen erfordern Ihre Aufmerksamkeit"
+        },
         "appupdated": {
             "heading": "Bitte aktualisieren",
             "msg": "Aktualisieren Sie diese Webseite, damit Formulare offline verwenden werden können (Ref.: Anwendung)"
@@ -202,6 +206,20 @@
         },
         "remove": {
             "btn": "Entfernen"
+        }
+    },
+    "drawwidget": {
+        "clear": "Löschen",
+        "undo": "Rückgängig",
+        "done": "Zeichnen beenden",
+        "signaturedrawn": "Unterschrift: gezeichnet",
+        "nosignature": "Keine Unterschrift",
+        "drawn": "Zeichnung: gezeichnet",
+        "nodrawing": "Keine Zeichnung"
+    },
+    "formheader": {
+        "print": {
+            "label": "Drucken"
         }
     }
 }

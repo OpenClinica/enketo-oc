@@ -33,6 +33,19 @@ $picker-border: 2px solid grey;
 .draw-widget {
     width: 100%;
 
+    // visually hidden status text read by screen readers via aria-labelledby on the canvas
+    &__status {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
     &__body {
         position: relative;
         width: 100%; // trick to fix aspect ratio with width of 100% to 4:3

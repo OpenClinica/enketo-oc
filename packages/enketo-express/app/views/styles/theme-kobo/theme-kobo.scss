@@ -36,3 +36,18 @@
 @import '../theme-formhub/form_formhub';
 @import '../component/form_header';
 @import '../component/form_footer';
+
+// OC-29219 (WCAG 2.4.7): visible keyboard focus indicator. Keep this the last rule in the file so
+// nothing later in the cascade overrides it.
+:focus-visible {
+    outline: 2px solid var(--oc-focus, #0070dc);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.oc-on-dark :focus-visible {
+    outline-color: var(--oc-focus-on-dark, #ffffff);
+}

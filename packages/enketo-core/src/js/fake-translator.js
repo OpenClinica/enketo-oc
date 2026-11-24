@@ -25,6 +25,13 @@ const SOURCE_STRINGS = {
         drawing: 'drawing',
         signature: 'signature',
         annotation: 'file and drawing',
+        clear: 'Clear',
+        undo: 'Undo',
+        done: 'Done drawing',
+        signaturedrawn: 'Signature: drawn',
+        nosignature: 'No signature',
+        drawn: 'Drawing: drawn',
+        nodrawing: 'No drawing',
     },
     form: {
         required: 'required',

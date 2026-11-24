@@ -28,10 +28,6 @@ $left: -85px;
     cursor: pointer;
 }
 
-@mixin thumb-focus() {
-    @include focus-shadow;
-}
-
 @mixin thumb-empty() {
     background: transparent;
     border-color: transparent;
@@ -77,22 +73,6 @@ $left: -85px;
 
     &::-ms-tooltip {
         display: none;
-    }
-
-    &:focus {
-        outline: 0;
-
-        &::-webkit-slider-thumb {
-            @include thumb-focus;
-        }
-
-        &::-moz-range-thumb {
-            @include thumb-focus;
-        }
-
-        &::-ms-thumb {
-            @include thumb-focus;
-        }
     }
 
     &.empty {
