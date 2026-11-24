@@ -1,3 +1,4 @@
+import { t } from 'enketo/translator';
 import Geopicker from '../../src/widget/geo/geopicker';
 import {
     createTestCoordinates,
@@ -15,6 +16,46 @@ const SHAPE =
     '7.9377 -11.5845 0 0;7.9324 -11.5902 0 0;7.927 -11.5857 0 0;7.9377 -11.5845 0 0';
 
 runAllCommonWidgetTests(Geopicker, FORM, SHAPE);
+
+describe('geopicker button names', () => {
+    const create = () => {
+        const fragment = document.createRange().createContextualFragment(FORM);
+        const picker = new Geopicker(fragment.querySelector('input'));
+        return picker.$widget[0];
+    };
+    const names = (widget) => [
+        widget.querySelector('.search-btn').getAttribute('aria-label'),
+        widget
+            .querySelector('button[name="geodetect"]')
+            .getAttribute('aria-label'),
+        widget.querySelector('button[name="geodetect"]').title,
+    ];
+
+    it('the search and detect buttons are named from t()', () => {
+        expect(names(create())).to.deep.equal([
+            t('geopicker.search'),
+            t('geopicker.detect'),
+            t('geopicker.detect'),
+        ]);
+    });
+
+    it('_setButtonNames restores the names (UI language refresh)', () => {
+        const fragment = document.createRange().createContextualFragment(FORM);
+        const picker = new Geopicker(fragment.querySelector('input'));
+        const widget = picker.$widget[0];
+        widget.querySelector('.search-btn').setAttribute('aria-label', 'x');
+        widget.querySelector('button[name="geodetect"]').title = 'x';
+        widget
+            .querySelector('button[name="geodetect"]')
+            .setAttribute('aria-label', 'x');
+        picker._setButtonNames();
+        expect(names(widget)).to.deep.equal([
+            t('geopicker.search'),
+            t('geopicker.detect'),
+            t('geopicker.detect'),
+        ]);
+    });
+});
 
 describe('geoshape widget', () => {
     let geoshapePicker;

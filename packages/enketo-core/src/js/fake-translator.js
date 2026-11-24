@@ -25,6 +25,15 @@ const SOURCE_STRINGS = {
         drawing: 'drawing',
         signature: 'signature',
         annotation: 'file and drawing',
+        clear: 'Clear __item__',
+        state: {
+            signed: 'Signature: drawn',
+            empty: 'No signature',
+            drawn: 'Drawing: drawn',
+            blank: 'Drawing: empty',
+        },
+        done: 'Done',
+        color: 'Pen colour: __color__',
     },
     form: {
         required: 'required',
@@ -33,6 +42,8 @@ const SOURCE_STRINGS = {
         accuracy: 'accuracy (m)',
         altitude: 'altitude (m)',
         closepolygon: 'close polygon',
+        detect: 'detect current location',
+        search: 'Search',
         kmlcoords: 'KML coordinates',
         kmlpaste: 'paste KML coordinates here',
         latitude: 'latitude (x.y °)',
@@ -109,4 +120,16 @@ function t(key, options) {
     return str;
 }
 
-export { t };
+/**
+ * Meant to be replaced by the app's translator: calls fn after the UI language has switched.
+ * This placeholder has no UI language switch, so it does nothing.
+ *
+ * @static
+ * @param {Function} _fn - callback
+ * @return {undefined}
+ */
+function onUiLanguageChange(_fn) {
+    return undefined;
+}
+
+export { t, onUiLanguageChange };

@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import config from 'enketo/config';
 import L from 'leaflet';
-import { t } from 'enketo/translator';
+import { t, onUiLanguageChange } from 'enketo/translator';
 import dialog from 'enketo/dialog';
 import support from '../../js/support';
 import types from '../../js/types';
@@ -23,6 +23,19 @@ import { getCurrentPosition } from '../../js/geolocation';
 let googleMapsScriptRequest;
 
 const defaultZoom = 15;
+
+// One shared listener: the Detect and Search names follow the UI language, which can
+// switch after load without a form update.
+const namedPickers = new Set();
+onUiLanguageChange(() => {
+    namedPickers.forEach((picker) => {
+        if (picker.element.isConnected) {
+            picker._setButtonNames();
+        } else {
+            namedPickers.delete(picker);
+        }
+    });
+});
 // MapBox TileJSON format
 const maps =
     config && config.maps && config.maps.length > 0
@@ -87,6 +100,20 @@ class Geopicker extends Widget {
     static condition(element) {
         // Allow geopicker and ArcGIS geopicker to be used in same form
         return !data.has(element, 'ArcGisGeopicker');
+    }
+
+    /**
+     * Names the Detect and Search buttons in the UI language. Presentation only.
+     */
+    _setButtonNames() {
+        const detect = this.$widget[0].querySelector(
+            'button[name="geodetect"]'
+        );
+        detect.title = t('geopicker.detect');
+        detect.setAttribute('aria-label', t('geopicker.detect'));
+        this.$widget[0]
+            .querySelector('.search-btn')
+            .setAttribute('aria-label', t('geopicker.search'));
     }
 
     _init() {
@@ -403,7 +430,7 @@ class Geopicker extends Widget {
             `<div class="geopicker widget">
                 <div class="search-bar hide-search no-map no-detect">
                     <button type="button" class="hide-map-btn btn btn-default"><span class="icon icon-arrow-left"> </span></button>
-                    <button name="geodetect" type="button" class="btn btn-default" title="detect current location" data-placement="top"><span class="icon icon-crosshairs"> </span></button>
+                    <button name="geodetect" type="button" class="btn btn-default" data-placement="top"><span class="icon icon-crosshairs"> </span></button>
                     <div class="input-group">
                         <input class="geo ignore" name="search" type="text" placeholder="${t(
                             'geopicker.searchPlaceholder'
@@ -440,6 +467,9 @@ class Geopicker extends Widget {
                 </div>
             </div>`
         );
+
+        this._setButtonNames();
+        namedPickers.add(this);
 
         // add the detection button
         if (this.props.detect) {
