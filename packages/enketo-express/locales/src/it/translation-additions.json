@@ -7,7 +7,9 @@
         "updated": "Query: aggiornata",
         "closed": "Query: chiusa",
         "closed-modified": "Query: chiusa, modificata",
-        "invalid": "Query: non valida"
+        "invalid": "Query: non valida",
+        "multi": "più query aperte",
+        "annotation": "annotazione"
       },
       "dialogname": "Query e annotazioni",
       "discardcomment": "Eliminare il testo digitato?",
@@ -243,6 +245,7 @@
   },
   "geopicker": {
     "detect": "rileva la posizione attuale",
-    "search": "Cerca"
+    "search": "Cerca",
+    "closemap": "Chiudi mappa"
   }
 }

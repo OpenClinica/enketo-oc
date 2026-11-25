@@ -7,7 +7,9 @@
                 "updated": "Query: updated",
                 "closed": "Query: closed",
                 "closed-modified": "Query: closed, modified",
-                "invalid": "Query: invalid"
+                "invalid": "Query: invalid",
+                "multi": "several open queries",
+                "annotation": "annotation"
             },
             "dialogname": "Queries and annotations",
             "discardcomment": "Discard the text you typed?",
@@ -240,6 +242,7 @@
     },
     "geopicker": {
         "detect": "detect current location",
-        "search": "Search"
+        "search": "Search",
+        "closemap": "Close map"
     }
 }

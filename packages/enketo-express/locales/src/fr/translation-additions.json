@@ -7,7 +7,9 @@
         "updated": "Requête : mise à jour",
         "closed": "Requête : fermée",
         "closed-modified": "Requête : fermée, modifiée",
-        "invalid": "Requête : non valide"
+        "invalid": "Requête : non valide",
+        "multi": "plusieurs requêtes ouvertes",
+        "annotation": "annotation"
       },
       "dialogname": "Requêtes et annotations",
       "discardcomment": "Abandonner le texte saisi ?",
@@ -243,6 +245,7 @@
   },
   "geopicker": {
     "detect": "détecter la position actuelle",
-    "search": "Rechercher"
+    "search": "Rechercher",
+    "closemap": "Fermer la carte"
   }
 }

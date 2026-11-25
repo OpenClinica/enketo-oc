@@ -229,6 +229,25 @@ describe('vex dialog accessibility', () => {
         expect(document.activeElement).to.equal(field);
     });
 
+    // Confirm Completion, then Confirm opens the progress or error alert.
+    it('a dialog opened from a dialog returns focus to the first opener', () => {
+        const opener = add('<button type="button">open</button>');
+        opener.focus();
+        gui.confirm('first');
+        const firstVex = openDialogs().pop();
+        const confirmButton = content().querySelector('.vex-dialog-button');
+        confirmButton.focus();
+        gui.alert('second');
+
+        confirmButton.click();
+        finishClose(firstVex);
+        content().querySelector('.vex-dialog-button').click();
+        finishAllClosing();
+
+        expect(openDialogs().length).to.equal(0);
+        expect(document.activeElement).to.equal(opener);
+    });
+
     it('an opener inside a vex dialog is ignored', () => {
         const box = add(
             '<div class="vex"><button type="button">in</button></div>'

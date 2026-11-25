@@ -130,9 +130,14 @@ document.addEventListener('focusin', (event) => {
     lastFocused = event.target;
 });
 
+// The opener of each vex dialog, by its content element (set in _makeDialogAccessible).
+const dialogOpeners = new WeakMap();
+
 /**
  * Returns the element to give focus back to when a dialog closes.
- * An element inside a vex dialog is not used, because that dialog closes.
+ * An element inside a vex dialog is not used, because that dialog closes:
+ * a dialog opened from a dialog (Confirm, then a progress alert) takes the
+ * opener of that dialog instead.
  *
  * @return {HTMLElement|null} opener
  */
@@ -142,8 +147,14 @@ function _getOpener() {
     if ((!el || el === document.body) && lastFocused && lastFocused.disabled) {
         el = lastFocused;
     }
+    if (!el || el === document.body) {
+        return null;
+    }
+    const dialog = el.closest('.vex');
 
-    return el && el !== document.body && !el.closest('.vex') ? el : null;
+    return dialog
+        ? dialogOpeners.get(dialog.querySelector('.vex-content')) || null
+        : el;
 }
 
 /**
@@ -156,6 +167,8 @@ function _getOpener() {
 function _makeDialogAccessible(vexInstance, opener) {
     const { contentEl, closeEl, options } = vexInstance;
     const title = contentEl.querySelector('.vex-dialog-title');
+
+    dialogOpeners.set(contentEl, opener);
 
     contentEl.setAttribute('role', 'dialog');
     contentEl.setAttribute('aria-modal', 'true');

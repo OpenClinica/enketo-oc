@@ -7,7 +7,9 @@
         "updated": "Query: bijgewerkt",
         "closed": "Query: gesloten",
         "closed-modified": "Query: gesloten, gewijzigd",
-        "invalid": "Query: ongeldig"
+        "invalid": "Query: ongeldig",
+        "multi": "meerdere open query's",
+        "annotation": "annotatie"
       },
       "dialogname": "Query's en annotaties",
       "discardcomment": "De getypte tekst verwijderen?",
@@ -243,6 +245,7 @@
   },
   "geopicker": {
     "detect": "huidige locatie bepalen",
-    "search": "Zoeken"
+    "search": "Zoeken",
+    "closemap": "Kaart sluiten"
   }
 }

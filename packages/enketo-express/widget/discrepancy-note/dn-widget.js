@@ -177,18 +177,23 @@ class Comment extends Widget {
             this.commentButton.classList.add(state);
         }
         this.commentButtonStatus = state || 'none';
-        this._setCommentButtonLabel();
         this.commentButton.classList.toggle(
             'multi',
             state !== 'closed' && state !== 'closed-modified' && multi
         );
         this.commentButton.classList.toggle('annotation', annotation);
+        this._setCommentButtonLabel();
     }
 
+    // The name says what the icon shows: the status, then the multi and annotation marks.
     _setCommentButtonLabel() {
+        const { classList } = this.commentButton;
+        const keys = [this.commentButtonStatus || 'none'].concat(
+            ['multi', 'annotation'].filter((flag) => classList.contains(flag))
+        );
         this.commentButton.setAttribute(
             'aria-label',
-            t(`widget.dn.trigger.${this.commentButtonStatus || 'none'}`)
+            keys.map((key) => t(`widget.dn.trigger.${key}`)).join(', ')
         );
     }
 
@@ -919,7 +924,6 @@ class Comment extends Widget {
             }
             if (widget.isConnected) {
                 this._hideCommentModal(this.linkedQuestion);
-                this.commentButton.focus();
             }
         };
         // The close button and the overlay click ask first, like Escape, when text was typed.
@@ -1019,6 +1023,8 @@ class Comment extends Widget {
             .closest('.or, .or-group, .or-group-data')
             .querySelector('.or-comment-widget__overlay--shadow-giver')
             .remove();
+        // Every close path (submit, x, overlay, Escape, trigger) returns focus to the trigger.
+        this.commentButton.focus();
     }
 
     /**

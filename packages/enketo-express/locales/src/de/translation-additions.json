@@ -7,7 +7,9 @@
                 "updated": "Abfrage: aktualisiert",
                 "closed": "Abfrage: geschlossen",
                 "closed-modified": "Abfrage: geschlossen, geändert",
-                "invalid": "Abfrage: ungültig"
+                "invalid": "Abfrage: ungültig",
+                "multi": "mehrere offene Abfragen",
+                "annotation": "Anmerkung"
             },
             "dialogname": "Abfragen und Anmerkungen",
             "discardcomment": "Den eingegebenen Text verwerfen?",
@@ -243,6 +245,7 @@
     },
     "geopicker": {
         "detect": "aktuellen Standort ermitteln",
-        "search": "Suchen"
+        "search": "Suchen",
+        "closemap": "Karte schließen"
     }
 }

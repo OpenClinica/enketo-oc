@@ -643,6 +643,17 @@ describe('query dialog accessibility', () => {
         expect(document.activeElement).to.equal(dn.commentButton);
     });
 
+    it('submitting a query closes it and focuses the trigger', () => {
+        dn._addQuery = () => {};
+        openWithTextarea();
+        textarea().value = 'a question';
+        textarea().dispatchEvent(new Event('input'));
+        widget().querySelector('.btn[name="new"]').click();
+
+        expect(widget()).to.equal(null);
+        expect(document.activeElement).to.equal(dn.commentButton);
+    });
+
     it('the overlay click with no typed text closes at once', () => {
         openWithTextarea();
         widget()
@@ -911,6 +922,34 @@ describe('query dialog accessibility', () => {
             expect(dn.commentButton.className).to.equal(
                 'btn-icon-only btn-comment btn-dn new multi annotation'
             );
+        });
+
+        const label = () => dn.commentButton.getAttribute('aria-label');
+        const name = (...keys) =>
+            keys.map((k) => t(`widget.dn.trigger.${k}`)).join(', ');
+
+        it('names an annotation on an icon with no query', () => {
+            dn._setCommentButtonState('', true, false);
+            expect(label()).to.equal(name('none', 'annotation'));
+        });
+
+        it('names several open queries and an annotation, in that order', () => {
+            dn._setCommentButtonState('new', true, true);
+            expect(label()).to.equal(name('new', 'multi', 'annotation'));
+        });
+
+        ['closed', 'closed-modified'].forEach((state) => {
+            it(`does not name several open queries for "${state}", like the icon`, () => {
+                dn._setCommentButtonState(state, false, true);
+                expect(label()).to.equal(name(state));
+            });
+        });
+
+        it('keeps the flags after a language change', () => {
+            dn._setCommentButtonState('updated', true, true);
+            dn.commentButton.setAttribute('aria-label', 'stale');
+            i18next.emit('languageChanged', 'de');
+            expect(label()).to.equal(name('updated', 'multi', 'annotation'));
         });
 
         it('follows a language change', () => {
