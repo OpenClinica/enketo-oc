@@ -74,7 +74,7 @@ h4 + .or-repeat {
 }
 
 // override to flexboxes in pages mode, except when question = page
-.pages.or [role='page'].current:not(.question) {
+.pages.or [data-page].current:not(.question) {
     @include display-flex;
     @include flex-wrap(wrap);
     @include flex-direction(row);
@@ -104,7 +104,7 @@ h4 + .or-repeat {
 }
 
 // anything that is a page
-.or [role='page'] {
+.or [data-page] {
     border-top: $grid-border;
 }
 

@@ -4,7 +4,7 @@ import fileManager from 'enketo/file-manager';
  * @external SignaturePad
  */
 import SignaturePad from 'signature_pad';
-import { t } from 'enketo/translator';
+import { t, onUiLanguageChange } from 'enketo/translator';
 import dialog from 'enketo/dialog';
 import support from '../../js/support';
 import events from '../../js/event';
@@ -13,6 +13,19 @@ import { dataUriToBlobSync, getFilename } from '../../js/utils';
 import downloadUtils from '../../js/download-utils';
 
 const DELAY = 1500;
+
+// One shared listener: the state and Clear names follow the UI language, which switches
+// after the form's own "changelanguage" event.
+const namedWidgets = new Set();
+onUiLanguageChange(() => {
+    namedWidgets.forEach((widget) => {
+        if (widget.question.isConnected) {
+            widget._setCanvasName();
+        } else {
+            namedWidgets.delete(widget);
+        }
+    });
+});
 
 /**
  * SignaturePad.prototype.fromDataURL is asynchronous and does not return
@@ -128,6 +141,8 @@ class DrawWidget extends Widget {
         this.$widget = $(question.querySelector('.widget'));
 
         canvas = this.$widget[0].querySelector('.draw-widget__body__canvas');
+        this._setCanvasName();
+        namedWidgets.add(this);
         this._handleResize(canvas);
         this._resizeCanvas(canvas);
 
@@ -159,6 +174,7 @@ class DrawWidget extends Widget {
             that.pad.off();
             if (existingFilename) {
                 that.element.value = existingFilename;
+                that._setCanvasName();
 
                 return that
                     ._loadFileIntoPad(existingFilename)
@@ -177,6 +193,7 @@ class DrawWidget extends Widget {
                     .find('.draw-widget__colorpicker')
                     .on('click', '.current', function () {
                         $(this).parent().toggleClass('reveal');
+                        that._setCanvasName();
                     })
                     .on('click', '[data-color]:not(.current)', function () {
                         $(this)
@@ -187,6 +204,19 @@ class DrawWidget extends Widget {
                             .parent()
                             .removeClass('reveal');
                         that.pad.penColor = this.dataset.color;
+                        that._setCanvasName();
+                    })
+                    // Enter and Space do what a click does.
+                    .on('keydown', '[data-color]', function (event) {
+                        if (
+                            (event.key === 'Enter' || event.key === ' ') &&
+                            !that.props.readonly
+                        ) {
+                            event.preventDefault();
+                            if (!event.originalEvent.repeat) {
+                                $(this).trigger('click');
+                            }
+                        }
                     })
                     .end()
                     .find('.draw-widget__undo')
@@ -245,7 +275,7 @@ class DrawWidget extends Widget {
             .on('applyfocus', () => {
                 canvas.focus();
             })
-            .closest('[role="page"]')
+            .closest('[data-page]')
             .on(events.PageFlip().type, () => {
                 // When an existing value is loaded into the canvas and is not
                 // the first page, it won't become visible until the canvas is clicked
@@ -426,7 +456,7 @@ class DrawWidget extends Widget {
             const colorDiv = document
                 .createRange()
                 .createContextualFragment(
-                    `<div class="${current}"data-color="${color}" style="background: ${color};" />`
+                    `<div class="${current}"data-color="${color}" style="background: ${color};" role="button" />`
                 );
             colorpicker.append(colorDiv);
         });
@@ -456,6 +486,7 @@ class DrawWidget extends Widget {
             this.value = newValue;
             this._updateDownloadLink(this.value);
         }
+        this._setCanvasName();
     }
 
     /**
@@ -473,7 +504,9 @@ class DrawWidget extends Widget {
                     ? t('drawwidget.drawing')
                     : t('drawwidget.annotation');
             dialog
-                .confirm(t('filepicker.resetWarning', { item }))
+                .confirm(t('filepicker.resetWarning', { item }), {
+                    negFirst: true,
+                })
                 .then((confirmed) => {
                     if (!confirmed) {
                         return;
@@ -497,10 +530,83 @@ class DrawWidget extends Widget {
                         .val('')
                         .trigger('change');
                     that._updateDownloadLink('');
+                    that._setCanvasName();
                     that.disable();
                     that.enable();
                 });
         }
+    }
+
+    /**
+     * Names the Clear and Done buttons, the colour swatches and the canvas (active
+     * question label and drawing state). It also sets the swatch aria-pressed state,
+     * aria-expanded on the current swatch, and tabindex (no tabindex stop in a
+     * read-only widget). It changes no value.
+     */
+    _setCanvasName() {
+        // Same keys as the reset warning in _reset.
+        const item =
+            this.props.type === 'signature'
+                ? t('drawwidget.signature')
+                : this.props.type === 'drawing'
+                ? t('drawwidget.drawing')
+                : t('drawwidget.annotation');
+        const reset = this.$widget[0].querySelector('.btn-reset');
+        reset.setAttribute('aria-label', t('drawwidget.clear', { item }));
+
+        const done = this.$widget[0].querySelector('.hide-canvas-btn');
+        if (done) {
+            done.setAttribute('aria-label', t('drawwidget.done'));
+        }
+        this.$widget[0]
+            .querySelectorAll('.draw-widget__colorpicker [data-color]')
+            .forEach((swatch) => {
+                swatch.setAttribute(
+                    'aria-label',
+                    t('drawwidget.color', { color: swatch.dataset.color })
+                );
+                const current = swatch.classList.contains('current');
+                swatch.setAttribute('aria-pressed', String(current));
+                // The current swatch opens and closes the colour row.
+                if (current) {
+                    swatch.setAttribute(
+                        'aria-expanded',
+                        String(
+                            swatch.parentElement.classList.contains('reveal')
+                        )
+                    );
+                } else {
+                    swatch.removeAttribute('aria-expanded');
+                }
+                // A read-only widget has no focusable swatches.
+                swatch.setAttribute(
+                    'tabindex',
+                    this.props.readonly ? '-1' : '0'
+                );
+            });
+        const canvas = this.$widget[0].querySelector(
+            '.draw-widget__body__canvas'
+        );
+        const label = this.question.querySelector('.question-label.active');
+        const signature = this.props.type === 'signature';
+        const state = this.element.value
+            ? t(
+                  signature
+                      ? 'drawwidget.state.signed'
+                      : 'drawwidget.state.drawn'
+              )
+            : t(
+                  signature
+                      ? 'drawwidget.state.empty'
+                      : 'drawwidget.state.blank'
+              );
+        canvas.setAttribute('role', 'img');
+        canvas.setAttribute(
+            'aria-label',
+            [label && label.textContent.trim(), state]
+                .filter(Boolean)
+                .join('. ')
+        );
     }
 
     /**
@@ -647,6 +753,8 @@ class DrawWidget extends Widget {
      * we need to do.
      */
     update() {
+        // Also called by enketo-core on the form "changelanguage" event: refresh the names.
+        this._setCanvasName();
         if (this.originalInputValue === '') {
             this._reset();
         }

@@ -380,7 +380,7 @@ Form.prototype.init = function () {
         // before itemset.update
         this.langs.init(this.options.language);
 
-        // before repeats.init so that template contains role="page" when applicable
+        // before repeats.init so that template contains data-page when applicable
         this.pages.init();
 
         const repeatPaths = Array.from(

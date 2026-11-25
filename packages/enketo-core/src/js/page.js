@@ -70,7 +70,7 @@ export default {
                         )
                 )
                 .map((el) => {
-                    el.setAttribute('role', 'page');
+                    el.setAttribute('data-page', '');
 
                     return el;
                 });
@@ -84,7 +84,6 @@ export default {
                 this.$btnFirst = this.$formFooter.find('.first-page');
                 this.$btnPrev = this.$formFooter.find('.previous-page');
                 this.$btnNext = this.$formFooter.find('.next-page');
-                this.$btnNext.attr('tabindex', 2);
                 this.$btnLast = this.$formFooter.find('.last-page');
                 this.$toc = $(formWrapper.querySelector('.pages-toc__list'));
                 this._updateAllActive(allPages);
@@ -114,7 +113,7 @@ export default {
      */
     flipToPageContaining($e) {
         const e = $e[0];
-        const closestPage = e.closest('[role="page"]');
+        const closestPage = e.closest('[data-page]');
 
         if (closestPage) {
             this._flipTo(closestPage);
@@ -127,7 +126,7 @@ export default {
                     `[name="${referer.dataset.for}"]`
                 );
                 if (linkedQuestion) {
-                    this._flipTo(linkedQuestion.closest('[role="page"]'));
+                    this._flipTo(linkedQuestion.closest('[data-page]'));
                 }
             }
         }
@@ -262,7 +261,7 @@ export default {
                  * while there are empty reason-for-change fields.
                  */
                 if (
-                    event.target.getAttribute('role') === 'page' &&
+                    event.target.hasAttribute('data-page') &&
                     !reasons.validate()
                 ) {
                     this.toggleButtons();
@@ -340,7 +339,7 @@ export default {
      * @param {Array<Node>} all - all elements that represent a page
      */
     _updateAllActive(all) {
-        all = all || [...this.form.view.html.querySelectorAll('[role="page"]')];
+        all = all || [...this.form.view.html.querySelectorAll('[data-page]')];
         this.activePages = all.filter(
             (el) =>
                 !el.closest('.disabled') &&
@@ -474,7 +473,7 @@ export default {
             // shifts the layout mid-tap, swallowing the first tap. See the
             // matching skip in _focusOnFirstQuestion (#258).
             if (!pageEl.classList.contains('or-appearance-field-list')) {
-                pageEl.setAttribute('tabindex', 1);
+                pageEl.setAttribute('tabindex', -1);
             }
         }
     },

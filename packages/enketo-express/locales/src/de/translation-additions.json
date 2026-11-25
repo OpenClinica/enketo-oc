@@ -1,6 +1,18 @@
 ﻿{
     "widget": {
         "dn": {
+            "trigger": {
+                "none": "Abfrage: keine",
+                "new": "Abfrage: neu",
+                "updated": "Abfrage: aktualisiert",
+                "closed": "Abfrage: geschlossen",
+                "closed-modified": "Abfrage: geschlossen, geändert",
+                "invalid": "Abfrage: ungültig",
+                "multi": "mehrere offene Abfragen",
+                "annotation": "Anmerkung"
+            },
+            "dialogname": "Abfragen und Anmerkungen",
+            "discardcomment": "Den eingegebenen Text verwerfen?",
             "assignto": "Zuweisen zu:",
             "assignedto": "__id__ zugewiesen zu __assignee__.",
             "closequerytext": "Diese Abfrage schließen",
@@ -160,12 +172,15 @@
         }
     },
     "constraint": {
+        "attention": "__count__ Frage erfordert Ihre Aufmerksamkeit",
+        "attention_plural": "__count__ Fragen erfordern Ihre Aufmerksamkeit",
         "relevant": "Durch eine Antwort wurde zu einer anderen Frage gewechselt, für die diese Frage ausgeblendet werden muss, sie kann aber nicht ausgeblendet werden, solange sie Daten enthält. Löschen Sie die Daten oder ändern Sie die abhängigen Antworten."
     },
     "home": {
         "msg": "__appTitle__ wird ausgeführt. Rufen Sie OpenClinica-Formulare von Ihrer __serverName__-Installation aus auf."
     },
     "alert": {
+        "close": "Schließen",
         "appupdated": {
             "heading": "Bitte aktualisieren",
             "msg": "Aktualisieren Sie diese Webseite, damit Formulare offline verwenden werden können (Ref.: Anwendung)"
@@ -203,5 +218,34 @@
         "remove": {
             "btn": "Entfernen"
         }
+    },
+    "form": {
+        "print": "Drucken",
+        "skiplink": "Zum Formular springen",
+        "pages": {
+            "position": "Seite __current__ von __total__"
+        }
+    },
+    "offline": {
+        "status": {
+            "enabled": "Dieses Formular kann offline verwendet werden",
+            "disabled": "Offline-Nutzung ist nicht verfügbar"
+        }
+    },
+    "drawwidget": {
+        "clear": "__item__ löschen",
+        "state": {
+            "signed": "Signatur: gezeichnet",
+            "empty": "Keine Signatur",
+            "drawn": "Zeichnung: gezeichnet",
+            "blank": "Zeichnung: leer"
+        },
+        "done": "Fertig",
+        "color": "Stiftfarbe: __color__"
+    },
+    "geopicker": {
+        "detect": "aktuellen Standort ermitteln",
+        "search": "Suchen",
+        "closemap": "Karte schließen"
     }
 }

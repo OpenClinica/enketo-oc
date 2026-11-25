@@ -1,0 +1,78 @@
+// Form Engine accessibility colours (OC-29480). No CSS output.
+//
+// Rule: per theme, the colour closest to the master colour that passes
+// WCAG 2.2: text 4.5:1, graphics 3:1. "Closest" = keep hue and chroma, lower
+// OKLCH lightness until the colour passes on every background it sits on.
+// OpenClinica Study Manager uses the same method.
+//
+// Each row is one colour for all themes, or a map with one colour per theme.
+// The comment above a row gives the master colour and the background that
+// limits it. The backgrounds and targets per token are in RULES in
+// test/server/oc-tokens.spec.js.
+//
+// To change a colour: edit the row here, then the EXPECTED table in the spec.
+// To add a token: also add its RULES entry. The spec fails until all agree.
+// Each theme entry sets $oc-theme before it imports this file.
+$oc-tokens: (
+    // Headings, links, strict-question border, button fill (white text).
+    // master: oc #f58220, formhub and grid #ce4f07. Limit: strict question #fcd4b2.
+    'accent': (oc: #aa3d00, formhub: #b13300, grid: #b13300),
+    // Link hover, button hover fill and border (white text).
+    // master: oc #d4670a, formhub and grid #a53f06 (passes, kept). Limit: white.
+    'accent-hover': (oc: #c25700, formhub: #a53f06, grid: #a53f06),
+    // Checked radio and checkbox mark. Grid keeps its own radio colours.
+    // master: oc #f79d51, formhub #f76411. Limit: strict question.
+    'radio-checked': (oc: #bb6605, formhub: #dc4b00),
+    // Text box, select and radio borders. master #cccccc. Limit: strict question.
+    'input-border': #7c7c7c,
+    // Hints and helper text. master #888888. Limit: strict question.
+    'secondary-text': #606060,
+    // Error messages and required asterisk. master #a94442. Limit: strict question.
+    'error': #a43f3e,
+    // Focus ring. master #66afe9. Limit: strict question.
+    'focus': #3882b9,
+    // New-query icon. master #ff8080. Limit: strict question.
+    'query-new': #ce5557,
+    // Updated-query icon. master #ffa500. Limit: strict question (3:1 also on white).
+    'query-updated': #bc6600,
+    // Dialog close icon and muted icons. master #bbbbbb. Limit: page #f0f0f0.
+    'icon-muted': #8a8a8a,
+    // Page jump button text (button at opacity 0.7). master #333333.
+    // Limit: #cccccc hover button over a white page.
+    'jump-nav-text': #1c1c1c
+);
+
+$oc-theme: null !default;
+
+// True when the token has a value for this theme.
+@function oc-token-exists($name) {
+    $value: map-get($oc-tokens, $name);
+
+    @if $value == null {
+        @return false;
+    }
+
+    @if type-of($value) == 'map' {
+        @return map-has-key($value, $oc-theme);
+    }
+
+    @return true;
+}
+
+@function oc-token($name) {
+    @if not map-has-key($oc-tokens, $name) {
+        @error 'Unknown OC token: #{$name}';
+    }
+
+    @if not oc-token-exists($name) {
+        @error 'OC token #{$name} has no value for theme #{$oc-theme}';
+    }
+
+    $value: map-get($oc-tokens, $name);
+
+    @if type-of($value) == 'map' {
+        @return map-get($value, $oc-theme);
+    }
+
+    @return $value;
+}

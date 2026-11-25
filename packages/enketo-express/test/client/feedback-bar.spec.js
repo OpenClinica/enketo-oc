@@ -68,46 +68,65 @@ describe('Feedback bar', () => {
         });
     });
 
-    describe('hides messages', () => {
-        it('with an optional timeout in seconds (simple)', (done) => {
-            const time = 1;
-            feedbackBar.show(message1, time);
+    describe('focus on close', () => {
+        let title;
+        let field;
+
+        beforeEach(() => {
+            title = document.createElement('h3');
+            title.id = 'form-title';
+            field = document.createElement('input');
+            document.body.append(title, field);
+            feedbackBar.show(message1);
+        });
+
+        afterEach(() => {
+            title.remove();
+            field.remove();
+        });
+
+        it('moves focus from the bar to the form title, as the skip link does', () => {
+            feedbackBarEl.querySelector('.close').focus();
+            feedbackBar.hide();
+
+            expect(document.activeElement).to.equal(title);
+            expect(title.getAttribute('tabindex')).to.equal('-1');
+        });
+
+        it('leaves focus alone when it is not in the bar', () => {
+            field.focus();
+            feedbackBar.hide();
+
+            expect(document.activeElement).to.equal(field);
+        });
+    });
+
+    describe('keeps messages until closed (WCAG 2.2.1)', () => {
+        let timers;
+
+        beforeEach(() => {
+            timers = sinon.useFakeTimers();
+        });
+
+        afterEach(() => {
+            timers.restore();
+        });
+
+        it('does not remove a message after the legacy duration', () => {
+            feedbackBar.show(message1, 2);
+            timers.tick(3000);
 
             expect(feedbackBarEl.querySelectorAll('p').length).to.equal(1);
             expect(feedbackBarEl.classList.contains(showClass)).to.equal(true);
-            setTimeout(() => {
-                expect(feedbackBarEl.querySelectorAll('p').length).to.equal(0);
-                expect(feedbackBarEl.classList.contains(showClass)).to.equal(
-                    false
-                );
-                done();
-            }, time * 1000);
         });
-        it('with an optional individual timeout per message in seconds', (done) => {
-            const time1 = 1;
-            const time2 = 0.5;
-            feedbackBar.show(message1, time1);
-            feedbackBar.show(message2, time2);
+        it('removes the messages when the bar is closed', () => {
+            feedbackBar.setCloseHandler();
+            feedbackBar.show(message1);
+            feedbackBar.show(message2);
+            feedbackBarEl.querySelector('.close').click();
 
-            expect(feedbackBarEl.querySelectorAll('p').length).to.equal(2);
-            expect(feedbackBarEl.classList.contains(showClass)).to.equal(true);
-
-            setTimeout(() => {
-                const messageEls = feedbackBarEl.querySelectorAll('p');
-                expect(messageEls.length).to.equal(1);
-                expect(messageEls[0].innerHTML).to.equal(message1);
-                expect(feedbackBarEl.classList.contains(showClass)).to.equal(
-                    true
-                );
-            }, time2 * 1000);
-
-            setTimeout(() => {
-                expect(feedbackBarEl.querySelectorAll('p').length).to.equal(0);
-                expect(feedbackBarEl.classList.contains(showClass)).to.equal(
-                    false
-                );
-                done();
-            }, time1 * 1000);
+            expect(feedbackBarEl.querySelectorAll('p').length).to.equal(0);
+            expect(feedbackBarEl.classList.contains(showClass)).to.equal(false);
         });
     });
 });

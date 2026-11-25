@@ -2,7 +2,8 @@
 import Widget from 'enketo-core/src/js/widget';
 import { getSiblingElements } from 'enketo-core/src/js/dom-utils';
 import $ from 'jquery';
-import { t } from '../../public/js/src/module/translator';
+import { t, onUiLanguageChange } from '../../public/js/src/module/translator';
+import gui from '../../public/js/src/module/gui';
 import settings from '../../public/js/src/module/settings';
 import events from '../../public/js/src/module/event';
 import fileManager from '../../public/js/src/module/file-manager';
@@ -14,12 +15,29 @@ let users;
 let annotationIconDataUri;
 const SYSTEM_USER = 'system';
 
+// One shared listener: the trigger labels follow the UI language, which switches
+// after the form is built and after the form's own "changelanguage" event.
+const triggerWidgets = new Set();
+onUiLanguageChange(() => {
+    triggerWidgets.forEach((widget) => {
+        if (widget.commentButton.isConnected) {
+            widget._setCommentButtonLabel();
+        } else {
+            triggerWidgets.delete(widget);
+        }
+    });
+});
+
 const pad2 = (x) => (x < 10 ? `0${x}` : x);
 
 /**
  * Visually transforms a question into a comment modal that can be shown on its linked question.
  */
 class Comment extends Widget {
+    static get COMMENT_BUTTON_HTML() {
+        return '<a class="btn-icon-only btn-comment btn-dn" role="button" href="#"><i class="icon"> </i></a>';
+    }
+
     static get selector() {
         return '.or-appearance-dn input[type="text"][data-for], .or-appearance-dn textarea[data-for]';
     }
@@ -60,9 +78,7 @@ class Comment extends Widget {
             // See http://codepen.io/MartijnR/pen/rWJeOG?editors=1111
             const commentButton = document
                 .createRange()
-                .createContextualFragment(
-                    '<a class="btn-icon-only btn-comment btn-dn" tabindex="-1" type="button" href="#"><i class="icon"> </i></a>'
-                );
+                .createContextualFragment(Comment.COMMENT_BUTTON_HTML);
             const lastLabel = [
                 ...this.linkedQuestion.querySelectorAll('.question-label'),
             ].slice(-1)[0];
@@ -160,11 +176,25 @@ class Comment extends Widget {
         if (state) {
             this.commentButton.classList.add(state);
         }
+        this.commentButtonStatus = state || 'none';
         this.commentButton.classList.toggle(
             'multi',
             state !== 'closed' && state !== 'closed-modified' && multi
         );
         this.commentButton.classList.toggle('annotation', annotation);
+        this._setCommentButtonLabel();
+    }
+
+    // The name says what the icon shows: the status, then the multi and annotation marks.
+    _setCommentButtonLabel() {
+        const { classList } = this.commentButton;
+        const keys = [this.commentButtonStatus || 'none'].concat(
+            ['multi', 'annotation'].filter((flag) => classList.contains(flag))
+        );
+        this.commentButton.setAttribute(
+            'aria-label',
+            keys.map((key) => t(`widget.dn.trigger.${key}`)).join(', ')
+        );
     }
 
     _commentHasError() {
@@ -175,6 +205,18 @@ class Comment extends Widget {
     }
 
     _setCommentButtonHandler() {
+        // An anchor activates on Enter but not on Space.
+        this.commentButton.addEventListener('keydown', (event) => {
+            if (event.key === ' ') {
+                event.preventDefault();
+                // A held Space key repeats keydown; open once only.
+                if (event.repeat) {
+                    return;
+                }
+                this.commentButton.click();
+            }
+        });
+        triggerWidgets.add(this);
         this.commentButton.addEventListener('click', (event) => {
             event.preventDefault();
             if (this._isCommentModalShown(this.linkedQuestion)) {
@@ -633,7 +675,7 @@ class Comment extends Widget {
         // select the first question on the current page
         const firstQuestionOnCurrentPage =
             form.querySelector(
-                '[role="page"].current.question, [role="page"].current .question'
+                '[data-page].current.question, [data-page].current .question'
             ) || form.querySelector('.question');
         const mostLeft = $(firstQuestionOnCurrentPage).position().left;
         const linkedQuestionWidth = this.linkedQuestion.offsetWidth;
@@ -652,10 +694,10 @@ class Comment extends Widget {
         const range = document.createRange();
         const closeButtonHtml =
             '<button class="btn-icon-only or-comment-widget__content__btn-close-x" type="button">&times;</button>';
-        const newQueryButtonHtml = `<button class="btn btn-primary small" data-type="comment"><span class="icon icon-plus"> </span> ${t(
+        const newQueryButtonHtml = `<button class="btn btn-primary small" data-type="comment"><span class="icon icon-plus" aria-hidden="true"> </span> ${t(
             'widget.dn.addnewtext'
         )}</button>`;
-        const newAnnotationButtonHtml = `<button class="btn btn-primary small" data-type="annotation"><span class="icon icon-plus"> </span> ${t(
+        const newAnnotationButtonHtml = `<button class="btn btn-primary small" data-type="annotation"><span class="icon icon-plus" aria-hidden="true"> </span> ${t(
             'widget.dn.addnewtext'
         )}</button>`;
         this.element.closest('form').dispatchEvent(events.Heartbeat());
@@ -729,7 +771,7 @@ class Comment extends Widget {
                                             item.thread_id || 'NULL'
                                         }">
                                             <span class="or-comment-widget__nav__item__start">
-                                                <span class="or-comment-widget__nav__item__start__icon icon icon-dn-annotation"> </span>
+                                                <span class="or-comment-widget__nav__item__start__icon icon icon-dn-annotation" aria-hidden="true"> </span>
                                             </span>
                                             <span class="or-comment-widget__nav__item__text ${
                                                 item.comment.length < 66
@@ -754,7 +796,7 @@ class Comment extends Widget {
                             <input id="dn-show-value-changes" class="or-comment-widget__content__history__value-change-toggle ignore" type="checkbox" name="show-value-changes" checked />
                             <label for="dn-show-value-changes" class="option-label">${t(
                                 'widget.dn.showvaluechanges'
-                            )}</span>
+                            )}</label>
                         </div>
                     </div>
                 </div>
@@ -783,6 +825,19 @@ class Comment extends Widget {
         );
         this.nav = widget.querySelector('.or-comment-widget__nav');
         this.nav.querySelectorAll('a, button').forEach((el) => {
+            if (el.nodeName.toLowerCase() === 'a') {
+                // Same as the query trigger: an anchor activates on Enter but not on Space.
+                el.setAttribute('role', 'button');
+                el.setAttribute('aria-pressed', 'false');
+                el.addEventListener('keydown', (event) => {
+                    if (event.key === ' ') {
+                        event.preventDefault();
+                        if (!event.repeat) {
+                            el.click();
+                        }
+                    }
+                });
+            }
             el.addEventListener('click', (event) => {
                 event.preventDefault();
                 viewToggle.checked = true;
@@ -792,9 +847,13 @@ class Comment extends Widget {
                 this.nav.querySelectorAll('a, button').forEach((el) => {
                     el.classList.remove('active');
                     el.disabled = false;
+                    if (el.hasAttribute('aria-pressed')) {
+                        el.setAttribute('aria-pressed', 'false');
+                    }
                 });
                 if (event.currentTarget.nodeName.toLowerCase() === 'a') {
                     event.currentTarget.classList.add('active');
+                    event.currentTarget.setAttribute('aria-pressed', 'true');
                 } else {
                     event.currentTarget.disabled = true;
                 }
@@ -836,13 +895,60 @@ class Comment extends Widget {
         const overlay = widget.querySelector(
             '.or-comment-widget__overlay--click-preventer'
         );
+        // Not aria-modal: the widget sits inside the question, behind a fixed overlay.
+        widget.setAttribute('role', 'dialog');
+        widget.setAttribute('aria-label', t('widget.dn.dialogname'));
+        closeButton.setAttribute('aria-label', t('alert.close'));
+        if (!widget.contains(document.activeElement)) {
+            closeButton.focus();
+        }
+
+        gui.trapTab(widget);
+
+        // keyup, not keydown: vex closes its top dialog on a window Escape keyup,
+        // so stop it there, or it would close the confirm dialog opened here.
+        const escape = async () => {
+            const input = widget.querySelector('[name="dn-comment"]');
+            // The discard prompt returns focus to the opener: keep it inside this dialog.
+            if (!widget.contains(document.activeElement)) {
+                closeButton.focus();
+            }
+            if (
+                input &&
+                input.value.trim() &&
+                !(await gui.confirm(t('widget.dn.discardcomment'), {
+                    negFirst: true,
+                }))
+            ) {
+                return;
+            }
+            if (widget.isConnected) {
+                this._hideCommentModal(this.linkedQuestion);
+            }
+        };
+        // The close button and the overlay click ask first, like Escape, when text was typed.
         [closeButton, overlay].forEach((el) => {
             el.addEventListener('click', (event) => {
-                this._hideCommentModal(this.linkedQuestion);
+                escape();
                 event.preventDefault();
                 event.stopPropagation();
             });
         });
+        widget.addEventListener('keyup', (event) => {
+            if (event.key === 'Escape') {
+                event.stopPropagation();
+                escape();
+            }
+        });
+        // Focus on body (no vex dialog open): Escape and Tab still reach the dialog.
+        // Not while a vex dialog (the discard prompt) is open: it owns Escape and Tab.
+        const free = () =>
+            widget.isConnected &&
+            !document.querySelector('.vex:not(.vex-closing)');
+        if (this._bodyKeysOff) {
+            this._bodyKeysOff();
+        }
+        this._bodyKeysOff = gui.keysFromBody(widget, escape, free);
     }
 
     _mapChecker() {
@@ -907,12 +1013,18 @@ class Comment extends Widget {
     }
 
     _hideCommentModal(linkedQuestion) {
+        if (this._bodyKeysOff) {
+            this._bodyKeysOff();
+            this._bodyKeysOff = null;
+        }
         this.element.closest('form').dispatchEvent(events.Heartbeat());
         linkedQuestion.querySelector('.or-comment-widget').remove();
         linkedQuestion
             .closest('.or, .or-group, .or-group-data')
             .querySelector('.or-comment-widget__overlay--shadow-giver')
             .remove();
+        // Every close path (submit, x, overlay, Escape, trigger) returns focus to the trigger.
+        this.commentButton.focus();
     }
 
     /**
@@ -1618,10 +1730,11 @@ class Comment extends Widget {
 
     _getHistoryRow(item, options = {}) {
         const types = {
-            comment: '<span class="icon fa-comment-o"> </span>',
+            comment:
+                '<span class="icon fa-comment-o" aria-hidden="true"> </span>',
             audit: '',
-            reason: '<span class="icon icon-delta"> </span>',
-            annotation: `<span class="icon"><img src="${annotationIconDataUri}"/></span>`,
+            reason: '<span class="icon icon-delta" aria-hidden="true"> </span>',
+            annotation: `<span class="icon" aria-hidden="true"><img src="${annotationIconDataUri}" alt=""/></span>`,
         };
         if (typeof item.user === 'undefined') {
             item.user = currentUser;

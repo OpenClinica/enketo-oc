@@ -1,0 +1,26 @@
+@import 'oc-tokens';
+
+// Set without !default: they must win over the theme's own values.
+$brand-primary-color: oc-token('accent');
+$link-hover-color: oc-token('accent-hover');
+$input-border: oc-token('input-border');
+$input-border-focus: oc-token('focus');
+$state-danger-text: oc-token('error');
+$input-color-placeholder: oc-token('secondary-text');
+
+// Grid has no radio-checked token: it keeps its own radio colours (#666666 and black pass).
+@if oc-token-exists('radio-checked') {
+    $radiocheck-unchecked-color: oc-token('input-border') !global;
+    $radiocheck-checked-color: oc-token('radio-checked') !global;
+}
+
+// Tints that were derived from the old brand are held at today's value in each
+// theme's own _variables.scss (each theme had its own brand colour).
+
+// Query and strict-question colours. The strict-question background ($oc-strict-bg in
+// strict-class.scss) keeps its master colour, so strict questions look the same as before.
+$dn-new-color: oc-token('query-new');
+$dn-updated-color: oc-token('query-updated');
+$c: oc-token('accent');
+$button-bg-hover: oc-token('accent-hover');
+$button-border-color: oc-token('accent-hover');

@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import loadForm from '../helpers/load-form';
 import events from '../../src/js/event';
-import { isStaticItemsetFromSecondaryInstance } from '../../src/js/itemset';
+import itemset, {
+    isStaticItemsetFromSecondaryInstance,
+} from '../../src/js/itemset';
 
 describe('Itemset functionality', () => {
     /** @type {import('sinon').SinonSandbox} */
@@ -997,5 +999,15 @@ describe('Itemset functionality', () => {
             expect(options.length).to.equal(3);
             expect(options.map((o) => o.value)).to.deep.equal(['a', 'b', 'c']);
         });
+    });
+});
+
+describe('option image alt text', () => {
+    it('is an empty string, never "undefined", when the translation has no alt', () => {
+        const el = itemset.createOptionTranslation(
+            { type: 'img', src: 'a.png' },
+            'v'
+        );
+        expect(el.getAttribute('alt')).to.equal('');
     });
 });

@@ -222,6 +222,56 @@ describe('Number inputs', () => {
         });
     });
 
+    describe('error ARIA', () => {
+        it('marks the input invalid and ties it to its message, then clears only its own id', async () => {
+            const control = formElement.querySelector(IntegerInput.selector);
+
+            control.setAttribute('aria-describedby', 'other-id');
+            control.type = 'text';
+            input.setVal(control, '4-', events.Input());
+
+            await Promise.resolve();
+
+            const { message } = integerInput;
+
+            expect(message.innerText).to.not.equal('');
+            expect(message.id).to.not.equal('');
+            expect(control.getAttribute('aria-invalid')).to.equal('true');
+            expect(
+                control.getAttribute('aria-describedby').split(' ')
+            ).to.have.members(['other-id', message.id]);
+
+            input.setVal(control, '4', events.Input());
+
+            await Promise.resolve();
+
+            expect(control.hasAttribute('aria-invalid')).to.equal(false);
+            expect(control.getAttribute('aria-describedby')).to.equal(
+                'other-id'
+            );
+        });
+
+        ['invalid-constraint', 'invalid-required'].forEach((cls) => {
+            it(`keeps aria-invalid while the question has ${cls}`, async () => {
+                const control = formElement.querySelector(
+                    IntegerInput.selector
+                );
+                const { question } = integerInput;
+
+                question.classList.add(cls);
+                control.setAttribute('aria-invalid', 'true');
+                input.setVal(control, '12', events.Input());
+
+                await Promise.resolve();
+
+                expect(question.classList.contains('invalid-value')).to.equal(
+                    false
+                );
+                expect(control.getAttribute('aria-invalid')).to.equal('true');
+            });
+        });
+    });
+
     describe('decimal', () => {
         runAllCommonWidgetTests(DecimalInput, formHTML, '2');
         runAllCommonWidgetTests(DecimalInput, formHTML, '2.1');

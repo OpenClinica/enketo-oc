@@ -1,6 +1,18 @@
 {
   "widget": {
     "dn": {
+      "trigger": {
+        "none": "Query: nessuna",
+        "new": "Query: nuova",
+        "updated": "Query: aggiornata",
+        "closed": "Query: chiusa",
+        "closed-modified": "Query: chiusa, modificata",
+        "invalid": "Query: non valida",
+        "multi": "più query aperte",
+        "annotation": "annotazione"
+      },
+      "dialogname": "Query e annotazioni",
+      "discardcomment": "Eliminare il testo digitato?",
       "assignto": "Assegna a:",
       "assignedto": "__id__ assegnato a __assignee__.",
       "closequerytext": "Chiudi questa query",
@@ -152,12 +164,15 @@
     }
   },
   "constraint": {
+    "attention": "__count__ domanda richiede attenzione",
+    "attention_plural": "__count__ domande richiedono attenzione",
     "relevant": "La risposta a un'altra domanda è cambiata e richiede che questa domanda venga nascosta, ma non è possibile nasconderla finché contiene dati. Elimina i dati oppure modifica le risposte dipendenti."
   },
   "home": {
     "msg": "__appTitle__ è in esecuzione! Accedi ai moduli OpenClinica dalla tua installazione __serverName__."
   },
   "alert": {
+    "close": "Chiudi",
     "appupdated": {
       "heading": "Aggiorna",
       "msg": "Aggiorna questa pagina web per utilizzare il modulo offline (rif.: applicazione)"
@@ -203,5 +218,34 @@
     "remove": {
       "btn": "Rimuovi"
     }
+  },
+  "form": {
+    "print": "Stampa",
+    "skiplink": "Vai al modulo",
+    "pages": {
+      "position": "Pagina __current__ di __total__"
+    }
+  },
+  "offline": {
+    "status": {
+      "enabled": "Questo modulo può essere usato offline",
+      "disabled": "L'uso offline non è disponibile"
+    }
+  },
+  "drawwidget": {
+    "clear": "Cancella __item__",
+    "state": {
+      "signed": "Firma: disegnata",
+      "empty": "Nessuna firma",
+      "drawn": "Disegno: disegnato",
+      "blank": "Disegno: vuoto"
+    },
+    "done": "Fatto",
+    "color": "Colore della penna: __color__"
+  },
+  "geopicker": {
+    "detect": "rileva la posizione attuale",
+    "search": "Cerca",
+    "closemap": "Chiudi mappa"
   }
 }

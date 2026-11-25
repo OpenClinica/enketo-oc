@@ -7,6 +7,6 @@ block style
 block content
   .vex-overlay
   .vex.vex-theme-plain
-    .vex-content
-      h3= t('alert.logout.heading')
+    .vex-content(role="dialog", aria-labelledby="logout-heading")
+      h3#logout-heading= t('alert.logout.heading')
       p= t('alert.logout.msg')

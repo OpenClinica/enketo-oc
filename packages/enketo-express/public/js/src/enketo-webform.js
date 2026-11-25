@@ -117,11 +117,7 @@ function _setAppCacheEventHandlers() {
     });
 
     document.addEventListener(events.ApplicationUpdated().type, () => {
-        gui.feedback(
-            t('alert.appupdated.msg'),
-            20,
-            t('alert.appupdated.heading')
-        );
+        gui.feedback(t('alert.appupdated.msg'), t('alert.appupdated.heading'));
     });
 }
 
@@ -129,7 +125,6 @@ function _setFormCacheEventHandlers(survey) {
     document.addEventListener(events.FormUpdated().type, () => {
         gui.feedback(
             t('alert.formupdated.msg'),
-            20,
             t('alert.formupdated.heading')
         );
     });

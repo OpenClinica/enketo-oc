@@ -67,6 +67,14 @@ const initialize = new Promise((resolve, reject) => {
 const t = (key, options) => i18next.t(key, options);
 
 /**
+ * Calls fn after the UI language has switched (i18next "languageChanged"),
+ * which is later than the form's own "changelanguage" event.
+ *
+ * @param {Function} fn
+ */
+const onUiLanguageChange = (fn) => i18next.on('languageChanged', fn);
+
+/**
  * Localizes the descendents of an element based on the data-i18n attribute.
  * Performance-optimized in Chrome (used bench6 form).
  *
@@ -99,7 +107,7 @@ const localize = (container, lng) => {
                         // quick hack for __icon__ replacement
                         if (el.dataset.i18nIcon) {
                             options = {
-                                icon: `<span class="icon ${el.dataset.i18nIcon}"> </span>`,
+                                icon: `<span class="icon ${el.dataset.i18nIcon}" aria-hidden="true"> </span>`,
                                 interpolation: { escapeValue: false },
                             };
                         }
@@ -166,6 +174,7 @@ const getBrowserLanguage = () => {
 export {
     init,
     t,
+    onUiLanguageChange,
     localize,
     loadTranslation,
     getCurrentUiLanguage,

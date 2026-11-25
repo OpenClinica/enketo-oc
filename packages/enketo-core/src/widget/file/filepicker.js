@@ -93,7 +93,11 @@ class Filepicker extends Widget {
                     fileManager
                         .getFileUrl(existingFileName)
                         .then((url) => {
-                            that._showPreview(url, that.props.mediaType);
+                            that._showPreview(
+                                url,
+                                that.props.mediaType,
+                                existingFileName
+                            );
                             that._updateDownloadLink(url, existingFileName);
                         })
                         .catch(() => {
@@ -218,7 +222,11 @@ class Filepicker extends Widget {
                             .getFileUrl(file, fileName)
                             .then((url) => {
                                 // Update UI
-                                that._showPreview(url, that.props.mediaType);
+                                that._showPreview(
+                                    url,
+                                    that.props.mediaType,
+                                    fileName
+                                );
                                 that._showFeedback();
                                 that._showFileName(fileName);
                                 if (
@@ -312,8 +320,9 @@ class Filepicker extends Widget {
     /**
      * @param {string} url - URL
      * @param {string} mediaType - media type
+     * @param {string} [fileName] - file name, used as the image alt text
      */
-    _showPreview(url, mediaType) {
+    _showPreview(url, mediaType, fileName) {
         let htmlStr;
 
         empty(this.preview);
@@ -334,7 +343,11 @@ class Filepicker extends Widget {
             const fragment = document
                 .createRange()
                 .createContextualFragment(htmlStr);
-            fragment.querySelector('*').src = url;
+            const mediaEl = fragment.querySelector('*');
+            mediaEl.src = url;
+            if (mediaType === 'image/*') {
+                mediaEl.alt = fileName || '';
+            }
             this.preview.append(fragment);
         }
     }

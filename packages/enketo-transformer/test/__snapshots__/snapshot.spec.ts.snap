@@ -925572,7 +925572,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -925673,7 +925673,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -925775,7 +925775,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -925876,7 +925876,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -925977,7 +925977,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926078,7 +926078,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926179,7 +926179,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926280,7 +926280,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926381,7 +926381,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926482,7 +926482,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926583,7 +926583,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -926684,7 +926684,7 @@ exports[`Snapshots > enketo-transformer > 'image-default.xml' > transforms image
       lang=\\"default\\"
       >label with image</span
     ><img
-      alt=\\"image\\"
+      alt=\\"\\"
       class=\\"active\\"
       data-itext-id=\\"/image-default/txt:label\\"
       lang=\\"default\\"
@@ -953561,7 +953561,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -953578,7 +953578,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -953595,7 +953595,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -956033,7 +956033,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -956050,7 +956050,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -956067,7 +956067,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -958506,7 +958506,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -958523,7 +958523,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -958540,7 +958540,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -960976,7 +960976,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -960993,7 +960993,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -961010,7 +961010,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -963448,7 +963448,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -963465,7 +963465,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -963482,7 +963482,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -965920,7 +965920,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -965937,7 +965937,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -965954,7 +965954,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -968392,7 +968392,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -968409,7 +968409,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -968426,7 +968426,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -970864,7 +970864,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -970881,7 +970881,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -970898,7 +970898,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -973336,7 +973336,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -973353,7 +973353,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -973370,7 +973370,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -975808,7 +975808,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -975825,7 +975825,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -975842,7 +975842,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -978280,7 +978280,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -978297,7 +978297,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -978314,7 +978314,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
@@ -980752,7 +980752,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >kingfisher</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/king:label\\"
               lang=\\"default\\"
@@ -980769,7 +980769,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >pigeon</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/pig:label\\"
               lang=\\"default\\"
@@ -980786,7 +980786,7 @@ exports[`Snapshots > enketo-transformer > 'widgets.xml' > transforms widgets.xml
               lang=\\"default\\"
               >nuthatch</span
             ><img
-              alt=\\"image\\"
+              alt=\\"\\"
               class=\\"active\\"
               data-itext-id=\\"/widgets/display_widgets/select_media/nut:label\\"
               lang=\\"default\\"
