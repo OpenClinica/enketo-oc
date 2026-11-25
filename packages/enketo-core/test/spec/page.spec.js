@@ -3,6 +3,19 @@ import events from '../../src/js/event';
 import reasons from '../../src/js/reasons';
 
 describe('Pages mode', () => {
+    // Adding a repeat page calls reasons.validate(), which inserts its section before .form-footer.
+    let formFooter;
+
+    before(() => {
+        formFooter = document.createElement('section');
+        formFooter.className = 'form-footer';
+        document.body.append(formFooter);
+    });
+
+    after(() => {
+        formFooter.remove();
+    });
+
     describe('Initial loading if form includes repeats-as-page', () => {
         /** @type {import('sinon').SinonSandbox} */
         let sandbox;
