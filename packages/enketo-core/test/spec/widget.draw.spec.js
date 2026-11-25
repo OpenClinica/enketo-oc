@@ -306,6 +306,27 @@ describe('draw widget accessible names', () => {
             });
         });
 
+        it('only the current swatch has aria-expanded, and it follows the row', async () => {
+            const widget = await create(DRAW_FORM);
+            const [first, other] = swatches(widget);
+            const expanded = () =>
+                swatches(widget).map((s) => s.getAttribute('aria-expanded'));
+            const closedRest = swatches(widget)
+                .slice(1)
+                .map(() => null);
+
+            expect(expanded()).to.deep.equal(['false', ...closedRest]);
+            press(first, 'Enter');
+            expect(expanded()).to.deep.equal(['true', ...closedRest]);
+            press(first, 'Enter');
+            expect(first.getAttribute('aria-expanded')).to.equal('false');
+
+            press(first, 'Enter');
+            press(other, 'Enter');
+            expect(first.hasAttribute('aria-expanded')).to.equal(false);
+            expect(other.getAttribute('aria-expanded')).to.equal('false');
+        });
+
         it('a read-only widget has no focusable swatches and keys do nothing', async () => {
             const widget = await create(
                 DRAW_FORM.replace('<input ', '<input readonly ')

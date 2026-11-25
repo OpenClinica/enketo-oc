@@ -255,16 +255,22 @@ class NumberInput extends Widget {
         // OC a11y: ARIA only; tie the input to the message while it is in error.
         // enketo-express form-oc.js (updateInvalidAria) also writes aria-invalid and
         // aria-describedby on this input, when the form validates. This code runs on
-        // every input event, so it can clear aria-invalid while an invalid-constraint
-        // or invalid-required class is still set; the next validation sets it again.
+        // every input event, so aria-invalid stays while another invalid-* class
+        // (constraint, required) is still shown; the next validation updates it.
         const ids = (element.getAttribute('aria-describedby') || '')
             .split(/\s+/)
             .filter((id) => id && id !== message.id);
+        // invalid-value was set above, so this covers this widget's own error too.
+        const invalid = [...question.classList].some((cl) =>
+            cl.startsWith('invalid-')
+        );
 
-        if (isValid) {
-            element.removeAttribute('aria-invalid');
-        } else {
+        if (invalid) {
             element.setAttribute('aria-invalid', 'true');
+        } else {
+            element.removeAttribute('aria-invalid');
+        }
+        if (!isValid) {
             ids.push(message.id);
         }
 

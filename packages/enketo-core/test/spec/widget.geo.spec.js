@@ -5,6 +5,7 @@ import {
     mockGetCurrentPosition,
 } from '../helpers/geolocation';
 import loadForm from '../helpers/load-form';
+import support from '../../src/js/support';
 import { runAllCommonWidgetTests } from '../helpers/test-widget';
 
 const FORM = `<form class="or">
@@ -54,6 +55,57 @@ describe('geopicker button names', () => {
             t('geopicker.detect'),
             t('geopicker.detect'),
         ]);
+    });
+
+    describe('full-screen map (touch, appearance "maps")', () => {
+        let form;
+        let picker;
+        let sandbox;
+        const widget = () => picker.$widget[0];
+
+        beforeEach(() => {
+            sandbox = sinon.createSandbox();
+            sandbox.stub(support, 'touch').value(true);
+            // No map library in this test: only the buttons are checked.
+            sandbox.stub(Geopicker.prototype, '_updateMap');
+            form = document
+                .createRange()
+                .createContextualFragment(
+                    FORM.replace('"question"', '"question or-appearance-maps"')
+                )
+                .querySelector('form');
+            document.body.append(form);
+            picker = new Geopicker(form.querySelector('input'));
+        });
+
+        afterEach(() => {
+            form.remove();
+            sandbox.restore();
+        });
+
+        it('the back button is named "Close map", also after _setButtonNames', () => {
+            const back = widget().querySelector('.hide-map-btn');
+            expect(back.getAttribute('aria-label')).to.equal(
+                t('geopicker.closemap')
+            );
+            back.setAttribute('aria-label', 'x');
+            picker._setButtonNames();
+            expect(back.getAttribute('aria-label')).to.equal(
+                t('geopicker.closemap')
+            );
+        });
+
+        it('Map moves focus to the back button, and back returns it to Map', () => {
+            const map = widget().querySelector('.show-map-btn');
+            const back = widget().querySelector('.hide-map-btn');
+
+            map.focus();
+            map.click();
+            expect(document.activeElement).to.equal(back);
+
+            back.click();
+            expect(document.activeElement).to.equal(map);
+        });
     });
 });
 

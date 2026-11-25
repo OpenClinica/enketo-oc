@@ -41,6 +41,7 @@ const SOURCE_STRINGS = {
     geopicker: {
         accuracy: 'accuracy (m)',
         altitude: 'altitude (m)',
+        closemap: 'Close map',
         closepolygon: 'close polygon',
         detect: 'detect current location',
         search: 'Search',

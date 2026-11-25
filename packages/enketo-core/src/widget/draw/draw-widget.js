@@ -193,6 +193,7 @@ class DrawWidget extends Widget {
                     .find('.draw-widget__colorpicker')
                     .on('click', '.current', function () {
                         $(this).parent().toggleClass('reveal');
+                        that._setCanvasName();
                     })
                     .on('click', '[data-color]:not(.current)', function () {
                         $(this)
@@ -538,8 +539,9 @@ class DrawWidget extends Widget {
 
     /**
      * Names the Clear and Done buttons, the colour swatches and the canvas (active
-     * question label and drawing state). It also sets the swatch aria-pressed state
-     * and tabindex (no tabindex stop in a read-only widget). It changes no value.
+     * question label and drawing state). It also sets the swatch aria-pressed state,
+     * aria-expanded on the current swatch, and tabindex (no tabindex stop in a
+     * read-only widget). It changes no value.
      */
     _setCanvasName() {
         // Same keys as the reset warning in _reset.
@@ -563,10 +565,19 @@ class DrawWidget extends Widget {
                     'aria-label',
                     t('drawwidget.color', { color: swatch.dataset.color })
                 );
-                swatch.setAttribute(
-                    'aria-pressed',
-                    String(swatch.classList.contains('current'))
-                );
+                const current = swatch.classList.contains('current');
+                swatch.setAttribute('aria-pressed', String(current));
+                // The current swatch opens and closes the colour row.
+                if (current) {
+                    swatch.setAttribute(
+                        'aria-expanded',
+                        String(
+                            swatch.parentElement.classList.contains('reveal')
+                        )
+                    );
+                } else {
+                    swatch.removeAttribute('aria-expanded');
+                }
                 // A read-only widget has no focusable swatches.
                 swatch.setAttribute(
                     'tabindex',

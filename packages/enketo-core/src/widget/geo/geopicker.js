@@ -103,7 +103,7 @@ class Geopicker extends Widget {
     }
 
     /**
-     * Names the Detect and Search buttons in the UI language. Presentation only.
+     * Names the Detect, Search and Close map buttons in the UI language. Presentation only.
      */
     _setButtonNames() {
         const detect = this.$widget[0].querySelector(
@@ -114,6 +114,9 @@ class Geopicker extends Widget {
         this.$widget[0]
             .querySelector('.search-btn')
             .setAttribute('aria-label', t('geopicker.search'));
+        this.$widget[0]
+            .querySelector('.hide-map-btn')
+            .setAttribute('aria-label', t('geopicker.closemap'));
     }
 
     _init() {
@@ -268,6 +271,8 @@ class Geopicker extends Widget {
             that.$widget.find('.search-bar').removeClass('hide-search');
             that.$widget.addClass('full-screen');
             that._updateMap();
+            // The Map button is hidden now: move focus to the button that closes the map.
+            that.$widget.find('.hide-map-btn')[0]?.focus();
 
             return false;
         });
@@ -321,6 +326,8 @@ class Geopicker extends Widget {
                 that.polygon = undefined;
                 that.polyline = undefined;
             }
+            // The back button is hidden now: give focus back to the Map button.
+            that.$map.find('.show-map-btn')[0]?.focus();
 
             return false;
         });

@@ -250,6 +250,26 @@ describe('Number inputs', () => {
                 'other-id'
             );
         });
+
+        ['invalid-constraint', 'invalid-required'].forEach((cls) => {
+            it(`keeps aria-invalid while the question has ${cls}`, async () => {
+                const control = formElement.querySelector(
+                    IntegerInput.selector
+                );
+                const { question } = integerInput;
+
+                question.classList.add(cls);
+                control.setAttribute('aria-invalid', 'true');
+                input.setVal(control, '12', events.Input());
+
+                await Promise.resolve();
+
+                expect(question.classList.contains('invalid-value')).to.equal(
+                    false
+                );
+                expect(control.getAttribute('aria-invalid')).to.equal('true');
+            });
+        });
     });
 
     describe('decimal', () => {
