@@ -155,6 +155,51 @@ describe('OC focus ring', () => {
     );
 });
 
+describe('Feedback bar close button', () => {
+    // The last value of a property in rules with exactly this selector.
+    const lastValue = (css, selector, prop) => {
+        let value = null;
+        rulesMatching(css, /feedback-bar/).forEach((r) => {
+            if (!r.selectors.map(norm).includes(selector)) return;
+            r.walkDecls(prop, (d) => {
+                value = d.value;
+            });
+        });
+
+        return value;
+    };
+
+    ['theme-oc', 'theme-formhub', 'theme-grid'].forEach((theme) =>
+        describe(theme, () => {
+            const css = read(theme);
+
+            // The bar stays in the accessibility tree (it is a live region); only
+            // its button leaves the Tab order while the bar is off screen.
+            it('is hidden while the bar is hidden', () => {
+                expect(
+                    lastValue(
+                        css,
+                        '#feedback-bar:not(.feedback-bar--show) .close',
+                        'visibility'
+                    )
+                ).to.equal('hidden');
+                expect(lastValue(css, '#feedback-bar', 'visibility')).to.equal(
+                    null
+                );
+            });
+
+            it('is at least 24 by 24 px (WCAG 2.5.8)', () => {
+                expect(
+                    lastValue(css, '#feedback-bar .close', 'min-width')
+                ).to.equal('24px');
+                expect(
+                    lastValue(css, '#feedback-bar .close', 'min-height')
+                ).to.equal('24px');
+            });
+        })
+    );
+});
+
 describe('OC-29480: data-page replaces role="page"', () => {
     ['theme-oc', 'theme-grid'].forEach((theme) => {
         ['', '.print'].forEach((suffix) => {

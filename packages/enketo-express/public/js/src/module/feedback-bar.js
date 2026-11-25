@@ -47,7 +47,16 @@ export default {
      * Hides and empties the feedback bar
      */
     hide() {
+        // The hidden bar's close button cannot keep focus (theme CSS hides it), so move
+        // focus to the form title, the same target as the skip link (_skip-link.pug).
+        const title = this.feedbackBar.contains(document.activeElement)
+            ? document.querySelector('#form-title')
+            : null;
         this.feedbackBar.classList.remove('feedback-bar--show');
         this.messages.forEach((p) => p.remove());
+        if (title) {
+            title.setAttribute('tabindex', '-1');
+            title.focus();
+        }
     },
 };

@@ -66,6 +66,25 @@
     color: var(--oc-jump-nav-text);
 }
 
+// WCAG 2.2 SC 2.5.8 Target Size (Minimum).
+$oc-min-target-size: 24px;
+
+// Feedback bar (_feedback-bar.scss) hides by moving off screen (top: -100px), so its
+// close button stayed in the Tab order. Hide only the button: the bar is a
+// role="status" live region and must stay in the accessibility tree to announce.
+#feedback-bar:not(.feedback-bar--show) .close {
+    visibility: hidden;
+}
+
+// Its × is 11px wide. transform centres it at any size, in place of the
+// fixed margin-top in _feedback-bar.scss.
+#feedback-bar .close {
+    min-width: $oc-min-target-size;
+    min-height: $oc-min-target-size;
+    margin-top: 0;
+    transform: translateY(-50%);
+}
+
 // vex close control is a <button> (gui.js). Its × is an absolute :before at
 // top/right 3px, 30px square; size the button around it so the focus ring encloses it.
 .vex.vex-theme-plain .vex-close {

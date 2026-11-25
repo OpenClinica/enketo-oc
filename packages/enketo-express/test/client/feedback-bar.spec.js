@@ -68,6 +68,39 @@ describe('Feedback bar', () => {
         });
     });
 
+    describe('focus on close', () => {
+        let title;
+        let field;
+
+        beforeEach(() => {
+            title = document.createElement('h3');
+            title.id = 'form-title';
+            field = document.createElement('input');
+            document.body.append(title, field);
+            feedbackBar.show(message1);
+        });
+
+        afterEach(() => {
+            title.remove();
+            field.remove();
+        });
+
+        it('moves focus from the bar to the form title, as the skip link does', () => {
+            feedbackBarEl.querySelector('.close').focus();
+            feedbackBar.hide();
+
+            expect(document.activeElement).to.equal(title);
+            expect(title.getAttribute('tabindex')).to.equal('-1');
+        });
+
+        it('leaves focus alone when it is not in the bar', () => {
+            field.focus();
+            feedbackBar.hide();
+
+            expect(document.activeElement).to.equal(field);
+        });
+    });
+
     describe('keeps messages until closed (WCAG 2.2.1)', () => {
         let timers;
 
