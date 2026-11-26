@@ -1,4 +1,5 @@
 import loadForm from '../helpers/load-form';
+import reasons from '../../src/js/reasons';
 
 describe('Pages mode', () => {
     describe('Initial loading if form includes repeats-as-page', () => {
@@ -143,6 +144,40 @@ describe('Pages mode', () => {
                 firstPage.classList.contains('or-appearance-field-list')
             ).to.equal(false);
             expect(firstPage.getAttribute('tabindex')).to.equal('1');
+        });
+    });
+
+    describe('OC-29555: adding a repeat page with an empty reason for change', () => {
+        /** @type {import('sinon').SinonSandbox} */
+        let sandbox;
+
+        beforeEach(() => {
+            sandbox = sinon.createSandbox();
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        // An error here is uncaught (it is thrown in an event listener),
+        // so mocha fails this test if the handler throws.
+        it('checks the reasons, updates the buttons and flips without an error', () => {
+            const form = loadForm('repeat-only-pages.xml');
+            form.init();
+            const validate = sandbox.stub(reasons, 'validate').returns(false);
+            const toggleSpy = sandbox.spy(form.pages, '_toggleButtons');
+
+            form.view.html
+                .querySelector(
+                    '.or-repeat-info[data-name="/data/rep"] .add-repeat-btn'
+                )
+                .click();
+
+            const repeats = form.view.html.querySelectorAll('.or-repeat');
+            expect(validate).to.have.been.called;
+            expect(toggleSpy).to.have.been.called;
+            expect(repeats.length).to.equal(2);
+            expect(form.pages.current).to.equal(repeats[1]);
         });
     });
 
