@@ -1,4 +1,5 @@
 import loadForm from '../helpers/load-form';
+import reasons from '../../src/js/reasons';
 
 describe('Pages mode', () => {
     describe('Initial loading if form includes repeats-as-page', () => {
@@ -143,6 +144,67 @@ describe('Pages mode', () => {
                 firstPage.classList.contains('or-appearance-field-list')
             ).to.equal(false);
             expect(firstPage.getAttribute('tabindex')).to.equal('1');
+        });
+    });
+
+    describe('OC-29555: adding a repeat page with an empty reason for change', () => {
+        /** @type {import('sinon').SinonSandbox} */
+        let sandbox;
+        /** @type {HTMLElement} */
+        let footer;
+
+        // The reasons module is a singleton: start and end each test without
+        // its section and fields.
+        const resetReasons = () => {
+            if (reasons._section) {
+                reasons._section.remove();
+            }
+            reasons._section = null;
+            reasons.fields = [];
+            reasons.numbers = [];
+        };
+
+        beforeEach(() => {
+            sandbox = sinon.createSandbox();
+            resetReasons();
+            // The reasons section goes before the first .form-footer in the document.
+            footer = document.createElement('section');
+            footer.className = 'form-footer';
+            document.body.prepend(footer);
+        });
+
+        afterEach(() => {
+            resetReasons();
+            footer.remove();
+            sandbox.restore();
+        });
+
+        // An error here is uncaught (it is thrown in an event listener),
+        // so mocha fails this test if the handler throws.
+        it('marks the empty reason invalid, updates the buttons and flips without an error', () => {
+            const form = loadForm('repeat-only-pages.xml');
+            form.init();
+            reasons.addField(
+                form.view.html.querySelector('.or-repeat .question')
+            );
+            const reasonItem = reasons.section.querySelector(
+                '.reason-for-change__item'
+            );
+            const toggleSpy = sandbox.spy(form.pages, '_toggleButtons');
+
+            expect(reasonItem.classList.contains('invalid')).to.equal(false);
+
+            form.view.html
+                .querySelector(
+                    '.or-repeat-info[data-name="/data/rep"] .add-repeat-btn'
+                )
+                .click();
+
+            const repeats = form.view.html.querySelectorAll('.or-repeat');
+            expect(reasonItem.classList.contains('invalid')).to.equal(true);
+            expect(toggleSpy).to.have.been.called;
+            expect(repeats.length).to.equal(2);
+            expect(form.pages.current).to.equal(repeats[1]);
         });
     });
 

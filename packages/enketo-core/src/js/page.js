@@ -256,16 +256,17 @@ export default {
 
                 // ---------- Custom OC --------------
                 /*
-                 * The only thing we want to change in this function for OC,
-                 * is to NOT flip to the next page when a repeat is the same as a page and
-                 * and a new repeat instance is created,
-                 * while there are empty reason-for-change fields.
+                 * When a new repeat instance is also a page, mark the empty
+                 * reason-for-change fields as invalid, update the buttons and
+                 * skip the flip below. An instance that the user adds is still
+                 * shown: form.goToTarget() in repeat.add() flips to it (OC-29555).
                  */
                 if (
                     event.target.getAttribute('role') === 'page' &&
                     !reasons.validate()
                 ) {
-                    this.toggleButtons();
+                    this._toggleButtons();
+                    return;
                 }
                 // ------- End of Custom OC ----------
 
