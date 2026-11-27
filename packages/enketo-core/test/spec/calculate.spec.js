@@ -749,4 +749,122 @@ describe('calculate functionality', () => {
             expect(optionLabels[3].textContent.trim()).to.equal('sp4');
         });
     });
+
+    // OC-11538: cross-form reads (oc:external="clinicaldata") have no form control, so they sit in the hidden calculated
+    // items after all visible questions. They must still be evaluated before the other calculations and relevance logic,
+    // otherwise dependent items briefly get an empty value (which the OC controller turns into field submissions)
+    // before the cross-form value arrives.
+    describe('cross-form reads (oc:external="clinicaldata") on form load', () => {
+        const EXTERNAL_VALUE = '2019-10-01';
+        const record = (mirror, imported) =>
+            `<data xmlns:oc="http://openclinica.org/xforms" id="calcs-external-first"><ext/><mirror>${mirror}</mirror><imported>${imported}</imported><meta><instanceID>uuid:1</instanceID></meta></data>`;
+
+        /**
+         * @param {string} recordStr
+         * @return {{ form: any, updates: Record<string, string[]> }} the form and, per node, every value it got while loading
+         */
+        const initWithExternalRead = (recordStr) => {
+            const form = loadForm('calcs-external-first.xml', recordStr);
+
+            // The mock forms are transformed without the openclinica option, so set the attribute the OC transformer generates.
+            form.view.html
+                .querySelector('input[name="/data/ext"]')
+                .setAttribute('data-oc-external', 'clinicaldata');
+
+            const updates = { mirror: [], imported: [] };
+
+            form.view.html.addEventListener(events.DataUpdate().type, (e) => {
+                const [name] = e.detail.nodes || [];
+
+                if (updates[name]) {
+                    updates[name].push(
+                        form.model.node(`/data/${name}`).getVal()
+                    );
+                }
+            });
+            form.init();
+
+            return { form, updates };
+        };
+
+        it('does not empty a stored dependent value before the cross-form value is read', () => {
+            const { form, updates } = initWithExternalRead(
+                record(EXTERNAL_VALUE, '')
+            );
+
+            expect(form.model.node('/data/ext').getVal()).to.equal(
+                EXTERNAL_VALUE
+            );
+            expect(form.model.node('/data/mirror').getVal()).to.equal(
+                EXTERNAL_VALUE
+            );
+            expect(updates.mirror).to.deep.equal([]);
+        });
+
+        it('keeps an imported read-only once() value whose relevance depends on a cross-form value', () => {
+            const { form, updates } = initWithExternalRead(
+                record(EXTERNAL_VALUE, 'RANDOMIZED')
+            );
+
+            expect(form.model.node('/data/imported').getVal()).to.equal(
+                'RANDOMIZED'
+            );
+            expect(updates.imported).to.deep.equal([]);
+        });
+
+        it('still fills the dependent value when the stored value is outdated', () => {
+            const { form, updates } = initWithExternalRead(
+                record('2018-01-01', '')
+            );
+
+            expect(form.model.node('/data/mirror').getVal()).to.equal(
+                EXTERNAL_VALUE
+            );
+            expect(updates.mirror).to.deep.equal([EXTERNAL_VALUE]);
+        });
+
+        // Guard (also passes without the OC-11538 fix): the first pass must not break the new-record path.
+        it('fills the dependent value on a new record', () => {
+            const { form, updates } = initWithExternalRead(null);
+
+            expect(form.model.node('/data/mirror').getVal()).to.equal(
+                EXTERNAL_VALUE
+            );
+            expect(updates.mirror).to.deep.equal([EXTERNAL_VALUE]);
+        });
+    });
+
+    describe('cross-form reads (oc:external="clinicaldata") inside a repeat on form load', () => {
+        const EXTERNAL_VALUE = '2019-10-01';
+
+        // Guard (also passes without the OC-11538 fix): repeat controls are not cached at init, so the first pass skips them
+        // and they are handled by the later calculation updates.
+        it('does not empty a stored value inside a repeat before the cross-form value is read', () => {
+            const form = loadForm(
+                'calcs-external-in-repeat.xml',
+                `<data xmlns:oc="http://openclinica.org/xforms" id="calcs-external-in-repeat"><rep><ext_r/><mirror_r>${EXTERNAL_VALUE}</mirror_r></rep><meta><instanceID>uuid:1</instanceID></meta></data>`
+            );
+            const updates = [];
+
+            // The mock forms are transformed without the openclinica option, so set the attribute the OC transformer generates.
+            form.view.html
+                .querySelector('input[name="/data/rep/ext_r"]')
+                .setAttribute('data-oc-external', 'clinicaldata');
+            form.view.html.addEventListener(events.DataUpdate().type, (e) => {
+                const [name] = e.detail.nodes || [];
+
+                if (name === 'mirror_r') {
+                    updates.push(
+                        form.model.xml.querySelector(name).textContent
+                    );
+                }
+            });
+            form.init();
+
+            expect(
+                form.model.xml.querySelector('mirror_r').textContent
+            ).to.equal(EXTERNAL_VALUE);
+            expect(updates).to.deep.equal([]);
+        });
+    });
 });

@@ -42,6 +42,9 @@ export default {
 
         this.initialized = false;
         this.preInitRelevance = new WeakMap();
+        // OC-11538: cross-form reads have no form control, so they are placed after all visible questions. Evaluate them
+        // first, otherwise items that depend on them are evaluated (and set to an empty value) before their value is read.
+        this.update({}, '[data-oc-external="clinicaldata"]');
         this.update();
         this.initialized = true;
     },

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:oc="http://openclinica.org/xforms">
+    <h:head>
+        <h:title>cross-form reads are evaluated first</h:title>
+        <model>
+            <instance>
+                <data id="calcs-external-first">
+                    <ext/>
+                    <mirror/>
+                    <imported/>
+                    <meta>
+                        <instanceID/>
+                    </meta>
+                </data>
+            </instance>
+            <!-- Simulates the OpenClinica cross-form data the engine reads -->
+            <instance id="clinicaldata">
+                <root>
+                    <item>
+                        <value>2019-10-01</value>
+                    </item>
+                </root>
+            </instance>
+            <!-- Cross-form read: has no form control, so the transformer puts it in the hidden calculated items, after the visible questions -->
+            <bind calculate="instance('clinicaldata')/root/item/value" nodeset="/data/ext" type="string" oc:external="clinicaldata"/>
+            <!-- Visible read-only item that copies the cross-form value -->
+            <bind calculate=" /data/ext " nodeset="/data/mirror" readonly="true()" type="string"/>
+            <!-- Read-only once() item, only relevant when the cross-form value is there; its value comes from an import -->
+            <bind calculate="once(.)" nodeset="/data/imported" readonly="true()" relevant=" /data/ext  != ''" type="string"/>
+            <bind jr:preload="uid" nodeset="/data/meta/instanceID" type="string"/>
+        </model>
+    </h:head>
+    <h:body>
+        <input ref="/data/mirror">
+            <label>Mirror of the cross-form value</label>
+        </input>
+        <input ref="/data/imported">
+            <label>Imported value</label>
+        </input>
+    </h:body>
+</h:html>
