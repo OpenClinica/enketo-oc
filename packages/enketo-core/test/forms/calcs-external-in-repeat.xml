@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:oc="http://openclinica.org/xforms">
+    <h:head>
+        <h:title>cross-form reads inside a repeat</h:title>
+        <model>
+            <instance>
+                <data id="calcs-external-in-repeat">
+                    <rep>
+                        <ext_r/>
+                        <mirror_r/>
+                    </rep>
+                    <meta>
+                        <instanceID/>
+                    </meta>
+                </data>
+            </instance>
+            <!-- Simulates the OpenClinica cross-form data the engine reads -->
+            <instance id="clinicaldata">
+                <root>
+                    <item>
+                        <value>2019-10-01</value>
+                    </item>
+                </root>
+            </instance>
+            <!-- Cross-form read and visible read-only mirror, both inside a repeat -->
+            <bind calculate="instance('clinicaldata')/root/item/value" nodeset="/data/rep/ext_r" type="string" oc:external="clinicaldata"/>
+            <bind calculate=" /data/rep/ext_r " nodeset="/data/rep/mirror_r" readonly="true()" type="string"/>
+            <bind jr:preload="uid" nodeset="/data/meta/instanceID" type="string"/>
+        </model>
+    </h:head>
+    <h:body>
+        <group ref="/data/rep">
+            <label>Repeat</label>
+            <repeat nodeset="/data/rep">
+                <input ref="/data/rep/mirror_r">
+                    <label>Mirror in repeat</label>
+                </input>
+            </repeat>
+        </group>
+    </h:body>
+</h:html>
